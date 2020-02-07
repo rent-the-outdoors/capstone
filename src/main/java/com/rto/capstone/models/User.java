@@ -7,6 +7,17 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Image> images;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Place> places;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<Review> reviews;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
