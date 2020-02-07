@@ -6,12 +6,21 @@ import javax.persistence.*;
 @Table(name="activities")
 public class Activity {
 
+    public Activity() {
+
+    }
+    public Activity(Long id, String activity) {
+        this.id = id;
+        this.activity = activity;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable=false)
     private String activity;
+
 
     @ManyToOne
     @JoinColumn(name="place_id")

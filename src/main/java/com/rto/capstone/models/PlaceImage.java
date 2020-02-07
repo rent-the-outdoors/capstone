@@ -4,11 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
-public class Image {
+public class PlaceImage {
 
+    public PlaceImage() {
+
+    }
+    public PlaceImage(Long id, String imagePath) {
+        this.id = id;
+        this.imagePath = imagePath;
+    }
     @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
+    @JoinColumn(name="place_id")
+    private Place place;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +29,6 @@ public class Image {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getImagePath() {
