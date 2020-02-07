@@ -16,7 +16,7 @@ public class Place {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false;)
+    @Column(nullable = false)
     private Long cost_per_day;
 
     @Column(nullable = false, columnDefinition = "TEXT")
