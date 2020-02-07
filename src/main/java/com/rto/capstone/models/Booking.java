@@ -24,5 +24,17 @@ public class Booking {
     @JoinColumn(name = "place_id")
     private Place place;
 
+    public Booking(long id, String date, String address) {
+        this.id = id;
+        this.date = date;
+        this.address = address;
+    }
 
+    public Booking(String date, String address) {
+        this.date = date;
+        this.address = address;
+    }
+
+
+    public Booking(){}
 }
