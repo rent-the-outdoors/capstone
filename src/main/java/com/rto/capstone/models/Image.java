@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "images")
 public class Image {
 
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
