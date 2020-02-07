@@ -8,6 +8,18 @@
    <title th:text="${title}"></title>
 </head>
 <body>
+<nav th:fragment="nav">
+   <ul>
+      <li>Log In</li>
+      <li>Sign Up</li>
+      <li>About Us</li>
+   </ul>
+</nav>
 
+
+<footer th:fragment="footer">
+   <ul><li>Contact Us</li>
+   </ul>
+</footer>
 </body>
 </html>
