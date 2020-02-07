@@ -1,6 +1,7 @@
 package com.rto.capstone.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "places")
@@ -25,6 +26,10 @@ public class Place {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+    private List<Place> places;
+
 
     public Place(Long id, String title, String address, Long cost_per_day, String description){
         this.id=id;
