@@ -21,6 +21,7 @@ public class User {
     private List<Booking> bookings;
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
