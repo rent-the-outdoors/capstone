@@ -4,6 +4,7 @@ import com.rto.capstone.models.Place;
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import com.rto.capstone.services.StripeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -40,31 +41,30 @@ public class CheckoutController {
         @Value("${STRIPE_PUBLIC_KEY}")
         private String stripePublicKey;
 
-        @GetMapping("/bookNow/{id}/checkout")
-        public String checkout(Model model, @PathVariable Integer id) {
+        @GetMapping("/bookNow/1/checkout")
+        public String checkout(Model model) {
 //            model.addAttribute(schoolClassDao.getOne(id));
 //            model.addAttribute("amount", schoolClassDao.getOne(id).getPrice() * 100);
             model.addAttribute("amount", 100);
             model.addAttribute("stripePublicKey", stripePublicKey);
-            return "/pages/checkout";
+            return "/views/confirmation";
         }
-//        @Autowired
-//        private StripeService stripeService;
+        @Autowired
+        private StripeService stripeService;
 
-        @RequestMapping(value = "/charge/{id}", method = RequestMethod.POST)
-        public String chargeCard(@PathVariable Integer id, Model model, HttpServletRequest request) throws Exception {
+        @RequestMapping(value = "/charge/1", method = RequestMethod.POST)
+        public String chargeCard(Model model, HttpServletRequest request) throws Exception {
 //            model.addAttribute("class", schoolClassDao.getOne(id));
             String token = request.getParameter("stripeToken");
             Double amount = Double.parseDouble(request.getParameter("amount"));
             model.addAttribute("amount", amount);
             stripeService.chargeNewCard(token, amount);
-            return "/pages/result";
+            return "/views/result";
         }
 
         @GetMapping("/result")
-        @ResponseBody
         public String yes() {
-            return "thats right";
+            return "views/result";
         }
 
     }
@@ -75,4 +75,4 @@ public class CheckoutController {
 
 
 
-}
+
