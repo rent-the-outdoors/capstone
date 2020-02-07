@@ -8,8 +8,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Image> images;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Place> places;
