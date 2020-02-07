@@ -28,7 +28,7 @@ public class Place {
     private User user;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-    private List<Place> places;
+    private List<Review> reviews;
 
 
     public Place(Long id, String title, String address, Long cost_per_day, String description){

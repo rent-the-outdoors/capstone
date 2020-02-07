@@ -15,7 +15,10 @@ public class User {
     private List<Place> places;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Review> reviews;
+    private List<Review> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Booking> bookings;
 
 
     @Id
@@ -24,25 +27,26 @@ public class User {
     public long id;
 
     @Column(nullable = false, name = "first_name", columnDefinition = "VARCHAR(255)")
-    public String first_name;
+    private String first_name;
+
     @Column(nullable = false, name = "last_name", columnDefinition = "VARCHAR(255)")
-    public String last_name;
+    private String last_name;
 
     @Column(nullable = false, name = "email", columnDefinition = "VARCHAR(255)")
-    public String email;
+    private String email;
 
     @Column(nullable = false, name = "username", columnDefinition = "VARCHAR(25)")
-    public String username;
+    private String username;
 
     @Column(nullable = false, name = "password", columnDefinition = "VARCHAR(100)")
-    public String password;
+    private String password;
 
 
     @Column(nullable = false, name = "phone_num", columnDefinition = "VARCHAR(12)")
-    public String phone_num;
+    private String phone_num;
 
     @Column(name = "image_path", columnDefinition = "VARCHAR(2050)")
-    public String image_path;
+    private String image_path;
 
     public User(long id,
                 String first_name,
@@ -80,7 +84,7 @@ public class User {
         this.image_path = image_path;
     }
 
-    public void User(){}
+    public User(){}
 
     public long getId() {
         return id;
@@ -136,5 +140,13 @@ public class User {
 
     public void setImage_path(String image_path) {
         this.image_path = image_path;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
