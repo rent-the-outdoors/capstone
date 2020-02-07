@@ -25,6 +25,7 @@ import java.util.Map;
         @Autowired
         public StripeService() {
             //find a way to hide this
+            //put in config, do config.getApiKey() or something
             Stripe.apiKey = "sk_test_fcaJ2PuAc7DCFWwIMFTyH9kf004p4PEHU8";
         }
 
