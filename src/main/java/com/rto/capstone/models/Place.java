@@ -28,8 +28,13 @@ public class Place {
     private User user;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
-    private List<Place> places;
+    private List<Review> reviews;
 
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+//    private List<Activity> Activities;
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+//    private List<Booking> bookings;
 
     public Place(Long id, String title, String address, Long cost_per_day, String description){
         this.id=id;

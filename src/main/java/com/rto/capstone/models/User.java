@@ -15,7 +15,7 @@ public class User {
     private List<Place> places;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Review> reviews;
+    private List<Review> reviews;
 
 
     @Id
