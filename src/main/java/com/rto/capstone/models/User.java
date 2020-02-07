@@ -15,7 +15,11 @@ public class User {
     private List<Place> places;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Review> reviews;
+    private List<Review> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Booking> bookings;
+
 
 
     @Id
@@ -25,6 +29,7 @@ public class User {
 
     @Column(nullable = false, name = "first_name", columnDefinition = "VARCHAR(255)")
     private String first_name;
+
     @Column(nullable = false, name = "last_name", columnDefinition = "VARCHAR(255)")
     private String last_name;
 
@@ -80,7 +85,7 @@ public class User {
         this.image_path = image_path;
     }
 
-    public void User(){}
+    public User(){}
 
     public long getId() {
         return id;
@@ -136,5 +141,13 @@ public class User {
 
     public void setImage_path(String image_path) {
         this.image_path = image_path;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
