@@ -2,33 +2,84 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('Home Page')">
     <style>
-        form {
+        body {
+            background: blue;
             display: flex;
             justify-content: center;
         }
     </style>
 </head>
 <body>
-<nav th:insert="partials/fragments :: nav"></nav>
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
-    <div class="container is-widescreen">
-        <div class="notification">
-            <div class="field">
-                <div class="control">
-
-                    <form method="" action="">
-
-                        <input class="input is-success" type="text" placeholder="Success input">
-                        <a class="button is-primary">
-                            <strong>Search</strong>
-                        </a>
-                    </form>
+    <div class="container is-widescreen" style="margin-top: 10%;">
+        <form method="GET" action="#" class="splash-form">
+            <div class="centered">
+            <input class="input is-success" type="text" placeholder="Success input">
+            <a class="button is-primary is-3 "><strong>Search</strong></a>
+            </div>
+            <div class="evenly" style="margin-left: 4%;">
+                <div class="card small-card">
+                    <img src="img/flock-of-birds-917494.jpg">
+                    <div class="centered">
+                        <p>Hunting</p>
+                    </div>
+                </div>
+                <div class="card small-card">
+                    <img src="img/flock-of-birds-917494.jpg">
+                    <div class="centered">
+                        <p>Fishing</p>
+                    </div>
+                </div>
+                <div class="card small-card">
+                    <img src="img/flock-of-birds-917494.jpg">
+                    <div class="centered">
+                        <p>Camping</p>
+                    </div>
+                </div>
+                <div class="card small-card">
+                    <img src="img/flock-of-birds-917494.jpg">
+                    <div class="centered">
+                        <p>Boating</p>
+                    </div>
                 </div>
             </div>
+        </form>
+    </div>
+    <div class="centered title" style="margin-top: 5%;">
+        <h1>Find Your Adventure Today!</h1>
+    </div>
+
+    <div class="between" style="margin-top: 2%;">
+        <div class="card" style="margin: 0 2% 0 2%">
+            <img src="img/adventure-calm-clouds-dawn-414171.jpg">
+            <div class="card-header centered">
+                <p>Random Post 1</p>
+            </div>
+            <div class="card-content">Here is a description of random post 4.</div>
+        </div>
+        <div class="card" style="margin-right: 2%;">
+            <img src="img/green-trees-near-calm-body-of-water-2275221.jpg">
+            <div class="card-header centered">
+                <p>Random Post 2</p>
+            </div>
+            <div class="card-content">Here is a description of random post 4.</div>
+        </div>
+        <div class="card" style="margin-right: 2%;">
+            <img src="img/two-men-fishing-on-lake-1630039.jpg">
+            <div class="card-header centered">
+                <p>Random Post 3</p>
+            </div>
+            <div class="card-content">Here is a description of random post 4.</div>
+        </div>
+        <div class="card" style="margin-right: 2%;">
+            <img src="img/flock-of-birds-917494.jpg">
+            <div class="card-header centered">
+                <p>Random Post 4</p>
+            </div>
+            <div class="card-content">Here is a description of random post 4.</div>
         </div>
     </div>
 </main>
-
-<footer th:insert="partials/fragments :: footer"></footer>
 </body>
 </html>
