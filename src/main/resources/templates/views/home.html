@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('Home Page')">
+    <div th:insert="partials/scripts :: scripts"></div>
 </head>
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
 <main>
 <h1>Welcome Home</h1>
+    <div class="field">
+        <div class="control">
+            <input class="input is-success" type="text" placeholder="Success input">
+        </div>
+    </div>
 </main>
 <footer th:insert="partials/fragments :: footer"></footer>
 </body>
