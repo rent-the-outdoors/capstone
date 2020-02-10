@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('ERROR!')">
+</head>
+<body>
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+<div class="column is-3 is-three-quarters-mobile">
+    <div class="card" style="margin: 0 2% 0 2%">
+        <div class="card-header centered">
+            <p>There was an error!</p>
+        </div>
+        <div class="card-content">Please try again later!
+        </div>
+    </div>
+</body>
+</html>
