@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
 
     <style>
@@ -10,22 +11,56 @@
             width: 100%;
             height: 500px;
         }
+
+        .marker {
+            width: 50px;
+            height: 50px;
+        }
+
+
     </style>
 
     <title>MAPBOX</title>
 </head>
 <body>
 
-<div id="map">
+<div id="map"></div>
+<submit id="geoSearch"></submit>
 
-</div>
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
 <script
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="/js/keys.js"></script>
 <script type="text/javascript" src="/js/mapbox_api.js"></script>
+
+<script type="text/javascript" src="/js/keys.js"></script>
+
 <script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>
+
+
+<script>
+    // "use strict";
+    // $(document).ready(function(){
+    //     mapboxgl.accessToken = mapBoxToken;
+    //     var map = new mapboxgl.Map
+    //     ({
+    //         container: 'map',
+    //         style: 'mapbox://styles/mapbox/streets-v9',
+    //         center: [-98.4916, 29.4252],
+    //         zoom: 13
+    //     });
+    //     var marker = new mapboxgl.Marker({
+    //         container: 'map',
+    //         draggable: true,
+    //         color: 'rgba(124, 165, 177, 0.78)'
+    //
+    //     }).setLngLat([-98.4916, 29.4252]).addTo(map);
+    //
+    // });
+</script>
 
 
 </body>
