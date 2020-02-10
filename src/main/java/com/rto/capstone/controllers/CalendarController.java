@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Calendar;
+
 @Controller
 public class CalendarController {
+
      @GetMapping("/calendar")
      public String CalendarController(){
          return "views/calendar";
@@ -16,6 +19,6 @@ public class CalendarController {
     private String addDates(){
 
 
-         return "views/confirmation";
+         return "views/home";
     }
 }
