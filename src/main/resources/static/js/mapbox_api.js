@@ -20,13 +20,6 @@ $(document).ready(function () {
         .setLngLat([-98.4916, 29.4252])
         .addTo(map);
 
-    function onDragEnd(){
-        var lngLat = marker.getLngLat();
-        console.log(lngLat);
-
-    }
-
-    onDragEnd();
-
+    console.log(marker);
 
 });
