@@ -18,6 +18,7 @@
     const client = filestack.init("");
     const options = {
             onUploadDone: (res) => console.log(res.url),
+
         };
     client.picker(options).open();
 
