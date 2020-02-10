@@ -1,0 +1,23 @@
+package com.rto.capstone.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Calendar;
+
+@Controller
+public class CalendarController {
+
+     @GetMapping("/calendar")
+     public String CalendarController(){
+         return "views/calendar";
+     }
+
+    @PostMapping("/calendar")
+    private String addDates(){
+//         hello world 2
+         return "views/home";
+    }
+}
