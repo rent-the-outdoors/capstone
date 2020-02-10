@@ -1,6 +1,6 @@
 body {
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
 }
 
 .splash-form {
@@ -18,6 +18,8 @@ body {
 }
 .card {
     width: 50%;
+    height: 90%;
+
 }
 .evenly {
     display: flex;
