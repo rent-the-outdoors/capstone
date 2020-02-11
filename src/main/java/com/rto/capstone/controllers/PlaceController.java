@@ -50,6 +50,14 @@ public class PlaceController {
         return "places/index";
     }
 
+    //Read one place
+    @GetMapping(path ="/places/{id}/place")
+    public String onePlaceById(Model m, @PathVariable long id)
+    {
+        m.addAttribute("place", placesDao.getOne(id));
+        return "places/one-place";
+    }
+
     //Update place GET
     @GetMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPlace(Model m, @PathVariable long id)

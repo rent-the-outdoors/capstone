@@ -21,21 +21,24 @@
                         <p class="content" th:text="${place.description}"></p>
                         <p class="user" th:text="${place.cost_per_day}"></p>
 
+                        <!--update form-->
                         <form method="get" th:action="@{'/places/' + ${place.id} + '/update'}">
                             <input type="hidden" name="title" th:value="${place.title}">
                             <input type="hidden" name="body" th:value="${place.description}">
                             <input type="hidden" name="body" th:value="${place.cost_per_day}">
-
                             <button class="button is-small is-success is-outlined" type="submit">
                                 UPDATE
                                 <br>
                                 <span class="icon is-medium"><i name="ion-icon planet"></i></span>
                             </button>
                         </form>
-
                         <hr>
+                        <!--view one form-->
+                        <form th:action="@{'/places/' + ${place.id} + '/place'}" method="GET">
+                            <button class="button is-small is-danger is-outlined">VIEW</button>
+                        </form>
                         <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
-                            <button class="button is-small is-danger is-outlined"><span class="icon is-small"><i class="fas fa-times"></i></span></button>
+                            <button class="button is-small is-danger is-outlined">DELETE</button>
                         </form>
 
                     </article>
