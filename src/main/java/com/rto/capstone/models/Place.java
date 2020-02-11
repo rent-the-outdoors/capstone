@@ -18,7 +18,7 @@ public class Place {
     private String address;
 
     @Column(nullable = false)
-    private Long cost_per_day;
+    private String cost_per_day;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
@@ -36,12 +36,12 @@ public class Place {
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
-    public Place(Long id, String title, String address, Long cost_per_day, String description){
-        this.id=id;
-        this.title=title;
-        this.address=address;
-        this.cost_per_day=cost_per_day;
-        this.description=description;
+    public Place(Long id, String title, String address, String cost_per_day, String description){
+        this.id = id;
+        this.title = title;
+        this.address = address;
+        this.cost_per_day = cost_per_day;
+        this.description = description;
     }
 
     public Place(){}
@@ -71,13 +71,9 @@ public class Place {
         this.address = address;
     }
 
-    public Long getCost_per_day() {
-        return cost_per_day;
-    }
+    public String getCost_per_day() { return cost_per_day; }
 
-    public void setCost_per_day(Long cost_per_day) {
-        this.cost_per_day = cost_per_day;
-    }
+    public void setCost_per_day(String cost_per_day) { this.cost_per_day = cost_per_day; }
 
     public String getDescription() {
         return description;
