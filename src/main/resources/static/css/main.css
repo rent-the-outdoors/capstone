@@ -16,11 +16,6 @@ body {
     align-items: center;
     width: 100%;
 }
-.card {
-    width: 50%;
-    height: 90%;
-
-}
 .evenly {
     display: flex;
     justify-content: space-evenly;
@@ -54,4 +49,18 @@ body {
 .sixty {
     width: 60%;
 }
-
+.check {
+    display: none;
+}
+.check-label img {
+    border-radius: 25%;
+    box-shadow: 2px 2px 3px 1px darkslategrey;
+    margin-right: 2%;
+}
+.check-label img:hover {
+    cursor: pointer;
+}
+input[type=checkbox]:checked + .check-label img{
+    border: 2px solid lightslategrey;
+    box-shadow: 0 0 5px 3px lightsteelblue;
+}

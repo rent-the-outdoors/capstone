@@ -18,52 +18,21 @@
             <div class="column is-two-thirds field has-addons">
                <input class="input is-success control" type="text"
                       placeholder="Find Your Outdoors">
-               <a
-                 class="button is-primary is-3 control "><strong>Search</strong></a>
+               <a class="button is-primary is-3 control "><strong>Search</strong></a>
             </div>
-            <div class="columns">
-               <div class="column level is-1 is-1-mobile"
-                    style="margin: 2% 0 0 2%;">
-                  <h4><strong class="has-text-light">Categories:</strong></h4>
-               </div>
-               <div class="column is-1 is-1-mobile" style="margin: 0">
-                  <div class="has-text-centered card" style="
-                       background-color: #D1F2C3;
-                       box-shadow: 2px 2px 2px 1px darkslategray;
-                       border-radius: 25%;">
-                     <img src="img/boat-icon.png"
-                          style="height: 50px; width: 50px;">
-                  </div>
-               </div>
-               <div class="column is-1 is-1-mobile" style="margin: 0">
-                  <div class="has-text-centered card" style="
-                       background-color: #D1F2C3;
-                       box-shadow: 2px 2px 2px 1px darkslategray;
-                       border-radius: 25%;">
-                     <img src="img/tent-icon.png"
-                          style="height: 40px; width: 40px;">
-                  </div>
-               </div>
-               <div class="column is-1 is-1-mobile" style="margin: 0">
-                  <div class="has-text-centered card" style="
-                       background-color: #D1F2C3;
-                       box-shadow: 2px 2px 2px 1px darkslategray;
-                       border-radius: 25%;">
-                     <img src="img/hook-icon.png"
-                          style="height: 45px; width: 45px;">
-                  </div>
-               </div>
-               <div class="column is-1" style="margin: 0">
-                  <div class="has-text-centered card" style="
-                       background-color: #D1F2C3;
-                       box-shadow: 2px 2px 2px 1px darkslategray;
-                       border-radius: 25%;">
-                     <img src="img/crosshair-icon.png"
-                          style="height: 50px; width: 50px;">
-                  </div>
+            <div class="columns is-hidden-touch">
+               <div id="checkboxes" class="column is-8 is-relative">
+                  <strong class="has-text-light" id="cats" style="margin-right: 2%;">Categories:</strong>
+                  <input type="checkbox" name="check-group" value="hunting" id="hunt-check" class="check">
+                  <label class="check-label" for="hunt-check"><img src="img/hunt_icon.png" alt="hunt" style="height: 50px; width: 50px;"></label>
+                  <input type="checkbox" name="check-group" value="camping" id="camp-check" class="check">
+                  <label class="check-label" for="camp-check"><img src="img/tent_icon.png" alt="tent" style="height: 50px; width: 50px;"></label>
+                  <input type="checkbox" name="check-group" value="fishing" id="fish-check" class="check">
+                  <label class="check-label" for="fish-check"><img src="img/fish_icon.png" alt="fish" style="height: 50px; width: 50px;"></label>
+                  <input type="checkbox" name="check-group" value="boating" id="boat-check" class="check">
+                  <label class="check-label" for="boat-check"><img src="img/boat_icon.png" alt="boat" style="height: 50px; width: 50px;"></label>
                </div>
             </div>
-
          </form>
       </div>
    </div>
@@ -71,8 +40,8 @@
       <h1>Find Your Adventure Today!</h1>
    </div>
 
-   <div class="columns is-one-quarter-mobile" style="margin-top: 2%;">
-      <div class="column is-3 is-three-quarters-mobile">
+   <div class="columns" style="margin-top: 2%;">
+      <div class="column is-3">
          <div class="card" style="margin: 0 2% 0 2%">
             <img src="img/adventure-calm-clouds-dawn-414171.jpg"
                  style="width: 400px; height: 200px;">
@@ -83,8 +52,8 @@
             </div>
          </div>
       </div>
-      <div class="column is-3 is-three-quarters-mobile">
-         <div class="card" style="margin-right: 2%;">
+      <div class="column is-3">
+         <div class="card" style="margin: 0 2% 0 2%;">
             <img src="img/green-trees-near-calm-body-of-water-2275221.jpg"
                  style="width: 400px; height: 200px;">
             <div class="card-header centered">
@@ -94,8 +63,8 @@
             </div>
          </div>
       </div>
-      <div class="column is-3 is-three-quarters-mobile">
-         <div class="card" style="margin-right: 2%;">
+      <div class="column is-3">
+         <div class="card" style="margin: 0 2% 0 2%;">
             <img src="img/two-men-fishing-on-lake-1630039.jpg"
                  style="width: 400px; height: 200px;">
             <div class="card-header centered">
@@ -105,8 +74,8 @@
             </div>
          </div>
       </div>
-      <div class="column is-3 is-three-quarters-mobile">
-         <div class="card" style="margin-right: 2%;">
+      <div class="column is-3">
+         <div class="card" style="margin: 0 2% 0 2%;">
             <img src="img/flock-of-birds-917494.jpg"
                  style="width: 400px; height: 200px;">
             <div class="card-header centered">
