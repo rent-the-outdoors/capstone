@@ -1,6 +1,8 @@
 "use strict";
 $(document).ready(function(){
 
+
+
     function geocode(search, token) {
         var baseUrl = 'https://api.mapbox.com';
         var endPoint = '/geocoding/v5/mapbox.places/';
@@ -27,8 +29,6 @@ $(document).ready(function(){
 
     }
 
-    // geocode("Texas", mapBoxToken);
-    // reverseGeocode(-21.9270884, mapBoxToken);
 
 
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <div th:insert="/partials/scripts.html :: bulma"></div>-->
+    <title>All Posts</title>
+</head>
+<body>
+<!--<div th:insert="/partials/navbar.html"></div>-->
+<form th:action="@{'/places/create'}" method="GET">
+    <button>create</button>
+</form>
+<div th:each="place : ${places}">
+    <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <div class="box">
+                <div class="column">
+                    <article class="tile is-child box">
+                        <h1 class="title" th:text="${place.title}"></h1>
+                        <p class="content" th:text="${place.description}"></p>
+                        <p class="user" th:text="${place.cost_per_day}"></p>
+
+                        <form method="get" th:action="@{'/places/' + ${place.id} + '/update'}">
+                            <input type="hidden" name="title" th:value="${place.title}">
+                            <input type="hidden" name="body" th:value="${place.description}">
+                            <input type="hidden" name="body" th:value="${place.cost_per_day}">
+
+                            <button class="button is-small is-success is-outlined" type="submit">
+                                UPDATE
+                                <br>
+                                <span class="icon is-medium"><i name="ion-icon planet"></i></span>
+                            </button>
+                        </form>
+
+                        <hr>
+                        <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
+                            <button class="button is-small is-danger is-outlined"><span class="icon is-small"><i class="fas fa-times"></i></span></button>
+                        </form>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
