@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('RTO Register')">
+</head>
+<body>
+<div>
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+
+<div class="column is-3 is-three-quarters-mobile">
+    <div class="card" style="margin: 0 2% 0 2%">
+        <div class="card-header centered">
+            <p>Register</p>
+        </div>
+        <div class="card-content">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <label for="confirmPassowr">Confirm Password:</label>
+            <input type="password" id="confirmPassowr" name="confrimPassword">
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
