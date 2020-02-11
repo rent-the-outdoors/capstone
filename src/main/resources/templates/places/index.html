@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="partials/fragments :: head('All Places')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <div th:insert="/partials/scripts.html :: bulma"></div>-->
-    <title>All Posts</title>
+
 </head>
 <body>
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+
 <!--<div th:insert="/partials/navbar.html"></div>-->
 <form th:action="@{'/places/create'}" method="GET">
-    <button>create</button>
+    <button class="button is-small is-success is-outlined">CREATE</button>
 </form>
 <div th:each="place : ${places}">
     <div class="tile is-ancestor">
@@ -18,9 +18,6 @@
                 <div class="column">
                     <article class="tile is-child box">
                         <h1 class="title" th:text="${place.title}"></h1>
-                        <p class="content" th:text="${place.description}"></p>
-                        <p class="user" th:text="${place.cost_per_day}"></p>
-
                         <!--update form-->
                         <form method="get" th:action="@{'/places/' + ${place.id} + '/update'}">
                             <input type="hidden" name="title" th:value="${place.title}">
@@ -35,8 +32,9 @@
                         <hr>
                         <!--view one form-->
                         <form th:action="@{'/places/' + ${place.id} + '/place'}" method="GET">
-                            <button class="button is-small is-danger is-outlined">VIEW</button>
+                            <button class="button is-small is-success is-outlined">VIEW</button>
                         </form>
+                        <hr>
                         <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
                             <button class="button is-small is-danger is-outlined">DELETE</button>
                         </form>
