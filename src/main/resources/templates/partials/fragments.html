@@ -3,20 +3,24 @@
 <head th:fragment="head(title)">
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+   <link rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+   <script defer
+           src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
    <link rel="stylesheet" href="css/main.css">
+
    <title th:text="${title}"></title>
 </head>
 <body>
 <nav th:fragment="nav">
    <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-         <a class="navbar-item" href="https://bulma.io">
+         <a class="navbar-item" href="https://www.rto.rentals">
             <strong>RTO</strong>
          </a>
 
-         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+         <a role="button" class="navbar-burger burger" aria-label="menu"
+            aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -25,51 +29,24 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
          <div class="navbar-start">
-            <a class="navbar-item">
-               Home
-            </a>
-
-            <a class="navbar-item">
+            <a class="navbar-item" href="#">
                Book Now
             </a>
-
-            <a class="navbar-item">
+            <a class="navbar-item" href="#">
                Rent Your Outdoors
             </a>
-
-<!--            <div class="navbar-item has-dropdown is-hoverable">-->
-<!--               <a class="navbar-link">-->
-<!--                  More-->
-<!--               </a>-->
-
-<!--               <div class="navbar-dropdown">-->
-<!--                  <a class="navbar-item">-->
-<!--                     About-->
-<!--                  </a>-->
-<!--                  <a class="navbar-item">-->
-<!--                     Jobs-->
-<!--                  </a>-->
-<!--                  <a class="navbar-item">-->
-<!--                     Contact-->
-<!--                  </a>-->
-<!--                  <hr class="navbar-divider">-->
-<!--                  <a class="navbar-item">-->
-<!--                     Report an issue-->
-<!--                  </a>-->
-<!--               </div>-->
-            </div>
          </div>
+      </div>
 
-         <div class="navbar-end">
-            <div class="navbar-item">
-               <div class="buttons">
-                  <a class="button is-primary">
-                     <strong>Sign up</strong>
-                  </a>
-                  <a class="button is-light"  href="/users/login">
-                     Log in
-                  </a>
-               </div>
+      <div class="navbar-end">
+         <div class="navbar-item">
+            <div class="buttons">
+               <a class="button is-primary" href="#">
+                  <strong>Sign up</strong>
+               </a>
+               <a class="button is-light" href="/users/login">
+                  Log in
+               </a>
             </div>
          </div>
       </div>
@@ -78,8 +55,7 @@
 
 
 <footer th:fragment="footer">
-   <ul><li>Contact Us</li>
-   </ul>
+   <a href="#">Contact Us</a>
 </footer>
 </body>
 </html>
