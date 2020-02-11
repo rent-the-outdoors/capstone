@@ -7,49 +7,40 @@
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-<!--<div th:insert="/partials/navbar.html"></div>-->
-<form th:action="@{'/places/create'}" method="GET">
-    <button class="button is-small is-success is-outlined">CREATE</button>
-</form>
 <div th:each="place : ${places}">
     <div class="tile is-ancestor">
-        <div class="tile is-parent">
-            <div class="box">
-                <div class="column">
-                    <article class="tile is-child box">
-                        <h1 class="title" th:text="${place.title}"></h1>
-                        <!--update form-->
-                        <form method="get" th:action="@{'/places/' + ${place.id} + '/update'}">
-                            <input type="hidden" name="title" th:value="${place.title}">
-                            <input type="hidden" name="body" th:value="${place.description}">
-                            <input type="hidden" name="body" th:value="${place.cost_per_day}">
-                            <button class="button is-small is-success is-outlined" type="submit">
-                                UPDATE
-                                <br>
-                                <span class="icon is-medium"><i name="ion-icon planet"></i></span>
-                            </button>
-                        </form>
-                        <hr>
-                        <!--view one form-->
-                        <form th:action="@{'/places/' + ${place.id} + '/place'}" method="GET">
-                            <button class="button is-small is-success is-outlined">VIEW</button>
-                        </form>
-                        <hr>
-                        <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
-                            <button class="button is-small is-danger is-outlined">DELETE</button>
-                        </form>
+        <div class="tile is-parent is-widescreen">
+            <div class="column">
+                <article class="tile is-child is-widescreen">
+                    <h1 class="title" th:text="${place.title}"></h1>
+                    <!--update form-->
+                    <form method="get" th:action="@{'/places/' + ${place.id} + '/update'}">
+                        <input type="hidden" name="title" th:value="${place.title}">
+                        <input type="hidden" name="body" th:value="${place.description}">
+                        <input type="hidden" name="body" th:value="${place.cost_per_day}">
+                        <button class="button is-small is-success" type="submit">
+                            UPDATE
+                            <br>
+                        </button>
+                    </form>
+                    <hr>
+                    <!--view one form-->
+                    <form th:action="@{'/places/' + ${place.id} + '/place'}" method="GET">
+                        <button class="button is-small is-success">VIEW</button>
+                    </form>
+                    <hr>
+                    <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
+                        <button class="button is-small is-danger">DELETE</button>
+                    </form>
 
-                    </article>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
+<form th:action="@{'/places/create'}" method="GET">
+    <button class="button is-small is-success is-outlined">CREATE</button>
+</form>
 
 </body>
 </html>
