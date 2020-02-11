@@ -1,6 +1,7 @@
 package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.Place;
+import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ public class SearchController {
 
     private PlaceRepository placesDao;
     private UserRepository usersDao;
+    private ImageRepository imageDao;
 
-    public SearchController(PlaceRepository placesDao, UserRepository usersDao) {
+    public SearchController(PlaceRepository placesDao, UserRepository usersDao, ImageRepository imageDao) {
         this.placesDao = placesDao;
         this.usersDao = usersDao;
+        this.imageDao = imageDao;
     }
 
 
@@ -36,6 +39,8 @@ public class SearchController {
                     || place.getTitle().contains(search)
                     || place.getAddress().contains(search)))) {
                 checkList.add(place);
+                String imagePath = place.getPlaceImages().get(0).getImagePath();
+                model.addAttribute("imagePath", imagePath);
             }
         }
         model.addAttribute("allPlaces", allPlaces);
