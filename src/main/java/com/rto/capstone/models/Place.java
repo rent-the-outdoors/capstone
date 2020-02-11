@@ -27,6 +27,17 @@ public class Place {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public List<PlaceImage> getPlaceImages() {
+        return placeImages;
+    }
+
+    public void setPlaceImages(List<PlaceImage> placeImages) {
+        this.placeImages = placeImages;
+    }
+
+    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+    private List<PlaceImage> placeImages;
+
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
