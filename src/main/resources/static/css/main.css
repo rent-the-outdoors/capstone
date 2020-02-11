@@ -59,8 +59,10 @@ body {
 }
 .check-label img:hover {
     cursor: pointer;
-}
-input[type=checkbox]:checked + .check-label img{
     border: 2px solid lightslategrey;
     box-shadow: 0 0 5px 3px lightsteelblue;
+}
+input[type=checkbox]:checked + .check-label img{
+    border: 2px solid forestgreen;
+    box-shadow: 0 0 5px 3px lightgreen;
 }

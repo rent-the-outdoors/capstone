@@ -14,23 +14,23 @@
             background-size: cover;
             height: 45vh;">
       <div class="container is-widescreen centered">
-         <form th:method="GET" th:action="@{/search}" class="column is-mobile"
+         <form method="GET" action="/search" class="column is-mobile"
                style="margin-top: 5%;">
             <div class="column is-two-thirds field has-addons">
                <input class="input is-success control" type="text"
-                      placeholder="Find Your Outdoors">
-               <a class="button is-primary is-3 control "><strong>Search</strong></a>
+                      placeholder="Find Your Outdoors" name="search">
+               <button class="button is-primary is-3 control" type="submit"><strong>Search</strong></button>
             </div>
             <div class="columns is-hidden-touch">
                <div id="checkboxes" class="column is-8 is-relative">
                   <strong class="has-text-light" id="cats" style="margin-right: 2%;">Categories:</strong>
-                  <input type="checkbox" name="check-group" value="hunting" id="hunt-check" class="check">
+                  <input type="checkbox" name="huntCheck" value="hunting" id="hunt-check" class="check">
                   <label class="check-label" for="hunt-check"><img src="img/hunt_icon.png" alt="hunt" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="check-group" value="camping" id="camp-check" class="check">
+                  <input type="checkbox" name="campCheck" value="camping" id="camp-check" class="check">
                   <label class="check-label" for="camp-check"><img src="img/tent_icon.png" alt="tent" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="check-group" value="fishing" id="fish-check" class="check">
+                  <input type="checkbox" name="fishCheck" value="fishing" id="fish-check" class="check">
                   <label class="check-label" for="fish-check"><img src="img/fish_icon.png" alt="fish" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="check-group" value="boating" id="boat-check" class="check">
+                  <input type="checkbox" name="boatCheck" value="boating" id="boat-check" class="check">
                   <label class="check-label" for="boat-check"><img src="img/boat_icon.png" alt="boat" style="height: 50px; width: 50px;"></label>
                </div>
             </div>
