@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
    <title>Search Results</title>
 </head>
 <body>
-
+   <div th:each="place : ${searchQuery}">
+      <span th:text="${place.address}"></span>
+      <span th:text="${place.cost_per_day}"></span>
+      <span th:text="${place.title}"></span>
+      <span th:text="${place.description}"></span>
+   </div>
 </body>
 </html>
