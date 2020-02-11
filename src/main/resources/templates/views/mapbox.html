@@ -5,6 +5,8 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
 
     <style>
         #map{
@@ -24,9 +26,30 @@
 </head>
 <body>
 
-<h1> testing production </h1>
-<div id="map"></div>
-<submit id="geoSearch"></submit>
+<h1>List Place To Rent</h1>
+<form id="create" th:action="@{'/places/create'}" th:method="post" th:object="${place}">
+    <div class="container">
+        <h1>Create a new place</h1>
+        <div class="form-row">
+            <label>Title of place</label>
+            <input type="text" id="title" class="input-text" th:field="*{title}" placeholder="Please enter a title" required>
+        </div>
+
+        <div class="form-row">
+            <label>Description of place</label>
+            <input type="text" id="description" class="input-text" th:field="*{description}" placeholder="Please enter a description" required>
+        </div>
+
+        <div class="form-row">
+            <label>Address of place</label>
+            <input type="text" id="address" class="input-text" th:field="*{address}" placeholder="Street, city, state, zip" required>
+        </div>
+
+    </div>
+</form>
+
+<!--<input type="submit" id="address">-->
+
 
 
 
@@ -35,32 +58,68 @@
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="/js/mapbox_api.js"></script>
+<!--<script type="text/javascript" src="/js/mapbox_api.js"></script>-->
 
 <script type="text/javascript" src="/js/keys.js"></script>
 
-<script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+
+<!--<script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>-->
 
 
 <script>
-    // "use strict";
-    // $(document).ready(function(){
-    //     mapboxgl.accessToken = mapBoxToken;
-    //     var map = new mapboxgl.Map
-    //     ({
-    //         container: 'map',
-    //         style: 'mapbox://styles/mapbox/streets-v9',
-    //         center: [-98.4916, 29.4252],
-    //         zoom: 13
-    //     });
-    //     var marker = new mapboxgl.Marker({
-    //         container: 'map',
-    //         draggable: true,
-    //         color: 'rgba(124, 165, 177, 0.78)'
-    //
-    //     }).setLngLat([-98.4916, 29.4252]).addTo(map);
-    //
-    // });
+
+
+    function geocode(search, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
+
+    mapboxgl.accessToken = mapBoxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 17,
+        center: [-98.4936, 29.4241]
+
+    });
+
+    // var marker = new mapboxgl.Marker()
+    //     .setLngLat([30.5, 50.5])
+    //     .addTo(map);
+
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        marker: {
+            color: 'orange'
+        },
+        mapboxgl: mapboxgl
+    });
+
+
+    map.addControl(geocoder);
+
+    let address = $('#address').val();
+
+    geocode(address, mapBoxToken)
+        .then(function (result) {
+            map.flyTo({ center:result});
+            // marker.setLngLat(result);
+
+
+        });
+
+
+
+
+
 </script>
 
 

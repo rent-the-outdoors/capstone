@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('Profile Page')">
     <meta charset="UTF-8">
     <title>Profile Page</title>
 </head>
 <body>
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+
 
 <div id="img"></div>
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Place</title>
+</head>
+<body>
+
+<form th:action="@{'/places/' + ${place.id} + '/update'}" th:method="POST" th:object="${place}">
+    <label for="title">Title: </label>
+    <input id="title" th:field="*{title}" type="text" th:placeholder="${place.title}"/>
+    <br />
+    <label for="body">Description:</label>
+    <textarea id="body" th:field="*{description}" th:placeholder="${place.description}"></textarea>
+    <br />
+    <label for="address">Address: </label>
+    <input id="address" th:field="*{address}" th:placeholder="${place.address}"/>
+
+
+    <label for="cost_per_day">Cost Per Day: </label>
+    <input id="cost_per_day" th:field="*{cost_per_day}" type="text" th:placeholder="${place.cost_per_day}" />
+    <button type="submit">UPDATE</button>
+</form>
+
+</body>
+</html>
