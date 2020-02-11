@@ -3,14 +3,14 @@
 <head th:insert="partials/fragments :: head('Create Place Page')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
     <style>
         #map{
             position: absolute;
             top: 0;
             bottom: 0;
             width: 100%;
-            height: 200vh;
+            height: 100%;
         }
     </style>
 </head>
@@ -25,12 +25,15 @@
     <br />
     <label for="cost_per_day">Cost per day: </label>
     <input id="cost_per_day" th:field="*{cost_per_day}" />
-    <input type="submit" />
+
 
     <label for="address">Address</label>
     <input id="address" th:field="*{address}" placeholder="Street, city, state, zip" required/>
     <br />
+    <button class="button is-small is-success is-outlined">SUBMIT</button>
+
     <div id="map"></div>
+
 
 </form>
 
@@ -40,9 +43,10 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 <script src="/js/keys.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+
 <script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>
 <script>
 
@@ -59,12 +63,12 @@
     }
 
     mapboxgl.accessToken = mapBoxToken;
+
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.4936, 29.4241],
         zoom: 12,
-        center: [-98.4936, 29.4241]
-
     });
 
     const marker = new mapboxgl.Marker()
@@ -74,12 +78,11 @@
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         marker: {
+            marker: false,
             color: 'orange',
             draggable: true
         },
-        mapboxgl: mapboxgl
     });
-
 
     map.addControl(geocoder);
 

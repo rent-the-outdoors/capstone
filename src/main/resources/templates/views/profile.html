@@ -6,24 +6,27 @@
 </head>
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+<div id="imgHere">
+
+</div>
 
 
-<div id="img"></div>
+<!--<input id="img" th:field="*{img}" placeholder="Upload Image" required/>-->
 
-<script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
 <script type="text/javascript" src="/js/keys.js"></script>
+<script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function(){
-    const client = filestack.init(fileStackKey);
-    const options = {
-            onUploadDone: (res) => console.log(res.url),
-
+    $(document).ready(function () {
+        let client = filestack.init(fileStackKey);
+        let options = {
+            onUploadDone: (res) => $('#imgHere').append(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
         };
-    client.picker(options).open();
+        client.picker(options).open();
 
     });
 </script>
