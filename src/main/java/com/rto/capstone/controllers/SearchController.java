@@ -1,6 +1,7 @@
 package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.Place;
+import com.rto.capstone.models.PlaceImage;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +41,6 @@ public class SearchController {
                     || place.getTitle().contains(search)
                     || place.getAddress().contains(search)))) {
                 checkList.add(place);
-                String imagePath = place.getPlaceImages().get(0).getImagePath();
-                model.addAttribute("imagePath", imagePath);
             }
         }
         model.addAttribute("allPlaces", allPlaces);
