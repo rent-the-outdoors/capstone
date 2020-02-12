@@ -40,8 +40,9 @@
          <div class="column is-8">
             <a th:href="@{'/places/' + ${place.id}}">
             <div class="card" style="display: flex">
-               <img src="img/adventure-bg.jpg"
-                    style="width: 400px; height: 200px;">
+               <div th:each="image : ${place.placeImages}">
+                  <img th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
+               </div>
                <div class="card-content" style="margin-left: 2%;">
                   <p>
                      <strong th:text="${place.title}"></strong>
