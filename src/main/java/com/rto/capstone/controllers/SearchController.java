@@ -49,6 +49,6 @@ public class SearchController {
         }
         model.addAttribute("allPlaces", allPlaces);
         model.addAttribute("searchQuery", checkList);
-        return ("/views/search");
+        return ("views/search");
     }
 }
