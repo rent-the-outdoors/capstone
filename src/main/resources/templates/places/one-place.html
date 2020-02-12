@@ -10,8 +10,8 @@
 
 
 <input type="hidden" id="address" th:value="${place.address}">
-    <h1 id="address-text" th:text="${place.address}"></h1>
-    <div id="map"></div>
+<h1 id="address-text" th:text="${place.address}"></h1>
+<div id="map"></div>
 
 
 
@@ -21,67 +21,67 @@
 
 <script>
 
-$(document).ready(function(){
+    $(document).ready(function(){
 
-    function geocode(search, token) {
-        const baseUrl = 'https://api.mapbox.com';
-        const endPoint = '/geocoding/v5/mapbox.places/';
-        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-            .then(function(res) {
-                return res.json();
-                // to get all the data from the request, comment out the following three lines...
-            }).then(function(data) {
-                return data.features[0].center;
-            });
-    }
+        function geocode(search, token) {
+            const baseUrl = 'https://api.mapbox.com';
+            const endPoint = '/geocoding/v5/mapbox.places/';
+            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+                .then(function(res) {
+                    return res.json();
+                    // to get all the data from the request, comment out the following three lines...
+                }).then(function(data) {
+                    return data.features[0].center;
+                });
+        }
 
-    mapboxgl.accessToken = mapBoxToken;
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 15,
-        center: [-98.4936, 29.4241]
-
-    });
-
-    const marker = new mapboxgl.Marker()
-        .setLngLat([-98.4936, 29.4241])
-        .addTo(map);
-
-    function geocode(search, token) {
-        const baseUrl = 'https://api.mapbox.com';
-        const endPoint = '/geocoding/v5/mapbox.places/';
-        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-            .then(function(res) {
-                return res.json();
-                // to get all the data from the request, comment out the following three lines...
-            }).then(function(data) {
-                return data.features[0].center;
-            });
-    }
-
-    const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        marker: {
-            color: 'orange',
-            draggable: true
-        },
-        mapboxgl: mapboxgl
-    });
-
-
-    map.addControl(geocoder);
-
-    var address = $('#address').val();
-
-    geocode(address, mapBoxToken)
-        .then(function (result) {
-            map.flyTo({ center:result});
-            marker.setLngLat(result);
+        mapboxgl.accessToken = mapBoxToken;
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 15,
+            center: [-98.4936, 29.4241]
 
         });
 
-});
+        const marker = new mapboxgl.Marker()
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map);
+
+        function geocode(search, token) {
+            const baseUrl = 'https://api.mapbox.com';
+            const endPoint = '/geocoding/v5/mapbox.places/';
+            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+                .then(function(res) {
+                    return res.json();
+                    // to get all the data from the request, comment out the following three lines...
+                }).then(function(data) {
+                    return data.features[0].center;
+                });
+        }
+
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            marker: {
+                color: 'orange',
+                draggable: true
+            },
+            mapboxgl: mapboxgl
+        });
+
+
+        map.addControl(geocoder);
+
+        var address = $('#address').val();
+
+        geocode(address, mapBoxToken)
+            .then(function (result) {
+                map.flyTo({ center:result});
+                marker.setLngLat(result);
+
+            });
+
+    });
 
 
 </script>
