@@ -1,58 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="partials/fragments :: head('Search Results')">
-<body>
+<body style="height: 100vh;">
 <nav th:include="partials/fragments :: nav"></nav>
-<div th:each="place : ${searchQuery}">
-   <article class="media">
-      <figure class="media-left">
-         <p class="image is-128x128">
-<!--            <img th:src="">-->
-         </p>
-      </figure>
-      <div class="media-content">
-         <div class="content">
-            <p>
-               <strong>John Smith</strong> <small>@johnsmith</small>
-               <small>31m</small>
-               <br>
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-               ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-               non massa sem. Etiam finibus odio quis feugiat facilisis.
-            </p>
-         </div>
-         <nav class="level is-mobile">
-            <div class="level-left">
-               <a class="level-item">
-                  <span class="icon is-small"><i
-                    class="fas fa-reply"></i></span>
-               </a>
-               <a class="level-item">
-                  <span class="icon is-small"><i
-                    class="fas fa-retweet"></i></span>
-               </a>
-               <a class="level-item">
-                  <span class="icon is-small"><i
-                    class="fas fa-heart"></i></span>
-               </a>
+<main>
+   <div style="">
+      <div th:each="place : ${searchQuery}" class="columns centered" style="margin: 5%;">
+         <div class="column is-3">
+            <div class="card" style="margin: 0 2% 0 2%">
+               <img src="img/adventure-bg.jpg"
+                    style="width: 400px; height: 200px;">
+               <div class="card-header centered">
+                  <p>
+                     <strong th:text="${place.title}"></strong>
+                     <br>
+                     <strong th:text="${place.address}"></strong>
+                     <br>
+                     <small th:text="'$' + ${place.cost_per_day} + '/day'"></small>
+                  </p>
+               </div>
+               <div class="card-content">
+                  <p th:text="${place.description}"></p>
+               </div>
             </div>
-         </nav>
+         </div>
       </div>
-      <div class="media-right">
-         <button class="delete"></button>
-      </div>
-   </article>
-
-</div>
-
-
-<div th:each="place : ${searchQuery}">
-   <span th:text="${place.address}"></span>
-   <span th:text="${place.cost_per_day}"></span>
-   <span th:text="${place.title}"></span>
-   <span th:text="${place.description}"></span>
-<!--   <span th:text="${place.placeImage.imagePath}"></span>-->
-</div>
+   </div>
+</main>
 <footer th:include="partials/fragments :: footer"></footer>
 </body>
 </html>
