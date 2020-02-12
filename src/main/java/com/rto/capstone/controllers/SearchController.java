@@ -50,14 +50,8 @@ public class SearchController {
 
             }
         }
-<<<<<<< HEAD
         model.addAttribute("allPlaces", allPlaces);
         model.addAttribute("searchQuery", checkList);
-=======
-            model.addAttribute("allPlaces", allPlaces);
-            model.addAttribute("searchQuery", checkList);
->>>>>>> 979734ec3f3c069510ec90646703d2bf88b9002d
-
         return "views/search";
     }
 }
