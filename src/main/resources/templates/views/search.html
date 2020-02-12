@@ -37,8 +37,8 @@
 <main style="margin-top: 5%">
    <div>
       <div th:each="place : ${searchQuery}" class="columns centered">
-         <a th:src="@{'/places/' + ${place.id}}">
          <div class="column is-8">
+            <a th:href="@{'/places/' + ${place.id}}">
             <div class="card" style="display: flex">
                <img src="img/adventure-bg.jpg"
                     style="width: 400px; height: 200px;">
@@ -53,8 +53,8 @@
                   </p>
                </div>
             </div>
+            </a>
          </div>
-         </a>
       </div>
    </div>
 </main>
