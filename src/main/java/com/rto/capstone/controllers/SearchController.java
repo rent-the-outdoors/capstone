@@ -32,7 +32,7 @@ public class SearchController {
     @GetMapping("/search")
     @ResponseBody
     public String boo() {
-        return "nope";
+        return "nope yep";
     }
 
 //    public String searchResults(@RequestParam String search, @RequestParam (required = false) String huntCheck, @RequestParam (required=false) String fishCheck, @RequestParam (required=false) String campCheck, @RequestParam (required=false) String boatCheck, Model model) {
