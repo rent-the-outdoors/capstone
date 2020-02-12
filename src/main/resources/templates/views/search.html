@@ -4,29 +4,27 @@
 <body style="height: 100vh;">
 <nav th:include="partials/fragments :: nav"></nav>
 <main>
-   <div th:each="place : ${searchQuery}" style="margin-left: 10%;">
-      <article class="media" style="margin-bottom: 2%;">
-         <figure class="media-left">
-            <p class="image is-256x256">
+   <div style="">
+      <div th:each="place : ${searchQuery}" class="columns centered" style="margin: 5%;">
+         <div class="column is-3">
+            <div class="card" style="margin: 0 2% 0 2%">
                <img src="img/adventure-bg.jpg"
-                    style="height: 256px; width: 256px;">
-            </p>
-         </figure>
-         <div class="media-content" style="margin: 5% 0 5% 0;">
-            <div class="content">
-               <p>
-                  <strong th:text="${place.address}"></strong>
-                  <small th:text="'$' + ${place.cost_per_day} + '/day'"></small>
-                  <br>
-                  <strong th:text="${place.title}"></strong>
-                  <!--                  <span th:text="${place.images.imagePath}"></span>-->
-                  <br>
-               <p th:text="${place.description}"></p>
-               </p>
+                    style="width: 400px; height: 200px;">
+               <div class="card-header centered">
+                  <p>
+                     <strong th:text="${place.title}"></strong>
+                     <br>
+                     <strong th:text="${place.address}"></strong>
+                     <br>
+                     <small th:text="'$' + ${place.cost_per_day} + '/day'"></small>
+                  </p>
+               </div>
+               <div class="card-content">
+                  <p th:text="${place.description}"></p>
+               </div>
             </div>
          </div>
-      </article>
-   </div>
+      </div>
    </div>
 </main>
 <footer th:include="partials/fragments :: footer"></footer>
