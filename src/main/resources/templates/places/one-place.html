@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('Single Place Page')">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
-        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+
+    <link
+            rel="stylesheet"
+            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+            type="text/css"/>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+
+
+    <!--    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>-->
+<!--    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <style>
-        #map{
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
             width: 100%;
             height: 100%;
         }
 
         .marker {
-            background-image: url('https://secure.webtoolhub.com/static/resources/icons/set101/1dc0e500.png');
-            background-size: cover;
             width: 50px;
             height: 50px;
-            cursor: pointer;
+            position: absolute;
         }
     </style>
 </head>
@@ -27,8 +39,8 @@
 
 
 <input type="hidden" id="address" th:value="${place.address}">
-    <h1 id="address-text" th:text="${place.address}"></h1>
-    <div id="map"></div>
+<h1 id="address-text" th:text="${place.address}"></h1>
+<div id="map"></div>
 
 
 
@@ -37,28 +49,22 @@
         src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
 <script src="/js/keys.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-<script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>
+
+
+<!--search plugin-->
+
+
+
 
 <script>
 
-    function geocode(search, token) {
-        const baseUrl = 'https://api.mapbox.com';
-        const endPoint = '/geocoding/v5/mapbox.places/';
-        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-            .then(function(res) {
-                return res.json();
-                // to get all the data from the request, comment out the following three lines...
-            }).then(function(data) {
-                return data.features[0].center;
-            });
-    }
+
 
     mapboxgl.accessToken = mapBoxToken;
-    const map = new mapboxgl.Map({
+    let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 12,
@@ -66,27 +72,42 @@
 
     });
 
-    const marker = new mapboxgl.Marker()
+    let markerOptions = {
+        draggable: true,
+        color: 'orange',
+    };
+
+    let marker = new mapboxgl.Marker(markerOptions)
         .setLngLat([-98.4936, 29.4241])
         .addTo(map);
 
+
+    function geocode(search, token) {
+        const baseUrl = 'https://api.mapbox.com';
+        const endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function (res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function (data) {
+                return data.features[0].center;
+            });
+    }
+
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
-        marker: {
-            color: 'orange',
-            draggable: true
-        },
+
         mapboxgl: mapboxgl
     });
 
 
     map.addControl(geocoder);
 
-    var address = $('#address').val();
+    let address = $('#address').val();
 
     geocode(address, mapBoxToken)
         .then(function (result) {
-            map.flyTo({ center:result});
+            map.flyTo({center: result});
             marker.setLngLat(result);
 
         });
