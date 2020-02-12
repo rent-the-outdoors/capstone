@@ -32,7 +32,7 @@ public class SearchController {
     @GetMapping("/search")
 
 
-    public String searchResults(@RequestParam String search, @RequestParam (required = false) String huntCheck, @RequestParam (required=false) String fishCheck, @RequestParam (required=false) String campCheck, @RequestParam (required=false) String boatCheck, Model model) {
+    public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model) {
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
         if (allPlaces == null) {
@@ -50,8 +50,9 @@ public class SearchController {
 
             }
         }
-        model.addAttribute("allPlaces", allPlaces);
-        model.addAttribute("searchQuery", checkList);
+            model.addAttribute("allPlaces", allPlaces);
+            model.addAttribute("searchQuery", checkList);
 
-
+        return "views/search";
+    }
 }
