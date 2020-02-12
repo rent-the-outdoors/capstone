@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/fragments :: head('Search Results')">
-<body style="height: 100vh;">
+<head th:insert="partials/fragments :: head('Home Page')">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <nav th:include="partials/fragments :: nav"></nav>
 <div class="hero" id="search" style="
             background-image: url('img/adventure-bg.jpg');
@@ -56,5 +58,6 @@
    </div>
 </main>
 <footer th:include="partials/fragments :: footer"></footer>
+<script src="js/main.js"></script>
 </body>
 </html>
