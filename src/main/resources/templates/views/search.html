@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="partials/fragments :: head('Search Results')">
-<body>
+<body style="height: 100vh;">
 <nav th:include="partials/fragments :: nav"></nav>
-<main style="height: 70vh;">
-   <div th:each="place : ${searchQuery}">
-      <article class="media">
+<main>
+   <div th:each="place : ${searchQuery}"  style="margin-left: 10%;">
+      <article class="media" style="margin-bottom: 2%;">
          <figure class="media-left">
-            <p class="image is-128x128">
-               <!--            <img th:src="">-->
+            <p class="image is-256x256">
+               <img src="img/adventure-bg.jpg" style="height: 256px; width: 256px;">
             </p>
          </figure>
          <div class="media-content" style="margin: 5% 0 5% 0;">
@@ -18,15 +18,12 @@
                   <small th:text="'$' + ${place.cost_per_day} + '/day'"></small>
                   <br>
                   <strong th:text="${place.title}"></strong>
-
+<!--                  <span th:text="${place.images.imagePath}"></span>-->
                   <br>
                <p th:text="${place.description}"></p>
 
                </p>
             </div>
-         </div>
-         <div class="media-right">
-            <button class="delete"></button>
          </div>
       </article>
 
