@@ -41,6 +41,7 @@ public class SearchController {
                     || place.getTitle().contains(search)
                     || place.getAddress().contains(search)))) {
                 checkList.add(place);
+
             }
         }
         model.addAttribute("allPlaces", allPlaces);
