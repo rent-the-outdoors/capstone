@@ -16,14 +16,13 @@
     <label for="cost_per_day">Cost per day: </label>
     <input id="cost_per_day" th:field="*{cost_per_day}" />
 
+    <br />
 
     <label for="address">Address</label>
     <input id="address" th:field="*{address}" placeholder="Street, city, state, zip" required />
     <br />
 
-    <div id="map"  >
-
-    </div>
+    <div id="map"></div>
     <button class="button is-small is-success is-outlined">SUBMIT</button>
 
 </form>
@@ -56,17 +55,17 @@ $(document).ready(function(){
         zoom: 12,
     });
 
-    const marker = new mapboxgl.Marker()
+    const markerDetails = {
+        color: 'orange',
+        draggable: true
+    };
+
+    const marker = new mapboxgl.Marker(markerDetails)
         .setLngLat([-98.4936, 29.4241])
         .addTo(map);
 
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
-        marker: {
-
-            color: 'orange',
-            draggable: true
-        },
     });
 
     map.addControl(geocoder);

@@ -23,17 +23,6 @@
 
     $(document).ready(function(){
 
-        function geocode(search, token) {
-            const baseUrl = 'https://api.mapbox.com';
-            const endPoint = '/geocoding/v5/mapbox.places/';
-            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-                .then(function(res) {
-                    return res.json();
-                    // to get all the data from the request, comment out the following three lines...
-                }).then(function(data) {
-                    return data.features[0].center;
-                });
-        }
 
         mapboxgl.accessToken = mapBoxToken;
         const map = new mapboxgl.Map({
@@ -44,7 +33,11 @@
 
         });
 
-        const marker = new mapboxgl.Marker()
+        const markerDetails = {
+            color: 'orange',
+            draggable: false
+        };
+        const marker = new mapboxgl.Marker(markerDetails)
             .setLngLat([-98.4936, 29.4241])
             .addTo(map);
 
@@ -60,17 +53,6 @@
                 });
         }
 
-        const geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            marker: {
-                color: 'orange',
-                draggable: true
-            },
-            mapboxgl: mapboxgl
-        });
-
-
-        map.addControl(geocoder);
 
         var address = $('#address').val();
 
