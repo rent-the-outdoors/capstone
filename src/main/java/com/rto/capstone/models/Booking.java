@@ -9,7 +9,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
     private long id;
-
+//comment
     @Column(nullable = false, name = "date", columnDefinition = "DATE")
     private String date;
 
