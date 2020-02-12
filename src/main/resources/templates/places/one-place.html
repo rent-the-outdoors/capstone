@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('Single Place Page')">
+<<<<<<< HEAD
 
 
     <link
@@ -30,6 +31,8 @@
             position: absolute;
         }
     </style>
+=======
+>>>>>>> 78222493c8be4916ae3c866ed74a52fcb2059eea
 </head>
 <body>
 
@@ -52,6 +55,7 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
 <script src="/js/keys.js"></script>
+<<<<<<< HEAD
 
 
 <!--search plugin-->
@@ -62,12 +66,33 @@
 <script>
 
 
+=======
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+<script type="text/javascript" src="/js/mapbox-geocoder-utils.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    function geocode(search, token) {
+        const baseUrl = 'https://api.mapbox.com';
+        const endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
+>>>>>>> 78222493c8be4916ae3c866ed74a52fcb2059eea
 
     mapboxgl.accessToken = mapBoxToken;
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 12,
+        zoom: 5,
         center: [-98.4936, 29.4241]
 
     });
@@ -81,6 +106,7 @@
         .setLngLat([-98.4936, 29.4241])
         .addTo(map);
 
+<<<<<<< HEAD
 
     function geocode(search, token) {
         const baseUrl = 'https://api.mapbox.com';
@@ -109,8 +135,43 @@
         .then(function (result) {
             map.flyTo({center: result});
             marker.setLngLat(result);
+=======
+    // function geocode(search, token) {
+    //     const baseUrl = 'https://api.mapbox.com';
+    //     const endPoint = '/geocoding/v5/mapbox.places/';
+    //     return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+    //         .then(function(res) {
+    //             return res.json();
+    //             // to get all the data from the request, comment out the following three lines...
+    //         }).then(function(data) {
+    //             return data.features[0].center;
+    //         });
+    // }
+    //
+    // const geocoder = new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken,
+    //     marker: {
+    //         color: 'orange',
+    //         draggable: true
+    //     },
+    //     mapboxgl: mapboxgl
+    // });
+    //
+    //
+    // map.addControl(geocoder);
+    //
+    // var address = $('#address').val();
+    //
+    // geocode(address, mapBoxToken)
+    //     .then(function (result) {
+    //         map.flyTo({ center:result});
+    //         marker.setLngLat(result);
+    //
+    //     });
 
-        });
+});
+>>>>>>> 78222493c8be4916ae3c866ed74a52fcb2059eea
+
 
 </script>
 </body>

@@ -66,3 +66,9 @@ input[type=checkbox]:checked + .check-label img{
     border: 2px solid forestgreen;
     box-shadow: 0 0 5px 3px lightgreen;
 }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
