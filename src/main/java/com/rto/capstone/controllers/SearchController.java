@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -29,9 +30,14 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public String searchResults(@RequestParam String search, @RequestParam (required = false) String huntCheck, @RequestParam (required=false) String fishCheck, @RequestParam (required=false) String campCheck, @RequestParam (required=false) String boatCheck, Model model) {
+
+
+    public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model) {
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
+        if (allPlaces == null) {
+            return "Null!";
+        }
         for (Place place : allPlaces) {
             if (huntCheck != null && place.getDescription().contains(huntCheck)
                     || (fishCheck != null && place.getDescription().contains(fishCheck))
@@ -44,8 +50,9 @@ public class SearchController {
 
             }
         }
-        model.addAttribute("allPlaces", allPlaces);
-        model.addAttribute("searchQuery", checkList);
-        return ("views/search");
+            model.addAttribute("allPlaces", allPlaces);
+            model.addAttribute("searchQuery", checkList);
+
+        return "views/search";
     }
 }
