@@ -3,7 +3,7 @@
 <head th:insert="partials/fragments :: head('Home Page')">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body style="background-color: antiquewhite;">
 <nav th:include="partials/fragments :: nav"></nav>
 <div class="hero" id="search" style="
             background-image: url('img/adventure-bg.jpg');
@@ -37,11 +37,12 @@
 <main style="margin-top: 5%">
    <div>
       <div th:each="place : ${searchQuery}" class="columns centered">
+         <a th:src="@{'/places/' + ${place.id}}">
          <div class="column is-8">
             <div class="card" style="display: flex">
                <img src="img/adventure-bg.jpg"
                     style="width: 400px; height: 200px;">
-               <div class="card-content" style="margin-left: 2%; width: px;">
+               <div class="card-content" style="margin-left: 2%;">
                   <p>
                      <strong th:text="${place.title}"></strong>
                      <br>
@@ -53,6 +54,7 @@
                </div>
             </div>
          </div>
+         </a>
       </div>
    </div>
 </main>

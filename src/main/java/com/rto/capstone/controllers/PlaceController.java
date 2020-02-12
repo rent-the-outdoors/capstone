@@ -51,7 +51,7 @@ public class  PlaceController {
     }
 
     //Read one place
-    @GetMapping(path ="/places/{id}/place")
+    @GetMapping(path ="/places/{id}")
     public String onePlaceById(Model m, @PathVariable long id)
     {
         m.addAttribute("place", placesDao.getOne(id));
