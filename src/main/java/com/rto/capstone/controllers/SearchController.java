@@ -41,14 +41,10 @@ public class SearchController {
                     || place.getTitle().contains(search)
                     || place.getAddress().contains(search)))) {
                 checkList.add(place);
-                String shmimagePath = imageDao.getOne(1L).getImagePath();
-                model.addAttribute("place", place);
-                model.addAttribute("imagePath", imageDao.getOne(1L).getImagePath());
-
             }
         }
         model.addAttribute("allPlaces", allPlaces);
         model.addAttribute("searchQuery", checkList);
-        return ("/views/search");
+        return ("views/search");
     }
 }
