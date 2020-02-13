@@ -31,17 +31,10 @@ public class CheckoutController {
         this.placeDao = placeDao;
     }
 
-    @GetMapping("/booking-confirmation")
-    public String confirmBooking() {
-        return "/views/confirmation";
-    }
-
-
-
         @Value("${STRIPE_PUBLIC_KEY}")
         private String stripePublicKey;
 
-        @GetMapping("/bookNow/1/checkout")
+        @GetMapping("/confirmation/{id}/checkout")
         public String checkout(Model model) {
 //            model.addAttribute(schoolClassDao.getOne(id));
 //            model.addAttribute("amount", schoolClassDao.getOne(id).getPrice() * 100);
@@ -52,7 +45,7 @@ public class CheckoutController {
         @Autowired
         private StripeService stripeService;
 
-        @RequestMapping(value = "/charge/1", method = RequestMethod.POST)
+        @RequestMapping(value = "/charge/{id}", method = RequestMethod.POST)
         public String chargeCard(Model model, HttpServletRequest request) throws Exception {
 //            model.addAttribute("class", schoolClassDao.getOne(id));
             String token = request.getParameter("stripeToken");
