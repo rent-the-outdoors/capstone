@@ -5,25 +5,32 @@
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<main>
-   <article>
-      <div class="column is-8">
-         <img th:src="${place.placeImages}" style="height: 400px; width: 400px;">
-
+<main class="columns">
+   <div class="column is-narrow" style="padding: 0;">
+      <div th:each="image,iStat : ${place.placeImages}">
+         <img th:if="${iStat.first}" th:src="${image.imagePath}"
+              style="height: 400px; width: 400px;">
       </div>
-   </article>
-   <aritcle>
-      <h1 class="title" th:text="${place.title}"></h1>
-      <p class="content" th:text="${place.description}"></p>
-      <p class="user" th:text="${place.cost_per_day}"></p>
-
-      <input type="hidden" id="address" th:value="${place.address}">
-      <h1 id="address-text" th:text="${place.address}"></h1>
-      <div class="column is-offset-8 is-4" id="map"
-           style="height: 400px; width: 400px;"></div>
-
-   </aritcle>
+   </div>
+   <div class="column is-5" style="display: flex; flex-wrap: wrap; padding: 0;">
+      <div th:each="image,iStat : ${place.placeImages}">
+         <img th:if="${iStat.count > 1 && iStat.count < 6}"
+              th:src="${image.imagePath}"
+              style="height: 200px; width: 250px; margin-left: 1%;">
+      </div>
+   </div>
+   </div>
+   <div class="column is-4" id="map"
+        style="height: 400px; width: 400px;"></div>
 </main>
+<article>
+   <h1 class="title" th:text="${place.title}"></h1>
+   <p class="content" th:text="${place.description}"></p>
+   <p class="user" th:text="${place.cost_per_day}"></p>
+
+   <input type="hidden" id="address" th:value="${place.address}">
+   <h1 id="address-text" th:text="${place.address}"></h1>
+</article>
 <footer th:insert="partials/fragments :: footer"></footer>
 <footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 
@@ -35,9 +42,7 @@
             style: 'mapbox://styles/mapbox/streets-v9',
             zoom: 15,
             center: [-98.4936, 29.4241]
-
         });
-
         const markerDetails = {
             color: 'orange',
             draggable: false
@@ -58,19 +63,13 @@
                 });
         }
 
-
         var address = $('#address').val();
-
         geocode(address, mapBoxToken)
             .then(function (result) {
                 map.flyTo({center: result});
                 marker.setLngLat(result);
-
             });
-
     });
-
-
 </script>
 </body>
 </html>

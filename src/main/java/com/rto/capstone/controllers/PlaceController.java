@@ -55,6 +55,7 @@ public class  PlaceController {
     public String onePlaceById(Model m, @PathVariable long id)
     {
         m.addAttribute("place", placesDao.getOne(id));
+
         return "places/one-place";
     }
 
