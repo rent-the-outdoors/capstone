@@ -17,28 +17,29 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
     @Autowired
-    private UserRepository usersRepository;
+    private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private UserService usersService;
+    private UserService userService;
 
+
+    @GetMapping("/users/create")
+    public String getCreateUser() {
+        return ("views/register");
+    }
     @PostMapping("/users/create")
     public String saveUser(@Valid User user, Errors validation, Model m)
     {
         String username = user.getUsername();
-        User existingUsername = usersRepository.findByUsername(username);
-        User existingEmail = usersRepository.findByEmail(user.getEmail());
+        User existingUsername = userRepository.findByUsername(username);
+        User existingEmail = userRepository.findByEmail(user.getEmail());
         if(existingUsername != null){
-
             validation.rejectValue("username", "user.username", "Duplicated username " + username);
-
         }
 
         if(existingEmail != null){
-
             validation.rejectValue("email", "user.email", "Duplicated email " + user.getEmail());
-
         }
         if (validation.hasErrors()) {
             m.addAttribute("errors", validation);
@@ -47,22 +48,21 @@ public class UserController {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        User newUser = usersRepository.save(user);
+        User newUser = userRepository.save(user);
 
 
         //programmatic login after registering a user
-        usersService.authenticate(user);
-
+        userService.authenticate(user);
         m.addAttribute("user", user);
         return "redirect:/";
     }
 
     @GetMapping("/users/show")
     public String showUser(@PathVariable Long id, Model viewModel){
-        User user = usersRepository.getOne(id);
+        User user = userRepository.getOne(id);
         viewModel.addAttribute("user", user);
-        viewModel.addAttribute("sessionUser", usersService.loggedInUser());
-        viewModel.addAttribute("showEditControls", usersService.canEditProfile(user));
+        viewModel.addAttribute("sessionUser", userService.loggedInUser());
+        viewModel.addAttribute("showEditControls", userService.canEditProfile(user));
         return "users/show";
     }
 
