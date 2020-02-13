@@ -38,7 +38,7 @@ public class SearchController {
                     || (fishCheck != null && place.getDescription().contains(fishCheck))
                     || (campCheck != null && place.getDescription().contains(campCheck))
                     || (boatCheck != null && place.getDescription().contains(boatCheck))
-                    || (search != null && (place.getDescription().contains(search)
+                    || (search !=null && (place.getDescription().contains(search)
                     || place.getTitle().contains(search)
                     || place.getAddress().contains(search)))) {
                 checkList.add(place);
