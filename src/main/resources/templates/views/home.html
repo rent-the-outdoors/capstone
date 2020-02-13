@@ -41,7 +41,7 @@
       <h1>Find Your Adventure Today!</h1>
    </div>
    <div style="display: flex">
-      <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}" class="columns" style="margin-top: 2%; margin-left: 5%">
+      <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}" class="columns" style="margin-top: 2%; margin-left: 3% margi">
          <div class="column is-8">
             <a th:href="@{'/place/' + ${place.id}}">
             <div class="card">

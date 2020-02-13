@@ -45,10 +45,10 @@
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
                   <button class="button is-danger">Logout</button>
                </form>
-               <a class="button is-primary" href="/users/create">
+               <a sec:authorize="not isAuthenticated()" class="button is-primary" href="/users/create">
                   <strong>Register</strong>
                </a>
-               <a class="button is-light" href="/users/login">
+               <a sec:authorize="not isAuthenticated()" class="button is-light" href="/users/login">
                   Login
                </a>
             </div>
