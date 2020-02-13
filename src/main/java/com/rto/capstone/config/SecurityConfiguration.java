@@ -37,13 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 /* Login configuration */
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/users/login")
                     .defaultSuccessUrl("/profile") // user's home page, it can be any URL
                     .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
                     .logout()
-                    .logoutSuccessUrl("/login?logout") // append a query string value
+                    .logoutSuccessUrl("/users/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
                     .authorizeRequests()
