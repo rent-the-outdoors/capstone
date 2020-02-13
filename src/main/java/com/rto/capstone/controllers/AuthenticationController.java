@@ -5,6 +5,15 @@
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //
+
+
+
+// **************************
+// NOT SURE WHAT THIS IS FOR
+// **************************
+
+
+
 //@Controller
 //public class AuthenticationController {
 //    @GetMapping("/login")
