@@ -2,9 +2,11 @@ package com.rto.capstone.controllers;
 
 
 import com.rto.capstone.models.Place;
+import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
 import com.rto.capstone.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,7 @@ public class  PlaceController {
     @GetMapping(path = "/places/create")
     public String createAndGetFormForPlace(Model m)
     {
+
         m.addAttribute("place", new Place());
         return "places/create";
 
@@ -37,6 +40,7 @@ public class  PlaceController {
     @PostMapping(path = "/places/create")
     public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place)
     {
+
         placesDao.save(place);
         return "redirect:/places";
 
@@ -63,6 +67,7 @@ public class  PlaceController {
     @GetMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPlace(Model m, @PathVariable long id)
     {
+
         m.addAttribute("place", placesDao.getOne(id));
         return "places/update";
     }
@@ -71,6 +76,7 @@ public class  PlaceController {
     @PostMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPost(@ModelAttribute Place place, @PathVariable long id)
     {
+
         placesDao.save(place);
         return "redirect:/places";
     }
@@ -80,6 +86,7 @@ public class  PlaceController {
     @PostMapping(path = "/places/{id}/delete")
     public String deletePlaceById(@PathVariable long id)
     {
+
         placesDao.deleteById(id);
         return "redirect:/places";
     }

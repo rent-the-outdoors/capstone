@@ -7,20 +7,27 @@
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
-    <form th:action="@{'/users/create'}" th:method="POST" th:obect="${user}">
+    <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}">
 
-        <input id="username" type="text" class="validate" th:field="*{user.username}" />
         <label for="username">Username</label>
-        <p th:if="${#fields.hasErrors('username')}" th:errors="*{user.username}"></p>
+        <input id="username" type="text" class="validate" th:field="*{username}" />
 
-        <input id="email" type="text" class="validate" th:field="*{user.email}" />
         <label for="email">Email</label>
-        <p th:if="${#fields.hasErrors('email')}" th:errors="*{user.email}"></p>
+        <input id="email" type="text" class="validate" th:field="*{email}" />
 
-        <input id="password" type="text" class="validate" th:field="*{user.password}" />
         <label for="password">Password</label>
-        <p th:if="${#fields.hasErrors('password')}" th:errors="*{user.password}"></p>
+        <input id="password" type="text" class="validate" th:field="*{password}" />
 
+        <label for="firstName">First Name:</label>
+        <input id="firstName" type="text" th:field="${user.first_name}">
+
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" type="text" th:field="${user.last_name}">
+
+        <label for="phoneNum">Phone Number:</label>
+        <input id="phoneNum" type="text" th:field="${user.phone_num}">
+
+        <input type="submit" value="Sign up!">
     </form>
 </main>
 

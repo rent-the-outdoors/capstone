@@ -8,7 +8,12 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-
+    public User(User copy) {
+        this.id = copy.id;
+        this.email = copy.email;
+        this.username = copy.username;
+        this.password = copy.password;
+    }
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Place> places;
 
@@ -26,7 +31,7 @@ public class User {
     public long id;
 
     @Column(nullable = false, name = "first_name", columnDefinition = "VARCHAR(255)")
-    private String first_name;
+        private String first_name;
 
     @Column(nullable = false, name = "last_name", columnDefinition = "VARCHAR(255)")
     private String last_name;
@@ -84,9 +89,6 @@ public class User {
     }
 
     public User(){}
-
-    public User(User user) {
-    }
 
     public long getId() {
         return id;
