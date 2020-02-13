@@ -33,9 +33,6 @@ public class SearchController {
     public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model) {
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
-        if (allPlaces == null) {
-            return "Null!";
-        }
         for (Place place : allPlaces) {
             if (huntCheck != null && place.getDescription().contains(huntCheck)
                     || (fishCheck != null && place.getDescription().contains(fishCheck))
