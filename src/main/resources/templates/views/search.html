@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('Home Page')">
+<head th:insert="partials/fragments :: head('Search Results')">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="background-color: antiquewhite;">
@@ -36,11 +36,11 @@
 </div>
 <main style="margin-top: 5%">
    <div>
-      <div th:each="place : ${searchQuery}" class="columns centered">
+      <div th:each="place : ${searchQuery}" class="columns centered is-relative">
          <div class="column is-8">
             <a th:href="@{'/place/' + ${place.id}}">
             <div class="card" style="display: flex">
-               <div th:each="image,iStat : ${place.placeImages}">
+               <div th:each="image,iStat : ${place.placeImages}" style="height: 200px">
                   <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
                </div>
                <div class="card-content" style="margin-left: 2%;">
