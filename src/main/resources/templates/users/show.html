@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('Show Page')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div th:object="${user}">
+    <p>
+        Username: <span class="title" th:text="${user.username}"></span>
+    </p>
+    <p>
+        Email: <span th:text="${user.email}"></span>
+    </p>
+</div>
+
+
+</body>
+</html>

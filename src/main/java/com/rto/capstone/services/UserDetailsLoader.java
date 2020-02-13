@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserDetailsLoader implements UserDetailsService {
     private final UserRepository users;
@@ -21,6 +23,7 @@ public class UserDetailsLoader implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found for " + username);
         }
+//        List<String> userRoles = roles.ofUserWith(username);
 
         return new UserWithRoles(user);
     }
