@@ -39,16 +39,16 @@
             </a>
          </div>
       </div>
-      <form th:action="@{/logout}" th:method="post">
-            <button class="button navbar-end is-danger">Logout</button>
-      </form>
       <div class="navbar-end">
          <div class="navbar-item">
             <div class="buttons">
-               <a class="button is-primary" href="/users/create">
-                  <strong>Sign up</strong>
+               <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
+                  <button class="button is-danger">Logout</button>
+               </form>
+               <a sec:authorize="not isAuthenticated()" class="button is-primary" href="/users/create">
+                  <strong>Register</strong>
                </a>
-               <a class="button is-light" href="/users/login">
+               <a sec:authorize="not isAuthenticated()" class="button is-light" href="/users/login">
                   Login
                </a>
             </div>

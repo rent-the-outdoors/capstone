@@ -40,50 +40,21 @@
    <div class="centered title" style="margin-top: 5%;">
       <h1>Find Your Adventure Today!</h1>
    </div>
-
-   <div class="columns" style="margin-top: 2%;">
-      <div class="column is-3">
-         <div class="card" style="margin: 0 2% 0 2%">
-            <img src="img/adventure-calm-clouds-dawn-414171.jpg"
-                 style="width: 400px; height: 200px;">
-            <div class="card-header centered">
-               <p>Random Post 1</p>
+   <div style="display: flex">
+      <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}" class="columns" style="margin-top: 2%; margin-left: 3% margi">
+         <div class="column is-8">
+            <a th:href="@{'/place/' + ${place.id}}">
+            <div class="card">
+               <div th:each="image,iStat : ${place.placeImages}">
+                  <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
+               </div>
+               <div class="card-header centered">
+                  <p><strong th:text="${place.title}"></strong></p>
+               </div>
+               <div class="card-content"><small th:text="${place.description}"></small>
+               </div>
             </div>
-            <div class="card-content">Here is a description of random post 4.
-            </div>
-         </div>
-      </div>
-      <div class="column is-3">
-         <div class="card" style="margin: 0 2% 0 2%;">
-            <img src="img/green-trees-near-calm-body-of-water-2275221.jpg"
-                 style="width: 400px; height: 200px;">
-            <div class="card-header centered">
-               <p>Random Post 2</p>
-            </div>
-            <div class="card-content">Here is a description of random post 4.
-            </div>
-         </div>
-      </div>
-      <div class="column is-3">
-         <div class="card" style="margin: 0 2% 0 2%;">
-            <img src="img/two-men-fishing-on-lake-1630039.jpg"
-                 style="width: 400px; height: 200px;">
-            <div class="card-header centered">
-               <p>Random Post 3</p>
-            </div>
-            <div class="card-content">Here is a description of random post 4.
-            </div>
-         </div>
-      </div>
-      <div class="column is-3">
-         <div class="card" style="margin: 0 2% 0 2%;">
-            <img src="img/flock-of-birds-917494.jpg"
-                 style="width: 400px; height: 200px;">
-            <div class="card-header centered">
-               <p>Random Post 4</p>
-            </div>
-            <div class="card-content">Here is a description of random post 4.
-            </div>
+               </a>
          </div>
       </div>
    </div>
