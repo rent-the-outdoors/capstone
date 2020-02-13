@@ -1,32 +1,41 @@
 package com.rto.capstone.controllers;
 
+import com.rto.capstone.models.User;
+import com.rto.capstone.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
+    private UserRepository userDao;
+
+    public LoginController(UserRepository userDao) {
+        this.userDao = userDao;
+    }
+
+    ;
+
+
     @GetMapping("/users/login")
-    public String showLogin(){ return "users/login"; }
+    public String showLogin() {
+        return "users/login";
+    }
 
-//    @PostMapping("/users/login")
-//    public String log(@RequestParam(name="username") String username,
-//                      @RequestParam(name="password") String password,
-//                      Model m)
-//    {
-//        m.addAttribute("username", username);
-//
-//    }
-
-
-
-
-
-    @GetMapping("/profile")
-    public String showProfile(){
+    @PostMapping("/users/login")
+    public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
+        model.addAttribute("username", username);
         return "views/profile";
     }
+
+    @GetMapping("/profile")
+    public String showProfile() {
+        return "views/profile";
+    }
+
+
+
 }

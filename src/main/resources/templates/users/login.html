@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('Login Page')">
-    <meta charset="UTF-8">
-    <title>Title</title>
+   <meta charset="UTF-8">
+   <title>Title</title>
 </head>
 <body>
-<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+    <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
 
-<form action="/login" method="post">
-    <input type="text" name="username" id="username" class="field" />
-    <input type="text" name="password" id="password" class="field" />
-    <button>Login</button>
+    <h1>Log In</h1>
+    <div th:if="${param.error}">
+       Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+       You have been logged out.
+    </div>
 
-
-</form>
-
+    <form th:action="@{/login}" method="post">
+       <label for="username">Username</label>
+       <input id="username" name="username" type="text"/>
+       <label for="password">Password</label>
+       <input id="password" name="password" type="password"/>
+       <input type="submit" value="Log In"/>
+    </form>
 </body>
 </html>
