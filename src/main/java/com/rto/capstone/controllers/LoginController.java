@@ -24,6 +24,7 @@ public class LoginController {
 
 
 
+
     @GetMapping("/profile")
     public String showProfile(){
         return "views/profile";
