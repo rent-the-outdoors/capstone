@@ -38,10 +38,10 @@
    <div>
       <div th:each="place : ${searchQuery}" class="columns centered">
          <div class="column is-8">
-            <a th:href="@{'/places/' + ${place.id}}">
+            <a th:href="@{'/place/' + ${place.id}}">
             <div class="card" style="display: flex">
-               <div th:each="image : ${place.placeImages}">
-                  <img th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
+               <div th:each="image,iStat : ${place.placeImages}">
+                  <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
                </div>
                <div class="card-content" style="margin-left: 2%;">
                   <p>
