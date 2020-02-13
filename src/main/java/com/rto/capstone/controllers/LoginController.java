@@ -36,6 +36,8 @@ public class LoginController {
         return "views/profile";
     }
 
-
-
+    @GetMapping("/logout")
+    public String logout() {
+        return "views/login";
+    }
 }
