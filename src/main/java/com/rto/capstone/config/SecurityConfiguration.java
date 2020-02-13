@@ -47,14 +47,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/search") // anyone can see the home and the ads pages
+                .antMatchers("/", "/search", "/place/{id}") // anyone can see the home, search results and individual postings
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
                         "/places/create", // only authenticated users can create places
-                        "/confirmation" // only authenticated users can checkout
+                        "/confirmation/**"// only authenticated users can checkout
                 )
                 .authenticated()
         ;
