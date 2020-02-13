@@ -39,14 +39,14 @@
             </a>
          </div>
       </div>
-      <form th:action="@{/logout}" th:method="post">
-            <button class="button navbar-end is-danger">Logout</button>
-      </form>
       <div class="navbar-end">
          <div class="navbar-item">
             <div class="buttons">
+               <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
+                  <button class="button is-danger">Logout</button>
+               </form>
                <a class="button is-primary" href="/users/create">
-                  <strong>Sign up</strong>
+                  <strong>Register</strong>
                </a>
                <a class="button is-light" href="/users/login">
                   Login
