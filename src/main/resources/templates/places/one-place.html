@@ -4,23 +4,31 @@
 </head>
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
-<h1 class="title" th:text="${place.title}"></h1>
-<p class="content" th:text="${place.description}"></p>
-<p class="user" th:text="${place.cost_per_day}"></p>
 
+<main>
+   <article>
+      <div class="column is-8">
+         <img th:src="${place.placeImages}" style="height: 400px; width: 400px;">
 
-<input type="hidden" id="address" th:value="${place.address}">
-<h1 id="address-text" th:text="${place.address}"></h1>
-<div class="column is-offset-8 is-4" id="map" style="height: 400px; width: 400px;"></div>
+      </div>
+   </article>
+   <aritcle>
+      <h1 class="title" th:text="${place.title}"></h1>
+      <p class="content" th:text="${place.description}"></p>
+      <p class="user" th:text="${place.cost_per_day}"></p>
 
+      <input type="hidden" id="address" th:value="${place.address}">
+      <h1 id="address-text" th:text="${place.address}"></h1>
+      <div class="column is-offset-8 is-4" id="map"
+           style="height: 400px; width: 400px;"></div>
 
-
-
+   </aritcle>
+</main>
 <footer th:insert="partials/fragments :: footer"></footer>
 <footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         mapboxgl.accessToken = mapBoxToken;
         const map = new mapboxgl.Map({
             container: 'map',
@@ -42,10 +50,10 @@
             const baseUrl = 'https://api.mapbox.com';
             const endPoint = '/geocoding/v5/mapbox.places/';
             return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-                .then(function(res) {
+                .then(function (res) {
                     return res.json();
                     // to get all the data from the request, comment out the following three lines...
-                }).then(function(data) {
+                }).then(function (data) {
                     return data.features[0].center;
                 });
         }
@@ -55,7 +63,7 @@
 
         geocode(address, mapBoxToken)
             .then(function (result) {
-                map.flyTo({ center:result});
+                map.flyTo({center: result});
                 marker.setLngLat(result);
 
             });
