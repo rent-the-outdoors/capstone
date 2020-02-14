@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:insert="partials/fragments :: head('Profile Page')">
     <meta charset="UTF-8">
     <title>Profile Page</title>
@@ -10,16 +11,30 @@
 <!--<h1 class="username" th:text="${user.username}"></h1>-->
 
 <br/>
-<div class="modal">
-<!--    <form th:action="@{'users/' + ${user.id} + '/profile'}" th:method="POST" th:object="${user}">-->
-<!--        <label for="urlPattern">Image: </label>-->
-<!--        <input id="urlPattern" th:field="*{image_path}" type="text">-->
-<!--        <button class="button is-small is-success is-outlined">SUBMIT</button>-->
-<!--    </form>-->
-</div>
+<h1 th:text="${user.id}"></h1>
+<h1 th:text="${user.email}"></h1>
+<h1 th:text="${user.first_name}"></h1>
+<h1 th:text="${user.last_name}"></h1>
+<h1 th:text="${user.phone_num}"></h1>
+<img th:src="${user.image_path}">
+
+<h1>Welcome, <span th:text="${user.username}"></span></h1>
 
 
+
+<form th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">
+
+    <div class="modal">
+
+        <div id="image">
+
+        </div>
+
+        <button class="button is-small is-success is-outlined">SUBMIT</button>
+    </div>
+</form>
 <button id="showModal" class="button" type="button">Upload Image</button>
+
 
 
 <script type="text/javascript" src="/static/js/keys.js"></script>
@@ -31,19 +46,18 @@
 <script>
     $(document).ready(function () {
 
-        const client = filestack.init(fileStackKey);
+        const client = filestack.init("ALxIrpTymC0nHFBIAR2QMz");
         const options = {
-            onUploadDone: (res) => $('#urlPattern').append(`https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}`)
+            onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
         };
-
-
-        $("#showModal").click(function(){
+        $("#showModal").click(function () {
             $('.modal').toggleClass('is-active');
+
             client.picker(options).open();
         });
-        $("#closeModal").click(function(){
-            $('.modal').removeClass('is-active');
-        });
+        // $("#closeModal").click(function () {
+        //     $('.modal').removeClass('is-active');
+        // });
 
     });
     //     let options = {

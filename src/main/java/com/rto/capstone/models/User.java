@@ -13,6 +13,9 @@ public class User {
         this.email = copy.email;
         this.username = copy.username;
         this.password = copy.password;
+        this.first_name = copy.first_name;
+        this.last_name = copy.last_name;
+        this.image_path = copy.image_path;
     }
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Place> places;
@@ -31,7 +34,7 @@ public class User {
     public long id;
 
     @Column(nullable = false, name = "first_name", columnDefinition = "VARCHAR(255)")
-        private String first_name;
+    private String first_name;
 
     @Column(nullable = false, name = "last_name", columnDefinition = "VARCHAR(255)")
     private String last_name;
@@ -44,7 +47,6 @@ public class User {
 
     @Column(nullable = false, name = "password", columnDefinition = "VARCHAR(100)")
     private String password;
-
 
     @Column(nullable = false, name = "phone_num", columnDefinition = "VARCHAR(12)")
     private String phone_num;

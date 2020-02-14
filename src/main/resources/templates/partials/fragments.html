@@ -56,6 +56,14 @@
 
 <!--               </form>-->
 
+               <form sec:authorize="isAuthenticated()" th:action="@{/profile}" class="level" th:method="get">
+                  <button class="button is-success">Profile</button>
+
+               </form>
+
+
+
+
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
                   <button class="button is-danger">Logout</button>
                </form>
