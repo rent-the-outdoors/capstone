@@ -21,7 +21,6 @@
    </div>
 
    <form th:action="@{|/charge/{id}|}" th:method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
-      <input type='hidden' th:value='${amount}' name='amount' />
       <h1>Stripe Price to Process:<span th:text='${place.cost_per_day}' /></h1>
       <script
         src='https://checkout.stripe.com/checkout.js'
