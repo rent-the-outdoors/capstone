@@ -1,6 +1,8 @@
 package com.rto.capstone.controllers;
 
+import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +27,7 @@ public class LoginController {
         return "users/profile";
     }
 
-    @GetMapping("/profile")
-    public String showProfile() {
-        return "users/profile";
-    }
+//
 
 //    @GetMapping(path = "/profile")
 //    public String getImgInfoForUser(Model m, @PathVariable long id)
