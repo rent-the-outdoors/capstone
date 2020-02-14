@@ -66,7 +66,6 @@ public class  PlaceController {
     @GetMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPlace(Model m, @PathVariable long id)
     {
-
         m.addAttribute("place", placesDao.getOne(id));
         return "places/update";
     }
@@ -75,7 +74,6 @@ public class  PlaceController {
     @PostMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPost(@ModelAttribute Place place, @PathVariable long id)
     {
-
         placesDao.save(place);
         return "redirect:/places";
     }

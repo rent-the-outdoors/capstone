@@ -35,9 +35,10 @@ public class CheckoutController {
         private String stripePublicKey;
 
         @GetMapping("/confirmation/{id}/checkout")
-        public String checkout(Model model) {
+        public String checkout(Model model, @PathVariable long id) {
 //            model.addAttribute(schoolClassDao.getOne(id));
 //            model.addAttribute("amount", schoolClassDao.getOne(id).getPrice() * 100);
+            model.addAttribute("place", placeDao.getOne(id));
             model.addAttribute("amount", 100);
             model.addAttribute("stripePublicKey", stripePublicKey);
             return "/views/confirmation";

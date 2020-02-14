@@ -57,8 +57,11 @@
          </div>
       </div>
       <div class="column is-4 has-text-centered">
+         <form th:method="GET" th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
+            <input type="hidden" th:value="${place.id}">
          <button type="submit" class="button is-primary"><strong>Book
             Now</strong></button>
+         </form>
       </div>
    </div>
 </article>
