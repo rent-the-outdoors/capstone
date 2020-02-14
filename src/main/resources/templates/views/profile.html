@@ -10,6 +10,17 @@
 
 <div id="imgHere"></div>
 
+<br/>
+<!--        <label for="imagePath">Image: </label>-->
+<!--        <input id="imagePath" type="text" th:field="*{image_path}">-->
+
+<!--<div class="modal">-->
+<!--    <div id="imgPath"></div>-->
+<!--    <input type="hidden" th:field="*{image_path}">-->
+<!--    <button id="closeModal"></button>-->
+<!--</div>-->
+<!--<button id="showModal" class="button" type="button">Upload Image</button>-->
+
 
 <!--<input id="img" th:field="*{img}" placeholder="Upload Image" required/>-->
 
@@ -21,14 +32,46 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function () {
-        let client = filestack.init(fileStackKey);
-        let options = {
-            onUploadDone: (res) => $('#imgHere').append(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
-        };
-        client.picker(options).open();
+    // $(document).ready(function () {
+    //     let client = filestack.init(fileStackKey);
+    //     let options = {
+    //         onUploadDone: (res) => $('#imgHere').append(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
+    //     };
+    //     client.picker(options).open();
+    //
+    // });
 
-    });
+
+    /////////
+    // $(document).ready(function () {
+    //
+    //     const client = filestack.init(fileStackKey);
+    //
+    //     const options = {
+    //         onUploadDone: (res) => $('#imgPath').val(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
+    //     };
+    //
+    //     $("#showModal").click(function () {
+    //
+    //         $(".modal").addClass("is-active");
+    //
+    //         client.picker(options).open();
+    //
+    //     });
+    //
+    //     $('#closeModal').click(function () {
+    //         $(".modal").removeClass("is-active");
+    //         client.picker(options).close();
+    //
+    //     })
+    //
+    //     // const imgInput = $('#imagePath').val();
+    //     // const option = {
+    //     //     onUploadDone: (res) => imgInput
+    //     // }
+    //
+    //
+    // });
 </script>
 
 </body>

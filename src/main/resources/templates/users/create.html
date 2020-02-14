@@ -10,26 +10,37 @@
     <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}">
 
         <label for="username">Username</label>
-        <input id="username" type="text" class="validate" th:field="*{username}" />
+        <input id="username" type="text" class="validate" th:field="*{username}"/>
 
+        <br/>
         <label for="email">Email</label>
-        <input id="email" type="text" class="validate" th:field="*{email}" />
+        <input id="email" type="text" class="validate" th:field="*{email}"/>
 
+        <br/>
         <label for="password">Password</label>
-        <input id="password" type="text" class="validate" th:field="*{password}" />
+        <input id="password" type="text" class="validate" th:field="*{password}"/>
 
+        <br/>
         <label for="firstName">First Name:</label>
-        <input id="firstName" type="text" th:field="${user.first_name}">
+        <input id="firstName" type="text" th:field="*{first_name}">
 
+        <br/>
         <label for="lastName">Last Name:</label>
-        <input id="lastName" type="text" th:field="${user.last_name}">
+        <input id="lastName" type="text" th:field="*{last_name}">
 
+        <br/>
         <label for="phoneNum">Phone Number:</label>
-        <input id="phoneNum" type="text" th:field="${user.phone_num}">
+        <input id="phoneNum" type="text" th:field="*{phone_num}">
+
+        <br/>
 
         <input type="submit" value="Sign up!">
     </form>
 </main>
+<script>
 
+
+
+</script>
 </body>
 </html>
