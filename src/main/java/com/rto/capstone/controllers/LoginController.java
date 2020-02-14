@@ -30,6 +30,14 @@ public class LoginController {
         return "users/profile";
     }
 
+//    @GetMapping(path = "/profile")
+//    public String getImgInfoForUser(Model m, @PathVariable long id)
+//    {
+//
+//        m.addAttribute("user", userDao.getOne(id));
+//        return "users/profile";
+//    }
+
 //    @GetMapping("/logout")
 //    public String logout() {
 //        return "views/login";
