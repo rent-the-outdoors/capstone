@@ -9,10 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -34,6 +31,8 @@ public class UserController {
         return "users/create";
     }
 
+
+
     @PostMapping("/users/create")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
@@ -42,15 +41,32 @@ public class UserController {
         return "redirect:/users/login";
     }
 
+    //Update user GET
+    @GetMapping(path = "/profile")
+    public String getImgInfoForUser(Model m) {
 
-//
-//    @PostMapping("/users/{id}/profile")
-//    public String uploadImgForUser(@ModelAttribute User user, @PathVariable long id)
-//    {
-//        usersDao.save(user);
-//        return "redirect:/users/profile";
-//
-//    }
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        m.addAttribute("user", user);
+
+        return "users/profile";
+
+    }
+
+//    //Update user POST
+    @PostMapping(path = "/users/{id}/profile")
+    public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
+
+        User user = usersDao.getOne(id);
+
+        user.setImage_path(image_path);
+
+        usersDao.save(user);
+
+        return "redirect:/profile";
+
+    }
+
 }
 
 
