@@ -39,7 +39,7 @@ public class CheckoutController {
 //            model.addAttribute(schoolClassDao.getOne(id));
 //            model.addAttribute("amount", schoolClassDao.getOne(id).getPrice() * 100);
             model.addAttribute("place", placeDao.getOne(id));
-            model.addAttribute("amount", 100);
+            model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()) * 100);
             model.addAttribute("stripePublicKey", stripePublicKey);
             return "/views/confirmation";
         }
