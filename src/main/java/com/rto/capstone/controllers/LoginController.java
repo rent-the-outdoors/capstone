@@ -17,9 +17,6 @@ public class LoginController {
         this.userDao = userDao;
     }
 
-    ;
-
-
     @GetMapping("/users/login")
     public String showLogin() {
         return "users/login";
