@@ -1,6 +1,6 @@
 -- USE rto_db;
 -- INSERT INTO activities(activity) VALUES ('hunting'), ('fishing'), ('boating'), ('camping');
-
+CREATE DATABASE rto_db;
 DROP DATABASE rto_db;
 USE rto_db;
 DROP TABLE reviews;
@@ -30,5 +30,7 @@ INSERT INTO images(image_path, place_id) VALUES ('/img/adventure-calm-clouds-daw
                                                 ('/img/camping.jpg', 1),
                                                 ('/img/rockclimbing.jpeg', 1),
                                                 ('/img/two-men-fishing-on-lake-1630039.jpg', 1);
+
+
 
 

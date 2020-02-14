@@ -42,12 +42,7 @@ public class UserController {
         return "redirect:/users/login";
     }
 
-//    @GetMapping("/users/{id}/profile")
-//    public String getImgInfoForUser(Model m, @PathVariable long id)
-//    {
-//        m.addAttribute("user", usersDao.getOne(id));
-//        return "users/profile";
-//    }
+
 //
 //    @PostMapping("/users/{id}/profile")
 //    public String uploadImgForUser(@ModelAttribute User user, @PathVariable long id)

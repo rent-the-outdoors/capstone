@@ -44,12 +44,28 @@
       <div class="navbar-end">
          <div class="navbar-item">
             <div class="buttons">
+
+<!--               <form sec:authorize="isAuthenticated()" th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">-->
+
+<!--                  <img alt="" src="${user.image_path}" class="image is-64x64" style="border-radius: 50%">-->
+<!--                  <input type="hidden" name="img_path" th:value="${user.img_path}">-->
+
+<!--               </form>-->
+<!--               <form th:action="@{/profile}" th:method="GET">-->
+<!--                  <button class="button is-success">PROFILE</button>-->
+
+<!--               </form>-->
+
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
                   <button class="button is-danger">Logout</button>
                </form>
+
+
+
                <a sec:authorize="not isAuthenticated()" class="button is-primary" href="/users/create">
                   <strong>Register</strong>
                </a>
+
                <a sec:authorize="not isAuthenticated()" class="button is-light" href="/users/login">
                   Login
                </a>
