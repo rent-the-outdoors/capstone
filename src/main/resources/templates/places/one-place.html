@@ -5,30 +5,62 @@
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<h1 class="title" th:text="${place.title}"></h1>
 <article class="tile is-child box">
-    <div class="columns">
-        <div class="column is-narrow">
-            <div th:each="image,iStat : ${place.placeImages}">
-                <img th:if="${iStat.first}" th:src="${image.imagePath}" style="padding: 0; margin: 0; height: 400px; width: 400px;" class="is-mobile-1">
-            </div>
-        </div>
+   <div class="columns">
+      <div class="column is-narrow"
+           style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px;">
+         <div th:each="image,iStat : ${place.placeImages}">
+            <img th:if="${iStat.first}" th:src="${image.imagePath}"
+                 style="padding: 0; margin: 0; height: 400px; width: 400px;"
+                 class="is-mobile-1">
+         </div>
+      </div>
 
-        <div class="column is-5 is-one-third-tablet" style="display: flex; flex-wrap: wrap; padding: 0; margin: 0;">
-            <div th:each="image,iStat : ${place.placeImages}">
-                <img th:if="${iStat.count > 1 && iStat.count < 6}" th:src="${image.imagePath}" style="height: 200px; width: 250px;">
-            </div>
-        </div>
-       <div id="map" class="column is-narrow" style="padding: 0; margin: 0; height: 400px; width: 400px;"></div>
-    </div>
+      <div class="column is-5 is-one-third-tablet"
+           style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px;">
+         <div th:each="image,iStat : ${place.placeImages}"
+              style="margin: 0 1px 1px 0; height: 199px;">
+            <img th:if="${iStat.count > 1 && iStat.count < 6}"
+                 th:src="${image.imagePath}"
+                 style="height: 199px; width: 250px;">
+         </div>
+      </div>
+      <div id="map" class="column is-narrow"
+           style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
+         <h1 id="address-text" th:text="${place.address}"></h1>
+
+      </div>
+   </div>
 </article>
 
-<article>
-    <p class="content" th:text="${place.description}"></p>
-    <p class="user" th:text="${place.cost_per_day}"></p>
+<article class="tile is-child box">
+   <div class="columns">
+      <div class="column is-4 is-offset-1">
+         <h1 class="title" th:text="${place.title}"
+             style="margin-bottom: 0;"></h1>
+         <span>
+            <strong th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span>
+         </span>
+         <p class="content" th:text="${place.description}"></p>
 
-    <input type="hidden" id="address" th:value="${place.address}">
-    <h1 id="address-text" th:text="${place.address}"></h1>
+         <input type="hidden" id="address" th:value="${place.address}">
+      </div>
+      <div class="media column is-2">
+         <figure class="media-left is-64x64" >
+            <img th:src="${place.user.image_path}" class="image is-64x64" style="border-radius: 50%;">
+         </figure>
+         <div class="media-content">
+            <div class="content" style="margin-left: 2%;">
+               <p th:text="${place.user.username}">
+               </p>
+            </div>
+         </div>
+      </div>
+      <div class="column is-4 has-text-centered">
+         <button type="submit" class="button is-primary"><strong>Book
+            Now</strong></button>
+      </div>
+   </div>
 </article>
 
 

@@ -71,6 +71,12 @@ input[type=checkbox]:checked + .check-label img{
     top: 0;
     width: 100%;
 }
- .hero {
+.hero {
      z-index: 1;
 }
+.sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+ }

@@ -5,6 +5,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+   <script src="https://kit.fontawesome.com/927b51fa66.js" crossorigin="anonymous"></script>
+
    <link rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
    <script defer
@@ -58,8 +60,14 @@
 </nav>
 
 
-<footer th:fragment="footer">
-   <a href="#">Contact Us</a>
+<footer th:fragment="footer" class="sticky-bottom has-text-centered">
+   <ul>
+      <h4>Contact Us:</h4>
+      <li><a href="github.com/barrowjacob"><i class="fab fa-github-square"></i>Jacob</a></li>
+      <li><a href="github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a></li>
+      <li><a href="github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a></li>
+   </ul>
+
 </footer>
 </body>
 </html>
