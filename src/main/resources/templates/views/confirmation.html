@@ -8,10 +8,10 @@
    <div>
       <h1>Confirm Your Booking:</h1>
       <div>
-         <h2 th:text="${price} + '/day'"></h2>
+         <h2 th:text="${place.cost_per_day} + '/day'"></h2>
          <h3>Date: <span th:text="${date}"></span></h3>
-         <h3>Address: <span th:text="${address}"></span></h3>
-         <p th:text="'Description: ' + ${description}"></p>
+         <h3>Address: <span th:text="${place.address}"></span></h3>
+         <p th:text="'Description: ' + ${place.description}"></p>
       </div>
       <div>
 <!--         <h4 th:text="'Total Cost to be Charged: ' + ${price * numberOfDays}"></h4>-->
@@ -22,7 +22,7 @@
 
    <form th:action="@{|/charge/{id}|}" th:method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
       <input type='hidden' th:value='${amount}' name='amount' />
-      <h1>Stripe Price to Process:<span th:text='${amount}' /></h1>
+      <h1>Stripe Price to Process:<span th:text='${place.cost_per_day}' /></h1>
       <script
         src='https://checkout.stripe.com/checkout.js'
         class='stripe-button'
