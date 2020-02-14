@@ -21,40 +21,42 @@ public class UserController {
 
 
     private UserRepository usersDao;
-        private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-        public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
-            this.usersDao = usersDao;
-            this.passwordEncoder = passwordEncoder;
-        }
+    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+        this.usersDao = usersDao;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-        @GetMapping("/users/create")
-        public String showSignupForm(Model model){
-            model.addAttribute("user", new User());
-            return "users/create";
-        }
+    @GetMapping("/users/create")
+    public String showSignupForm(Model model) {
+        model.addAttribute("user", new User());
+        return "users/create";
+    }
 
-        @PostMapping("/users/create")
-        public String saveUser(@ModelAttribute User user){
-            String hash = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hash);
-            usersDao.save(user);
-            return "redirect:/users/login";
-        }
+    @PostMapping("/users/create")
+    public String saveUser(@ModelAttribute User user) {
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        usersDao.save(user);
+        return "redirect:/users/login";
+    }
+
+//    @GetMapping("/users/{id}/profile")
+//    public String getImgInfoForUser(Model m, @PathVariable long id)
+//    {
+//        m.addAttribute("user", usersDao.getOne(id));
+//        return "users/profile";
+//    }
+//
+//    @PostMapping("/users/{id}/profile")
+//    public String uploadImgForUser(@ModelAttribute User user, @PathVariable long id)
+//    {
+//        usersDao.save(user);
+//        return "redirect:/users/profile";
+//
+//    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //    @GetMapping("/users/create")
@@ -91,15 +93,6 @@ public class UserController {
 //    }
 
 
-
-
-
-
-
-
-
-
-
 //    @GetMapping("/users/show")
 //    public String showUser(@PathVariable Long id, Model viewModel){
 //        User user = usersDao.getOne(id);
@@ -108,7 +101,6 @@ public class UserController {
 //        viewModel.addAttribute("showEditControls", userService.canEditProfile(user));
 //        return "users/show";
 //    }
-
 
 
 //    @GetMapping("/users/profile")

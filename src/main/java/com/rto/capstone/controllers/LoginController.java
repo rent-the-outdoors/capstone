@@ -1,12 +1,9 @@
 package com.rto.capstone.controllers;
 
-import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -25,12 +22,12 @@ public class LoginController {
     @PostMapping("/users/login")
     public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
         model.addAttribute("username", username);
-        return "views/profile";
+        return "users/profile";
     }
 
     @GetMapping("/profile")
     public String showProfile() {
-        return "views/profile";
+        return "users/profile";
     }
 
 //    @GetMapping("/logout")

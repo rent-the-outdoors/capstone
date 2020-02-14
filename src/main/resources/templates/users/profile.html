@@ -8,32 +8,44 @@
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
 
-<div id="imgHere"></div>
-
 <br/>
-<!--        <label for="imagePath">Image: </label>-->
-<!--        <input id="imagePath" type="text" th:field="*{image_path}">-->
 
-<!--<div class="modal">-->
-<!--    <div id="imgPath"></div>-->
-<!--    <input type="hidden" th:field="*{image_path}">-->
-<!--    <button id="closeModal"></button>-->
-<!--</div>-->
-<!--<button id="showModal" class="button" type="button">Upload Image</button>-->
-
-
-<!--<input id="img" th:field="*{img}" placeholder="Upload Image" required/>-->
+<div class="modal">
+<!--    <form th:action="@{'users/' + ${user.id} + '/profile'}" th:method="POST" th:object="${user}">-->
+<!--        <label for="urlPattern">Image: </label>-->
+<!--        <input id="urlPattern" th:field="*{image_path}" type="text">-->
+<!--        <button class="button is-small is-success is-outlined">SUBMIT</button>-->
+<!--    </form>-->
+</div>
 
 
-<script type="text/javascript" src="/js/keys.js"></script>
+<button id="showModal" class="button" type="button">Upload Image</button>
+
+
+<script type="text/javascript" src="/static/js/keys.js"></script>
 <script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
 
 <script>
-    // $(document).ready(function () {
-    //     let client = filestack.init(fileStackKey);
+    $(document).ready(function () {
+
+        const client = filestack.init(fileStackKey);
+        const options = {
+            onUploadDone: (res) => $('#urlPattern').append(`https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}`)
+        };
+
+
+        $("#showModal").click(function(){
+            $('.modal').toggleClass('is-active');
+            client.picker(options).open();
+        });
+        $("#closeModal").click(function(){
+            $('.modal').removeClass('is-active');
+        });
+
+    });
     //     let options = {
     //         onUploadDone: (res) => $('#imgHere').append(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
     //     };
