@@ -5,36 +5,40 @@
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
 <main>
-   <div>
-      <h1>Confirm Your Booking:</h1>
-      <div>
-         <h2 th:text="${place.cost_per_day} + '/day'"></h2>
-         <h3>Date: <span th:text="${date}"></span></h3>
-         <h3>Address: <span th:text="${place.address}"></span></h3>
-         <p th:text="'Description: ' + ${place.description}"></p>
+   <section class="hero is-fullheight is-success is-bold">
+      <div class="hero-body">
+         <div class="box column is-6 is-offset-3 has-text-centered">
+            <h1 class="title" style="color: #062E56">
+               Confirm Your Booking:
+            </h1>
+            <h2 class="subtitle has-text-grey-darker">
+               <p
+                 th:text="'$' + ${place.cost_per_day} + ' per day * # DAYS'"></p>
+               <p><span class="has-text-weight-bold"> Date: </span><span
+                 th:text="${date}"></span></p>
+               <p><span class="has-text-weight-bold">Address: </span> <span
+                 th:text="${place.address}"></span></p>
+            </h2>
+            <form th:action="@{|/charge/{id}|}" th:method='POST'
+                  id='checkout-form'
+                  xmlns:th="http://www.thymeleaf.org">
+               <input type='hidden' th:value='${amount}' name='amount' />
+               <script
+                 src='https://checkout.stripe.com/checkout.js'
+                 class='stripe-button'
+                 th:attr='data-key=${stripePublicKey},
+         data-amount=${amount * 100}'
+                 data-name='Rent The Outdoors'
+                 data-description='Booking Confirmation'
+                 data-image
+                   ='https://images.pexels.com/photos/39854/fisherman-fishing-reel-river-39854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+                 data-locale='auto'
+                 data-zip-code='false'>
+               </script>
+            </form>
+         </div>
       </div>
-      <div>
-<!--         <h4 th:text="'Total Cost to be Charged: ' + ${price * numberOfDays}"></h4>-->
-      </div>
-
-      <h3></h3>
-   </div>
-
-   <form th:action="@{|/charge/{id}|}" th:method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
-      <h1>Stripe Price to Process:<span th:text='${place.cost_per_day}' /></h1>
-      <script
-        src='https://checkout.stripe.com/checkout.js'
-        class='stripe-button'
-        th:attr='data-key=${stripePublicKey},
-         data-amount=${amount}'
-        data-name='StackAbuse Services'
-        data-description='Product Checkout'
-        data-image
-          ='http://www.stackabuse.com/assets/images/sa-java-dark.svg?v=b5a08453df'
-        data-locale='auto'
-        data-zip-code='false'>
-      </script>
-   </form>
+   </section>
 </main>
 
 <footer th:insert="partials/fragments :: footer"></footer>

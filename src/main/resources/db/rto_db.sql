@@ -15,7 +15,7 @@ TRUNCATE images;
 
 INSERT INTO users(email, first_name, last_name, image_path, username, password, phone_num)
 VALUES
-('banana@gmail.com', 'Ba', 'Nana', '/img/adventure-bg.jpg', 'banana', 'password', '210-273-5613');
+('banana@gmail.com', 'Ba', 'Nana', '/img/male-avatar', 'banana', 'password', '210-273-5613');
 
 INSERT INTO places(address, cost_per_day, description, title, user_id)
 VALUES

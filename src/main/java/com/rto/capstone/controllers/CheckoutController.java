@@ -36,10 +36,8 @@ public class CheckoutController {
 
         @GetMapping("/confirmation/{id}/checkout")
         public String checkout(Model model, @PathVariable long id) {
-//            model.addAttribute(schoolClassDao.getOne(id));
-//            model.addAttribute("amount", schoolClassDao.getOne(id).getPrice() * 100);
             model.addAttribute("place", placeDao.getOne(id));
-            model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()) * 100);
+            model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()));
             model.addAttribute("stripePublicKey", stripePublicKey);
             return "/views/confirmation";
         }
@@ -48,14 +46,12 @@ public class CheckoutController {
 
         @RequestMapping(value = "/charge/{id}", method = RequestMethod.POST)
         public String chargeCard(Model model, HttpServletRequest request) throws Exception {
-//            model.addAttribute("class", schoolClassDao.getOne(id));
             String token = request.getParameter("stripeToken");
             Double amount = Double.parseDouble(request.getParameter("amount"));
             model.addAttribute("amount", amount);
             stripeService.chargeNewCard(token, amount);
             return "/views/result";
         }
-
         @GetMapping("/result")
         public String yes() {
             return "views/result";
