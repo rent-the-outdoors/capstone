@@ -46,3 +46,5 @@ INSERT INTO images(image_path, place_id) VALUES ('/img/adventure-calm-clouds-daw
 
 
 
+
+
