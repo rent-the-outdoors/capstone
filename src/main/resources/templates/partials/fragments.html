@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="head(title)">
 
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
-   <script src="https://kit.fontawesome.com/927b51fa66.js" crossorigin="anonymous"></script>
+   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
+         rel='stylesheet'/>
+   <script src="https://kit.fontawesome.com/927b51fa66.js"
+           crossorigin="anonymous"></script>
 
    <link rel="stylesheet"
          href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
@@ -45,32 +48,35 @@
          <div class="navbar-item">
             <div class="buttons">
 
-<!--               <form sec:authorize="isAuthenticated()" th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">-->
+               <!--               <form sec:authorize="isAuthenticated()" th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">-->
 
-<!--                  <img alt="" src="${user.image_path}" class="image is-64x64" style="border-radius: 50%">-->
-<!--                  <input type="hidden" name="img_path" th:value="${user.img_path}">-->
+               <!--                  <img alt="" src="${user.image_path}" class="image is-64x64" style="border-radius: 50%">-->
+               <!--                  <input type="hidden" name="img_path" th:value="${user.img_path}">-->
 
-<!--               </form>-->
-<!--               <form th:action="@{/profile}" th:method="GET">-->
-<!--                  <button class="button is-success">PROFILE</button>-->
+               <!--               </form>-->
+               <!--               <form th:action="@{/profile}" th:method="GET">-->
+               <!--                  <button class="button is-success">PROFILE</button>-->
 
-<!--               </form>-->
+               <!--               </form>-->
 
-               <form sec:authorize="isAuthenticated()" th:action="@{/profile}" class="level" th:method="get">
+               <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
+                     class="level" th:method="get">
                   <button class="button is-success">Profile</button>
                </form>
 
-               <form sec:authorize="isAuthenticated()" th:action="@{/logout}" class="level" th:method="post">
+               <form sec:authorize="isAuthenticated()" th:action="@{/logout}"
+                     class="level" th:method="post">
                   <button class="button is-danger">Logout</button>
                </form>
 
 
-
-               <a sec:authorize="not isAuthenticated()" class="button is-primary" href="/users/create">
+               <a sec:authorize="not isAuthenticated()"
+                  class="button is-primary" href="/users/create">
                   <strong>Register</strong>
                </a>
 
-               <a sec:authorize="not isAuthenticated()" class="button is-light" href="/users/login">
+               <a sec:authorize="not isAuthenticated()" class="button is-light"
+                  href="/users/login">
                   Login
                </a>
             </div>
@@ -80,14 +86,23 @@
 </nav>
 
 
-<footer th:fragment="footer" class="sticky-bottom footer">
-   <ul>
-      <h4>Contact Us:</h4>
-      <li><a href="github.com/barrowjacob"><i class="fab fa-github-square"></i>Jacob</a></li>
-      <li><a href="github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a></li>
-      <li><a href="github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a></li>
-   </ul>
-
+<footer th:fragment="footer" class="sticky-bottom footer" style="display: flex; margin-top: 4%;">
+   <div>
+      <ul style="display: flex;">
+         <strong><h4>Contact Us:</h4></strong>
+         <li><a href="github.com/barrowjacob"><i
+           class="fab fa-github-square"></i>Jacob</a></li>
+         <li><a href="github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a>
+         </li>
+         <li><a href="github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a>
+         </li>
+      </ul>
+   </div>
+   <div style="margin-left: auto">
+      <a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing
+         Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>
+      and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+   </div>
 </footer>
 </body>
 </html>

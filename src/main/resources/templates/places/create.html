@@ -6,7 +6,9 @@
 
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
-<form th:action="@{'/places/create'}" method="POST" th:object="${place}">
+<span th:text="${user.id}"></span>
+
+<form th:action="@{'/places/' + ${user.id} + '/create'}" method="POST" th:object="${place}">
     <label for="title">Title: </label>
     <input id="title" th:field="*{title}" type="text"/>
     <br />
@@ -15,23 +17,40 @@
     <br />
     <label for="cost_per_day">Cost per day: </label>
     <input id="cost_per_day" th:field="*{cost_per_day}" />
-
     <br />
-
     <label for="address">Address</label>
     <input id="address" th:field="*{address}" placeholder="Street, city, state, zip" required />
     <br />
+<!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
+    <div class="modal">
 
-    <div id="map"></div>
+        <div id="image">
+        </div>
+    </div>
+    <button id="showModal" class="button" type="button">Upload Image</button>
     <button class="button is-small is-success is-outlined">SUBMIT</button>
-
 </form>
 
 
-<footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 
+<footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
+<script type="text/javascript" src="/static/js/keys.js"></script>
+<script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
 <script>
-$(document).ready(function(){
+    $(document).ready(function () {
+
+        const client = filestack.init("ALxIrpTymC0nHFBIAR2QMz");
+        const options = {
+            onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+        };
+        $("#showModal").click(function () {
+            $('.modal').toggleClass('is-active');
+
+            client.picker(options).open();
+        });
 
     function geocode(search, token) {
         const baseUrl = 'https://api.mapbox.com';

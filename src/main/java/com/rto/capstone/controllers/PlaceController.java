@@ -2,47 +2,73 @@ package com.rto.capstone.controllers;
 
 
 import com.rto.capstone.models.Place;
+import com.rto.capstone.models.PlaceImage;
 import com.rto.capstone.models.User;
+import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
 import com.rto.capstone.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class  PlaceController {
     private PlaceRepository placesDao;
-    private UserRepository userDao;
+    private UserRepository usersDao;
+    private ImageRepository imagesDao;
 
     public PlaceController(PlaceRepository placesDao,
-                           UserRepository usersDao)
+                           UserRepository usersDao,
+                           ImageRepository imagesDao)
     {
         this.placesDao = placesDao;
-        this.userDao = usersDao;
+        this.usersDao = usersDao;
+        this.imagesDao = imagesDao;
     }
 
     //Create place GET
     @GetMapping(path = "/places/create")
     public String createAndGetFormForPlace(Model m)
     {
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        m.addAttribute("user", user);
         m.addAttribute("place", new Place());
         return "places/create";
-
     }
 
     //Create place POST
-    @PostMapping(path = "/places/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place)
+    @PostMapping(path = "/places/{id}/create")
+    public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place, @RequestParam String image_path, @PathVariable Long id)
     {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User newUser = user;
-        place.setUser(newUser);
+        //attach user to place
+        place.setUser(usersDao.getOne(id));
+        //create new placeImage
+        PlaceImage placeImage = new PlaceImage();
+        //set image path on new placeImage
+        placeImage.setImagePath(image_path);
+
+        //**********************************************************
+        //**************getting stuck right here********************
+        //**********************************************************
+
+        //place_id is coming up null whenever it saves new placeImage
+        //if i "setPlace_id" it gives me a foreign key constraint...
+
+        //save new placeImage into image table
+        imagesDao.save(placeImage);
+        //set array list to store place images
+        // it's a one to many, so placeImages has to be List
+        List<PlaceImage> placeImages = new ArrayList<>();
+        //add new placeImage
+        placeImages.add(placeImage);
+        //set arrayList as placeImages of place
+        place.setPlaceImages(placeImages);
+        //save
         placesDao.save(place);
         return "redirect:/places";
 

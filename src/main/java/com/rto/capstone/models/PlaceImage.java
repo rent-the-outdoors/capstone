@@ -38,4 +38,12 @@ public class PlaceImage {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
 }
