@@ -40,7 +40,9 @@ public class  PlaceController {
     @PostMapping(path = "/places/create")
     public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place)
     {
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User newUser = user;
+        place.setUser(newUser);
         placesDao.save(place);
         return "redirect:/places";
 
