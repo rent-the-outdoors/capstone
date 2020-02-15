@@ -29,7 +29,19 @@ INSERT INTO images(image_path, place_id) VALUES ('/img/adventure-calm-clouds-daw
                                                 ('/img/green-trees-near-calm-body-of-water-2275221.jpg', 1),
                                                 ('/img/camping.jpg', 1),
                                                 ('/img/rockclimbing.jpeg', 1),
-                                                ('/img/two-men-fishing-on-lake-1630039.jpg', 1);
+                                                ('/img/two-men-fishing-on-lake-1630039.jpg', 2),
+                                                ('/img/adventure-calm-clouds-dawn-414171.jpg', 2),
+                                                ('/img/flock-of-birds-917494.jpg', 2),
+                                                ('/img/green-trees-near-calm-body-of-water-2275221.jpg', 2),
+                                                ('/img/camping.jpg', 2),
+                                                ('/img/rockclimbing.jpeg', 2),
+                                                ('/img/two-men-fishing-on-lake-1630039.jpg', 2),
+                                                ('/img/adventure-calm-clouds-dawn-414171.jpg', 3),
+                                                ('/img/flock-of-birds-917494.jpg', 3),
+                                                ('/img/green-trees-near-calm-body-of-water-2275221.jpg', 3),
+                                                ('/img/camping.jpg', 3),
+                                                ('/img/rockclimbing.jpeg', 3),
+                                                ('/img/two-men-fishing-on-lake-1630039.jpg', 3);
 
 
 

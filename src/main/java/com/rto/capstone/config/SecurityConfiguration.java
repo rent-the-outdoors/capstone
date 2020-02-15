@@ -54,7 +54,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(
                         "/places/create", // only authenticated users can create places
-                        "/confirmation/**"// only authenticated users can checkout
+                        "/confirmation/**",
+                            //they can only go to prof if logged in
+                            "/profile"
+                            // only authenticated users can checkout
                     )
                     .authenticated()
         ;
