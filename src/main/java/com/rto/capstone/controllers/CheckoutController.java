@@ -39,7 +39,7 @@ public class CheckoutController {
             model.addAttribute("place", placeDao.getOne(id));
             model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()));
             model.addAttribute("stripePublicKey", stripePublicKey);
-            return "/views/confirmation";
+            return "views/confirmation";
         }
         @Autowired
         private StripeService stripeService;
@@ -50,7 +50,7 @@ public class CheckoutController {
             Double amount = Double.parseDouble(request.getParameter("amount"));
             model.addAttribute("amount", amount);
             stripeService.chargeNewCard(token, amount);
-            return "/views/result";
+            return "views/result";
         }
         @GetMapping("/result")
         public String yes() {
