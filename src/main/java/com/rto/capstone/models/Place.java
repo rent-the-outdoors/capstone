@@ -35,7 +35,7 @@ public class Place {
         this.placeImages = placeImages;
     }
 
-    @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "place")
     private List<PlaceImage> placeImages;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
