@@ -26,11 +26,13 @@
                  style="height: 199px; width: 250px;">
          </div>
       </div>
+      <!--map here-->
       <div id="map" class="column is-narrow"
            style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
          <h1 id="address-text" th:text="${place.address}"></h1>
 
       </div>
+
    </div>
 </article>
 
@@ -58,19 +60,20 @@
             </div>
          </div>
       </div>
-
-
+      <!--calendar here-->
+      <div id="calendar"></div>
       <div class="column is-4 has-text-centered">
+
          <form th:method="GET" th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
             <input type="hidden" th:value="${place.id}">
          <button type="submit" class="button is-primary"><strong>Book
             Now</strong></button>
          </form>
+
       </div>
    </div>
 </article>
-<!--calendar here-->
-<div id="calendar"></div>
+
 
 
 <footer th:insert="partials/fragments :: footer"></footer>
