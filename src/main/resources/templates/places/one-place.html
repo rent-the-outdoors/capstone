@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/mapbox_fragments :: head('Single Place Page')">
+
 </head>
 <body>
 <nav th:insert="partials/fragments :: nav"></nav>
@@ -44,6 +45,7 @@
          <p class="content" th:text="${place.description}"></p>
 
          <input type="hidden" id="address" th:value="${place.address}">
+
       </div>
       <div class="media column is-2">
          <figure class="media-left is-64x64" >
@@ -56,6 +58,8 @@
             </div>
          </div>
       </div>
+
+
       <div class="column is-4 has-text-centered">
          <form th:method="GET" th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
             <input type="hidden" th:value="${place.id}">
@@ -65,6 +69,8 @@
       </div>
    </div>
 </article>
+<!--calendar here-->
+<div id="calendar"></div>
 
 
 <footer th:insert="partials/fragments :: footer"></footer>
