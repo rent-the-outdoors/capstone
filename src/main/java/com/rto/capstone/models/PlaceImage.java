@@ -6,13 +6,13 @@ import javax.persistence.*;
 @Table(name = "images")
 public class PlaceImage {
 
-    public PlaceImage() {
-    }
+    public PlaceImage() {}
 
     public PlaceImage(Long id, String imagePath) {
         this.id = id;
         this.imagePath = imagePath;
     }
+
     @ManyToOne
     @JoinColumn(name="place_id")
     private Place place;

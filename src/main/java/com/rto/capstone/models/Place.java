@@ -47,12 +47,17 @@ public class Place {
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
-    public Place(Long id, String title, String address, String cost_per_day, String description){
+    public Place(Long id,
+                 String title,
+                 String address,
+                 String cost_per_day,
+                 String description){
         this.id = id;
         this.title = title;
         this.address = address;
         this.cost_per_day = cost_per_day;
         this.description = description;
+
     }
 
     public Place(){}
