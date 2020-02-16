@@ -6,36 +6,60 @@
 
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
-<span th:text="${user.id}"></span>
 
-<form th:action="@{'/places/' + ${user.id} + '/create'}" method="POST" th:object="${place}">
-    <label for="title">Title: </label>
-    <input id="title" th:field="*{title}" type="text"/>
-    <br />
-    <label for="description">Description:</label>
-    <input id="description" th:field="*{description}" />
-    <br />
-    <label for="cost_per_day">Cost per day: </label>
-    <input id="cost_per_day" th:field="*{cost_per_day}" />
-    <br />
-    <label for="address">Address</label>
-    <input id="address" th:field="*{address}" placeholder="Street, city, state, zip" required />
-    <br />
-<!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
-    <div class="modal">
+<main class="hero is-fullheight-with-navbar is-bold is-primary">
+   <div class="hero-body columns has-text-centered">
+      <div class="container box is-narrow">
+         <div class="column is-4 is-offset-4">
+            <h1 class="title has-text-dark">
+               Rent your own property
+            </h1>
+            <h2 class="subtitle has-text-dark">
+               Just upload a few pictures, input your address and other info,
+               and
+               the amount you want to receive per day, and we'll take care of
+               the
+               rest!
+            </h2>
+         </div>
+         <div class="column is-6 is-offset-3" >
+            <form th:action="@{'/places/' + ${user.id} + '/create'}"
+                  method="POST"
+                  th:object="${place}">
+               <label for="title">Title: </label>
+               <input id="title" th:field="*{title}" type="text"/>
+               <br/>
+               <label for="description">Description:</label>
+               <input id="description" th:field="*{description}"/>
+               <br/>
+               <label for="cost_per_day">Cost per day: </label>
+               <input id="cost_per_day" th:field="*{cost_per_day}"/>
+               <br/>
+               <label for="address">Address: </label>
+               <input id="address" th:field="*{address}"
+                      placeholder="Street, city, state, zip" required/>
+               <br/>
+               <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
+               <div class="modal">
 
-        <div id="image">
-        </div>
-    </div>
-    <button id="showModal" class="button" type="button">Upload Image</button>
-    <button class="button is-small is-success is-outlined">SUBMIT</button>
-</form>
-
+                  <div id="image">
+                  </div>
+               </div>
+               <button id="showModal" class="button" type="button">Upload Image
+               </button>
+               <button class="button is-small is-success is-outlined">SUBMIT
+               </button>
+            </form>
+         </div>
+      </div>
+   </div>
+</main>
 
 
 <footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 <script type="text/javascript" src="/static/js/keys.js"></script>
-<script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script type="text/javascript"
+        src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
@@ -52,52 +76,52 @@
             client.picker(options).open();
         });
 
-    function geocode(search, token) {
-        const baseUrl = 'https://api.mapbox.com';
-        const endPoint = '/geocoding/v5/mapbox.places/';
-        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-            .then(function(res) {
-                return res.json();
-                // to get all the data from the request, comment out the following three lines...
-            }).then(function(data) {
-                return data.features[0].center;
-            });
-    }
+        function geocode(search, token) {
+            const baseUrl = 'https://api.mapbox.com';
+            const endPoint = '/geocoding/v5/mapbox.places/';
+            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+                .then(function (res) {
+                    return res.json();
+                    // to get all the data from the request, comment out the following three lines...
+                }).then(function (data) {
+                    return data.features[0].center;
+                });
+        }
 
-    mapboxgl.accessToken = mapBoxToken;
+        mapboxgl.accessToken = mapBoxToken;
 
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-98.4936, 29.4241],
-        zoom: 12,
-    });
-
-    const markerDetails = {
-        color: 'orange',
-        draggable: true
-    };
-
-    const marker = new mapboxgl.Marker(markerDetails)
-        .setLngLat([-98.4936, 29.4241])
-        .addTo(map);
-
-    const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-    });
-
-    map.addControl(geocoder);
-
-    var address = $('#address').val();
-
-    geocode(address, mapBoxToken)
-        .then(function (result) {
-            map.flyTo({ center:result});
-            marker.setLngLat(result);
-
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-98.4936, 29.4241],
+            zoom: 12,
         });
 
-});
+        const markerDetails = {
+            color: 'orange',
+            draggable: true
+        };
+
+        const marker = new mapboxgl.Marker(markerDetails)
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map);
+
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+        });
+
+        map.addControl(geocoder);
+
+        var address = $('#address').val();
+
+        geocode(address, mapBoxToken)
+            .then(function (result) {
+                map.flyTo({center: result});
+                marker.setLngLat(result);
+
+            });
+
+    });
 
 </script>
 </body>

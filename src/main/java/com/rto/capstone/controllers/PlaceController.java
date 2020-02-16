@@ -57,10 +57,10 @@ public class  PlaceController {
         //**********************************************************
 
         //place_id is coming up null whenever it saves new placeImage
-        //if i "setPlace_id" it gives me a foreign key constraint...
-
+        //if i "setPlace" it gives me a foreign key constraint...
         //save new placeImage into image table
         imagesDao.save(placeImage);
+
         //set array list to store place images
         // it's a one to many, so placeImages has to be List
         List<PlaceImage> placeImages = new ArrayList<>();
@@ -69,6 +69,8 @@ public class  PlaceController {
         //set arrayList as placeImages of place
         place.setPlaceImages(placeImages);
         //save
+        placesDao.save(place);
+        placeImage.setPlace(place);
         placesDao.save(place);
         return "redirect:/places";
 

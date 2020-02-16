@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class PlaceImage {
 
     public PlaceImage() {
-
     }
+
     public PlaceImage(Long id, String imagePath) {
         this.id = id;
         this.imagePath = imagePath;
