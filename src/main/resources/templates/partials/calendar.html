@@ -3,12 +3,12 @@
 <head>
     <meta charset='utf-8' />
 
-    <link href='/lib/fullcalendar/packages/core/main.css' rel='stylesheet' />
-    <link href='/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 
-    <script src='/lib/fullcalendar/packages/core/main.js'></script>
-    <script src='/lib/fullcalendar/packages/daygrid/main.js'></script>
+    <link href='/static/lib/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='/static/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 
+    <script src='/static/lib/fullcalendar/packages/core/main.js'></script>
+    <script src='/static/lib/fullcalendar/packages/daygrid/main.js'></script>
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -42,13 +42,14 @@
                 }
             });
 
+            calendar.setOption('height', 100);
             calendar.render();
         });
 
     </script>
 </head>
 <body>
-<div id='calendar'></div>
+<div th:fragment="schedule" id='calendar'></div>
 
 
 </body>
