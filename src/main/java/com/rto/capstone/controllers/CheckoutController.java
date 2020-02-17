@@ -64,7 +64,7 @@ public class CheckoutController {
             model.addAttribute("amount", amount);
             stripeService.chargeNewCard(token, amount);
             //this begins the confirmation email code
-            Email from = new Email("customerSupport@rto.rentals.com");
+            Email from = new Email("customer-support@rto.rentals.com");
             String subject = "Your Booking Confirmation";
             Email to = new Email(email);
             Content content = new Content("text/plain",
