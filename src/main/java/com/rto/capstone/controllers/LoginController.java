@@ -24,22 +24,15 @@ public class LoginController {
 
     @GetMapping("/users/login")
     public String showLoginForm(Model m, Authentication authentication, HttpSession session) {
-        Authentication token = SecurityContextHolder.getContext().getAuthentication();
-        // This means the user is not logged in
-        if (token instanceof AnonymousAuthenticationToken) return "users/login";
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if (user.getId() != 0) {
-                user = userDao.getOne(user.getId());
-                session.setAttribute("userId", user.getId());
-                session.setAttribute("userImage", user.getImage_path());
-            }
-            // Redirect to the configured home page
-            return "views/profile";
+
+            return "users/login";
         }
 
+
     @PostMapping("/users/login")
-    public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
-        model.addAttribute("username", username);
+    public String loginUser(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
+        session.setAttribute("username", username);
+        System.out.println(username);
         return "users/profile";
     }
 

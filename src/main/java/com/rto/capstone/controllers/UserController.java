@@ -68,7 +68,14 @@ public class UserController {
 
     }
 
-}
+    @GetMapping(path="/profile/{id}")
+    public String displayProfileOfOtherUsers(@PathVariable Long id, Model m) {
+        User user = usersDao.getOne(id);
+        m.addAttribute("user", user);
+        return "users/profile";
+        }
+    }
+
 
 
 //    @GetMapping("/users/create")

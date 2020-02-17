@@ -33,7 +33,7 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <br>
 
 
-<form th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">
+<form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
 
     <div class="modal">
 
@@ -46,6 +46,9 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 </form>
 <button id="showModal" class="button" type="button">Upload Image</button>
 
+
+
+<!--begin scripts-->
 
 <script type="text/javascript" src="/static/js/keys.js"></script>
 <script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>

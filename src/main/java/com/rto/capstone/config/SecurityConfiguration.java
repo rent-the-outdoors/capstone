@@ -56,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/places/create", // only authenticated users can create places
                         "/confirmation/**",
                             //they can only go to prof if logged in
-                            "/profile"
+                            "/profile/{id}"
                             // only authenticated users can checkout
                     )
                     .authenticated()
