@@ -13,6 +13,7 @@ public class User {
         this.email = copy.email;
         this.username = copy.username;
         this.password = copy.password;
+        this.phone_num = copy.phone_num;
         this.first_name = copy.first_name;
         this.last_name = copy.last_name;
         this.image_path = copy.image_path;

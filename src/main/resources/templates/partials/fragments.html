@@ -48,20 +48,12 @@
          <div class="navbar-item">
             <div class="buttons">
 
-               <!--               <form sec:authorize="isAuthenticated()" th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">-->
-
-               <!--                  <img alt="" src="${user.image_path}" class="image is-64x64" style="border-radius: 50%">-->
-               <!--                  <input type="hidden" name="img_path" th:value="${user.img_path}">-->
-
-               <!--               </form>-->
-               <!--               <form th:action="@{/profile}" th:method="GET">-->
-               <!--                  <button class="button is-success">PROFILE</button>-->
-
-               <!--               </form>-->
 
                <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
                      class="level" th:method="get">
-                  <button class="button is-success">Profile</button>
+
+<!--                  <button style="border-radius: 50%; border: 0; padding-top: 20px;"><img th:src="${user.image_path}" style="border-radius: 50%;"></button>-->
+                  <button>profile</button>
                </form>
 
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}"

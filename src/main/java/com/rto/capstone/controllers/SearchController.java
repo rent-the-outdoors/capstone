@@ -2,9 +2,11 @@ package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.Place;
 import com.rto.capstone.models.PlaceImage;
+import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,7 @@ public class SearchController {
 
     @GetMapping("/search")
     public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
         for (Place place : allPlaces) {

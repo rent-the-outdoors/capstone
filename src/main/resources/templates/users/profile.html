@@ -5,23 +5,32 @@
     <meta charset="UTF-8">
     <title>Profile Page</title>
 </head>
-<body style="height: 100vh; background-image: url('img/hardestlaugh.gif'); background-repeat: repeat; background-size: 200px;">
+<body>
 <!--need to add profile security-->
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-<!--<h1 class="username" th:text="${user.username}"></h1>-->
+
+<div class="tile is-parent is-4 is-vertical">
+    <article class="tile is-success notification is-info">
+        <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
+width: 150px; height: 100px; background-position: center;">
+        <strong th:text="${user.username}" style="font-size: 50px;"></strong>
+    </article>
+</div>
+
 
 <br/>
-<h1 th:text="${user.id}"></h1>
-<h1 th:text="${user.email}"></h1>
-<h1 th:text="${user.first_name}"></h1>
-<h1 th:text="${user.last_name}"></h1>
-<h1 th:text="${user.phone_num}"></h1>
-<img th:src="${user.image_path}">
-
-<h1>Welcome, <span th:text="${user.username}"></span></h1>
-
+ID: <h1 th:text="${user.id}"></h1>
+<br>
+E-MAIL: <h3 th:text="${user.email}"></h3>
+<br>
+FIRST NAME: <h1 th:text="${user.first_name}"></h1>
+<br>
+LAST NAME: <h1 th:text="${user.last_name}"></h1>
+<br>
+PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
+<br>
 
 
 <form th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="POST">
@@ -36,7 +45,6 @@
     </div>
 </form>
 <button id="showModal" class="button" type="button">Upload Image</button>
-
 
 
 <script type="text/javascript" src="/static/js/keys.js"></script>
@@ -62,44 +70,7 @@
         });
 
     });
-    //     let options = {
-    //         onUploadDone: (res) => $('#imgHere').append(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
-    //     };
-    //     client.picker(options).open();
-    //
-    // });
 
-
-    /////////
-    // $(document).ready(function () {
-    //
-    //     const client = filestack.init(fileStackKey);
-    //
-    //     const options = {
-    //         onUploadDone: (res) => $('#imgPath').val(`<input id="picture"  src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`),
-    //     };
-    //
-    //     $("#showModal").click(function () {
-    //
-    //         $(".modal").addClass("is-active");
-    //
-    //         client.picker(options).open();
-    //
-    //     });
-    //
-    //     $('#closeModal').click(function () {
-    //         $(".modal").removeClass("is-active");
-    //         client.picker(options).close();
-    //
-    //     })
-    //
-    //     // const imgInput = $('#imagePath').val();
-    //     // const option = {
-    //     //     onUploadDone: (res) => imgInput
-    //     // }
-    //
-    //
-    // });
 </script>
 
 </body>
