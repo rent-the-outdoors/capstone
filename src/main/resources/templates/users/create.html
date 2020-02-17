@@ -4,42 +4,51 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: antiquewhite; height:100vh">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
-    <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}">
+    <div class="card" style="margin: 5%">
+        <header class="card-header">
+            <p class="card-header-title" style="text-align: center">
+                Register!
+            </p>
+        </header>
+        <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}">
 
-        <label for="username">Username</label>
-        <input id="username" type="text" class="validate" th:field="*{username}"/>
+            <label for="username">Username</label>
+            <input id="username" type="text" class="validate" th:field="*{username}"/>
 
-        <br/>
-        <label for="email">Email</label>
-        <input id="email" type="text" class="validate" th:field="*{email}"/>
+            <br/>
+            <label for="email">Email</label>
+            <input id="email" type="text" class="validate" th:field="*{email}"/>
 
-        <br/>
-        <label for="password">Password</label>
-        <input id="password" type="text" class="validate" th:field="*{password}"/>
+            <br/>
+            <label for="password">Password</label>
+            <input id="password" type="text" class="validate" th:field="*{password}"/>
 
-        <br/>
-        <label for="firstName">First Name:</label>
-        <input id="firstName" type="text" th:field="*{first_name}">
+            <br/>
+            <label for="firstName">First Name:</label>
+            <input id="firstName" type="text" th:field="*{first_name}">
 
-        <br/>
-        <label for="lastName">Last Name:</label>
-        <input id="lastName" type="text" th:field="*{last_name}">
+            <br/>
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" type="text" th:field="*{last_name}">
 
-        <br/>
-        <label for="phoneNum">Phone Number:</label>
-        <input id="phoneNum" type="text" th:field="*{phone_num}">
+            <br/>
+            <label for="phoneNum">Phone Number:</label>
+            <input id="phoneNum" type="text" th:field="*{phone_num}">
 
-        <br/>
-        <input type="submit" value="Sign up!">
-    </form>
+            <footer class="card-footer">
+                <input type="submit" value="Sign Up!"/>
+            </footer>
+        </form>
+    </div>
 </main>
 <script>
 
 
 
 </script>
+<footer th:include="partials/fragments :: footer"></footer>
 </body>
 </html>
