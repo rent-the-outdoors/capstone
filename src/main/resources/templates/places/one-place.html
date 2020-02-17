@@ -50,9 +50,11 @@
 
       </div>
       <div class="media column is-2">
+         <a th:href="@{'/profile}'}">
          <figure class="media-left is-64x64" >
             <img th:src="${place.user.image_path}" class="image is-64x64" style="border-radius: 50%;">
          </figure>
+         </a>
          <div class="media-content">
             <div class="content" style="margin-left: 2%;">
                <p th:text="${place.user.username}">
@@ -65,7 +67,7 @@
       <div class="column is-4 has-text-centered">
 
          <form th:method="GET" th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-            <input type="hidden" th:value="${place.id}">
+            <input type="hidden" th:value="${place.id}" name="placeId">
          <button type="submit" class="button is-primary"><strong>Book
             Now</strong></button>
          </form>

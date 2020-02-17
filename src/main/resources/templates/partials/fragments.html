@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,8 @@
 
                <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
                      class="level" th:method="get">
-
 <!--                  <button style="border-radius: 50%; border: 0; padding-top: 20px;"><img th:src="${principal.username}" style="border-radius: 50%;"></button>-->
+                   <span th:text="${session.userImage}">test test</span>
                   <button class="button" style="margin-right: 1%;">profile</button>
                </form>
 
