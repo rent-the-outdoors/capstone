@@ -55,7 +55,7 @@ public class UserController {
 
 
 //    //Update user POST
-    @PostMapping(path = "/users/{id}/profile")
+    @PostMapping(path = "/profile/{id}")
     public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
         User user = usersDao.getOne(id);
 
