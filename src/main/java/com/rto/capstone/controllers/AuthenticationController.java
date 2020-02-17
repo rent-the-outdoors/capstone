@@ -5,26 +5,9 @@
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.GetMapping;
 //
-
-
-
-// **************************
-// NOT SURE WHAT THIS IS FOR
-// **************************
-
-
-
 //@Controller
 //public class AuthenticationController {
 //    @GetMapping("/login")
-//    public String showLoginForm() {
-//        Authentication token = SecurityContextHolder.getContext().getAuthentication();
 //
-//        // This means the user is not logged in
-//        if (token instanceof AnonymousAuthenticationToken) return "users/login";
-//
-//        // Redirect to the configured home page
-//        return String.format("redirect:%s", "/");
-//    }
 //
 //}

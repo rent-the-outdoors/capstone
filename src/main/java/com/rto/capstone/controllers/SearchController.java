@@ -37,15 +37,19 @@ public class SearchController {
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
         for (Place place : allPlaces) {
-            if (huntCheck != null && place.getDescription().contains(huntCheck)
-                    || (fishCheck != null && place.getDescription().contains(fishCheck))
-                    || (campCheck != null && place.getDescription().contains(campCheck))
-                    || (boatCheck != null && place.getDescription().contains(boatCheck))
-                    || (search !=null && (place.getDescription().contains(search)
-                    || place.getTitle().contains(search)
-                    || place.getAddress().contains(search)))) {
+            if (huntCheck != null && place.getDescription().contains(huntCheck))
+            {
                 checkList.add(place);
-
+            } else if (fishCheck != null && place.getDescription().contains(fishCheck)) {
+                checkList.add(place);
+            } else if (campCheck != null && place.getDescription().contains(campCheck)) {
+                checkList.add(place);
+            } else if (boatCheck != null && place.getDescription().contains(boatCheck)) {
+                checkList.add(place);
+            } else if (!search.isEmpty() && place.getDescription().contains(search)) {
+                checkList.add(place);
+            } else if (!search.isEmpty() && place.getTitle().contains(search)) {
+                checkList.add(place);
             }
         }
         model.addAttribute("user", user);
