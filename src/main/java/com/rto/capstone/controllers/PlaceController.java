@@ -7,7 +7,6 @@ import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
-import com.rto.capstone.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +68,6 @@ public class  PlaceController {
         //set arrayList as placeImages of place
         place.setPlaceImages(placeImages);
         //save
-        placesDao.save(place);
         placeImage.setPlace(place);
         placesDao.save(place);
         return "redirect:/places";

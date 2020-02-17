@@ -23,6 +23,8 @@
                   id='checkout-form'
                   xmlns:th="http://www.thymeleaf.org">
                <input type='hidden' th:value='${amount}' name='amount' />
+               <input type='hidden' th:value="${userId}" name="userId"/>
+               <input type='hidden' th:value="${place.id}" name="placeId"/>
                <script
                  src='https://checkout.stripe.com/checkout.js'
                  class='stripe-button'
