@@ -52,10 +52,12 @@ public class CheckoutController {
         private StripeService stripeService;
 
         @RequestMapping(value = "/charge/{id}", method = RequestMethod.POST)
-        public String chargeCard(Model model, HttpServletRequest request, @RequestParam Long userId) throws Exception {
+        public String chargeCard(Model model, HttpServletRequest request, @RequestParam Long userId, @RequestParam Long placeId) throws Exception {
             User user = userDao.getOne(userId);
             String name = user.getFirst_name() + " "  + user.getLast_name();
             String email = user.getEmail();
+            Place place = placeDao.getOne(placeId);
+            String address = place.getAddress();
             System.out.println(email);
             String token = request.getParameter("stripeToken");
             Double amount = Double.parseDouble(request.getParameter("amount"));
@@ -64,8 +66,9 @@ public class CheckoutController {
             //this begins the confirmation email code
             Email from = new Email("customerSupport@rto.rentals.com");
             String subject = "Your Booking Confirmation";
-            Email to = new Email("'" + email + "'");
-            Content content = new Content("text/plain", "Hi, " + name + "! Your booking is confirmed on INSERT_DATE_HERE for a grand total of: $" + amount);
+            Email to = new Email(email);
+            Content content = new Content("text/plain",
+                "Hi, " + name + "! Your booking is confirmed on                     INSERT_DATE_HERE at " + address + " for a grand total of: $" +      amount);
             Mail mail = new Mail(from, subject, to, content);
             SendGrid sg = new SendGrid(sendGridKey);
             Request mailRequest = new Request();
