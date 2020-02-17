@@ -78,5 +78,5 @@ input[type=checkbox]:checked + .check-label img{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
 
- }
