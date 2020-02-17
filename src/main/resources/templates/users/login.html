@@ -47,6 +47,16 @@
                     </div>
                 </div>
 
+
+    <form th:action="@{/users/login}" method="post">
+       <label for="username">Username</label>
+       <input id="username" name="username" type="text"/>
+       <label for="password">Password</label>
+       <input id="password" name="password" type="password"/>
+       <input type="submit" value="Log In"/>
+       <input type="hidden" th:value="${id}" name="userId">
+    </form>
+
                 <footer class="card-footer">
                     <input type="submit" value="Log In"/>
                 </footer>
@@ -55,5 +65,6 @@
     </div>
     <script src="js/main.js"></script>
     <footer th:include="partials/fragments :: footer"></footer>
+
 </body>
 </html>

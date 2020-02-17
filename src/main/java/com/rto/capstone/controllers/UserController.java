@@ -55,9 +55,8 @@ public class UserController {
 
 
 //    //Update user POST
-    @PostMapping(path = "/users/{id}/profile")
+    @PostMapping(path = "/profile/{id}")
     public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
-
         User user = usersDao.getOne(id);
 
         user.setImage_path(image_path);
@@ -68,7 +67,16 @@ public class UserController {
 
     }
 
-}
+    @GetMapping(path="/profile/{id}")
+    public String displayProfileOfOtherUsers(@PathVariable Long id, Model m) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        m.addAttribute("loggedInUser", loggedInUser);
+        User user = usersDao.getOne(id);
+        m.addAttribute("user", user);
+        return "users/profile";
+        }
+    }
+
 
 
 //    @GetMapping("/users/create")

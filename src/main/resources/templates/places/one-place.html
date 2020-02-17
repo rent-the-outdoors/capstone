@@ -50,7 +50,7 @@
 
       </div>
       <div class="media column is-2">
-         <a th:href="@{'/profile}'}">
+         <a th:href="@{'/profile/' + ${place.user.id}}">
          <figure class="media-left is-64x64" >
             <img th:src="${place.user.image_path}" class="image is-64x64" style="border-radius: 50%;">
          </figure>

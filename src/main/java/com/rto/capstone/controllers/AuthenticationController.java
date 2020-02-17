@@ -9,5 +9,18 @@
 //public class AuthenticationController {
 //    @GetMapping("/login")
 //
+//        Authentication token = SecurityContextHolder.getContext().getAuthentication();
+
+// This means the user is not logged in
+//        if (token instanceof AnonymousAuthenticationToken) {return "users/login";
+//            // Redirect to the configured home page
+//        } else {
+//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            if (user.getId() != 0) {
+//                user = userDao.getOne(user.getId());
+//                session.setAttribute("id", user.getId());
+//                session.setAttribute("userImage", user.getImage_path());
+//            }
+//        }
 //
 //}
