@@ -7,11 +7,14 @@ import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +35,10 @@ public class  PlaceController {
 
     //Create place GET
     @GetMapping(path = "/places/create")
-    public String createAndGetFormForPlace(Model m)
+    public String createAndGetFormForPlace(Model m, Principal principal)
     {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.getName();
+        User user = usersDao.findByUsername(username);
         m.addAttribute("user", user);
         m.addAttribute("place", new Place());
         return "places/create";
@@ -42,24 +46,16 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place, @RequestParam String image_path, @PathVariable Long id)
+    public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place, @RequestParam String image_path, @RequestParam User userId, @PathVariable Long id)
     {
         //attach user to place
-        place.setUser(usersDao.getOne(id));
         //create new placeImage
+        place.setUser(userId);
         PlaceImage placeImage = new PlaceImage();
         //set image path on new placeImage
         placeImage.setImagePath(image_path);
-
-        //**********************************************************
-        //**************getting stuck right here********************
-        //**********************************************************
-
-        //place_id is coming up null whenever it saves new placeImage
-        //if i "setPlace" it gives me a foreign key constraint...
         //save new placeImage into image table
         imagesDao.save(placeImage);
-
         //set array list to store place images
         // it's a one to many, so placeImages has to be List
         List<PlaceImage> placeImages = new ArrayList<>();
@@ -94,6 +90,7 @@ public class  PlaceController {
     @GetMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPlace(Model m, @PathVariable long id)
     {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("place", placesDao.getOne(id));
         return "places/update";
     }
