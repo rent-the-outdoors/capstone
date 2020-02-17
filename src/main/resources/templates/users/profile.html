@@ -32,20 +32,21 @@ LAST NAME: <h1 th:text="${user.last_name}"></h1>
 PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <br>
 
+<div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
+    <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
 
-<form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
+        <div class="modal">
 
-    <div class="modal">
+            <div id="image">
 
-        <div id="image">
+            </div>
 
+            <button class="button is-small is-success is-outlined">SUBMIT</button>
         </div>
+    </form>
 
-        <button class="button is-small is-success is-outlined">SUBMIT</button>
-    </div>
-</form>
-<button id="showModal" class="button" type="button">Upload Image</button>
-
+    <button id="showModal" class="button" type="button">Upload Image</button>
+</div>
 
 
 <!--begin scripts-->
