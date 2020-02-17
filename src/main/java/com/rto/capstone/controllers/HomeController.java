@@ -24,12 +24,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String homeController(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        userDao.save(user);
-        model.addAttribute("places", placeDao.findAll());
+    public String homeController(Model m){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        m.addAttribute("user", user);
+        m.addAttribute("places", placeDao.findAll());
         return "views/home";
     }
+
 
 
 }

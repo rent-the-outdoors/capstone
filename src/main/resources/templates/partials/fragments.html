@@ -52,8 +52,8 @@
                <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
                      class="level" th:method="get">
 
-<!--                  <button style="border-radius: 50%; border: 0; padding-top: 20px;"><img th:src="${user.image_path}" style="border-radius: 50%;"></button>-->
-                  <button>profile</button>
+                  <button style="border-radius: 50%; border: 0; padding-top: 20px;"><img th:src="${user.image_path}" style="border-radius: 50%;"></button>
+<!--                  <button>profile</button>-->
                </form>
 
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}"
