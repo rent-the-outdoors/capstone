@@ -17,20 +17,23 @@ public class HomeController {
     private PlaceRepository placeDao;
     private UserRepository userDao;
 
-    public HomeController(PlaceRepository placeDao, UserRepository userDao){
+    public HomeController(PlaceRepository placeDao, UserRepository userDao) {
         this.placeDao = placeDao;
         this.userDao = userDao;
 
     }
 
     @GetMapping("/")
-    public String homeController(Model m){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        m.addAttribute("user", user);
-        m.addAttribute("places", placeDao.findAll());
-        return "views/home";
+    public String homeController(Model m) {
+//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            m.addAttribute("user", user);
+//
+            m.addAttribute("places", placeDao.findAll());
+            return "views/home";
+        }
+
+
     }
 
 
 
-}
