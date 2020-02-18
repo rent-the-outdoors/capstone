@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.awt.*;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model, Principal principal) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
         for (Place place : allPlaces) {
@@ -52,7 +53,11 @@ public class SearchController {
                 checkList.add(place);
             }
         }
-        model.addAttribute("user", user);
+//        if (principal.getName() != null) {
+//            String username = principal.getName();
+//            User user = usersDao.findByUsername(username);
+//            model.addAttribute("user", user);
+//        }
         model.addAttribute("allPlaces", allPlaces);
         model.addAttribute("searchQuery", checkList);
         return "views/search";

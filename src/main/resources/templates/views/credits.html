@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('About Us')">
+</head>
+<body>
+<nav th:insert="partials/fragments :: nav"></nav>
+   <div class="columns">
+      <div class="column is-3 is-offset-1">
+         <img th:src="${'img/nico_fancy.jpeg'}">
+      </div>
+      <div class="column is-3">
+         <img th:src="${'img/thomas_fancy.jpeg'}">
+      </div>
+      <div class="column is-3">
+         <img th:src="${'img/jacob_fancy.jpeg'}">
+      </div>
+   </div>
+
+   <footer th:insert="partials/fragments :: footer"></footer>
+
+</body>
+</html>
