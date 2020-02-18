@@ -43,26 +43,28 @@
             </a>
          </div>
       </div>
-      <div class="navbar-end" style="margin-right: 2%">
-         <div class="navbar-item" style="padding: 0;">
-            <div class="buttons">
+      <div class="navbar-end" style="margin-right: 2%; width: 200px">
+         <div class="navbar-item" style="padding: 0">
+            <div class="buttons" style="width: 180px">
+
                <a sec:authorize="not isAuthenticated()"
                   class="button is-primary" href="/users/create">
                   <strong>Register</strong>
                </a>
-
-               <form sec:authorize="isAuthenticated()"  th:action="@{/profile}" th:method="get">
-                  <button class="button">profile</button>
-               </form>
 
                <a sec:authorize="not isAuthenticated()" class="button is-light"
                   href="/users/login">
                   Login
                </a>
 
+               <form sec:authorize="isAuthenticated()"  th:action="@{/profile}" th:method="get" style="margin-right: 4%">
+                  <button class="button">profile</button>
+               </form>
+
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
                   <button class="button is-danger">Logout</button>
                </form>
+
             </div>
          </div>
       </div>
