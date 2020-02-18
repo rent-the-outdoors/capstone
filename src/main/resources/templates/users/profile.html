@@ -49,7 +49,7 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 </div>
 <div class="container"
      style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-   <div th:each="place : ${userPlaces}" style="margin-top: 1%;">
+   <div th:each="place : ${userPlaces}" style="margin-top: 1%; width: 400px; height: 300px;">
       <a th:href="@{'/place/' + ${place.id}}">
          <div class="card">
             <div class="card-image">
