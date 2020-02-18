@@ -33,7 +33,7 @@
          </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
          <div class="navbar-start">
             <a class="navbar-item" href="/search?search=">
                Book Now
@@ -43,33 +43,26 @@
             </a>
          </div>
       </div>
-      <div class="navbar-end">
-         <div class="navbar-item">
+      <div class="navbar-end" style="margin-right: 2%">
+         <div class="navbar-item" style="padding: 0;">
             <div class="buttons">
-
-
-               <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
-                     class="level" th:method="get">
-<!--                  <button style="border-radius: 50%; border: 0; padding-top: 20px;"><img th:src="${principal.username}" style="border-radius: 50%;"></button>-->
-<!--                   <span th:text="${session.userImage}">test test</span>-->
-                  <button class="button" style="margin-right: 1%;">profile</button>
-               </form>
-
-               <form sec:authorize="isAuthenticated()" th:action="@{/logout}"
-                     class="level" th:method="post">
-                  <button class="button is-danger">Logout</button>
-               </form>
-
-
                <a sec:authorize="not isAuthenticated()"
                   class="button is-primary" href="/users/create">
                   <strong>Register</strong>
                </a>
 
+               <form sec:authorize="isAuthenticated()"  th:action="@{/profile}" th:method="get">
+                  <button class="button">profile</button>
+               </form>
+
                <a sec:authorize="not isAuthenticated()" class="button is-light"
                   href="/users/login">
                   Login
                </a>
+
+               <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                  <button class="button is-danger">Logout</button>
+               </form>
             </div>
          </div>
       </div>
@@ -77,7 +70,7 @@
 </nav>
 
 
-<footer th:fragment="footer" class="sticky-bottom footer" style="display: flex; margin-top: 4%;">
+<footer th:fragment="footer" class="is-fixed-bottom sticky-bottom footer" style="display: flex; margin-top: 4%;">
    <div>
       <ul style="display: flex;">
          <strong><h4>Contact Us:</h4></strong>
