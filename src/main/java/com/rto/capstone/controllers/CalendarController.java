@@ -38,6 +38,34 @@ public class CalendarController {
     }
 
 
+     @RequestMapping(value = "/schedule/getBooking", method = RequestMethod.GET)
+     public
+     @ResponseBody
+     String getBooking(HttpServletResponse res) {
+         Map<String, Object> map = new HashMap<String, Object>();
+         Booking booking = new Booking();
+         map.put("id", booking.getId());
+         map.put("dateStart", booking.getDateStart());
+         map.put("dateEnd", booking.getDateEnd());
+         map.put("address", booking.getAddress());
+
+         // Convert to JSON string.
+         String json = new Gson().toJson(map);
+
+         // write json string
+         res.setContentType("application/json");
+         res.setCharacterEncoding("UTF-8");
+
+
+         return json;
+     }
+
+    @PostMapping("/calendar")
+    private String addDates(){
+         return "views/home";
+    }
+
+
     @PostMapping(
             value ="/createBooking",
             consumes = "application/json",
