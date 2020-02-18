@@ -1,6 +1,9 @@
 package com.rto.capstone.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "bookings")
@@ -10,11 +13,13 @@ public class Booking {
     @Column(nullable = false, name = "id")
     private long id;
 //comment
-    @Column(nullable = false, name = "dateStart", columnDefinition = "DATE")
-    private String dateStart;
+    @Column
+    @DateTimeFormat(pattern = "yyy-MM-dd'T'HH:mm")
+    private Date dateStart;
 
-    @Column(nullable = false, name = "dateEnd", columnDefinition = "DATE")
-    private String dateEnd;
+    @Column
+    @DateTimeFormat(pattern = "yyy-MM-dd'T'HH:mm")
+    private Date dateEnd;
 
     @Column(nullable = false, name = "address", columnDefinition = "VARCHAR(500)")
     private String address;
@@ -27,24 +32,24 @@ public class Booking {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    public Booking(long id, String dateStart, String dateEnd, String address) {
+    public Booking(long id, Date dateStart, Date dateEnd, String address) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public Booking(String dateStart, String address, String dateEnd) {
+    public Booking(Date dateStart, String address, Date dateEnd) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public String getDateEnd() {
+    public Date getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
     }
 
@@ -56,11 +61,11 @@ public class Booking {
         this.id = id;
     }
 
-    public String getDateStart() {
+    public Date getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(String dateStart) {
+    public void setDateStart(Date dateStart) {
         this.dateStart = dateStart;
     }
 
