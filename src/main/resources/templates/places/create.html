@@ -25,20 +25,19 @@
          </div>
          <div class="column is-6 is-offset-3" >
             <form th:action="@{'/places/' + ${user.id} + '/create'}"
-                  method="POST"
-                  th:object="${place}">
+                  method="POST">
                <label for="title">Title: </label>
-                  <input id="title" th:field="*{title}" type="text"/>
+                  <input id="title" name="title" type="text"/>
                <input type="hidden" th:value="${user.id}" th:name="userId">
                <br/>
                <label for="description">Description:</label>
-               <input id="description" th:field="*{description}"/>
+               <input id="description" name="description"/>
                <br/>
                <label for="cost_per_day">Cost per day: </label>
-               <input id="cost_per_day" th:field="*{cost_per_day}"/>
+               <input id="cost_per_day" name="cost"/>
                <br/>
                <label for="address">Address: </label>
-               <input id="address" th:field="*{address}"
+               <input id="address" name="address"
                       placeholder="Street, city, state, zip" required/>
                <br/>
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
