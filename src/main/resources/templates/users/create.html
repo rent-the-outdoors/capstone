@@ -7,37 +7,67 @@
 <body style="background-color: antiquewhite; height:100vh">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
-    <div class="card" style="margin: 5%">
+    <div class="card" style="margin: 3%">
         <header class="card-header">
             <p class="card-header-title" style="text-align: center">
                 Register!
             </p>
         </header>
-        <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}">
-
-            <label for="username">Username</label>
-            <input id="username" type="text" class="validate" th:field="*{username}"/>
-
-            <br/>
-            <label for="email">Email</label>
-            <input id="email" type="text" class="validate" th:field="*{email}"/>
-
-            <br/>
-            <label for="password">Password</label>
-            <input id="password" type="text" class="validate" th:field="*{password}"/>
-
-            <br/>
-            <label for="firstName">First Name:</label>
-            <input id="firstName" type="text" th:field="*{first_name}">
-
-            <br/>
-            <label for="lastName">Last Name:</label>
-            <input id="lastName" type="text" th:field="*{last_name}">
-
-            <br/>
-            <label for="phoneNum">Phone Number:</label>
-            <input id="phoneNum" type="text" th:field="*{phone_num}">
-
+        <form th:action="@{'/users/create'}" th:method="POST" th:object="${user}" style="padding: 2%">
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="username" class="input validate" type="text" placeholder="Username" th:field="*{username}"/>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                     </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="email" class="input validate" type="email" placeholder="Email" th:field="*{email}"/>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <p class="control has-icons-left">
+                    <input id="password" class="input validate" type="password" placeholder="Password" th:field="*{password}"/>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">First Name:</label>
+                <p class="control has-icons-left">
+                    <input id="firstName" class="input validate" type="text" placeholder="First Name" th:field="*{first_name}"/>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label" for="lastName">Last Name:</label>
+                <p class="control has-icons-left">
+                    <input id="lastName" class="input" type="text" placeholder="Last Name" th:field="*{last_name}"/>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label" for="phoneNum">Phone Number:</label>
+                <p class="control has-icons-left">
+                <input class="input" id="phoneNum" type="text" th:field="*{phone_num}">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-phone-alt"></i>
+                    </span>
+                </p>
+            </div>
             <footer class="card-footer">
                 <input type="submit" value="Sign Up!"/>
             </footer>
