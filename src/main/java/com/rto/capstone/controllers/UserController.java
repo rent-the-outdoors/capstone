@@ -55,6 +55,7 @@ public class UserController {
     public String getImgInfoForUser(Model m, HttpSession session) throws InternalError{
         try {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            m.addAttribute("loggedInUser", user);
             m.addAttribute("user", user);
             return "users/profile";
         } catch (InternalError ex) {

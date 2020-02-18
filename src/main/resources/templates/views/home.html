@@ -19,19 +19,41 @@
             <div class="column is-two-thirds field has-addons">
                <input class="input is-success control" type="text"
                       placeholder="Find Your Outdoors" name="search">
-               <button class="button is-primary is-3 control" type="submit"><strong>Search</strong></button>
+               <button class="button is-primary is-3 control" type="submit">
+                  <strong>Search</strong></button>
             </div>
             <div class="columns is-hidden-touch">
-               <div id="checkboxes" class="column is-8 is-relative">
-                  <strong class="has-text-light" id="cats" style="margin-right: 2%;">Categories:</strong>
-                  <input type="checkbox" name="huntCheck" value="hunting" id="hunt-check" class="check">
-                  <label class="check-label" for="hunt-check"><img src="img/hunt_icon.png" alt="hunt" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="campCheck" value="camping" id="camp-check" class="check">
-                  <label class="check-label" for="camp-check"><img src="img/tent_icon.png" alt="tent" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="fishCheck" value="fishing" id="fish-check" class="check">
-                  <label class="check-label" for="fish-check"><img src="img/fish_icon.png" alt="fish" style="height: 50px; width: 50px;"></label>
-                  <input type="checkbox" name="boatCheck" value="boating" id="boat-check" class="check">
-                  <label class="check-label" for="boat-check"><img src="img/boat_icon.png" alt="boat" style="height: 50px; width: 50px;"></label>
+               <div id="checkboxes" class="column is-8 is-relative" style="display: flex;">
+                  <strong class="has-text-light is-size-2" id="cats"
+                          style="margin-right: 2%;">Categories:</strong>
+                  <div style="display: flex;" class="has-text-centered">
+                     <input type="checkbox" name="huntCheck" value="hunting"
+                            id="hunt-check" class="check">
+                     <label class="check-label has-text-light is-size-4" for="hunt-check"><img
+                       src="img/hunt_icon.png" alt="hunt"
+                       style="height: 50px; width: 50px;">Hunting</label>
+                  </div>
+                  <div style="display: flex;" class="has-text-centered">
+                     <input type="checkbox" name="campCheck" value="camping"
+                            id="camp-check" class="check">
+                     <label class="check-label has-text-light is-size-4" for="camp-check"><img
+                       src="img/tent_icon.png" alt="tent"
+                       style="height: 50px; width: 50px;">Camping</label>
+                  </div>
+                  <div style="display:flex;" class="has-text-centered">
+                     <input type="checkbox" name="fishCheck" value="fishing"
+                            id="fish-check" class="check">
+                     <label class="check-label has-text-light is-size-4" for="fish-check"><img
+                       src="img/fish_icon.png" alt="fish"
+                       style="height: 50px; width: 50px;">Fishing</label>
+                  </div>
+                  <div class="has-text-centered">
+                     <input type="checkbox" name="boatCheck" value="boating"
+                            id="boat-check" class="check">
+                     <label class="has-text-light check-label is-size-4" for="boat-check"><img
+                       src="img/boat_icon.png" alt="boat"
+                       style="height: 50px; width: 50px;">Boating</label>
+                  </div>
                </div>
             </div>
          </form>
@@ -41,20 +63,24 @@
       <h1>Find Your Adventure Today!</h1>
    </div>
    <div class="between">
-      <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}" class="columns" style="margin-top: 2%">
-         <div class="column is-8 is-full" style="margin-left: 15%; margin-right: 0">
+      <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}"
+           class="columns" style="margin-top: 2%">
+         <div class="column is-8 is-full"
+              style="margin-left: 15%; margin-right: 0">
             <a th:href="@{'/place/' + ${place.id}}">
-            <div class="card" style="height: 100%; width: 100%">
-               <div th:each="image,iStat : ${place.placeImages}">
-                  <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;"></img>
+               <div class="card" style="height: 100%; width: 100%">
+                  <div th:each="image,iStat : ${place.placeImages}">
+                     <img th:if="${iStat.first}" th:src="${image.imagePath}"
+                          style="width: 400px; height: 200px;"></img>
+                  </div>
+                  <div class="card-header centered">
+                     <p><strong th:text="${place.title}"></strong></p>
+                  </div>
+                  <div class="card-content"><small
+                    th:text="${place.description}"></small>
+                  </div>
                </div>
-               <div class="card-header centered">
-                  <p><strong th:text="${place.title}"></strong></p>
-               </div>
-               <div class="card-content"><small th:text="${place.description}"></small>
-               </div>
-            </div>
-               </a>
+            </a>
          </div>
       </div>
    </div>
