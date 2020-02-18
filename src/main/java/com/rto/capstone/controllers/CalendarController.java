@@ -24,8 +24,9 @@ public class CalendarController {
          Map<String, Object> map = new HashMap<String, Object>();
          Booking booking = new Booking();
          map.put("id", booking.getId());
-         map.put("start", booking.getDateStart());
-         map.put("end", booking.getDateEnd());
+         map.put("dateStart", booking.getDateStart());
+         map.put("dateEnd", booking.getDateEnd());
+         map.put("address", booking.getAddress());
 
          // Convert to JSON string.
          String json = new Gson().toJson(map);
