@@ -44,16 +44,20 @@ public class  PlaceController {
         String username = principal.getName();
         User user = usersDao.findByUsername(username);
         m.addAttribute("user", user);
-        m.addAttribute("place", new Place());
         return "places/create";
     }
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@ModelAttribute Place place, @RequestParam String image_path, @RequestParam User userId, @PathVariable Long id)
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address)
     {
         //attach user to place
         //create new placeImage
+        Place place = new Place();
+        place.setDescription(description);
+        place.setTitle(title);
+        place.setCost_per_day(cost);
+        place.setAddress(address);
         place.setUser(userId);
         PlaceImage placeImage = new PlaceImage();
         //set image path on new placeImage
