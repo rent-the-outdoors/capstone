@@ -94,6 +94,10 @@ public class  PlaceController {
         place.setPlaceImages(placeImages);
         //save
         placeImage.setPlace(place);
+        placeImage2.setPlace(place);
+        placeImage3.setPlace(place);
+        placeImage4.setPlace(place);
+        placeImage5.setPlace(place);
         placesDao.save(place);
         return "redirect:/profile";
 
