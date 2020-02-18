@@ -36,22 +36,23 @@
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            $.getJSON('[@spring.url "/calendar"]', function (data) {
+            $.getJSON('[@spring.url "/schedule/getBooking"]', function (data) {
                 var calendar = $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
                         center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
+                        right: 'month, agendaWeek, agendaDay'
                     },
                     selectable: true,
                     selectHelper: true,
-                    select: function (start, end) {
+                    select: function (start, end, address) {
                         // var title = prompt('Event Title:');
                         if (start) {
                             calendar.fullCalendar('renderEvent',
                                 {
-                                    start: start,
-                                    end: end,
+                                    dateStart: start,
+                                    dateEnd: end,
+                                    address: address
                                 },
                                 true // make the event "stick"
                             );

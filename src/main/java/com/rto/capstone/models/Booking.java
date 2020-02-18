@@ -14,11 +14,11 @@ public class Booking {
     private long id;
 //comment
     @Column
-    @DateTimeFormat(pattern = "yyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;
 
     @Column
-    @DateTimeFormat(pattern = "yyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
 
     @Column(nullable = false, name = "address", columnDefinition = "VARCHAR(500)")
