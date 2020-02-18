@@ -1,5 +1,6 @@
 package com.rto.capstone.controllers;
 
+import com.rto.capstone.models.Place;
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
@@ -18,16 +19,20 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
 
 
     private UserRepository usersDao;
+    private PlaceRepository placesDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository usersDao, PasswordEncoder passwordEncoder, PlaceRepository placesDao) {
         this.usersDao = usersDao;
+        this.placesDao = placesDao;
         this.passwordEncoder = passwordEncoder;
     }
     @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
@@ -53,15 +58,19 @@ public class UserController {
     //Update user GET
     @GetMapping(path = "/profile")
     public String getImgInfoForUser(Model m, HttpSession session) throws InternalError{
-        try {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             m.addAttribute("loggedInUser", user);
             m.addAttribute("user", user);
+            List<Place> allPlaces = placesDao.findAll();
+            List<Place> userPlaces = new ArrayList<>();
+            allPlaces.forEach(place -> {
+                if (place.getUser().getId() == user.getId()) {
+                    userPlaces.add(place);
+                }
+            });
+            m.addAttribute("userPlaces", userPlaces);
             return "users/profile";
-        } catch (InternalError ex) {
-//            ex.printStackTrace();
-            return "views/error";
-        }
+
 
 
     }

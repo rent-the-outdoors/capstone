@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="partials/fragments :: head('Profile Page')">
-    <meta charset="UTF-8">
-    <title>Profile Page</title>
+   <meta charset="UTF-8">
+   <title>Profile Page</title>
 </head>
 <body>
 <!--need to add profile security-->
@@ -12,11 +12,11 @@
 
 
 <div class="tile is-parent is-4 is-vertical">
-    <article class="tile is-success notification is-info">
-        <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
+   <article class="tile is-success notification is-info">
+      <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
 width: 150px; height: 100px; background-position: center;">
-        <strong th:text="${user.username}" style="font-size: 50px;"></strong>
-    </article>
+      <strong th:text="${user.username}" style="font-size: 50px;"></strong>
+   </article>
 </div>
 
 
@@ -33,26 +33,47 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <br>
 
 <div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
-    <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
+   <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
 
-        <div class="modal">
+      <div class="modal">
 
-            <div id="image">
+         <div id="image">
 
-            </div>
+         </div>
 
-            <button class="button is-small is-success is-outlined">SUBMIT</button>
-        </div>
-    </form>
+         <button class="button is-small is-success is-outlined">SUBMIT</button>
+      </div>
+   </form>
 
-    <button id="showModal" class="button" type="button">Upload Image</button>
+   <button id="showModal" class="button" type="button">Upload Image</button>
 </div>
-
+<div class="container"
+     style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+   <div th:each="place : ${userPlaces}" style="margin-top: 1%;">
+      <a th:href="@{'/place/' + ${place.id}}">
+         <div class="card">
+            <div class="card-image">
+               <div th:each="item,iStat : ${place.placeImages}">
+                  <img th:if="${iStat.first}" th:src="${item.imagePath}"
+                       style="width: 400px; height: 250px;">
+               </div>
+            </div>
+            <div class="card-header">
+               <h4 class="is-size-4" th:text="${place.title}"></h4>
+            </div>
+            <div class="card-content">
+               <p th:text="${place.description}"></p>
+            </div>
+         </div>
+      </a>
+   </div>
+</div>
 
 <!--begin scripts-->
 
 <script type="text/javascript" src="/static/js/keys.js"></script>
-<script type="text/javascript" src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script type="text/javascript"
+        src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
