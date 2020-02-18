@@ -60,7 +60,7 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <script>
     $(document).ready(function () {
 
-        const client = filestack.init("ALxIrpTymC0nHFBIAR2QMz");
+        const client = filestack.init("AYfGERAjJSpGXWANTdae5z");
         const options = {
             onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
         };

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -43,10 +44,16 @@ public class UserController {
 
     //Update user GET
     @GetMapping(path = "/profile")
-    public String getImgInfoForUser(Model m) {
+    public String getImgInfoForUser(Model m, HttpSession session) {
+//        trying to figure out how to get user info transferred over
+//        so as to be able to compare if someone is viewing their own profile or another's
 
+//        String username = (String) session.getAttribute("username");
+//        User user = usersDao.findByUsername(username);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+//        if (loggedInUser.getUsername().equalsIgnoreCase((String) session.getAttribute("username"))) {
+//            user = loggedInUser;
+//        };
         m.addAttribute("user", user);
 
         return "users/profile";
