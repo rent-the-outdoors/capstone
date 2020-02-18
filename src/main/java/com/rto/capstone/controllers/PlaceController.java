@@ -70,7 +70,7 @@ public class  PlaceController {
         //save
         placeImage.setPlace(place);
         placesDao.save(place);
-        return "redirect:/places";
+        return "redirect:/profile";
 
     }
 
