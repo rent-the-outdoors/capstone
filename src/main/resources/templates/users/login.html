@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <title>Title</title>
 </head>
-<body style="background-color: antiquewhite; height:100vh">
+<body style="background-color: antiquewhite">
     <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
     <div th:if="${param.error}" style="margin: 3%">
@@ -13,7 +13,7 @@
     <div th:if="${param.logout}" style="margin: 3%">
         You have been logged out!
     </div>
-    <div class="card" style="margin: 14%">
+    <div class="card" style="margin: 12.5%">
         <header class="card-header">
             <p class="card-header-title" style="text-align: center">
                 Log In!
