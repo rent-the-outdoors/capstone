@@ -36,11 +36,8 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
    <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
 
       <div class="modal">
-
          <div id="image">
-
          </div>
-
          <button class="button is-small is-success is-outlined">SUBMIT</button>
       </div>
    </form>
