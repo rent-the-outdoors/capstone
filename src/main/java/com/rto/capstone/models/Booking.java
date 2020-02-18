@@ -1,5 +1,6 @@
 package com.rto.capstone.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -26,10 +27,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "place_id")
+    @JsonIgnore
     private Place place;
 
     public Booking(long id, Date dateStart, Date dateEnd, String address) {
