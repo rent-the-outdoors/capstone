@@ -23,11 +23,11 @@
                rest!
             </h2>
          </div>
-         <div class="column is-6 is-offset-3" >
+         <div class="column is-6 is-offset-3">
             <form th:action="@{'/places/' + ${user.id} + '/create'}"
                   method="POST">
                <label for="title">Title: </label>
-                  <input id="title" name="title" type="text"/>
+               <input id="title" name="title" type="text"/>
                <input type="hidden" th:value="${user.id}" th:name="userId">
                <br/>
                <label for="description">Description:</label>
@@ -41,15 +41,36 @@
                       placeholder="Street, city, state, zip" required/>
                <br/>
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
-               <div class="modal">
-
-                  <div id="image">
+               <div>
+                  <h1 class="is-size-3">Choose up to 5 images:</h1>
+                  <button class="button showModal" type="button">Upload Image 1</button>
+                  <div class="modal">
+                     <div id="image">
+                     </div>
                   </div>
+                  <button class="button showModal2" type="button">Upload Image 2</button>
+                  <div class="modal2">
+                     <div id="image2">
+                     </div>
+                  </div>
+                  <button class="button showModal3" type="button">Upload Image 3</button>
+                  <div class="modal3">
+                     <div id="image3">
+                     </div>
+                  </div>
+                  <button class="button showModal4" type="button">Upload Image 4</button>
+                  <div class="modal4">
+                     <div id="image4">
+                     </div>
+                  </div>
+                  <button class="button showModal5" type="button">Upload Image 5</button>
+                  <div class="modal5">
+                     <div id="image5">
+                     </div>
+                  </div>
+                  <button class="button is-small is-success is-outlined">SUBMIT
+                  </button>
                </div>
-               <button id="showModal" class="button" type="button">Upload Image
-               </button>
-               <button class="button is-small is-success is-outlined">SUBMIT
-               </button>
             </form>
          </div>
       </div>
@@ -71,12 +92,45 @@
         const options = {
             onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
         };
-        $("#showModal").click(function () {
+
+        $(".showModal").click(function () {
             $('.modal').toggleClass('is-active');
 
             client.picker(options).open();
         });
+            // $('.modal').toggleClass('is-active');
+        const options2 = {
+            onUploadDone: (res) => $('#image2').append(`<input type="text" name="image_path2" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+        };
+        $(".showModal2").click(function () {
+            $('.modal2').toggleClass('is-active');
 
+            client.picker(options2).open();
+        });
+        const options3 = {
+            onUploadDone: (res) => $('#image3').append(`<input type="text" name="image_path3" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+        };
+        $(".showModal3").click(function () {
+            $('.modal3').toggleClass('is-active');
+
+            client.picker(options3).open();
+        });
+        const options4 = {
+            onUploadDone: (res) => $('#image4').append(`<input type="text" name="image_path4" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+        };
+        $(".showModal4").click(function () {
+            $('.modal4').toggleClass('is-active');
+
+            client.picker(options4).open();
+        });
+        const options5 = {
+            onUploadDone: (res) => $('#image5').append(`<input type="text" name="image_path5" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+        };
+        $(".showModal5").click(function () {
+            $('.modal5').toggleClass('is-active');
+
+            client.picker(options5).open();
+        });
         function geocode(search, token) {
             const baseUrl = 'https://api.mapbox.com';
             const endPoint = '/geocoding/v5/mapbox.places/';

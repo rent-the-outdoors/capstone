@@ -13,9 +13,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.NestedServletException;
+import org.thymeleaf.exceptions.TemplateInputException;
+
 import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +37,7 @@ public class  PlaceController {
         this.usersDao = usersDao;
         this.imagesDao = imagesDao;
     }
-    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, NestedServletException.class, TemplateInputException.class, ParseException.class})
     public String multiError() {
         return "views/error";
     }
@@ -49,7 +53,7 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address)
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam String image_path2, @RequestParam String image_path3, @RequestParam String image_path4, @RequestParam String image_path5)
     {
         //attach user to place
         //create new placeImage
@@ -60,15 +64,32 @@ public class  PlaceController {
         place.setAddress(address);
         place.setUser(userId);
         PlaceImage placeImage = new PlaceImage();
+        PlaceImage placeImage2 = new PlaceImage();
+        PlaceImage placeImage3 = new PlaceImage();
+        PlaceImage placeImage4 = new PlaceImage();
+        PlaceImage placeImage5 = new PlaceImage();
         //set image path on new placeImage
         placeImage.setImagePath(image_path);
+        placeImage2.setImagePath(image_path2);
+        placeImage3.setImagePath(image_path3);
+        placeImage4.setImagePath(image_path4);
+        placeImage5.setImagePath(image_path5);
+
         //save new placeImage into image table
         imagesDao.save(placeImage);
+        imagesDao.save(placeImage2);
+        imagesDao.save(placeImage3);
+        imagesDao.save(placeImage4);
+        imagesDao.save(placeImage5);
         //set array list to store place images
         // it's a one to many, so placeImages has to be List
         List<PlaceImage> placeImages = new ArrayList<>();
         //add new placeImage
         placeImages.add(placeImage);
+        placeImages.add(placeImage2);
+        placeImages.add(placeImage3);
+        placeImages.add(placeImage4);
+        placeImages.add(placeImage5);
         //set arrayList as placeImages of place
         place.setPlaceImages(placeImages);
         //save
