@@ -6,9 +6,11 @@ import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import com.sun.jdi.InternalException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +33,10 @@ public class SearchController {
         this.imageDao = imageDao;
     }
 
-
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    public String multiError() {
+        return "views/error";
+    }
     @GetMapping("/search")
     public String searchResults(@RequestParam String search, @RequestParam(required = false) String huntCheck, @RequestParam(required = false) String fishCheck, @RequestParam(required = false) String campCheck, @RequestParam(required = false) String boatCheck, Model model, Principal principal) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -3,14 +3,12 @@ package com.rto.capstone.controllers;
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import com.sun.jdi.InternalException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -20,7 +18,10 @@ public class HomeController {
 
     private PlaceRepository placeDao;
     private UserRepository userDao;
-
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    public String multiError() {
+        return "views/error";
+    }
     public HomeController(PlaceRepository placeDao, UserRepository userDao) {
         this.placeDao = placeDao;
         this.userDao = userDao;
