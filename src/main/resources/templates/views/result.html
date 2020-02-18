@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('Thank You!')">
    <meta charset="UTF-8">
    <title>RESULT</title>
 </head>
-<body>
-<h1>Gratz yay happy time!</h1>
+<body style="background-color: antiquewhite; height: 100vh" >
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+<div class="card" style="margin: 5%">
+   <header class="card-header">
+      <p class="card-header-title">
+         Thank You!
+      </p>
+   </header>
+   <div class="card-content">
+      <p>
+         You have been sent an email containing your reservation details!
+      </p>
+   </div>
+</div>
+
+
 </body>
 </html>

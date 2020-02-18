@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <title>Title</title>
 </head>
-<body style="background-color: antiquewhite; height:100vh">
+<body style="background-color: antiquewhite" class="has-navbar-fixed-bottom">
     <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
     <div th:if="${param.error}" style="margin: 3%">
@@ -13,16 +13,15 @@
     <div th:if="${param.logout}" style="margin: 3%">
         You have been logged out!
     </div>
-    <div class="card" style="margin: 14%">
+    <div class="card" style="margin: 12.5%">
         <header class="card-header">
-            <p class="card-header-title" style="text-align: center">
+            <p class="card-header-title">
                 Log In!
             </p>
         </header>
         <div class="card-content">
             <form th:action="@{/users/login}" method="post">
                 <div class="field">
-<!--                    <input type="hidden" th:value="${user.id}" name="id">-->
                     <label class="label" for="username">Username</label>
                     <div class="control has-icons-left">
                         <input id="username" class="input" name="username" type="text"/>
