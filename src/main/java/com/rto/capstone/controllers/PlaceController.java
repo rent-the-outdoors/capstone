@@ -90,7 +90,7 @@ public class  PlaceController {
     @GetMapping(path = "/places/{id}/update")
     public String updateAndGetFormForPlace(Model m, @PathVariable long id)
     {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("place", placesDao.getOne(id));
         return "places/update";
     }
