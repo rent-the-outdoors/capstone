@@ -2,6 +2,7 @@ package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.UserRepository;
+import com.sun.jdi.InternalException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,7 +29,10 @@ public class LoginController {
             return "users/login";
         }
 
-
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    public String multiError() {
+        return "views/error";
+    }
     @PostMapping("/users/login")
     public String loginUser(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         session.setAttribute("username", username);

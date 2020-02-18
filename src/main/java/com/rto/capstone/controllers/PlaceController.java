@@ -7,6 +7,7 @@ import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import com.sun.jdi.InternalException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,10 @@ public class  PlaceController {
         this.usersDao = usersDao;
         this.imagesDao = imagesDao;
     }
-
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    public String multiError() {
+        return "views/error";
+    }
     //Create place GET
     @GetMapping(path = "/places/create")
     public String createAndGetFormForPlace(Model m, Principal principal)

@@ -3,16 +3,21 @@ package com.rto.capstone.controllers;
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
+import com.sun.jdi.InternalException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.NestedServletException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
+import java.sql.SQLException;
 
 @Controller
 public class UserController {
@@ -25,7 +30,10 @@ public class UserController {
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
     }
-
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+    public String multiError() {
+    return "views/error";
+    }
     @GetMapping("/users/create")
     public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
@@ -44,19 +52,16 @@ public class UserController {
 
     //Update user GET
     @GetMapping(path = "/profile")
-    public String getImgInfoForUser(Model m, HttpSession session) {
-//        trying to figure out how to get user info transferred over
-//        so as to be able to compare if someone is viewing their own profile or another's
+    public String getImgInfoForUser(Model m, HttpSession session) throws InternalError{
+        try {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            m.addAttribute("user", user);
+            return "users/profile";
+        } catch (InternalError ex) {
+//            ex.printStackTrace();
+            return "views/error";
+        }
 
-//        String username = (String) session.getAttribute("username");
-//        User user = usersDao.findByUsername(username);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (loggedInUser.getUsername().equalsIgnoreCase((String) session.getAttribute("username"))) {
-//            user = loggedInUser;
-//        };
-        m.addAttribute("user", user);
-
-        return "users/profile";
 
     }
 
