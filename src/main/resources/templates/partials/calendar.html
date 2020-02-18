@@ -1,50 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset='utf-8' />
+    <meta charset='utf-8'/>
 
 
-    <link href='/static/lib/fullcalendar/packages/core/main.css' rel='stylesheet' />
-    <link href='/static/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+
+    <link href='/static/lib/fullcalendar/packages/core/main.css' rel='stylesheet'/>
+    <link href='/static/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet'/>
 
     <script src='/static/lib/fullcalendar/packages/core/main.js'></script>
     <script src='/static/lib/fullcalendar/packages/daygrid/main.js'></script>
     <script>
+        // $('#calendar').fullCalendar({
+        //     header: {
+        //         left: 'prev, next today',
+        //         center: 'title',
+        //         right: 'month, basicWeek, basicDay',
+        //     },
+        //     navLinks: true, //can click day/week names to nav views;
+        //     editable: true,
+        //     eventLimit: true,
+        //     events: {
+        //         url: '/getBookingDates.json',
+        //         type: 'GET',
+        //         error: function(){
+        //             alert("There was an error getting the vent dates");
+        //         },
+        //         color: 'green',
+        //         textColor: 'white'
+        //     }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'dayGrid' ],
-                defaultView: 'dayGridMonth',
-                header: {
-                    center: 'addEventButton'
-                },
-                customButtons: {
-                    addEventButton: {
-                        text: 'add event...',
-                        click: function() {
-                            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-                            if (!isNaN(date.valueOf())) { // valid?
-                                calendar.addEvent({
-                                    title: 'dynamic event',
-                                    start: date,
-                                    allDay: true
-                                });
-                                alert('Great. Now, update your database...');
-                            } else {
-                                alert('Invalid date.');
-                            }
+        // })
+        $(document.ready(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            $.getJSON('[@spring.url "/calendar"]', function (data) {
+                var calendar = $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function (start, end) {
+                        // var title = prompt('Event Title:');
+                        if (start) {
+                            calendar.fullCalendar('renderEvent',
+                                {
+                                    start: start,
+                                    end: end,
+                                },
+                                true // make the event "stick"
+                            );
                         }
-                    }
-                }
+                        calendar.fullCalendar('unselect');
+                    },
+                    editable: true,
+                    events: [data]
+                });
             });
-
-            calendar.setOption('height', 100);
-            calendar.render();
-        });
+        }));
+            // document.addEventListener('DOMContentLoaded', function () {
+            //
+            //     var calendarEl = document.getElementById('calendar');
+            //     var calendar = new FullCalendar.Calendar(calendarEl, {
+            //         plugins: ['dayGrid'],
+            //         defaultView: 'dayGridMonth',
+            //         header: {
+            //             center: 'addEventButton'
+            //         },
+            //         customButtons: {
+            //             addEventButton: {
+            //                 text: 'add event...',
+            //                 click: function () {
+            //                     var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+            //                     var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+            //
+            //                     if (!isNaN(date.valueOf())) { // valid?
+            //                         calendar.addEvent({
+            //                             title: "Booked for " + date.getDate(),
+            //                             start: date,
+            //                             allDay: true
+            //                         });
+            //                         alert('Great. Now, update your database...');
+            //
+            //                     } else {
+            //                         alert('Invalid date.');
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     });
+            //
+            //     calendar.setOption('height', 100);
+            //     calendar.render();
+            //
+            // });
 
     </script>
 </head>
