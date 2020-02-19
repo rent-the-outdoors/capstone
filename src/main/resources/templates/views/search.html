@@ -3,7 +3,7 @@
 <head th:insert="partials/fragments :: head('Search Results')">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite" class="has-navbar-fixed-bottom">
+<body  style="background-color: antiquewhite; padding: 0" class="has-navbar-fixed-bottom">
 <nav th:include="partials/fragments :: nav"></nav>
 <div class="hero" id="search" style="
             background-image: url('img/adventure-bg.jpg');
@@ -36,8 +36,8 @@
 </div>
 <main style="margin-top: 5%">
    <div>
-      <div th:each="place : ${searchQuery}" class="columns centered is-relative">
-         <div class="column is-8">
+      <div th:each="place,plStat : ${searchQuery}" class="columns centered is-relative">
+         <div th:if="${plStat.count < 11}" class="column is-8">
             <a th:href="@{'/place/' + ${place.id}}">
             <div class="card" style="display: flex">
                <div th:each="image,iStat : ${place.placeImages}" style="height: 200px">

@@ -42,11 +42,16 @@
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
                <div>
                   <h1 class="is-size-3">Choose up to 5 images:</h1>
-                     <div class="showModal">
-                        <div id="image" style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; background-color: lightgray; height: 125px; width: 700px;"></div>
+                  <div class="showModal">
+                     <div id="image"
+                          style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; background-color: lightgray; height: 125px; width: 700px;"></div>
 
-                  <button class="button showModal" type="button"><i class="fas fa-plus"></i> Image</button>
+                     <button class="button showModal" type="button"><i
+                       class="fas fa-plus"></i> Image
+                     </button>
+                     <div id="error"></div>
                      <button type="submit" class="button">Submit</button>
+                  </div>
                </div>
             </form>
          </div>
@@ -63,14 +68,22 @@
     $(document).ready(function () {
         //filestack js
         let i = 0;
-        const client = filestack.init("A30rdWPXTKO66gARONegpz");
+        const client = filestack.init("A7uSqc5QwQayJC0xf0Wx6z");
         const options = {
-            onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`)
+            onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`),
+            maxSize: 10 * 1024 * 1024,
+            accept: 'image/*',
+            uploadInBackground: false
         };
-            $(".showModal").click(function () {
-                i++;
-                client.picker(options).open();
-            });
+        if (i <= 10) {
+
+        $(".showModal").click(function () {
+            i++;
+            client.picker(options).open();
+        });
+        } else {
+            $('#error').append(`<p>Sorry! No more than 5 pictures, please!</p>`)
+        }
     });
 
 </script>
