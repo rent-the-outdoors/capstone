@@ -9,6 +9,8 @@
     <script src='/static/lib/fullcalendar/packages/daygrid/main.js'></script>
     <script th:fragment="calendar" id="show_calendar">
         $(document).ready(function () {
+
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['dayGrid'],
