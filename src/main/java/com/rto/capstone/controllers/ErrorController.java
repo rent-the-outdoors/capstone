@@ -10,7 +10,7 @@ public class ErrorController {
 
     @GetMapping("/thomas")
     public String errorController() {
-        return "views/error";
+        return "views/4xx";
     }
 
 
