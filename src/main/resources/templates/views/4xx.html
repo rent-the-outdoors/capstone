@@ -4,7 +4,8 @@
     <meta charset="UTF-8"/>
     <title th:text="'Ooops, ' + ${error}"></title>
 </head>
-<body>
+<body style="background-color: blanchedalmond">
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
         <h1>Page not found!!</h1>
@@ -17,7 +18,7 @@
 <iframe
         width="420"
         height="315"
-        src="https://www.youtube.com/watch?v=yTCgRIA0RYo&list=PLk1Sqn_f33KuS7ZSVMJqzFaqOyyl-esmG"
+        src="https://www.youtube.com/watch?v=837cfYt_ecc"
         frameborder="0"
         allowfullscreen="allowfullscreen"
 >
