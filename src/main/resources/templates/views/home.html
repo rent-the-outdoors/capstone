@@ -70,8 +70,7 @@
             <a th:href="@{'/place/' + ${place.id}}">
                <div class="card" style="height: 100%; width: 100%">
                   <div th:each="image,iStat : ${place.placeImages}">
-                     <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                          style="width: 400px; height: 200px;"></img>
+                     <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;">
                   </div>
                   <div class="card-header centered">
                      <p><strong th:text="${place.title}"></strong></p>
