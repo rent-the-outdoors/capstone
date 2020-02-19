@@ -8,13 +8,14 @@
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
-        <h1>Page not found!!</h1>
+        <h1 class="title centered">Page not found!!</h1>
     </div>
     <div th:case="'Forbidden'">
         <h1>You don't have permission to view this page.</h1>
     </div>
     <div>
-        <h3 class="title centered">So sorry about that. Please go to the home page and try again.</h3>
+        <h2 class="title centered">So sorry about that!</h2>
+        <h2 class="title centered">Please go to the home page and try again.</h2>
     </div>
 </th:block>
 <footer th:include="partials/fragments :: footer"></footer>
