@@ -2,115 +2,86 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset='utf-8'/>
-
-
-
     <link href='/static/lib/fullcalendar/packages/core/main.css' rel='stylesheet'/>
     <link href='/static/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet'/>
 
     <script src='/static/lib/fullcalendar/packages/core/main.js'></script>
     <script src='/static/lib/fullcalendar/packages/daygrid/main.js'></script>
-    <script>
-        // $('#calendar').fullCalendar({
-        //     header: {
-        //         left: 'prev, next today',
-        //         center: 'title',
-        //         right: 'month, basicWeek, basicDay',
-        //     },
-        //     navLinks: true, //can click day/week names to nav views;
-        //     editable: true,
-        //     eventLimit: true,
-        //     events: {
-        //         url: '/bookings.json',
-        //         type: 'GET',
-        //         error: function(){
-        //             alert("There was an error getting the vent dates");
-        //         },
-        //         color: 'green',
-        //         textColor: 'white'
-        //     }
-        //
-        // });
-        //////////////////
-        // $(document.ready(function () {
-        //     var date = new Date();
-        //     var d = date.getDate();
-        //     var m = date.getMonth();
-        //     var y = date.getFullYear();
-        //     $.ajax('/calendar', function (data) {
-        //         var calendar = $('#calendar').fullCalendar({
-        //             header: {
-        //                 left: 'prev,next today',
-        //                 center: 'title',
-        //                 right: 'month, agendaWeek, agendaDay'
-        //             },
-        //             selectable: true,
-        //             selectHelper: true,
-        //             select: function (start, end, address) {
-        //                 // var title = prompt('Event Title:');
-        //                 if (start) {
-        //                     calendar.fullCalendar('renderEvent',
-        //                         {
-        //                             dateStart: start,
-        //                             dateEnd: end,
-        //                             address: address
-        //                         },
-        //                         true // make the event "stick"
-        //                     );
-        //                 }
-        //                 calendar.fullCalendar('unselect');
-        //             },
-        //             editable: true,
-        //             events: [data]
-        //         });
-        //     });
-        // }));
+    <script th:fragment="calendar" id="show_calendar">
+        $(document).ready(function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                header: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'addEventButton'
 
-        ////////////////
-            document.addEventListener('DOMContentLoaded', function () {
+                },
+                customButtons: {
+                    addEventButton: {
+                        text: 'Book your place now!',
+                        click: function () {
+                            var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');
+                            var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
+                            var dateStart = new Date(dateStartStr);
+                            var dateEnd = new Date(dateEndStr);
 
-                var calendarEl = document.getElementById('calendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    events: '/calendar.json',
-                    color: 'yellow',
-                    plugins: ['dayGrid'],
-                    defaultView: 'dayGridMonth',
-                    header: {
-                        center: 'addEventButton'
-                    },
-                    customButtons: {
-                        addEventButton: {
-                            text: 'add event...',
-                            click: function () {
-                                var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                                var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+                            if (!isNaN(dateStart.valueOf())
+                                || !isNaN(dateEnd.valueOf())) { //validity check for booking
 
-                                if (!isNaN(date.valueOf())) { // valid?
-                                    calendar.addEvent({
-                                        title: "Booked for " + date.getDate(),
-                                        start: date,
-                                        allDay: true
-                                    });
-                                    // alert('Great. Now, update your database...');
+                                calendar.addEvent({
+                                    title: "Booked from " + dateStart + " to " + dateEnd,
+                                    start: dateStart,
+                                    end: dateEnd,
+                                    allDay: true,
+                                    url: '/bookings',
+                                    method: 'POST',
+                                    dataType: 'jsonString',
+                                    error: function () {
+                                        alert("There was an error getting the booking dates");
+                                    },
 
-                                } else {
-                                    alert('Invalid date.');
-                                }
+                                    color: '#37474f',
+                                    textColor: 'white'
+
+                                });
+                                console.log(calendar.getEvents());
+                                //update send post request to json
+
+
+                            } else {
+                                alert('Invalid date.');
                             }
                         }
                     }
-                });
-                console.log(calendar.getEvents());
 
-                calendar.setOption('height', 100);
-                calendar.render();
+                },
+                navLinks: true, //can click day/week names to navigate views
+                editable: true,
+                eventLimit: true,
+                events:
+                    {
+                        url: '/bookings',
+                        method: 'GET',
+                        error: function () {
+                            alert("There was an error getting the booking dates");
+                        },
+
+                        color: '#37474f',
+                        textColor: 'white'
+                    }
+
 
             });
 
+
+            calendar.render();
+        });
     </script>
 </head>
 <body>
-<div th:fragment="schedule" id='calendar'></div>
+<div id='calendar'></div>
 
 
 </body>
