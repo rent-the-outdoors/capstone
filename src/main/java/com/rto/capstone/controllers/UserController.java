@@ -80,11 +80,8 @@ public class UserController {
     @PostMapping(path = "/profile/{id}")
     public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
         User user = usersDao.getOne(id);
-
         user.setImage_path(image_path);
-
         usersDao.save(user);
-
         return "redirect:/profile";
 
     }

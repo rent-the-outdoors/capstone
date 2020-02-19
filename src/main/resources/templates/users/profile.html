@@ -35,18 +35,17 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
    <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
 
-      <div class="modal">
-         <div id="image">
-         </div>
-         <button class="button is-small is-success is-outlined">SUBMIT</button>
+      <div id="image">
       </div>
+      <button id="showModal" class="button" type="button">Upload Image</button>
+      <button class="button is-small is-success is-outlined">SUBMIT</button>
    </form>
 
-   <button id="showModal" class="button" type="button">Upload Image</button>
 </div>
 <div class="container"
      style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-   <div th:each="place : ${userPlaces}" style="margin-top: 1%; width: 400px; height: 300px;">
+   <div th:each="place : ${userPlaces}"
+        style="margin-top: 1%; width: 400px; height: 300px;">
       <a th:href="@{'/place/' + ${place.id}}">
          <div class="card">
             <div class="card-image">
@@ -78,18 +77,16 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <script>
     $(document).ready(function () {
 
-        const client = filestack.init("AYfGERAjJSpGXWANTdae5z");
+        const client = filestack.init("A7uSqc5QwQayJC0xf0Wx6z");
         const options = {
             onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
         };
+
         $("#showModal").click(function () {
-            $('.modal').toggleClass('is-active');
 
             client.picker(options).open();
         });
-        $("#closeModal").click(function () {
-            $('.modal').removeClass('is-active');
-        });
+
 
     });
 
