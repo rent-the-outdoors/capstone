@@ -129,6 +129,9 @@ public class  PlaceController {
     @GetMapping(path ="/place/{id}")
     public String onePlaceById(Model m, @PathVariable long id)
     {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        loggedInUser = usersDao.getOne(loggedInUser.getId());
+        m.addAttribute("loggedInUser", loggedInUser);
         m.addAttribute("place", placesDao.getOne(id));
         return "places/one-place";
     }
@@ -139,6 +142,7 @@ public class  PlaceController {
     {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("place", placesDao.getOne(id));
+
         return "places/update";
     }
 
@@ -147,7 +151,7 @@ public class  PlaceController {
     public String updateAndGetFormForPost(@ModelAttribute Place place, @PathVariable long id)
     {
         placesDao.save(place);
-        return "redirect:/places";
+        return "redirect:/profile";
     }
 
 
@@ -157,7 +161,7 @@ public class  PlaceController {
     {
 
         placesDao.deleteById(id);
-        return "redirect:/places";
+        return "redirect:/profile";
     }
 
 }
