@@ -58,7 +58,7 @@
                </a>
 
                <form sec:authorize="isAuthenticated()"  th:action="@{/profile}" th:method="get" style="margin-right: 4%">
-                  <button class="button">profile</button>
+                  <button class="button is-primary">Profile</button>
                </form>
 
                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
