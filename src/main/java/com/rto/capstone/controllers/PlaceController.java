@@ -129,6 +129,9 @@ public class  PlaceController {
     @GetMapping(path ="/place/{id}")
     public String onePlaceById(Model m, @PathVariable long id)
     {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        loggedInUser = usersDao.getOne(loggedInUser.getId());
+        m.addAttribute("loggedInUser", loggedInUser);
         m.addAttribute("place", placesDao.getOne(id));
         return "places/one-place";
     }
