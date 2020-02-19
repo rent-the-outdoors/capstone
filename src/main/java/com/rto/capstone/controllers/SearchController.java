@@ -42,29 +42,33 @@ public class SearchController {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Place> checkList = new ArrayList<>();
         List<Place> allPlaces = placesDao.findAll();
-        for (Place place : allPlaces) {
-            if (huntCheck != null && place.getDescription().contains(huntCheck))
-            {
-                checkList.add(place);
-            } else if (fishCheck != null && place.getDescription().contains(fishCheck)) {
-                checkList.add(place);
-            } else if (campCheck != null && place.getDescription().contains(campCheck)) {
-                checkList.add(place);
-            } else if (boatCheck != null && place.getDescription().contains(boatCheck)) {
-                checkList.add(place);
-            } else if (!search.isEmpty() && place.getDescription().contains(search)) {
-                checkList.add(place);
-            } else if (!search.isEmpty() && place.getTitle().contains(search)) {
-                checkList.add(place);
+        if (search.isEmpty() && huntCheck == null && fishCheck == null && boatCheck == null && campCheck == null) {
+            model.addAttribute("searchQuery", allPlaces);
+            return "views/search";
+        } else {
+            for (Place place : allPlaces) {
+                if (huntCheck != null && place.getDescription().contains(huntCheck)) {
+                    checkList.add(place);
+                } else if (fishCheck != null && place.getDescription().contains(fishCheck)) {
+                    checkList.add(place);
+                } else if (campCheck != null && place.getDescription().contains(campCheck)) {
+                    checkList.add(place);
+                } else if (boatCheck != null && place.getDescription().contains(boatCheck)) {
+                    checkList.add(place);
+                } else if (!search.isEmpty() && place.getDescription().contains(search)) {
+                    checkList.add(place);
+                } else if (!search.isEmpty() && place.getTitle().contains(search)) {
+                    checkList.add(place);
+                }
             }
-        }
 //        if (principal.getName() != null) {
 //            String username = principal.getName();
 //            User user = usersDao.findByUsername(username);
 //            model.addAttribute("user", user);
 //        }
-        model.addAttribute("allPlaces", allPlaces);
-        model.addAttribute("searchQuery", checkList);
+            model.addAttribute("allPlaces", allPlaces);
+            model.addAttribute("searchQuery", checkList);
         return "views/search";
+        }
     }
 }
