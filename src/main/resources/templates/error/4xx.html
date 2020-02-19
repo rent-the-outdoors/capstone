@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('ERROR!')">
     <meta charset="UTF-8"/>
-    <title th:text="'Ooops, ' + ${error}"></title>
+
 </head>
 <body style="background-color: blanchedalmond">
+
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
@@ -13,9 +14,16 @@
     <div th:case="'Forbidden'">
         <h1>You don't have permission to view this page.</h1>
     </div>
-    <div>
-        <h2 class="title centered">So sorry about that!</h2>
-        <h2 class="title centered">Please go to the home page and try again.</h2>
+    <div class="card is-8 is-three-quarters-mobile" style="margin: 10%">
+        <div class="card-header centered">
+            <h1 class="title">Sorry there was an error, We've failed you for the last time!</h1>
+        </div>
+        <div class="card-body centered">
+            <img style="width: 15%; margin-top: 1%; margin-bottom: 1%" src="img/man-sitting-on-concrete-bench-3635945.jpg" alt="Man sitting on concrete bench">
+        </div>
+        <div class="card-footer">
+            <h3 class="subtitle centered">So sorry about that. Please go to the home page and try again.</h3>
+        </div>
     </div>
 </th:block>
 <footer th:include="partials/fragments :: footer"></footer>
