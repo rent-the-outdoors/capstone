@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/mapbox_fragments :: head('Single Place Page')">
+<head th:insert="partials/fragments :: head('Create Place Listing')">
+
 </head>
-
-
 <body>
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
@@ -43,42 +42,17 @@
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
                <div>
                   <h1 class="is-size-3">Choose up to 5 images:</h1>
-                  <button class="button showModal" type="button">Upload Image 1</button>
-                  <div class="modal">
-                     <div id="image">
-                     </div>
-                  </div>
-                  <button class="button showModal2" type="button">Upload Image 2</button>
-                  <div class="modal2">
-                     <div id="image2">
-                     </div>
-                  </div>
-                  <button class="button showModal3" type="button">Upload Image 3</button>
-                  <div class="modal3">
-                     <div id="image3">
-                     </div>
-                  </div>
-                  <button class="button showModal4" type="button">Upload Image 4</button>
-                  <div class="modal4">
-                     <div id="image4">
-                     </div>
-                  </div>
-                  <button class="button showModal5" type="button">Upload Image 5</button>
-                  <div class="modal5">
-                     <div id="image5">
-                     </div>
-                  </div>
-                  <button class="button is-small is-success is-outlined">SUBMIT
-                  </button>
+                     <div class="showModal">
+                        <div id="image" style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; background-color: lightgray; height: 125px; width: 700px;"></div>
+
+                  <button class="button showModal" type="button"><i class="fas fa-plus"></i> Image</button>
+                     <button type="submit" class="button">Submit</button>
                </div>
             </form>
          </div>
       </div>
    </div>
 </main>
-
-
-<footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 <script type="text/javascript" src="/static/js/keys.js"></script>
 <script type="text/javascript"
         src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
@@ -87,95 +61,16 @@
         crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-
-        const client = filestack.init("AYfGERAjJSpGXWANTdae5z");
+        //filestack js
+        let i = 0;
+        const client = filestack.init("A30rdWPXTKO66gARONegpz");
         const options = {
-            onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
+            onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`)
         };
-
-        $(".showModal").click(function () {
-            $('.modal').toggleClass('is-active');
-
-            client.picker(options).open();
-        });
-            // $('.modal').toggleClass('is-active');
-        const options2 = {
-            onUploadDone: (res) => $('#image2').append(`<input type="text" name="image_path2" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
-        };
-        $(".showModal2").click(function () {
-            $('.modal2').toggleClass('is-active');
-
-            client.picker(options2).open();
-        });
-        const options3 = {
-            onUploadDone: (res) => $('#image3').append(`<input type="text" name="image_path3" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
-        };
-        $(".showModal3").click(function () {
-            $('.modal3').toggleClass('is-active');
-
-            client.picker(options3).open();
-        });
-        const options4 = {
-            onUploadDone: (res) => $('#image4').append(`<input type="text" name="image_path4" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
-        };
-        $(".showModal4").click(function () {
-            $('.modal4').toggleClass('is-active');
-
-            client.picker(options4).open();
-        });
-        const options5 = {
-            onUploadDone: (res) => $('#image5').append(`<input type="text" name="image_path5" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
-        };
-        $(".showModal5").click(function () {
-            $('.modal5').toggleClass('is-active');
-
-            client.picker(options5).open();
-        });
-        function geocode(search, token) {
-            const baseUrl = 'https://api.mapbox.com';
-            const endPoint = '/geocoding/v5/mapbox.places/';
-            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-                .then(function (res) {
-                    return res.json();
-                    // to get all the data from the request, comment out the following three lines...
-                }).then(function (data) {
-                    return data.features[0].center;
-                });
-        }
-
-        mapboxgl.accessToken = mapBoxToken;
-
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [-98.4936, 29.4241],
-            zoom: 12,
-        });
-
-        const markerDetails = {
-            color: 'orange',
-            draggable: true
-        };
-
-        const marker = new mapboxgl.Marker(markerDetails)
-            .setLngLat([-98.4936, 29.4241])
-            .addTo(map);
-
-        const geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-        });
-
-        map.addControl(geocoder);
-
-        var address = $('#address').val();
-
-        geocode(address, mapBoxToken)
-            .then(function (result) {
-                map.flyTo({center: result});
-                marker.setLngLat(result);
-
+            $(".showModal").click(function () {
+                i++;
+                client.picker(options).open();
             });
-
     });
 
 </script>

@@ -37,10 +37,10 @@ public class  PlaceController {
         this.usersDao = usersDao;
         this.imagesDao = imagesDao;
     }
-    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, NestedServletException.class, TemplateInputException.class, ParseException.class})
-    public String multiError() {
-        return "views/error";
-    }
+//    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, NestedServletException.class, TemplateInputException.class, ParseException.class})
+//    public String multiError() {
+//        return "views/error";
+//    }
     //Create place GET
     @GetMapping(path = "/places/create")
     public String createAndGetFormForPlace(Model m, Principal principal)
@@ -53,7 +53,9 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam String image_path2, @RequestParam String image_path3, @RequestParam String image_path4, @RequestParam String image_path5)
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path2, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam String image_path4, @RequestParam String image_path6, @RequestParam String image_path8, @RequestParam String image_path10  )
+
+//
     {
         //attach user to place
         //create new placeImage
@@ -69,11 +71,11 @@ public class  PlaceController {
         PlaceImage placeImage4 = new PlaceImage();
         PlaceImage placeImage5 = new PlaceImage();
         //set image path on new placeImage
-        placeImage.setImagePath(image_path);
-        placeImage2.setImagePath(image_path2);
-        placeImage3.setImagePath(image_path3);
-        placeImage4.setImagePath(image_path4);
-        placeImage5.setImagePath(image_path5);
+        placeImage.setImagePath(image_path2);
+        placeImage2.setImagePath(image_path4);
+        placeImage3.setImagePath(image_path6);
+        placeImage4.setImagePath(image_path8);
+        placeImage5.setImagePath(image_path10);
 
         //save new placeImage into image table
         imagesDao.save(placeImage);
