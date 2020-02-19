@@ -139,6 +139,7 @@ public class  PlaceController {
     {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("place", placesDao.getOne(id));
+
         return "places/update";
     }
 
@@ -147,7 +148,7 @@ public class  PlaceController {
     public String updateAndGetFormForPost(@ModelAttribute Place place, @PathVariable long id)
     {
         placesDao.save(place);
-        return "redirect:/places";
+        return "redirect:/profile";
     }
 
 
@@ -157,7 +158,7 @@ public class  PlaceController {
     {
 
         placesDao.deleteById(id);
-        return "redirect:/places";
+        return "redirect:/profile";
     }
 
 }

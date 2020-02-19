@@ -60,6 +60,13 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
             <div class="card-content">
                <p th:text="${place.description}"></p>
             </div>
+            <form th:action="@{'/places/' + ${place.id} + '/update'}" method="GET">
+               <button class="button is-small is-success">UPDATE</button>
+            </form>
+            <hr>
+            <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
+               <button class="button is-small is-danger">DELETE</button>
+            </form>
          </div>
       </a>
    </div>
