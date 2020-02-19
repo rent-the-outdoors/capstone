@@ -8,13 +8,13 @@
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <th:block th:switch="${error}">
-    <div th:case="'Not Found'">
+    <div style="margin-top: 2%" th:case="'Not Found'">
         <h1 class="title centered">Page not found!!</h1>
     </div>
     <div th:case="'Forbidden'">
         <h1>You don't have permission to view this page.</h1>
     </div>
-    <div class="card is-8 is-three-quarters-mobile" style="margin: 10%">
+    <div class="card is-8 is-three-quarters-mobile" style="margin: 6%">
         <div class="card-header centered">
             <h1 class="title">Sorry there was an error, We've failed you for the last time!</h1>
         </div>
