@@ -56,13 +56,26 @@ public class CalendarController {
         return bookings;
     }
 
+
     //posts to bookings to json
     @PostMapping(value = "/create/bookings",
     consumes = "application/json",
     produces = "application/json")
     public String postBookingForJSON(@RequestBody Booking booking) throws ParseException, IOException {
-        bookingDao.save(booking);
-        return "test";
+        String bookings = "";
+        Path jsonPath = Paths.get("bookings.json");
+        try {
+            List<String> jsonContent = Files.readAllLines(jsonPath);
+            for (String line : jsonContent)
+            {
+                bookings += line;
+            }
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        return bookings;
     }
 
 
