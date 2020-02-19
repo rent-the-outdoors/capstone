@@ -1,20 +1,16 @@
 package com.rto.capstone.controllers;
 
-import com.google.gson.Gson;
 import com.rto.capstone.models.Booking;
 import com.rto.capstone.repositories.BookingRepository;
-import org.aspectj.weaver.ast.Test;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class CalendarController {
@@ -25,55 +21,124 @@ public class CalendarController {
         this.bookingDao = bookingDao;
     }
 
-
+    //reads json for bookings
     @GetMapping("/calendar")
-    public String CalendarController() {
-        return "partials/calendar";
-    }
-
-    @GetMapping("/calendar/json")
+    @CrossOrigin
     @ResponseBody
-    public List<Booking> JsonCalendarController() {
-        return bookingDao.findAll();
+    public String showCalendarEventsFromJSON(){
+        String bookings = "";
+        Path jsonPath = Paths.get("calendar.json");
+        try {
+            List<String> jsonContent = Files.readAllLines(jsonPath);
+            for (String line : jsonContent)
+            {
+                bookings += line;
+            }
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        return bookings;
     }
+    //now to test posting to the json...
 
 
-     @RequestMapping(value = "/schedule/getBooking", method = RequestMethod.GET)
-     public
-     @ResponseBody
-     String getBooking(HttpServletResponse res) {
-         Map<String, Object> map = new HashMap<String, Object>();
-         Booking booking = new Booking();
-         map.put("id", booking.getId());
-         map.put("dateStart", booking.getDateStart());
-         map.put("dateEnd", booking.getDateEnd());
-         map.put("address", booking.getAddress());
-
-         // Convert to JSON string.
-         String json = new Gson().toJson(map);
-
-         // write json string
-         res.setContentType("application/json");
-         res.setCharacterEncoding("UTF-8");
-
-
-         return json;
-     }
-
-    @PostMapping("/calendar")
-    private String addDates(){
-         return "views/home";
-    }
-
-
-    @PostMapping(
-            value ="/createBooking",
-            consumes = "application/json",
-            produces = "application/json")
-    public Booking createBooking(@RequestBody Booking booking)
+    //view all bookings in json format
+    @GetMapping("/bookings.json")
+    public
+    @ResponseBody
+    Iterable<Booking> getAllBookingsInJSONFormat()
     {
-        return bookingDao.save(booking);
+        return bookingDao.findAll();
+
     }
+
+    @GetMapping("/getBookingDates.json")
+    @ResponseBody
+    public List<Map<String, String>> getBookingDates()
+    {
+        List<Map<String, String>> events = new ArrayList<>();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Iterable<Booking> bookings = bookingDao.findAll();
+
+
+        for(Booking booking : bookings)
+        {
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("title", booking.getAddress());
+            map.put("start", simpleDateFormat.format(booking.getDateStart()));
+            map.put("end", simpleDateFormat.format(booking.getDateEnd()));
+        }
+
+        return events;
+
+    }
+
+//    @GetMapping("/calendar")
+//    public String CalendarController() {
+//
+//        return "calendar_test";
+//    }
+//
+//
+//    //model test
+//
+//    @RequestMapping(value = "/calendar",
+//            method = RequestMethod.POST,
+//            produces = "application/json")
+//    public
+//    @ResponseBody
+//    Booking addNewEvent(@RequestBody Booking booking) throws Exception {
+//        return booking;
+//    }
+//
+//    @GetMapping("/calendar/json")
+//    @ResponseBody
+//    public List<Booking> JsonCalendarController() {
+//        return bookingDao.findAll();
+//    }
+
+
+//     @RequestMapping(value = "/schedule/getBooking", method = RequestMethod.GET)
+//     public
+//     @ResponseBody
+//     String getBooking(HttpServletResponse res) {
+//         Map<String, Object> map = new HashMap<String, Object>();
+//         Booking booking = new Booking();
+//         map.put("id", booking.getId());
+//         map.put("dateStart", booking.getDateStart());
+//         map.put("dateEnd", booking.getDateEnd());
+//         map.put("address", booking.getAddress());
+//
+//         // Convert to JSON string.
+//         String json = new Gson().toJson(map);
+//
+//         // write json string
+//         res.setContentType("application/json");
+//         res.setCharacterEncoding("UTF-8");
+//
+//
+//         return json;
+//     }
+//
+//    @PostMapping("/calendar")
+//    private String addDates(){
+//         return "views/home";
+//    }
+//
+//
+//    @PostMapping(
+//            value ="/createBooking",
+//            consumes = "application/json",
+//            produces = "application/json")
+//    public Booking createBooking(@RequestBody Booking booking)
+//    {
+//        return bookingDao.save(booking);
+//    }
 
 
     //    @PostMapping("/calendar/json")

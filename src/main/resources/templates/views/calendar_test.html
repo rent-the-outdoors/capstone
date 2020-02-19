@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href='lib/fullcalendar/packages/core/main.css' rel='stylesheet'/>
+    <link href='lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet'/>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src='lib/fullcalendar/packages/core/main.js'></script>
+    <script src='lib/fullcalendar/packages/daygrid/main.js'></script>
+
+    <script>
+        // $(document).read(function () {
+        //     var req = $.ajax({'url': '/calendar.json'});
+        //     req.done(function (bookings) {
+        //         var scheduledBookings = [];
+        //         bookings.forEach(function (booking) {
+        //             scheduledBookings.push({
+        //                 title: booking.address,
+        //                 start: booking.date_start,
+        //                 end: booking.date_end,
+        //                 url: 'http://localhost:8080/place/' + booking.id
+        //             });
+        //         });
+        //         var calendarEl = document.getElementById('calendar');
+        //         var calendar = new FullCalendar.Calendar(calendarEl, {
+        //             defaultView: 'dayGridMonth',
+        //             header: {
+        //                 left: 'prev, next, today',
+        //                 center: 'title',
+        //                 right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        //             },
+        //             eventLimit: true,
+        //             events: bookings,
+        //             eventClick: function (info) {
+        //                 info.jsEvent.preventDefault();
+        //                 if (info.event.url) {
+        //                     window.location.href = info.event.url;
+        //                 }
+        //             }
+        //         });
+        //         calendar.render();
+        //
+        //     });
+        // });
+
+        $(document).ready(function () {
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                header: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                navLinks: true, //can click day/week names to navigate views
+                editable: true,
+                eventLimit: true,
+                events: {
+                    url: '/getBookingDates.json',
+                    type: 'GET',
+                    error: function () {
+                        alert("There was an error getting the booking dates");
+                    },
+                    color: '#37474f',
+                    textColor: 'white'
+                }
+            });
+            calendar.render();
+        });
+
+
+    </script>
+</head>
+<body>
+<div id='calendar'></div>
+
+
+</body>
+</html>
