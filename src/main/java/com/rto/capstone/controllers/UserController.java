@@ -35,16 +35,17 @@ public class UserController {
         this.placesDao = placesDao;
         this.passwordEncoder = passwordEncoder;
     }
-    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, })
+
+    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class,})
     public String multiError() {
-    return "views/error";
+        return "views/error";
     }
+
     @GetMapping("/users/create")
     public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         return "users/create";
     }
-
 
 
     @PostMapping("/users/create")
@@ -57,26 +58,25 @@ public class UserController {
 
     //Update user GET
     @GetMapping(path = "/profile")
-    public String getImgInfoForUser(Model m, HttpSession session) throws InternalError{
-            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            m.addAttribute("loggedInUser", user);
-            m.addAttribute("user", user);
-            List<Place> allPlaces = placesDao.findAll();
-            List<Place> userPlaces = new ArrayList<>();
+    public String getImgInfoForUser(Model m, HttpSession session) throws InternalError {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        m.addAttribute("loggedInUser", user);
+        m.addAttribute("user", user);
+        List<Place> allPlaces = placesDao.findAll();
+        List<Place> userPlaces = new ArrayList<>();
+        if (allPlaces.size() > 0) {
             allPlaces.forEach(place -> {
                 if (place.getUser().getId() == user.getId()) {
                     userPlaces.add(place);
                 }
             });
-            m.addAttribute("userPlaces", userPlaces);
-            return "users/profile";
-
-
-
+        m.addAttribute("userPlaces", userPlaces);
+        }
+        return "users/profile";
     }
 
 
-//    //Update user POST
+    //    //Update user POST
     @PostMapping(path = "/profile/{id}")
     public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
         User user = usersDao.getOne(id);
@@ -86,16 +86,15 @@ public class UserController {
 
     }
 
-    @GetMapping(path="/profile/{id}")
+    @GetMapping(path = "/profile/{id}")
     public String displayProfileOfOtherUsers(@PathVariable Long id, Model m) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("loggedInUser", loggedInUser);
         User user = usersDao.getOne(id);
         m.addAttribute("user", user);
         return "users/profile";
-        }
     }
-
+}
 
 
 //    @GetMapping("/users/create")

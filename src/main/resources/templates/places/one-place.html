@@ -44,36 +44,47 @@
             <span>
             <strong th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span>
          </span>
-            <p class="content" th:text="${place.description}"></p>
 
-            <input type="hidden" id="address" th:value="${place.address}">
+         <p class="content" th:text="${place.description}"></p>
 
-        </div>
-        <div class="media column is-2">
-            <a th:href="@{'profile/' + ${place.user.id}}">
-                <figure class="media-left is-64x64">
-                    <img th:src="${place.user.image_path}" class="image is-64x64" style="border-radius: 50%;">
-                </figure>
-            </a>
-            <div class="media-content">
-                <div class="content" style="margin-left: 2%;">
-                    <p th:text="${place.user.username}">
-                    </p>
-                </div>
+         <input type="hidden" id="address" th:value="${place.address}">
+
+      </div>
+      <div class="media column is-2">
+         <a th:href="@{'profile/' + ${place.user.id}}">
+            <figure class="media-left is-64x64">
+               <img th:src="${place.user.image_path}" class="image is-64x64"
+                    style="border-radius: 50%;">
+            </figure>
+         </a>
+         <div class="media-content">
+            <div class="content" style="margin-left: 2%;">
+               <p th:text="${place.user.username}">
+               </p>
             </div>
-        </div>
-        <!--calendar here-->
-        <div id="calendar"></div>
-        <div class="column is-4 has-text-centered">
-
-            <form th:method="GET" th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-                <input type="hidden" th:value="${place.id}" name="placeId">
-                <button type="submit" class="button is-primary"><strong>Book
-                    Now</strong></button>
+         </div>
+      </div>
+      <!--calendar here-->
+      <div id="calendar"></div>
+      <div class="column is-4 has-text-centered">
+         <div th:if="${loggedInUser.id != place.user.id}">
+            <form th:method="GET"
+                  th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
+               <input type="hidden" th:value="${place.id}" name="placeId">
+               <button type="submit" class="button is-primary"><strong>Book
+                  Now</strong></button>
             </form>
+         </div>
+         <div th:if="${loggedInUser.id == place.user.id}">
+            <form th:method="GET"
+                  th:action="@{'/places/' + ${place.id} + '/update'}">
+               <input type="hidden" th:value="${place.id}" name="placeId">
+               <button type="submit" class="button is-primary"><strong>Edit</strong></button>
+            </form>
+         </div>
+      </div>
+   </div>
 
-        </div>
-    </div>
 </article>
 
 
