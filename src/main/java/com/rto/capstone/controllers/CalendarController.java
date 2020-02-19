@@ -51,55 +51,86 @@ public class CalendarController {
     }
 
     //posts to bookings to json
-    @PostMapping(value = "/create/bookings.json",
+    @PostMapping(value = "/create/bookings",
     consumes = "application/json",
     produces = "application/json")
     public Booking createBookingForJSON(@RequestBody Booking booking)
     {
-        booking = new Booking();
-        booking.setAddress("test");
-
-
-        return booking;
+      return bookingDao.save(booking);
     }
 
-
-    //view all bookings from db in json format
-    @GetMapping("/bookings.json")
-    public
-    @ResponseBody
-    Iterable<Booking> getAllBookingsInJSONFormat()
-    {
-        return bookingDao.findAll();
-
-    }
-
-
-
-    //currently returns an empty arr lol
-    @GetMapping("/getBookingDates.json")
-    @ResponseBody
-    public List<Map<String, String>> getBookingDates()
-    {
-        List<Map<String, String>> events = new ArrayList<>();
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        Iterable<Booking> bookings = bookingDao.findAll();
-
-
-        for(Booking booking : bookings)
+    //    @PostMapping("/calendar/json")
+//    public String PostCalendarController() throws ParseException {
+//
+//        Booking booking = new Booking();
+//
+//        String sDate = "2020-03-21";
+//        String eDate = "2020-03-23";
+//
+//        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(sDate);
+//
+//        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(eDate);
+//
+//        booking.setDateStart(startDate);
+//        booking.setDateEnd(endDate);
+//        booking.setAddress("900 Navarro, San Antonio, TX 78243");
+//
+//
+//        bookingDao.save(booking);
+//
+//
+//        return "/calendar/json";
+//    }
+    public static void main(String[] args) throws IOException {
+        Path jsonPath = Paths.get("bookings.json");
+        List<String> jsonContent = Files.readAllLines(jsonPath);
+        String bookings = "";
+        for (String line : jsonContent)
         {
+            bookings += line;
+            System.out.println(line);
 
-            HashMap<String, String> map = new HashMap<>();
-            map.put("title", booking.getAddress());
-            map.put("start", simpleDateFormat.format(booking.getDateStart()));
-            map.put("end", simpleDateFormat.format(booking.getDateEnd()));
         }
 
-        return events;
 
     }
+
+    //view all bookings from db in json format
+//    @GetMapping("/bookings.json")
+//    public
+//    @ResponseBody
+//    Iterable<Booking> getAllBookingsInJSONFormat()
+//    {
+//        return bookingDao.findAll();
+//
+//    }
+
+
+
+//    //currently returns an empty arr lol
+//    @GetMapping("/getBookingDates.json")
+//    @ResponseBody
+//    public List<Map<String, String>> getBookingDates()
+//    {
+//        List<Map<String, String>> events = new ArrayList<>();
+//
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        Iterable<Booking> bookings = bookingDao.findAll();
+//
+//
+//        for(Booking booking : bookings)
+//        {
+//
+//            HashMap<String, String> map = new HashMap<>();
+//            map.put("title", booking.getAddress());
+//            map.put("start", simpleDateFormat.format(booking.getDateStart()));
+//            map.put("end", simpleDateFormat.format(booking.getDateEnd()));
+//        }
+//
+//        return events;
+//
+//    }
 
 
 //
@@ -125,28 +156,7 @@ public class CalendarController {
 
 
 
-    //    @PostMapping("/calendar/json")
-//    public String PostCalendarController() throws ParseException {
-//
-//        Booking booking = new Booking();
-//
-//        String sDate = "2020-03-21";
-//        String eDate = "2020-03-23";
-//
-//        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(sDate);
-//
-//        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(eDate);
-//
-//        booking.setDateStart(startDate);
-//        booking.setDateEnd(endDate);
-//        booking.setAddress("900 Navarro, San Antonio, TX 78243");
-//
-//
-//        bookingDao.save(booking);
-//
-//
-//        return "/calendar/json";
-//    }
+
 
 
 //    @GetMapping("/calendar/test")
