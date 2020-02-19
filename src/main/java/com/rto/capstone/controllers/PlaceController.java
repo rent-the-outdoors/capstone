@@ -53,7 +53,7 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam String image_path2, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam String image_path4, @RequestParam String image_path6, @RequestParam String image_path8, @RequestParam String image_path10  )
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam(required=false) String image_path2, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam(required=false) String image_path4, @RequestParam(required=false) String image_path6, @RequestParam(required=false) String image_path8, @RequestParam(required=false) String image_path10  )
 
 //
     {
@@ -72,9 +72,21 @@ public class  PlaceController {
         PlaceImage placeImage5 = new PlaceImage();
         //set image path on new placeImage
         placeImage.setImagePath(image_path2);
+        if (image_path4 == null) {
+            image_path4 = "http://via.placeholder.com/640x360";
+        }
         placeImage2.setImagePath(image_path4);
+        if (image_path6 == null) {
+            image_path6 = "http://via.placeholder.com/640x360";
+        }
         placeImage3.setImagePath(image_path6);
+        if (image_path8 == null) {
+            image_path8 = "http://via.placeholder.com/640x360";
+        }
         placeImage4.setImagePath(image_path8);
+        if (image_path10 == null) {
+            image_path10 = "http://via.placeholder.com/640x360";
+        }
         placeImage5.setImagePath(image_path10);
 
         //save new placeImage into image table
