@@ -36,8 +36,8 @@
 </div>
 <main style="margin-top: 5%">
    <div>
-      <div th:each="place : ${searchQuery}" class="columns centered is-relative">
-         <div class="column is-8">
+      <div th:each="place,plStat : ${searchQuery}" class="columns centered is-relative">
+         <div th:if="${plStat.count < 11}" class="column is-8">
             <a th:href="@{'/place/' + ${place.id}}">
             <div class="card" style="display: flex">
                <div th:each="image,iStat : ${place.placeImages}" style="height: 200px">
