@@ -2,6 +2,7 @@ package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.Booking;
 import com.rto.capstone.repositories.BookingRepository;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -21,13 +23,19 @@ public class CalendarController {
         this.bookingDao = bookingDao;
     }
 
-    //reads json for bookings
+    //show calendar
     @GetMapping("/calendar")
+    public String showCalendar(){
+        return "views/calendar_test";
+    }
+
+    //reads json for bookings
+    @GetMapping("/bookings")
     @CrossOrigin
     @ResponseBody
     public String showCalendarEventsFromJSON(){
         String bookings = "";
-        Path jsonPath = Paths.get("calendar.json");
+        Path jsonPath = Paths.get("bookings.json");
         try {
             List<String> jsonContent = Files.readAllLines(jsonPath);
             for (String line : jsonContent)
@@ -41,10 +49,22 @@ public class CalendarController {
 
         return bookings;
     }
-    //now to test posting to the json...
+
+    //posts to bookings to json
+    @PostMapping(value = "/create/bookings.json",
+    consumes = "application/json",
+    produces = "application/json")
+    public Booking createBookingForJSON(@RequestBody Booking booking)
+    {
+        booking = new Booking();
+        booking.setAddress("test");
 
 
-    //view all bookings in json format
+        return booking;
+    }
+
+
+    //view all bookings from db in json format
     @GetMapping("/bookings.json")
     public
     @ResponseBody
@@ -54,6 +74,9 @@ public class CalendarController {
 
     }
 
+
+
+    //currently returns an empty arr lol
     @GetMapping("/getBookingDates.json")
     @ResponseBody
     public List<Map<String, String>> getBookingDates()
@@ -78,11 +101,7 @@ public class CalendarController {
 
     }
 
-//    @GetMapping("/calendar")
-//    public String CalendarController() {
-//
-//        return "calendar_test";
-//    }
+
 //
 //
 //    //model test
@@ -103,42 +122,7 @@ public class CalendarController {
 //    }
 
 
-//     @RequestMapping(value = "/schedule/getBooking", method = RequestMethod.GET)
-//     public
-//     @ResponseBody
-//     String getBooking(HttpServletResponse res) {
-//         Map<String, Object> map = new HashMap<String, Object>();
-//         Booking booking = new Booking();
-//         map.put("id", booking.getId());
-//         map.put("dateStart", booking.getDateStart());
-//         map.put("dateEnd", booking.getDateEnd());
-//         map.put("address", booking.getAddress());
-//
-//         // Convert to JSON string.
-//         String json = new Gson().toJson(map);
-//
-//         // write json string
-//         res.setContentType("application/json");
-//         res.setCharacterEncoding("UTF-8");
-//
-//
-//         return json;
-//     }
-//
-//    @PostMapping("/calendar")
-//    private String addDates(){
-//         return "views/home";
-//    }
-//
-//
-//    @PostMapping(
-//            value ="/createBooking",
-//            consumes = "application/json",
-//            produces = "application/json")
-//    public Booking createBooking(@RequestBody Booking booking)
-//    {
-//        return bookingDao.save(booking);
-//    }
+
 
 
     //    @PostMapping("/calendar/json")
@@ -188,13 +172,8 @@ public class CalendarController {
 //    }
 
 
-//    @PostMapping("/calendar")
-//    private String addDates(){
-//        return "views/home";
-//    }
 
-
-//     @RequestMapping(value = "/calendar.json",
+//     @RequestMapping(value = "/bookings.json",
 //             produces= MediaType.APPLICATION_JSON_VALUE,
 //             method = RequestMethod.POST)
 //     public
