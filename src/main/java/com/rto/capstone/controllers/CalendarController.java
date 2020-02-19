@@ -1,11 +1,17 @@
 package com.rto.capstone.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.rto.capstone.models.Booking;
 import com.rto.capstone.repositories.BookingRepository;
 import org.aspectj.weaver.ast.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,10 +60,39 @@ public class CalendarController {
     @PostMapping(value = "/create/bookings",
     consumes = "application/json",
     produces = "application/json")
-    public Booking createBookingForJSON(@RequestBody Booking booking)
-    {
-      return bookingDao.save(booking);
+    public String postBookingForJSON(@RequestBody Booking booking) throws ParseException, IOException {
+        bookingDao.save(booking);
+        return "test";
     }
+
+
+
+
+//    @RequestMapping(value = "/bookings.json",
+//            produces = MediaType.APPLICATION_JSON_VALUE,
+//            method = RequestMethod.POST)
+//    public
+//    @ResponseBody
+//    String getJSONBooking(HttpServletResponse res) {
+//
+//        Map<String, Object> map = new HashMap<String, Object>();
+//
+//        Booking booking = new Booking();
+//
+//        map.put("id", 1);
+//        map.put("dateStart", "2020-02-20");
+//        map.put("dateEnd", "2020-02-24");
+//        map.put("address", "9898 Colonnade Blvd");
+//
+//        // Convert to JSON string.
+//        String json = new Gson().toJson(map);
+//
+//        // write json string
+//        res.setContentType("application/json");
+//        res.setCharacterEncoding("UTF-8");
+//
+//        return json;
+//    }
 
     //    @PostMapping("/calendar/json")
 //    public String PostCalendarController() throws ParseException {
@@ -81,19 +116,7 @@ public class CalendarController {
 //
 //        return "/calendar/json";
 //    }
-    public static void main(String[] args) throws IOException {
-        Path jsonPath = Paths.get("bookings.json");
-        List<String> jsonContent = Files.readAllLines(jsonPath);
-        String bookings = "";
-        for (String line : jsonContent)
-        {
-            bookings += line;
-            System.out.println(line);
 
-        }
-
-
-    }
 
     //view all bookings from db in json format
 //    @GetMapping("/bookings.json")
@@ -133,26 +156,6 @@ public class CalendarController {
 //    }
 
 
-//
-//
-//    //model test
-//
-//    @RequestMapping(value = "/calendar",
-//            method = RequestMethod.POST,
-//            produces = "application/json")
-//    public
-//    @ResponseBody
-//    Booking addNewEvent(@RequestBody Booking booking) throws Exception {
-//        return booking;
-//    }
-//
-//    @GetMapping("/calendar/json")
-//    @ResponseBody
-//    public List<Booking> JsonCalendarController() {
-//        return bookingDao.findAll();
-//    }
-
-
 
 
 
@@ -183,31 +186,7 @@ public class CalendarController {
 
 
 
-//     @RequestMapping(value = "/bookings.json",
-//             produces= MediaType.APPLICATION_JSON_VALUE,
-//             method = RequestMethod.POST)
-//     public
-//     @ResponseBody
-//     String getJSONBooking(HttpServletResponse res) {
-//
-//         Map<String, Object> map = new HashMap<String, Object>();
-//
-//         Booking booking = new Booking();
-//
-//         map.put("id", 1);
-//         map.put("dateStart", "2020-02-20");
-//         map.put("dateEnd", "2020-02-24");
-//         map.put("address", "9898 Colonnade Blvd");
-//
-//         // Convert to JSON string.
-//         String json = new Gson().toJson(map);
-//
-//         // write json string
-//         res.setContentType("application/json");
-//         res.setCharacterEncoding("UTF-8");
-//
-//         return json;
-//     }
+
 
 
 }

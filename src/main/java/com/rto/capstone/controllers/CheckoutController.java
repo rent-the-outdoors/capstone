@@ -1,3 +1,4 @@
+
 package com.rto.capstone.controllers;
 
 import com.rto.capstone.models.Place;
@@ -98,11 +99,3 @@ public class CheckoutController {
         }
 
     }
-
-
-
-
-
-
-
-
