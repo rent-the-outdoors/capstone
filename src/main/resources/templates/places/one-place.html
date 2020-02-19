@@ -7,43 +7,44 @@
 <nav th:insert="partials/fragments :: nav"></nav>
 
 <article class="tile is-child box">
-   <div class="columns">
-      <div class="column is-narrow"
-           style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px;">
-         <div th:each="image,iStat : ${place.placeImages}">
-            <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                 style="padding: 0; margin: 0; height: 400px; width: 400px;"
-                 class="is-mobile-1">
-         </div>
-      </div>
+    <div class="columns">
+        <div class="column is-narrow"
+             style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px;">
+            <div th:each="image,iStat : ${place.placeImages}">
+                <img th:if="${iStat.first}" th:src="${image.imagePath}"
+                     style="padding: 0; margin: 0; height: 400px; width: 400px;"
+                     class="is-mobile-1">
+            </div>
+        </div>
 
-      <div class="column is-5 is-one-third-tablet"
-           style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px;">
-         <div th:each="image,iStat : ${place.placeImages}"
-              style="margin: 0 1px 1px 0; height: 199px;">
-            <img th:if="${iStat.count > 1 && iStat.count < 6}"
-                 th:src="${image.imagePath}"
-                 style="height: 199px; width: 250px;">
-         </div>
-      </div>
-      <!--map here-->
-      <div id="map" class="column is-narrow"
-           style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
-         <h1 id="address-text" th:text="${place.address}"></h1>
+        <div class="column is-5 is-one-third-tablet"
+             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px;">
+            <div th:each="image,iStat : ${place.placeImages}"
+                 style="margin: 0 1px 1px 0; height: 199px;">
+                <img th:if="${iStat.count > 1 && iStat.count < 6}"
+                     th:src="${image.imagePath}"
+                     style="height: 199px; width: 250px;">
+            </div>
+        </div>
+        <!--map here-->
+        <div id="map" class="column is-narrow"
+             style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
+            <h1 id="address-text" th:text="${place.address}"></h1>
 
-      </div>
+        </div>
 
-   </div>
+    </div>
 </article>
 
 <article class="tile is-child box">
-   <div class="columns">
-      <div class="column is-4 is-offset-1">
-         <h1 class="title" th:text="${place.title}"
-             style="margin-bottom: 0;"></h1>
-         <span>
+    <div class="columns">
+        <div class="column is-4 is-offset-1">
+            <h1 class="title" th:text="${place.title}"
+                style="margin-bottom: 0;"></h1>
+            <span>
             <strong th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span>
          </span>
+
          <p class="content" th:text="${place.description}"></p>
 
          <input type="hidden" id="address" th:value="${place.address}">
@@ -83,6 +84,7 @@
          </div>
       </div>
    </div>
+
 </article>
 
 
@@ -126,6 +128,80 @@
             });
     });
 </script>
+<script>
+    $(document).ready(function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid'],
+            header: {
+                left: 'prev,next,today',
+                center: 'title',
+                right: 'addEventButton'
+
+            },
+            customButtons: {
+                addEventButton: {
+                    text: 'Book your place now!',
+                    click: function () {
+                        var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');
+                        var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
+                        var dateStart = new Date(dateStartStr);
+                        var dateEnd = new Date(dateEndStr);
+
+                        if (!isNaN(dateStart.valueOf())
+                            || !isNaN(dateEnd.valueOf())) { //validity check for booking
+
+                            calendar.addEvent({
+                                title: "Booked from " + dateStart + " to " + dateEnd,
+                                start: dateStart,
+                                end: dateEnd,
+                                allDay: true,
+                                url: '/bookings',
+                                method: 'POST',
+                                dataType: 'jsonString',
+                                error: function () {
+                                    alert("There was an error getting the booking dates");
+                                },
+
+                                color: '#37474f',
+                                textColor: 'white'
+
+                            });
+                            console.log(calendar.getEvents());
+                            //update send post request to json
+
+
+                        } else {
+                            alert('Invalid date.');
+                        }
+                    }
+                }
+
+            },
+            navLinks: true, //can click day/week names to navigate views
+            editable: true,
+            eventLimit: true,
+            events:
+                {
+                    url: '/bookings',
+                    method: 'GET',
+                    error: function () {
+                        alert("There was an error getting the booking dates");
+                    },
+
+                    color: '#37474f',
+                    textColor: 'white'
+                }
+
+
+        });
+
+        calendar.setOption('height', 500);
+
+        calendar.render();
+    });
+</script>
+
 
 </body>
 </html>
