@@ -71,6 +71,9 @@ public class  PlaceController {
         PlaceImage placeImage4 = new PlaceImage();
         PlaceImage placeImage5 = new PlaceImage();
         //set image path on new placeImage
+        if (image_path2 == null) {
+            image_path4 = "http://via.placeholder/640x360";
+        }
         placeImage.setImagePath(image_path2);
         if (image_path4 == null) {
             image_path4 = "http://via.placeholder.com/640x360";
