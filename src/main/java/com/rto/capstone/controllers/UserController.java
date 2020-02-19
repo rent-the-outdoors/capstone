@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
     private UserRepository usersDao;
     private PlaceRepository placesDao;
     private PasswordEncoder passwordEncoder;
@@ -47,7 +46,6 @@ public class UserController {
         return "users/create";
     }
 
-
     @PostMapping("/users/create")
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
@@ -59,8 +57,9 @@ public class UserController {
     //Update user GET
     @GetMapping(path = "/profile")
     public String getImgInfoForUser(Model m, HttpSession session) throws InternalError {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        m.addAttribute("loggedInUser", user);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        m.addAttribute("loggedInUser", loggedInUser);
+        User user = usersDao.getOne(loggedInUser.getId());
         m.addAttribute("user", user);
         List<Place> allPlaces = placesDao.findAll();
         List<Place> userPlaces = new ArrayList<>();
@@ -75,7 +74,6 @@ public class UserController {
         return "users/profile";
     }
 
-
     //    //Update user POST
     @PostMapping(path = "/profile/{id}")
     public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
@@ -83,7 +81,6 @@ public class UserController {
         user.setImage_path(image_path);
         usersDao.save(user);
         return "redirect:/profile";
-
     }
 
     @GetMapping(path = "/profile/{id}")
@@ -95,90 +92,4 @@ public class UserController {
         return "users/profile";
     }
 }
-
-
-//    @GetMapping("/users/create")
-//    public String getCreateUser() {
-//        return ("views/register");
-//    }
-//    @PostMapping("/users/create")
-//    public String saveUser(@Valid User user, Errors validation, Model m)
-//    {
-//        String username = user.getUsername();
-//        User existingUsername = userRepository.findByUsername(username);
-//        User existingEmail = userRepository.findByEmail(user.getEmail());
-//        if(existingUsername != null){
-//            validation.rejectValue("username", "user.username", "Duplicated username " + username);
-//        }
-//
-//        if(existingEmail != null){
-//            validation.rejectValue("email", "user.email", "Duplicated email " + user.getEmail());
-//        }
-//        if (validation.hasErrors()) {
-//            m.addAttribute("errors", validation);
-//            m.addAttribute("user", user);
-//            return "users/create";
-//        }
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//
-//        User newUser = userRepository.save(user);
-//
-//
-//        //programmatic login after registering a user
-//        userService.authenticate(user);
-//        m.addAttribute("user", user);
-//        return "redirect:/";
-//    }
-
-
-//    @GetMapping("/users/show")
-//    public String showUser(@PathVariable Long id, Model viewModel){
-//        User user = usersDao.getOne(id);
-//        viewModel.addAttribute("user", user);
-//        viewModel.addAttribute("sessionUser", userService.loggedInUser());
-//        viewModel.addAttribute("showEditControls", userService.canEditProfile(user));
-//        return "users/show";
-//    }
-
-
-//    @GetMapping("/users/profile")
-//    public String showProfile(Model viewModel){
-//        User logUser = usersService.loggedInUser();
-//
-//        if(logUser == null){
-//            viewModel.addAttribute("msg", "You need to be logged in to be able to see this page");
-//            return "error/custom";
-//        }
-//
-//        return "redirect:/users/" + usersService.loggedInUser().getId();
-//    }
-//
-//    @GetMapping("/users/{id}/edit")
-//    public String showEditForm(@PathVariable Long id, Model viewModel){
-//        User user = usersRepository.getOne(id);
-//        viewModel.addAttribute("user", user);
-//        viewModel.addAttribute("showEditControls", usersService.canEditProfile(user));
-//        return "users/edit";
-//    }
-//
-//    @PostMapping("/users/{id}/edit")
-//    public String editUser(@PathVariable Long id, @Valid User editedUser, Errors validation, Model m){
-//
-//        editedUser.setId(id);
-//
-//        if (validation.hasErrors()) {
-//            m.addAttribute("errors", validation);
-//            m.addAttribute("user", editedUser);
-//            m.addAttribute("showEditControls", checkEditAuth(editedUser));
-//            return "users/edit";
-//        }
-//        editedUser.setPassword(passwordEncoder.encode(editedUser.getPassword()));
-//        usersRepository.save(editedUser);
-//        return "redirect:/users/"+id;
-//    }
-//
-//    // Edit controls are being showed up if the user is logged in and it's the same user viewing the file
-//    public Boolean checkEditAuth(User user){
-//        return usersService.isLoggedIn() && (user.getId() == usersService.loggedInUser().getId());
-//    }
 

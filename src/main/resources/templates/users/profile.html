@@ -18,6 +18,16 @@ width: 150px; height: 100px; background-position: center;">
       <strong th:text="${user.username}" style="font-size: 50px;"></strong>
    </article>
 </div>
+<div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
+   <form id="profImage" th:action="@{'/profile/' + ${user.id}}" th:method="POST">
+
+      <div id="image">
+      </div>
+      <button id="upload" class="button" type="button">Upload Image</button>
+      <button id="submit" class="button is-small is-success is-outlined">SUBMIT</button>
+   </form>
+
+</div>
 
 
 <br/>
@@ -32,16 +42,6 @@ LAST NAME: <h1 th:text="${user.last_name}"></h1>
 PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <br>
 
-<div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
-   <form th:action="@{'/profile/' + ${user.id}}" th:method="POST">
-
-      <div id="image">
-      </div>
-      <button id="showModal" class="button" type="button">Upload Image</button>
-      <button class="button is-small is-success is-outlined">SUBMIT</button>
-   </form>
-
-</div>
 <div class="container"
      style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
    <div th:each="place : ${userPlaces}"
@@ -80,24 +80,21 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
-
 <script>
     $(document).ready(function () {
-
         const client = filestack.init("A7uSqc5QwQayJC0xf0Wx6z");
         const options = {
-            onUploadDone: (res) => $('#image').append(`<input type="text" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`)
-        };
-
-        $("#showModal").click(function () {
-
+            onUploadDone: (res) => {
+                $('#image').append(`<input type="hidden" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`);
+                // $('#profImage').submit(function() {
+                //   alert("submitted");
+                // });
+            }
+    };
+        $("#upload").click(function () {
             client.picker(options).open();
         });
-
-
     });
-
 </script>
-
 </body>
 </html>
