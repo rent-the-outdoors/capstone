@@ -15,8 +15,7 @@
     <br />
     <label for="address">Address: </label>
     <input id="address" th:field="*{address}" th:placeholder="${place.address}"/>
-
-
+    <input type="hidden" th:field="*{user.id}" th:placeholder="${place.user.id}">
     <label for="cost_per_day">Cost Per Day: </label>
     <input id="cost_per_day" th:field="*{cost_per_day}" type="text" th:placeholder="${place.cost_per_day}" />
     <button type="submit">UPDATE</button>
