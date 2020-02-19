@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('ERROR!')">
+</head>
+<body style="background-color: blanchedalmond">
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+
+<div class="card is-8 is-three-quarters-mobile" style="margin: 10%">
+    <div class="card-header centered">
+        <h1 class="title">Sorry there was an error, We've failed you for the last time!</h1>
+    </div>
+    <div class="card-body centered">
+        <img style="width: 15%; margin-top: 1%; margin-bottom: 1%" th:src="${'img/man-sitting-on-concrete-bench-3635945.jpg'}">
+    </div>
+    <div class="card-footer">
+        <h3 class="subtitle centered">So sorry about that. Please go to the home page and try again.</h3>
+    </div>
+</div>
+<footer th:include="partials/fragments :: footer"></footer>
+
+</body>
+</html>
