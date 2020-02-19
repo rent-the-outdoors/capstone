@@ -50,8 +50,6 @@
         // });
 
         $(document).ready(function () {
-
-
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['dayGrid'],
@@ -72,24 +70,22 @@
 
                             if (!isNaN(dateStart.valueOf())
                                 || !isNaN(dateEnd.valueOf())) { //validity check for booking
-                                calendar.addEvent({
-                                    title: "Booked from " + dateStart + " to " + dateEnd,
 
-                                    start: dateStart,
-                                    end: dateEnd,
-                                    allDay: true,
-                                    events: {
-                                        url: '/post/bookings',
+                                calendar.addEvent({
+                                        title: "Booked from " + dateStart + " to " + dateEnd,
+                                        start: dateStart,
+                                        end: dateEnd,
+                                        allDay: true,
+                                        url: '/bookings',
                                         method: 'POST',
-                                        startParam: dateStart,
-                                        endParam: dateEnd,
+                                        dataType: 'jsonString',
                                         error: function () {
                                             alert("There was an error getting the booking dates");
                                         },
 
                                         color: '#37474f',
                                         textColor: 'white'
-                                    }
+
                                 });
                                 console.log(calendar.getEvents());
                                 //update send post request to json
