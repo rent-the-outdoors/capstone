@@ -14,8 +14,9 @@
             <h2 class="subtitle has-text-grey-darker">
                <p
                  th:text="'$' + ${place.cost_per_day} + ' per day * # DAYS'"></p>
-               <p><span class="has-text-weight-bold"> Date: </span><span
-                 th:text="${date}"></span></p>
+               <p><span class="has-text-weight-bold"> From: </span><span
+                 th:text="${booking.dateStart}"></span></p>
+               <p><span class="has-text-weight-bold"> To: </span><span th:text="${booking.dateEnd}"></span></p>
                <p><span class="has-text-weight-bold">Address: </span> <span
                  th:text="${place.address}"></span></p>
             </h2>

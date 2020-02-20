@@ -47,8 +47,7 @@
                        th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
                     <p class="content" th:text="${place.description}"></p>
 
-                    <p th:if="${dateStart != null}" class="content" th:text="'From: ' + ${dateStart}"></p>
-                    <p th:if="${dateEnd != null}" class="content" th:text="'To: ' + ${dateEnd}"></p>
+
                 </div>
                 <div class="card-footer">
                     <div class="column">
@@ -106,19 +105,19 @@
                 <p class="modal-card-title">Book a Property</p>
             </header>
             <section class="modal-card-body">
-                <form th:action="@{'/bookings/' + ${place.id} + '/create'}" th:method="POST">
-                    <input th:placeholder="Title" id="title" type="hidden" th:field="*{place.title}" required>
+                <form th:action="@{'/confirmation/' + ${place.id} + '/checkout'}" th:method="POST">
+                    <input th:placeholder="title" id="title" type="hidden" th:value="${place.address}" name="address">
                     <h2 class="is-size-3" th:text="${place.title}"></h2>
-                    <input th:placeholder="Address" id="placeAddress" type="hidden" th:field="*{place.address}" required>
                     <h2 class="is-size-3" th:text="${place.address}"></h2>
                     <label for="dateStart">Start Date: </label>
-                    <input th:placeholder="YYYY-MM-DD" id="dateStart" type="text"
-                           th:field="*{booking.dateStart}" required>
+                    <input placeholder="YYYY/MM/DD" id="dateStart" type="text"
+                            name="dateStart">
                     <label for="dateEnd">End Date: </label>
-                    <input th:placeholder="YYYY-MM-DD" id="dateEnd" type="text"
-                           th:field="*{booking.dateEnd}" required>
+                    <input placeholder="YYYY/MM/DD" id="dateEnd" type="text"
+                           name="dateEnd">
                     <input type="hidden" th:value="${place.id}" th:placeholder="placeId" name="placeId">
                     <input type="hidden" th:value="${loggedInUser.id}" th:placeholder="loggedInUserId" name="loggedInUserId">
+                    <input type="hidden" th:value="${place.user.id}" th:placeholder="userId" name="userId">
                     <button class="button is-success" type="submit">Save changes</button>
                 </form>
             </section>

@@ -59,7 +59,7 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam(required=false) String image_path1, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam String address, @RequestParam(required=false) String image_path2, @RequestParam(required=false) String image_path3, @RequestParam(required=false) String image_path4, @RequestParam(required=false) String image_path5  )
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam(required=false) String image_path1, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam(required=false) String address, @RequestParam(required=false) String image_path2, @RequestParam(required=false) String image_path3, @RequestParam(required=false) String image_path4, @RequestParam(required=false) String image_path5  )
 
 //
     {
@@ -145,18 +145,10 @@ public class  PlaceController {
     {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Place place = placesDao.getOne(id);
-        if (bookingsDao.findByPlaceId(place.getId()) != null) {
-            Booking updatedBooking = bookingsDao.findByTitle(place.getTitle());
-            Date dateStart = updatedBooking.getDateStart();
-            Date dateEnd = updatedBooking.getDateEnd();
-            m.addAttribute("dateStart", dateStart);
-            m.addAttribute("dateEnd", dateEnd);
-        }
         loggedInUser = usersDao.getOne(loggedInUser.getId());
-        Booking booking = new Booking();
-        m.addAttribute("booking",booking);
         m.addAttribute("loggedInUser", loggedInUser);
         m.addAttribute("place", place);
+
         return "places/one-place";
     }
 
