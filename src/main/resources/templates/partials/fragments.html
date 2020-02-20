@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
@@ -21,18 +22,18 @@
 <nav th:fragment="nav">
 
     <!--nav start-->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
 
-            <a class="navbar-item" href="/"><strong>RTO</strong></a>
+        <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
 
         <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
             <div class="navbar-start">
                 <a class="navbar-item" href="/search?search=">
-                    Book Now
+                    <strong>Book Now</strong>
                 </a>
 
                 <a class="navbar-item" href="/places/create">
-                    Rent Your Outdoors
+                    <strong>Rent Your Outdoors</strong>
                 </a>
             </div>
         </div>
@@ -41,18 +42,18 @@
 
 
                     <a id="registerBtn" sec:authorize="not isAuthenticated()" href="/users/create" class="navbar-item is-light">
-                        Register
+                        <strong>Register</strong>
                     </a>
 
                     <a id="loginBtn" sec:authorize="not isAuthenticated()" class="navbar-item is-light"
                        href="/users/login">
-                        Login
+                        <strong>Login</strong>
                     </a>
 
 
                     <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get">
                         <a class="navbar-item is-light" th:href="@{/profile}">
-                            Profile
+                            <strong>Profile</strong>
                         </a>
                     </form>
 
@@ -103,5 +104,6 @@
         </div>
     </div>
 </footer>
+
 </body>
 </html>
