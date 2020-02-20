@@ -19,61 +19,55 @@
 </head>
 <body>
 <nav th:fragment="nav">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <strong>RTO</strong>
-            </a>
 
-            <a role="button" class="navbar-burger burger" aria-label="menu"
-               aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
+    <!--nav start-->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+
+            <a class="navbar-item" href="/"><strong>RTO</strong></a>
 
         <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
             <div class="navbar-start">
                 <a class="navbar-item" href="/search?search=">
                     Book Now
                 </a>
+
                 <a class="navbar-item" href="/places/create">
                     Rent Your Outdoors
                 </a>
             </div>
         </div>
-        <div class="navbar-end" style="margin-right: 2%; width: 200px">
-            <div class="navbar-item" style="padding: 0">
-                <div class="buttons" style="width: 180px">
+        <div class="navbar-end">
 
-                    <a sec:authorize="not isAuthenticated()"
-                       class="button is-primary" href="/users/create">
-                        <strong>Register</strong>
+
+
+                    <a id="registerBtn" sec:authorize="not isAuthenticated()" href="/users/create" class="navbar-item is-light">
+                        Register
                     </a>
 
-                    <a sec:authorize="not isAuthenticated()" class="button is-light"
+                    <a id="loginBtn" sec:authorize="not isAuthenticated()" class="navbar-item is-light"
                        href="/users/login">
                         Login
                     </a>
 
-                    <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get"
-                          style="margin-right: 4%">
-                        <button class="button is-primary">Profile</button>
+
+                    <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get">
+                        <a class="navbar-item is-light" th:href="@{/profile}">
+                            Profile
+                        </a>
                     </form>
 
-                    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                        <button class="button is-danger">Logout</button>
+                    <form id="my_form" sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="navbar-item is-light" type="submit">
+                            <strong>Logout</strong>
+                        </a>
                     </form>
 
-                </div>
-            </div>
         </div>
     </nav>
 </nav>
 
 
-<footer th:fragment="footer" class="footer" style="margin-top: 4%; padding: 0">
+<footer th:fragment="footer" class="footer">
     <!--   <div class="content has-text-centered">-->
     <!--      <ul style="display: flex;">-->
     <!--         <strong><h4>Contact Us:</h4></strong>-->
@@ -94,15 +88,15 @@
         <div class="cutoff">
             <strong><h2 class="has-text-white">Contact Us </h2></strong>
 
-            <a class="github_tag" href="https://github.com/barrowjacob">
+            <a class="github_tag" target="_blank" href="https://github.com/barrowjacob">
                 <i class="fab fa-github-square"></i>Jacob
             </a>
 
-            <a class="github_tag" href="https://github.com/navirgino">
+            <a class="github_tag" target="_blank" href="https://github.com/navirgino">
                 <i class="fab fa-github-square"></i>Nico
             </a>
 
-            <a class="github_tag" href="https://github.com/MrOffer">
+            <a class="github_tag" target="_blank" href="https://github.com/MrOffer">
                 <i class="fab fa-github-square"></i>Thomas
             </a>
 
