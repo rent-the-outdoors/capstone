@@ -101,6 +101,15 @@
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                customButtons: {
+                    myCustomButton: {
+                        text: "Book!",
+                        url: "http://localhost:8080/bookings/create",
+                        click: function() {
+                            alert("Going to create a booking. . .")
+                        }
+                    }
+                },
                 plugins: ['dayGrid'],
                 header: {
                     left: 'prev,next,today',
