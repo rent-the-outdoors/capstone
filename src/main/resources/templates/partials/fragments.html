@@ -2,93 +2,112 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
-         rel='stylesheet'/>
-   <script src="https://kit.fontawesome.com/927b51fa66.js"
-           crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
+          rel='stylesheet'/>
+    <script src="https://kit.fontawesome.com/927b51fa66.js"
+            crossorigin="anonymous"></script>
 
-   <link rel="stylesheet"
-         href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-   <script defer
-           src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-   <script src="js/main.js"></script>
-   <link rel="stylesheet" href="css/main.css">
-   <title th:text="${title}"></title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer
+            src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <title th:text="${title}"></title>
 </head>
 <body>
 <nav th:fragment="nav">
-   <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-         <a class="navbar-item" href="/">
-            <strong>RTO</strong>
-         </a>
-
-         <a role="button" class="navbar-burger burger" aria-label="menu"
-            aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-         </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
-         <div class="navbar-start">
-            <a class="navbar-item" href="/search?search=">
-               Book Now
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <strong>RTO</strong>
             </a>
-            <a class="navbar-item" href="/places/create">
-               Rent Your Outdoors
+
+            <a role="button" class="navbar-burger burger" aria-label="menu"
+               aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </a>
-         </div>
-      </div>
-      <div class="navbar-end" style="margin-right: 2%; width: 200px">
-         <div class="navbar-item" style="padding: 0">
-            <div class="buttons" style="width: 180px">
+        </div>
 
-               <a sec:authorize="not isAuthenticated()"
-                  class="button is-primary" href="/users/create">
-                  <strong>Register</strong>
-               </a>
-
-               <a sec:authorize="not isAuthenticated()" class="button is-light"
-                  href="/users/login">
-                  Login
-               </a>
-
-               <form sec:authorize="isAuthenticated()"  th:action="@{/profile}" th:method="get" style="margin-right: 4%">
-                  <button class="button is-primary" >Profile</button>
-               </form>
-
-               <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                  <button class="button is-danger">Logout</button>
-               </form>
-
+        <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/search?search=">
+                    Book Now
+                </a>
+                <a class="navbar-item" href="/places/create">
+                    Rent Your Outdoors
+                </a>
             </div>
-         </div>
-      </div>
-   </nav>
+        </div>
+        <div class="navbar-end" style="margin-right: 2%; width: 200px">
+            <div class="navbar-item" style="padding: 0">
+                <div class="buttons" style="width: 180px">
+
+                    <a sec:authorize="not isAuthenticated()"
+                       class="button is-primary" href="/users/create">
+                        <strong>Register</strong>
+                    </a>
+
+                    <a sec:authorize="not isAuthenticated()" class="button is-light"
+                       href="/users/login">
+                        Login
+                    </a>
+
+                    <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get"
+                          style="margin-right: 4%">
+                        <button class="button is-primary">Profile</button>
+                    </form>
+
+                    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                        <button class="button is-danger">Logout</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </nav>
 </nav>
 
 
 <footer th:fragment="footer" class="footer" style="margin-top: 4%; padding: 0">
-   <div>
-      <ul style="display: flex;">
-         <strong><h4>Contact Us:</h4></strong>
-         <li><a target="_blank" href="https://github.com/barrowjacob"><i
-           class="fab fa-github-square"></i>Jacob</a></li>
-         <li><a target="_blank" href="https://github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a>
-         </li>
-         <li><a target="_blank" href="https://github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a>
-         </li>
-      </ul>
-   </div>
-   <div style="margin-left: auto">
-      <a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing
-         Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>
-      and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>
-   </div>
+    <!--   <div class="content has-text-centered">-->
+    <!--      <ul style="display: flex;">-->
+    <!--         <strong><h4>Contact Us:</h4></strong>-->
+    <!--         <li><a target="_blank" href="https://github.com/barrowjacob"><i-->
+    <!--           class="fab fa-github-square"></i>Jacob</a></li>-->
+    <!--         <li><a target="_blank" href="https://github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a>-->
+    <!--         </li>-->
+    <!--         <li><a target="_blank" href="https://github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a>-->
+    <!--         </li>-->
+    <!--      </ul>-->
+    <!--   </div>-->
+    <!--   <div style="margin-left: auto">-->
+    <!--      <a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing-->
+    <!--         Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>-->
+    <!--      and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>-->
+    <!--   </div>-->
+    <div class="content has-text-centered">
+        <div class="cutoff">
+            <strong><h2 class="has-text-white">Contact Us </h2></strong>
+
+            <a class="github_tag" href="https://github.com/barrowjacob">
+                <i class="fab fa-github-square"></i>Jacob
+            </a>
+
+            <a class="github_tag" href="https://github.com/navirgino">
+                <i class="fab fa-github-square"></i>Nico
+            </a>
+
+            <a class="github_tag" href="https://github.com/MrOffer">
+                <i class="fab fa-github-square"></i>Thomas
+            </a>
+
+        </div>
+    </div>
 </footer>
 </body>
 </html>
