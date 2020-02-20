@@ -1,6 +1,7 @@
 
 package com.rto.capstone.controllers;
 
+import com.rto.capstone.models.Booking;
 import com.rto.capstone.models.Place;
 import com.rto.capstone.models.User;
 import com.rto.capstone.repositories.PlaceRepository;
@@ -52,6 +53,8 @@ public class CheckoutController {
     @GetMapping("/confirmation/{id}/checkout")
     public String checkout(Model model, @PathVariable long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        model.addAttribute("booking", );
         model.addAttribute("userId", user.getId());
         model.addAttribute("place", placeDao.getOne(id));
         model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()));
