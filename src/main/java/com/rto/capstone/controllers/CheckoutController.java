@@ -56,6 +56,7 @@ public class CheckoutController {
     @Value("${SENDGRID_KEY}")
     private String sendGridKey;
 
+<<<<<<< HEAD
     @PostMapping("/confirmation/{id}/checkout")
     public String checkout(Model model, @PathVariable long id, @RequestParam long loggedInUserId, @RequestParam Long userId, @RequestParam String dateStart, @RequestParam String dateEnd) throws ParseException {
         Place place = placeDao.getOne(id);
@@ -68,6 +69,14 @@ public class CheckoutController {
         booking.setPlace(placeDao.getOne(place.getId()));
         bookingDao.save(booking);
         model.addAttribute("userId", userId);
+=======
+    @GetMapping("/confirmation/{id}/checkout")
+    public String checkout(Model model, @PathVariable long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        model.addAttribute("booking", );
+        model.addAttribute("userId", user.getId());
+>>>>>>> 25ff1808e3858d60ad9812fa1b62b412d57bb239
         model.addAttribute("place", placeDao.getOne(id));
         model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()));
         model.addAttribute("loggedInUserId", loggedInUserId);

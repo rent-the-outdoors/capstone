@@ -107,7 +107,7 @@
             <section class="modal-card-body">
                 <form th:action="@{'/confirmation/' + ${place.id} + '/checkout'}" th:method="POST">
                     <input th:placeholder="title" id="title" type="hidden" th:value="${place.address}" name="address">
-                    <h2 class="is-size-3" th:text="${place.title}"></h2>
+                    <h2 class="is-size-3" th:text="${place.title}"></h2>g
                     <h2 class="is-size-3" th:text="${place.address}"></h2>
                     <label for="dateStart">Start Date: </label>
                     <input placeholder="YYYY/MM/DD" id="dateStart" type="text"
@@ -165,6 +165,7 @@
                 return data.features[0].center;
             });
     }
+
     var address = $('#address').val();
     geocode(address, mapBoxToken)
         .then(function (result) {
@@ -209,26 +210,27 @@
 
 
             customButtons: {
-                myCustomButton: {
-                    text: "Book!",
-                    click: function(){
-                        $('#bookModal').toggleClass("is-active");
-                    }
-                }
+               myCustomButton: {
+                  text: "Book!",
+                  click: function () {
+                     $('#bookModal').toggleClass("is-active");
 
-                },
+                     }
+                  }
 
 
-            events: calBookingsBucket,
+               },
 
-        });
+               events: calBookingsBucket,
+
+
+            });
 
 
         calendar.render();
     }); //end of doc.ready
 
 </script>
-
 
 
 </body>
