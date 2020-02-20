@@ -6,26 +6,28 @@
 <body style="background-color: navajowhite">
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<article class="tile is-child box" style="background-color: navajowhite">
+<article class="tile is-child box" style="background-color: antiquewhite">
     <div class="columns">
         <div class="column is-narrow"
-             style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px; background-color: white">
+             style="border: 2px solid black; padding: 0; height: 203px; margin-right: 1px; background-color: white">
             <div th:each="image,iStat : ${place.placeImages}">
                 <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                     style="padding: 0; margin: 0; height: 400px; width: 400px;"
+                     style="padding: 0; margin: 0; height: 200px; width: 300px;"
                      class="is-mobile-1">
             </div>
         </div>
 
         <div class="column is-5 is-one-third-tablet"
-             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px; background-color: white ">
+             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 308px; height: 203px; background-color: white ">
             <div th:each="image,iStat : ${place.placeImages}"
-                 style="margin: 0 1px 1px 0; height: 199px;">
+                 style="margin: 0 1px 1px 0; height: 99px;">
                 <img th:if="${iStat.count > 1 && iStat.count < 6}"
                      th:src="${image.imagePath}"
-                     style="height: 199px; width: 250px;">
+                     style="height: 99px; width: 150px;">
             </div>
         </div>
+
+
         <!--map here-->
         <div id="map" class="column is-narrow"
              style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
@@ -36,7 +38,7 @@
     </div>
 </article>
 
-<article class="tile is-child box" style="background-color: navajowhite">
+<article class="tile is-child box" style="background-color: antiquewhite">
     <div class="columns">
         <div class="column is-4">
             <div class="card has-text-centered">
@@ -83,7 +85,7 @@
             </div>
         </div>
         <!--calendar here-->
-        <div style="background-color: white" id="calendar"></div>
+        <div style="background-color: white; height: 400px; width: 400px" id="calendar"></div>
     </div>
 
 </article>
