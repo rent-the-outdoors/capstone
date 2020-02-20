@@ -26,18 +26,19 @@ public class BookingController {
     }
 
     //get info from form for booking
-    @GetMapping("/bookings/create")
-    public String bookingFormGetInfo(Model m, User user){
-        m.addAttribute("user", user);
-        m.addAttribute("booking", new Booking());
-        return "bookings/create";
-    }
+//    @GetMapping("/bookings/create")
+//    public String bookingFormGetInfo(Model m, User user){
+//        m.addAttribute("user", user);
+//        m.addAttribute("booking", new Booking());
+//        return "bookings/create";
+//    }
 
     //post info to db for booking
-    @PostMapping("/bookings/create")
-    public String postBookingWithBookingFormGetInfo(Booking b){
+    @PostMapping("/bookings/{id}/create")
+    public String postBookingWithBookingFormGetInfo(Booking b, @PathVariable long id){
         bookingDao.save(b);
-        return "redirect:/calendar";
+
+        return "redirect:/place/{id}";
     }
 
     //post place and user info to make a booking redir to profile after booking
