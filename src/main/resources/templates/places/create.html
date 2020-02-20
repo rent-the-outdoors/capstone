@@ -3,54 +3,82 @@
 <head th:insert="partials/fragments :: head('Create Place Listing')">
 
 </head>
-<body>
+<body style="background-color: navajowhite">
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-<main class="hero is-fullheight-with-navbar is-bold is-primary">
+<main class="hero is-fullheight-with-navbar is-bold">
    <div class="hero-body columns has-text-centered">
       <div class="container box is-narrow">
          <div class="column is-4 is-offset-4">
             <h1 class="title has-text-dark">
                Rent your own property
             </h1>
-            <h2 class="subtitle has-text-dark">
-               Just upload a few pictures, input your address and other info,
-               and
-               the amount you want to receive per day, and we'll take care of
-               the
-               rest!
-            </h2>
          </div>
          <div class="column is-6 is-offset-3">
-            <form th:action="@{'/places/' + ${user.id} + '/create'}"
-                  method="POST">
-               <label for="title">Title: </label>
-               <input id="title" name="title" type="text"/>
-               <input type="hidden" th:value="${user.id}" th:name="userId">
-               <br/>
-               <label for="description">Description:</label>
-               <input id="description" name="description"/>
-               <br/>
-               <label for="cost_per_day">Cost per day: </label>
-               <input id="cost_per_day" name="cost"/>
-               <br/>
-               <label for="address">Address: </label>
-               <input id="address" name="address"
-                      placeholder="Street, city, state, zip" required/>
-               <br/>
+            <form th:action="@{'/places/' + ${user.id} + '/create'}" method="POST">
+               <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                     <label class="label" for="title">Title: </label>
+                  </div>
+                  <div class="field-body">
+                     <div class="field">
+                        <p class="control">
+                           <input  class="input is-small" placeholder="Name of your property" id="title" name="title" type="text"/>
+                        </p>
+                     </div>
+                  </div>
+               </div>
+                  <input type="hidden" th:value="${user.id}" th:name="userId">
+               <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                     <label class="label" for="cost_per_day">Cost per day: </label>
+                  </div>
+                  <div class="field-body">
+                     <div class="field">
+                        <p class="control">
+                           <input class="input is-small" id="cost_per_day" placeholder="$$$$$" name="cost"/>
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                     <label class="label" for="address">Address: </label>
+                  </div>
+                  <div class="field-body">
+                     <div class="field">
+                        <p class="control">
+                           <input class="input is-small" id="address" name="address" placeholder="Street, city, state, zip" required/>
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                     <label class="label" for="description">Description:</label>
+                  </div>
+                  <div class="field-body">
+                     <div class="field">
+                        <p class="control">
+                           <textarea class="textarea is-normal" placeholder="List what can be done at your place, how big your place is, and what amenities you provide." id="description" name="description"></textarea>
+                        </p>
+                     </div>
+                  </div>
+               </div>
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
                <div>
                   <h1 class="is-size-3">Choose up to 5 images:</h1>
+                  <button class="button is-medium is-primary showModal" type="button">Add Image</button>
+                  <br>
+                  <button type="submit" class="button is-primary is-medium" style="margin-top: 2%; width: 139px">Submit</button>
                   <div class="showModal">
                      <div id="image"
-                          style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; background-color: lightgray; height: 125px; width: 700px;"></div>
+                          style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; height: 125px; width: 700px;"></div>
 
-                     <button class="button showModal" type="button"><i
-                       class="fas fa-plus"></i> Image
-                     </button>
+
                      <div id="error"></div>
-                     <button type="submit" class="button">Submit</button>
+
                   </div>
                </div>
             </form>
