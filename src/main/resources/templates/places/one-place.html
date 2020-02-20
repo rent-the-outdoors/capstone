@@ -199,25 +199,18 @@
 
             },
 
-
-                customButtons: {
-                    myCustomButton: {
-                        text: "Book!",
-                        click: function(){
-                            $('#bookModal').toggleClass("is-active");
-                        }
+            customButtons: {
+                myCustomButton: {
+                    text: "Book!",
+                    click: function () {
+                        $('#bookModal').toggleClass("is-active");
                     }
-                },
-
-
                 }
             },
-
 
             events: calBookingsBucket,
 
         });
-
 
         calendar.render();
     }); //end of doc.ready
