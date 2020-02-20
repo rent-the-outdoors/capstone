@@ -25,6 +25,15 @@ public class BookingController {
         this.bookingDao = bookingDao;
     }
 
+    //view all bookings from db in json format
+    @GetMapping(value = "/bookings.json")
+    public
+    @ResponseBody
+    Iterable<Booking> getAllBookingsInJSONFormat() {
+        return bookingDao.findAll();
+    }
+
+
     //get info from form for booking
     @GetMapping("/bookings/create")
     public String bookingFormGetInfo(Model m, User user){
