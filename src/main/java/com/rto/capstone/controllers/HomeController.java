@@ -35,6 +35,10 @@ public class HomeController {
         }
 
 
+        @GetMapping("/aboutUs")
+    public String aboutUsController(){
+        return "views/credits";
+        }
     }
 
 

@@ -2,17 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="partials/fragments :: head('About Us')">
 </head>
-<body>
+<body style="background-color: antiquewhite">
 <nav th:insert="partials/fragments :: nav"></nav>
-   <div class="columns">
+   <div class="columns" style="margin-top: 1%">
       <div class="column is-3 is-offset-1">
+         <p class="title has-text-centered">Nico Virgino</p>
          <img th:src="${'img/nico_fancy.jpeg'}">
+         <p class="buttons" style="margin-left: 4%">
+            <a class="button" href="https://github.com/navirgino" target="_blank">
+             <span class="icon"> <i class="fab fa-github"></i></span>
+               <span>GitHub</span>
+            </a>
+            <a class="button" href="https://www.linkedin.com/in/navirgino/" target="_blank">
+               <span class="icon"> <i class="fab fa-linkedin"></i></span>
+               <span>LinkedIn</span>
+            </a>
+            <a class="button" href="https://alumni.codeup.com/students/744" target="_blank">
+<!--               <figure class="image is-16x16"> <img src="/img/codeup-arrow.png"></figure>-->
+               <span>Codeup</span>
+            </a>
+         </p>
       </div>
-      <div class="column is-3">
+      <div class="column is-3" style="margin: 0 5% 0 5%">
+         <p class="title has-text-centered">Thomas Offer</p>
          <img th:src="${'img/thomas_fancy.jpeg'}">
+         <p class="buttons" style="margin-left: 4%">
+            <a class="button" href="https://github.com/MrOffer" target="_blank">
+               <span class="icon"> <i class="fab fa-github"></i></span>
+               <span>GitHub</span>
+            </a>
+            <a class="button" href="https://www.linkedin.com/in/thomasoffer/" target="_blank">
+               <span class="icon"> <i class="fab fa-linkedin"></i></span>
+               <span>LinkedIn</span>
+            </a>
+            <a class="button" href="https://alumni.codeup.com/students/750" target="_blank">
+<!--               <figure class="image is-16x16"><img src="/img/codeup-arrow.png"></figure>-->
+               <span>Codeup</span>
+            </a>
+         </p>
       </div>
       <div class="column is-3">
+         <p class="title has-text-centered">Jacob Barrow</p>
          <img th:src="${'img/jacob_fancy.jpeg'}">
+         <p class="buttons" style="margin-left: 4%">
+            <a class="button" href="https://github.com/barrowjacob" target="_blank">
+               <span class="icon"> <i class="fab fa-github"></i></span>
+               <span>GitHub</span>
+            </a>
+            <a class="button" href="https://www.linkedin.com/in/jacobmbarrow/" target="_blank">
+               <span class="icon"> <i class="fab fa-linkedin"></i></span>
+               <span>LinkedIn</span>
+            </a>
+            <a class="button" href="https://alumni.codeup.com/students/745" target="_blank">
+<!--               <figure class="image is-16x16"> <img src="/img/codeup-arrow.png" alt="codeup image"></figure>-->
+               <span>Codeup</span>
+            </a>
+         </p>
       </div>
    </div>
 
