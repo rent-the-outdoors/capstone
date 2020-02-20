@@ -128,14 +128,22 @@
                 marker.setLngLat(result);
             });
 
+
+
         $(document).ready(function () {
             var calBookingsBucket = [];
-            var req = $.ajax({'url': '/bookings.json'});
+            var req = $.ajax({
+                url: '/bookings.json',
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: false,
+                processData: false,
+            });
             req.done(function (bookings) {
                 bookings.forEach(function (booking) {
                     calBookingsBucket.push({
                         title: booking.title,
-                        address: booking.address,
                         start: booking.dateStart,
                         end: booking.dateEnd,
 
@@ -155,18 +163,27 @@
 
                 },
 
-                eventLimit: true,
-                events: calBookingsBucket,
+
                 customButtons: {
                     myCustomButton: {
                         text: "Book!",
                         click: function(){
                             window.open("http://localhost:8080/bookings/create");
 
+
                         }
 
                     }
                 },
+                // events: [
+                //     {
+                //         title: "filler",
+                //         start: "2020-02-20T00:00:00.000+0000",
+                //         end: "2020-02-24T00:00:00.000+0000",
+                //     },
+                // ],
+
+                events: calBookingsBucket,
 
             });
 
