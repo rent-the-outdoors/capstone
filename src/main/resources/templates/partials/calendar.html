@@ -7,12 +7,109 @@
 
     <script src=/lib/fullcalendar/packages/core/main.js'></script>
     <script src=/lib/fullcalendar/packages/daygrid/main.js'></script>
-    <script th:fragment="calendar" id="show_calendar">
+<!--    <script th:fragment="calendar" id="show_calendar">-->
+<!--        $(document).ready(function () {-->
+
+
+<!--            var calendarEl = document.getElementById('calendar');-->
+<!--            var calendar = new FullCalendar.Calendar(calendarEl, {-->
+<!--                plugins: ['dayGrid'],-->
+<!--                header: {-->
+<!--                    left: 'prev,next,today',-->
+<!--                    center: 'title',-->
+<!--                    right: 'addEventButton'-->
+
+<!--                },-->
+<!--                customButtons: {-->
+<!--                    addEventButton: {-->
+<!--                        text: 'Book your place now!',-->
+<!--                        click: function () {-->
+<!--                            var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');-->
+<!--                            var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');-->
+<!--                            var dateStart = new Date(dateStartStr);-->
+<!--                            var dateEnd = new Date(dateEndStr);-->
+
+<!--                            if (!isNaN(dateStart.valueOf())-->
+<!--                                || !isNaN(dateEnd.valueOf())) { //validity check for booking-->
+
+<!--                                calendar.addEvent({-->
+<!--                                    title: "Booked from " + dateStart + " to " + dateEnd,-->
+<!--                                    start: dateStart,-->
+<!--                                    end: dateEnd,-->
+<!--                                    allDay: true,-->
+<!--                                    url: '/bookings',-->
+<!--                                    method: 'POST',-->
+<!--                                    dataType: 'jsonString',-->
+<!--                                    error: function () {-->
+<!--                                        alert("There was an error getting the booking dates");-->
+<!--                                    },-->
+
+<!--                                    color: '#37474f',-->
+<!--                                    textColor: 'white'-->
+
+<!--                                });-->
+<!--                                console.log(calendar.getEvents());-->
+<!--                                //update send post request to json-->
+
+
+<!--                            } else {-->
+<!--                                alert('Invalid date.');-->
+<!--                            }-->
+<!--                        }-->
+<!--                    }-->
+
+<!--                },-->
+<!--                navLinks: true, //can click day/week names to navigate views-->
+<!--                editable: true,-->
+<!--                eventLimit: true,-->
+<!--                events:-->
+<!--                    {-->
+<!--                        url: '/bookings',-->
+<!--                        method: 'GET',-->
+<!--                        error: function () {-->
+<!--                            alert("There was an error getting the booking dates");-->
+<!--                        },-->
+
+<!--                        color: '#37474f',-->
+<!--                        textColor: 'white'-->
+<!--                    }-->
+
+
+<!--            });-->
+
+
+<!--            calendar.render();-->
+<!--        });-->
+<!--    </script>-->
+    <script>
         $(document).ready(function () {
+            var req = $.ajax({'url': '/bookings.json'});
+            req.done(function (bookings) {
+                var calBookingsBucket = [];
+                bookings.forEach(function (booking) {
+                    calBookingsBucket.push({
+                        id: booking.id,
+                        title: booking.title,
+                        address: booking.address,
+                        start: booking.dateStart,
+                        end: booking.dateEnd,
+                    })
+                });
+                console.log(calBookingsBucket);
 
-
+            }); //for each ends here
             var calendarEl = document.getElementById('calendar');
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                customButtons: {
+                    myCustomButton: {
+                        text: "Book!",
+                        url: "http://localhost:8080/bookings/create",
+                        click: function() {
+                            alert("Going to create a booking. . .")
+                        }
+                    }
+                },
                 plugins: ['dayGrid'],
                 header: {
                     left: 'prev,next,today',
@@ -20,66 +117,16 @@
                     right: 'addEventButton'
 
                 },
-                customButtons: {
-                    addEventButton: {
-                        text: 'Book your place now!',
-                        click: function () {
-                            var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var dateStart = new Date(dateStartStr);
-                            var dateEnd = new Date(dateEndStr);
 
-                            if (!isNaN(dateStart.valueOf())
-                                || !isNaN(dateEnd.valueOf())) { //validity check for booking
-
-                                calendar.addEvent({
-                                    title: "Booked from " + dateStart + " to " + dateEnd,
-                                    start: dateStart,
-                                    end: dateEnd,
-                                    allDay: true,
-                                    url: '/bookings',
-                                    method: 'POST',
-                                    dataType: 'jsonString',
-                                    error: function () {
-                                        alert("There was an error getting the booking dates");
-                                    },
-
-                                    color: '#37474f',
-                                    textColor: 'white'
-
-                                });
-                                console.log(calendar.getEvents());
-                                //update send post request to json
-
-
-                            } else {
-                                alert('Invalid date.');
-                            }
-                        }
-                    }
-
-                },
-                navLinks: true, //can click day/week names to navigate views
-                editable: true,
                 eventLimit: true,
-                events:
-                    {
-                        url: '/bookings',
-                        method: 'GET',
-                        error: function () {
-                            alert("There was an error getting the booking dates");
-                        },
-
-                        color: '#37474f',
-                        textColor: 'white'
-                    }
-
+                events: calBookingsBucket,
 
             });
 
 
             calendar.render();
-        });
+        }); //end of doc.ready
+
     </script>
 </head>
 <body>

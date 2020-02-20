@@ -54,6 +54,12 @@ public class Booking {
         this.address = address;
     }
 
+    public Booking(Date dateStart, Date dateEnd, String title) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.title = title;
+    }
+
     public Date getDateEnd() {
         return dateEnd;
     }

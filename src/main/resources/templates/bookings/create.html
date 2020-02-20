@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/fragments :: head('Create Booking')">
+
     <meta charset="UTF-8">
     <title>Create booking</title>
 </head>
-<body>
-<h1>Create a booking here</h1>
+    <body style="background-color: navajowhite">
+
+<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+
 <form th:action="@{/bookings/create}" th:method="POST" th:object="${booking}">
     <label for="title">Title</label>
     <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
@@ -18,9 +22,58 @@
 
     <label for="dateEnd">End Date: </label>
     <input th:placeholder="YYYY-MM-DD" id="dateEnd" type="text" th:field="*{dateEnd}" required>
-
     <button type="submit">Submit</button>
-
 </form>
+<!--    <main class="hero is-fullheight-with-navbar is-bold">-->
+<!--        <div class="hero-body columns has-text-centered">-->
+<!--            <div class="container box is-narrow">-->
+<!--                <div class="column is-4 is-offset-4">-->
+<!--                    <h1 class="title has-text-dark">-->
+<!--                        Booking your property-->
+<!--                    </h1>-->
+<!--                </div>-->
+<!--                <div class="column is-6 is-offset-3">-->
+<!--                    <form th:action="@{'/bookings/create'}" th:method="POST" th:object="${booking}">-->
+<!--                        &lt;!&ndash;title&ndash;&gt;-->
+<!--                        <div class="field is-horizontal">-->
+<!--                            <div class="field-label is-normal">-->
+<!--                                <label for="title">Title: </label>-->
+<!--                                <input placeholder="Title" id="title" type="text" th:field="*{title}" required/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;starting date&ndash;&gt;-->
+<!--                        <div class="field is-horizontal">-->
+<!--                            <div class="field-label is-normal">-->
+<!--                                <label class="label" for="dateStart">Starting Date: </label>-->
+<!--                            </div>-->
+<!--                            <div class="field-body">-->
+<!--                                <div class="field">-->
+<!--                                    <p class="control">-->
+<!--                                        <input th:field="*{dateStart}" id="dateStart" placeholder="YYYY-MM-DD" name="dateStart" type="text"/>-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;ending date&ndash;&gt;-->
+<!--                        <div class="field is-horizontal">-->
+<!--                            <div class="field-label is-normal">-->
+<!--                                <label class="label" for="dateEnd">Ending Date: </label>-->
+<!--                            </div>-->
+<!--                            <div class="field-body">-->
+<!--                                <div class="field">-->
+<!--                                    <p class="control">-->
+<!--                                        <input th:field="*{dateEnd}" id="dateEnd" name="dateEnd" placeholder="YYYY-MM-DD" type="text" required/>-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button type="submit">Submit</button>-->
+
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </main>-->
+
 </body>
 </html>
