@@ -20,12 +20,11 @@
 
     <script>
         $(document).ready(function () {
+            var calBookingsBucket = [];
             var req = $.ajax({'url': '/bookings.json'});
             req.done(function (bookings) {
-                var calBookingsBucket = [];
                 bookings.forEach(function (booking) {
                     calBookingsBucket.push({
-                        id: booking.id,
                         title: booking.title,
                         address: booking.address,
                         start: booking.dateStart,
