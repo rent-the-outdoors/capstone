@@ -49,14 +49,14 @@ public class BookingController {
 //    }
 
     //post info to db for booking
-    @PostMapping("/bookings/{id}/create")
-    public String postBookingWithBookingFormGetInfo(Booking b, @PathVariable long id,@RequestParam long loggedInUserId, @RequestParam long placeId){
-        b.setUser(usersDao.getOne(loggedInUserId));
-        b.setPlace(placesDao.getOne(placeId));
-        bookingDao.save(b);
-
-        return "redirect:/confirmation/{placeId}/checkout";
-    }
+//    @PostMapping("/bookings/{id}/create")
+//    public String postBookingWithBookingFormGetInfo(Booking b, @PathVariable long id,@RequestParam long loggedInUserId, @RequestParam long placeId){
+//        b.setUser(usersDao.getOne(loggedInUserId));
+//        b.setPlace(placesDao.getOne(placeId));
+//        bookingDao.save(b);
+//
+//        return "redirect:/place/{id}";
+//    }
 
     //post place and user info to make a booking redir to profile after booking
 //    @PostMapping(path = "/booking/{id}/create")
