@@ -69,10 +69,10 @@
                <!--    <div id="map" style="height: 400px; width: 400px;"></div>-->
                <div>
                   <h1 class="is-size-3">Choose up to 5 images:</h1>
-                  <button class="button is-medium is-primary showModal" type="button">Add Image</button>
+                  <button id="showModal" class="button is-medium is-primary showModal" type="button">Add Image</button>
                   <br>
                   <button type="submit" class="button is-primary is-medium" style="margin-top: 2%; width: 139px">Submit</button>
-                  <div class="showModal">
+                  <div>
                      <div id="image"
                           style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; height: 125px; width: 700px;"></div>
 
@@ -99,13 +99,10 @@
         const client = filestack.init("ArvmOJdHSwmo1NtHoPmi5z");
         const options = {
             onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`),
-            maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
-            uploadInBackground: false
         };
         if (i <= 10) {
-
-        $(".showModal").click(function () {
+        //test test
+        $("#showModal").click(function () {
             i++;
             client.picker(options).open();
         });
