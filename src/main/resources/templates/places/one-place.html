@@ -101,7 +101,8 @@
                 <form th:action="@{'/bookings/' + ${place.id} + '/create'}" th:method="POST">
                     <input th:placeholder="Title" id="title" type="hidden" th:field="*{place.title}" required>
                     <h2 class="is-size-3" th:text="${place.title}"></h2>
-                    <input th:placeholder="Address" id="placeAddress" type="hidden" th:field="*{place.address}" required>
+                    <input th:placeholder="Address" id="placeAddress" type="hidden" th:field="*{place.address}"
+                           required>
                     <h2 class="is-size-3" th:text="${place.address}"></h2>
                     <label for="dateStart">Start Date: </label>
                     <input th:placeholder="YYYY-MM-DD" id="dateStart" type="text"
@@ -156,7 +157,8 @@
                 return data.features[0].center;
             });
     }
-//here is a comment for pushing
+
+    //here is a comment for pushing
     var address = $('#address').val();
     geocode(address, mapBoxToken)
         .then(function (result) {
@@ -201,26 +203,27 @@
 
 
             customButtons: {
-                myCustomButton: {
-                    text: "Book!",
-                    click: function(){
-                        $('#bookModal').toggleClass("is-active");
-                    }
-                }
+               myCustomButton: {
+                  text: "Book!",
+                  click: function () {
+                     $('#bookModal').toggleClass("is-active");
 
-                },
+                     }
+                  }
 
 
-            events: calBookingsBucket,
+               },
 
-        });
+               events: calBookingsBucket,
+
+
+            });
 
 
         calendar.render();
     }); //end of doc.ready
 
 </script>
-
 
 
 </body>

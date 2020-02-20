@@ -25,15 +25,19 @@
                <input type='hidden' th:value='${amount}' name='amount' />
                <input type='hidden' th:value="${userId}" name="userId"/>
                <input type='hidden' th:value="${place.id}" name="placeId"/>
+<!--               <input type='hidden' th:value="${booking.dateStart}" name="dayStart" />-->
+<!--               <input type='hidden' th:value="${booking.dateEnd}" name="dayEnd" />-->
+
                <script
                  src='https://checkout.stripe.com/checkout.js'
                  class='stripe-button'
                  th:attr='data-key=${stripePublicKey},
-         data-amount=${amount * 100}'
+
+         data-amount=${(amount * 100)}'
+
                  data-name='Rent The Outdoors'
                  data-description='Booking Confirmation'
-                 data-image
-                   ='https://images.pexels.com/photos/39854/fisherman-fishing-reel-river-39854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+                 data-image='https://images.pexels.com/photos/39854/fisherman-fishing-reel-river-39854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
                  data-locale='auto'
                  data-zip-code='false'>
                </script>
