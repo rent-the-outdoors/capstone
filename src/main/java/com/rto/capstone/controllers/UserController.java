@@ -89,6 +89,16 @@ public class UserController {
         m.addAttribute("loggedInUser", loggedInUser);
         User user = usersDao.getOne(id);
         m.addAttribute("user", user);
+        List<Place> userPlaces = new ArrayList<>();
+        List<Place> allPlaces = placesDao.findAll();
+        if (allPlaces.size() > 0) {
+            allPlaces.forEach(place -> {
+                if (place.getUser().getId() == user.getId()) {
+                    userPlaces.add(place);
+                }
+            });
+            m.addAttribute("userPlaces", userPlaces);
+        }
         return "users/profile";
     }
 }
