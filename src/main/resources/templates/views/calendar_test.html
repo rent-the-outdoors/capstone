@@ -88,9 +88,9 @@
             var req = $.ajax({'url': '/getBookings.json'});
             req.done(function (bookings) {
                 bookings.forEach(function (booking) {
-                    console.log(booking.toString);
                     calBookingsBucket.push({
-                        title: booking.address,
+                        title: booking.title,
+                        address: booking.address,
                         start: booking.dateStart,
                         end: booking.dateEnd,
                     })
@@ -108,12 +108,11 @@
 
                 },
                 eventLimit: true,
-                events: calBookingsBucket,
+                events: {calBookingsBucket},
 
             });
 
             calendar.render();
-            console.log(calendar.getEvents());
         }); //end of doc.ready
 
 

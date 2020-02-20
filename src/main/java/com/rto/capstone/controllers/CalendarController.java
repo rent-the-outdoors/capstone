@@ -40,12 +40,33 @@ public class CalendarController {
     }
 
     //view all bookings from db in json format
+//    @GetMapping(value = "/getBookings.json")
+//    public
+//    @ResponseBody
+//    Iterable<Booking> getAllBookingsInJSONFormat()
+//    {
+//        return bookingDao.findAll();
+//
+//    }
     @GetMapping(value = "/getBookings.json")
     public
     @ResponseBody
-    Iterable<Booking> getAllBookingsInJSONFormat()
+    List<Booking> getAllBookingsInJSONFormat()
     {
-        return bookingDao.findAll();
+        List<Booking> bookings = bookingDao.findAll();
+
+        for(int i = 0; i < bookings.size(); i++){
+            String dateStart = bookings.get(i).getDateStart();
+            String dateEnd = bookings.get(i).getDateEnd();
+
+            dateStart = dateStart.replace("T", "");
+            dateEnd = dateEnd.replace("T", "");
+
+            bookings.get(i).setDateStart(dateStart);
+            bookings.get(i).setDateEnd(dateEnd);
+
+        }
+        return bookings;
 
     }
 

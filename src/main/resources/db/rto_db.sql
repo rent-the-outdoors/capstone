@@ -47,7 +47,10 @@ INSERT INTO images(image_path, place_id) VALUES ('/img/adventure-calm-clouds-daw
 INSERT INTO bookings(id, date_start, date_end, address) VALUES
                                                                (1, '2020-02-20', '2020-02-24', '9898 Colonnade Blvd San Antonio, TX'),
                                                                (2, '2020-02-23', '2020-02-26', '900 Navarro San Antonio, TX'),
-                                                               (3, '2020-02-25', '2020-02-28', 'Australia')
+                                                               (3, '2020-02-25', '2020-02-28', 'Australia');
+
+
+
 
 
 

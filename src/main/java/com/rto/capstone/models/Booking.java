@@ -15,12 +15,12 @@ public class Booking {
     private long id;
 //comment
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateStart;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String dateStart;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateEnd;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String dateEnd;
 
     @Column
     private String title;
@@ -40,30 +40,25 @@ public class Booking {
 
     public Booking(){}
 
-    public Booking(Date dateStart, Date dateEnd, String title) {
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.title = title;
-    }
 
-    public Booking(long id, Date dateStart, Date dateEnd, String address) {
+    public Booking(long id, String dateStart, String dateEnd, String address) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public Booking(Date dateStart, String address, Date dateEnd) {
+    public Booking(String dateStart, String address, String dateEnd) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public Date getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
     }
 
@@ -75,11 +70,11 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
+    public void setDateStart(String dateStart) {
         this.dateStart = dateStart;
     }
 
@@ -107,6 +102,11 @@ public class Booking {
         this.place = place;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
-
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
