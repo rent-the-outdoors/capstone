@@ -101,7 +101,7 @@
             onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`),
         };
         if (i <= 10) {
-
+        //test test
         $("#showModal").click(function () {
             i++;
             client.picker(options).open();
