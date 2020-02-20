@@ -60,6 +60,11 @@ public class Booking {
         this.title = title;
     }
 
+    public Booking(Date dateStart, Date dateEnd) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+    }
+
     public Date getDateEnd() {
         return dateEnd;
     }
