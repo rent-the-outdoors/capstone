@@ -3,23 +3,55 @@
 <head th:insert="partials/fragments :: head('Update Page')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body style="background-color: antiquewhite; height:100vh">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-<form th:action="@{'/places/' + ${place.id} + '/update'}" th:method="POST" th:object="${place}">
-    <label for="title">Title: </label>
-    <input id="title" th:field="*{title}" type="text" th:placeholder="${place.title}"/>
-    <br />
-    <label for="body">Description:</label>
-    <textarea id="body" th:field="*{description}" th:placeholder="${place.description}"></textarea>
-    <br />
-    <label for="address">Address: </label>
-    <input id="address" th:field="*{address}" th:placeholder="${place.address}"/>
-    <input type="hidden" th:field="*{user.id}" th:placeholder="${place.user.id}">
-    <label for="cost_per_day">Cost Per Day: </label>
-    <input id="cost_per_day" th:field="*{cost_per_day}" type="text" th:placeholder="${place.cost_per_day}" />
-    <button type="submit">UPDATE</button>
-</form>
+<main>
+    <div class="card" style="margin: 3%">
+        <header class="card-header">
+            <p class="card-header-title" style="text-align: center">
+                Update Your Place!
+            </p>
+        </header>
+        <form th:action="@{'/places/' + ${place.id} + '/update'}" th:method="POST" th:object="${place}" style="padding: 2%">
+            <div class="field">
+                <label class="label">Title</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="title" class="input validate" th:field="*{title}" type="text" th:placeholder="${place.title}"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input id="description" class="input validate" th:field="*{description}" th:placeholder="${place.description}">
+                </div>
+            </div>
+            <input type="hidden" th:field="*{user.id}" th:placeholder="${place.user.id}">
+            <div class="field">
+                <label class="label">Address</label>
+                <p class="control has-icons-left">
+                    <input id="address" class="input validate" th:field="*{address}" th:placeholder="${place.address}"/>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">Cost Per Day</label>
+                <p class="control has-icons-left">
+                    <input id="cost_per_day" class="input validate" th:field="*{cost_per_day}" type="text" th:placeholder="${place.cost_per_day}" />
+                </p>
+            </div>
+            <footer class="card-footer">
+                <input class="button is-medium is-primary" type="submit" value="Update" style="margin-top: 1%; margin-left: 50%"/>
+            </footer>
+        </form>
+    </div>
+</main>
+<script>
 
+
+
+</script>
+<footer th:include="partials/fragments :: footer"></footer>
+</body>
+</html>
 </body>
 </html>
