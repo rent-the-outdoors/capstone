@@ -47,17 +47,25 @@ public class SearchController {
             return "views/search";
         } else {
             for (Place place : allPlaces) {
-                if (huntCheck != null && place.getDescription().contains(huntCheck)) {
+                if (huntCheck != null && place.getDescription().toLowerCase().contains(huntCheck)) {
                     checkList.add(place);
-                } else if (fishCheck != null && place.getDescription().contains(fishCheck)) {
+                } else if (huntCheck != null && place.getTitle().toLowerCase().contains(huntCheck)) {
                     checkList.add(place);
-                } else if (campCheck != null && place.getDescription().contains(campCheck)) {
+                } else if (fishCheck != null && place.getDescription().toLowerCase().contains(fishCheck)) {
                     checkList.add(place);
-                } else if (boatCheck != null && place.getDescription().contains(boatCheck)) {
+                } else if (fishCheck != null && place.getTitle().toLowerCase().contains(fishCheck)) {
                     checkList.add(place);
-                } else if (!search.isEmpty() && place.getDescription().contains(search)) {
+                } else if (campCheck != null && place.getDescription().toLowerCase().contains(campCheck)) {
                     checkList.add(place);
-                } else if (!search.isEmpty() && place.getTitle().contains(search)) {
+                } else if (campCheck != null && place.getTitle().toLowerCase().contains(campCheck)) {
+                    checkList.add(place);
+                } else if (boatCheck != null && place.getDescription().toLowerCase().contains(boatCheck)) {
+                    checkList.add(place);
+                } else if (boatCheck != null && place.getTitle().toLowerCase().contains(boatCheck)) {
+                    checkList.add(place);
+                } else if (!search.isEmpty() && place.getDescription().toLowerCase().contains(search.toLowerCase())) {
+                    checkList.add(place);
+                } else if (!search.isEmpty() && place.getTitle().toLowerCase().contains(search.toLowerCase())) {
                     checkList.add(place);
                 }
             }
