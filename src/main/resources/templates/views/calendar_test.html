@@ -49,7 +49,55 @@
         //     });
         // });
 
-        $(document).ready(function () {
+        // $(document).ready(function () {
+        // $(window).load(function () {
+        //
+        //
+        //     var calendarEl = document.getElementById('calendar');
+        //     var req = $.ajax({'url': '/getBookings.json'});
+        //     var calendar = new FullCalendar.Calendar(calendarEl, {
+        //         plugins: ['dayGrid'],
+        //         header: {
+        //             left: 'prev,next today',
+        //             center: 'title',
+        //             right: 'month,agendaWeek,agendaDay'
+        //         },
+        //
+        //         // defaultDate: '2019-06-01',
+        //         navLinks: true, //can click day/week names to nav views
+        //         editable: true,
+        //         eventLimit: true, // allow "more" link when too many events
+        //         events: {
+        //             url: req,
+        //             type: 'GET',
+        //             error: function () {
+        //                 alert('there was an error while fetching events!');
+        //             },
+        //             color: '#37474f',
+        //             textColor: 'white'
+        //         }
+        //
+        //
+        //     });
+        //     calendar.render();
+        //     console.log(calendar.getEventSources());
+        //     console.log(calendar.getEvents());
+        // });
+        $(document).ready(function(){
+            var calBookingsBucket = [];
+            var req = $.ajax({'url': '/getBookings.json'});
+            req.done(function (bookings) {
+                bookings.forEach(function (booking) {
+                    console.log(booking.toString);
+                    calBookingsBucket.push({
+                        title: booking.address,
+                        start: booking.dateStart,
+                        end: booking.dateEnd,
+                    })
+                });
+                console.log(calBookingsBucket);
+
+            }); //for each ends here
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['dayGrid'],
@@ -59,66 +107,87 @@
                     right: 'addEventButton'
 
                 },
-                customButtons: {
-                    addEventButton: {
-                        text: 'Book your place now!',
-                        click: function () {
-                            var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var dateStart = new Date(dateStartStr);
-                            var dateEnd = new Date(dateEndStr);
-
-                            if (!isNaN(dateStart.valueOf())
-                                || !isNaN(dateEnd.valueOf())) { //validity check for booking
-
-                                calendar.addEvent({
-                                        title: "Booked from " + dateStart + " to " + dateEnd,
-                                        start: dateStart,
-                                        end: dateEnd,
-                                        allDay: true,
-                                        url: '/bookings',
-                                        method: 'POST',
-                                        dataType: 'jsonString',
-                                        error: function () {
-                                            alert("There was an error getting the booking dates");
-                                        },
-
-                                        color: '#37474f',
-                                        textColor: 'white'
-
-                                });
-                                console.log(calendar.getEvents());
-                                //update send post request to json
-
-
-                            } else {
-                                alert('Invalid date.');
-                            }
-                        }
-                    }
-
-                },
-                navLinks: true, //can click day/week names to navigate views
-                editable: true,
                 eventLimit: true,
-                events:
-                    {
-                        url: '/bookings',
-                        method: 'GET',
-                        error: function () {
-                            alert("There was an error getting the booking dates");
-                        },
-
-                        color: '#37474f',
-                        textColor: 'white'
-                    }
-
+                events: calBookingsBucket,
 
             });
 
-
             calendar.render();
-        });
+            console.log(calendar.getEvents());
+        }); //end of doc.ready
+
+
+
+
+        //     var calendarEl = document.getElementById('calendar');
+        //     var calendar = new FullCalendar.Calendar(calendarEl, {
+        //         plugins: ['dayGrid'],
+        //         header: {
+        //             left: 'prev,next,today',
+        //             center: 'title',
+        //             right: 'addEventButton'
+        //
+        //         },
+        //         customButtons: {
+        //             addEventButton: {
+        //                 text: 'Book your place now!',
+        //                 click: function () {
+        //                     var dateStartStr = prompt('Enter a date in YYYY-MM-DD format');
+        //                     var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
+        //                     var dateStart = new Date(dateStartStr);
+        //                     var dateEnd = new Date(dateEndStr);
+        //
+        //                     if (!isNaN(dateStart.valueOf())
+        //                         || !isNaN(dateEnd.valueOf())) { //validity check for booking
+        //
+        //                         calendar.addEvent({
+        //                             title: "Booked from " + dateStart + " to " + dateEnd,
+        //                             start: dateStart,
+        //                             end: dateEnd,
+        //                             allDay: true,
+        //                             url: '/bookings',
+        //                             method: 'POST',
+        //                             dataType: 'jsonString',
+        //                             error: function () {
+        //                                 alert("There was an error getting the booking dates");
+        //                             },
+        //
+        //                             color: '#37474f',
+        //                             textColor: 'white'
+        //
+        //                         });
+        //                         console.log(calendar.getEvents());
+        //                         //update send post request to json
+        //
+        //
+        //                     } else {
+        //                         alert('Invalid date.');
+        //                     }
+        //                 }
+        //             }
+        //
+        //         },
+        //         navLinks: true, //can click day/week names to navigate views
+        //         editable: true,
+        //         eventLimit: true,
+        //         events:
+        //             {
+        //                 url: '/getBookings.json',
+        //                 method: 'GET',
+        //                 error: function () {
+        //                     alert("There was an error getting the booking dates");
+        //                 },
+        //
+        //                 color: '#37474f',
+        //                 textColor: 'white'
+        //             }
+        //
+        //
+        //     });
+        //
+        //
+        // calendar.render();
+        // });
 
 
     </script>

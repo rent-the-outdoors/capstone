@@ -127,9 +127,13 @@
             });
     });
 </script>
+
+<!--calendar api logic below-->
 <script>
     $(document).ready(function () {
         "use strict";
+
+        ////////////////////
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: ['dayGrid'],
@@ -147,77 +151,43 @@
                         var dateEndStr = prompt('Enter a date in YYYY-MM-DD format');
                         var dateStart = new Date(dateStartStr);
                         var dateEnd = new Date(dateEndStr);
-
                         if (!isNaN(dateStart.valueOf())
                             || !isNaN(dateEnd.valueOf())) { //validity check for booking
-                            var allEvents = calendar.getEvents();
-                            var newEvent = calendar.addEvent({
+
+                            calendar.addEvent({
                                 title: "Booked from " + dateStart + " to " + dateEnd,
                                 start: dateStart,
                                 end: dateEnd,
                                 allDay: true,
-                                // url: '/bookings',
-                                // method: 'POST',
                                 dataType: 'jsonString',
                                 error: function () {
                                     alert("There was an error getting the booking dates");
                                 },
-
                                 color: '#37474f',
                                 textColor: 'white'
-
                             });
-                            console.log(calendar.getEvents());
-                            // console.log(newEvent.title);
-                            // console.log(newEvent.start);
-                            // console.log(newEvent.end);
-
-                            let req = $.ajax('data/bookings.json');
-
-                            req.done(function(bookings) {
-
-                                let bucket = [];
-                                $.each(data, function (index, booking){
-                                    bucket.push({
-                                        title: newEvent.title,
-                                        start: newEvent.start,
-                                        end: newEvent.end
-                                    })
-                                });
-                                console.log(bucket);
-                            });
-
-                            //update send post request to json
-                            function addBooking(){
-                                let newObj = {};
-                                newObj.title = newEvent.title;
-                                newObj.start = newEvent.start;
-                                newObj.end = newEvent.end;
-                                console.log(newObj);
-                            }
-                            addBooking();
-
                         } else {
                             alert('Invalid date.');
                         }
                     }
                 }
-
             },
             navLinks: true, //can click day/week names to navigate views
             editable: true,
             eventLimit: true,
             events:
-                {
-                    url: '/bookings',
-                    method: 'GET',
-                    error: function () {
-                        alert("There was an error getting the booking dates");
+
+                    {
+                        url: '/bookings',
+                        method: 'GET',
+                        error: function () {
+                            alert("There was an error getting the booking dates");
+                        },
+
+                        color: '#37474f',
+                        textColor: 'white'
                     },
 
-                    color: '#37474f',
-                    textColor: 'white'
-                }
 
 
         });
