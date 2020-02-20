@@ -40,12 +40,12 @@ public class Booking {
 
     public Booking(){}
 
-
     public Booking(long id, Date dateStart, Date dateEnd, String address) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
+
     }
 
     public Booking(Date dateStart, String address, Date dateEnd) {

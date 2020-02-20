@@ -23,6 +23,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -143,11 +144,19 @@ public class  PlaceController {
     public String onePlaceById(Model m, @PathVariable long id)
     {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Place place = placesDao.getOne(id);
+        if (bookingsDao.findByPlaceId(place.getId()) != null) {
+            Booking updatedBooking = bookingsDao.findByTitle(place.getTitle());
+            Date dateStart = updatedBooking.getDateStart();
+            Date dateEnd = updatedBooking.getDateEnd();
+            m.addAttribute("dateStart", dateStart);
+            m.addAttribute("dateEnd", dateEnd);
+        }
         loggedInUser = usersDao.getOne(loggedInUser.getId());
         Booking booking = new Booking();
         m.addAttribute("booking",booking);
         m.addAttribute("loggedInUser", loggedInUser);
-        m.addAttribute("place", placesDao.getOne(id));
+        m.addAttribute("place", place);
         return "places/one-place";
     }
 
