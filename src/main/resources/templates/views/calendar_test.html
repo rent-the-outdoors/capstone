@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,7 +14,48 @@
     <script src='lib/fullcalendar/packages/core/main.js'></script>
     <script src='lib/fullcalendar/packages/daygrid/main.js'></script>
     <h1>work</h1>
+
+    <!--post new booking to db-->
+
+
     <script>
+        $(document).ready(function () {
+            var req = $.ajax({'url': '/bookings.json'});
+            req.done(function (bookings) {
+                var calBookingsBucket = [];
+                bookings.forEach(function (booking) {
+                    calBookingsBucket.push({
+                        id: booking.id,
+                        title: booking.title,
+                        address: booking.address,
+                        start: booking.dateStart,
+                        end: booking.dateEnd,
+                    })
+                });
+                console.log(calBookingsBucket);
+
+            }); //for each ends here
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                header: {
+                    left: 'prev,next,today',
+                    center: 'title',
+                    right: 'addEventButton'
+
+                },
+
+                eventLimit: true,
+                events: calBookingsBucket,
+
+            });
+
+
+            calendar.render();
+        }); //end of doc.ready
+
+        /*---------*/
         // $(document).read(function () {
         //     var req = $.ajax({'url': '/bookings.json'});
         //     req.done(function (bookings) {
@@ -48,7 +89,7 @@
         //
         //     });
         // });
-
+        /*---------*/
         // $(document).ready(function () {
         // $(window).load(function () {
         //
@@ -83,41 +124,7 @@
         //     console.log(calendar.getEventSources());
         //     console.log(calendar.getEvents());
         // });
-        $(document).ready(function(){
-            var calBookingsBucket = [];
-            var req = $.ajax({'url': '/getBookings.json'});
-            req.done(function (bookings) {
-                bookings.forEach(function (booking) {
-                    calBookingsBucket.push({
-                        title: booking.title,
-                        address: booking.address,
-                        start: booking.dateStart,
-                        end: booking.dateEnd,
-                    })
-                });
-                console.log(calBookingsBucket);
-
-            }); //for each ends here
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid'],
-                header: {
-                    left: 'prev,next,today',
-                    center: 'title',
-                    right: 'addEventButton'
-
-                },
-                eventLimit: true,
-                events: {calBookingsBucket},
-
-            });
-
-            calendar.render();
-        }); //end of doc.ready
-
-
-
-
+        /*--------*/
         //     var calendarEl = document.getElementById('calendar');
         //     var calendar = new FullCalendar.Calendar(calendarEl, {
         //         plugins: ['dayGrid'],

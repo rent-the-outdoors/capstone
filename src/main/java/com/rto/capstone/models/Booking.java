@@ -15,12 +15,12 @@ public class Booking {
     private long id;
 //comment
     @Column
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String dateStart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateStart;
 
     @Column
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String dateEnd;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateEnd;
 
     @Column
     private String title;
@@ -41,24 +41,24 @@ public class Booking {
     public Booking(){}
 
 
-    public Booking(long id, String dateStart, String dateEnd, String address) {
+    public Booking(long id, Date dateStart, Date dateEnd, String address) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public Booking(String dateStart, String address, String dateEnd) {
+    public Booking(Date dateStart, String address, Date dateEnd) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.address = address;
     }
 
-    public String getDateEnd() {
+    public Date getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
     }
 
@@ -70,11 +70,11 @@ public class Booking {
         this.id = id;
     }
 
-    public String getDateStart() {
+    public Date getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(String dateStart) {
+    public void setDateStart(Date dateStart) {
         this.dateStart = dateStart;
     }
 

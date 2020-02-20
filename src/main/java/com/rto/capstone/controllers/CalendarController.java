@@ -40,125 +40,51 @@ public class CalendarController {
     }
 
     //view all bookings from db in json format
-//    @GetMapping(value = "/getBookings.json")
-//    public
-//    @ResponseBody
-//    Iterable<Booking> getAllBookingsInJSONFormat()
-//    {
-//        return bookingDao.findAll();
-//
-//    }
-    @GetMapping(value = "/getBookings.json")
+    @GetMapping(value = "/bookings.json")
     public
     @ResponseBody
-    List<Booking> getAllBookingsInJSONFormat()
-    {
-        List<Booking> bookings = bookingDao.findAll();
-
-        for(int i = 0; i < bookings.size(); i++){
-            String dateStart = bookings.get(i).getDateStart();
-            String dateEnd = bookings.get(i).getDateEnd();
-
-            dateStart = dateStart.replace("T", "");
-            dateEnd = dateEnd.replace("T", "");
-
-            bookings.get(i).setDateStart(dateStart);
-            bookings.get(i).setDateEnd(dateEnd);
-
-        }
-        return bookings;
-
+    Iterable<Booking> getAllBookingsInJSONFormat() {
+        return bookingDao.findAll();
     }
 
 
 
+    //post info from form to db for booking
+//    @PostMapping(path = "/booking/create")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @PostMapping("/post/bookings.json")
+//    @GetMapping("/getBookings.json")
 //    @CrossOrigin
-//    public String postCalendarEventsToJSON() throws IOException {
-//        showCalendarEventsFromJSON();
-//        return "test";
-//    }
-
-
-
-    //posts to bookings to json
-//    @PostMapping(value = "/create/bookings",
-//    consumes = "application/json",
-//    produces = "application/json")
-//    public String postBookingForJSON(@RequestBody Booking booking) throws ParseException, IOException {
+//    @ResponseBody
+//    public String getBookings(){
 //        String bookings = "";
-//        Path jsonPath = Paths.get("bookings.json");
+//        Path jsonPath = Paths.get("/bookings.json");
 //        try {
 //            List<String> jsonContent = Files.readAllLines(jsonPath);
-//            for (String line : jsonContent)
-//            {
+//            for(String line : jsonContent){
 //                bookings += line;
 //            }
 //
-//        }catch(IOException e){
+//        }catch (IOException e){
 //            e.printStackTrace();
 //        }
-//
 //        return bookings;
 //    }
 
 
 
-
-//    @RequestMapping(value = "/bookings.json",
-//            produces = MediaType.APPLICATION_JSON_VALUE,
-//            method = RequestMethod.POST)
-//    public
-//    @ResponseBody
-//    String getJSONBooking(HttpServletResponse res) {
-//
-//        Map<String, Object> map = new HashMap<String, Object>();
-//
-//        Booking booking = new Booking();
-//
-//        map.put("id", 1);
-//        map.put("dateStart", "2020-02-20");
-//        map.put("dateEnd", "2020-02-24");
-//        map.put("address", "9898 Colonnade Blvd");
-//
-//        // Convert to JSON string.
-//        String json = new Gson().toJson(map);
-//
-//        // write json string
-//        res.setContentType("application/json");
-//        res.setCharacterEncoding("UTF-8");
-//
-//        return json;
+    //post to db
+//    @GetMapping("/booking/create")
+//    public String createForm(Model m){
+//        m.addAttribute("booking", new Booking());
+//        return "test";
 //    }
 
-    //    @PostMapping("/calendar/json")
+
+
+
+//    @PostMapping("/calendar/json")
+//    @ResponseBody
 //    public String PostCalendarController() throws ParseException {
 //
 //        Booking booking = new Booking();
@@ -178,7 +104,7 @@ public class CalendarController {
 //        bookingDao.save(booking);
 //
 //
-//        return "/calendar/json";
+//        return "test";
 //    }
 
 
