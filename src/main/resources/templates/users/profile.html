@@ -5,72 +5,116 @@
    <meta charset="UTF-8">
    <title>Profile Page</title>
 </head>
-<body>
+<body style="background-color: #FEEBCD">
 <!--need to add profile security-->
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-
-<div class="tile is-parent is-4 is-vertical">
-   <article class="tile is-success notification is-info">
-      <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
-width: 150px; height: 100px; background-position: center;">
-      <strong th:text="${user.username}" style="font-size: 50px;"></strong>
-   </article>
-</div>
-<div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
-   <form id="profImage" th:action="@{'/profile/' + ${user.id}}" th:method="POST">
-
-      <div id="image">
-      </div>
-      <button id="upload" class="button" type="button">Upload Image</button>
-      <button id="submit" class="button is-small is-success is-outlined">SUBMIT</button>
-   </form>
-
-</div>
-
-
-<br/>
-ID: <h1 th:text="${user.id}"></h1>
-<br>
-E-MAIL: <h3 th:text="${user.email}"></h3>
-<br>
-FIRST NAME: <h1 th:text="${user.first_name}"></h1>
-<br>
-LAST NAME: <h1 th:text="${user.last_name}"></h1>
-<br>
-PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
-<br>
-
-<div class="container"
-     style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-   <div th:each="place : ${userPlaces}"
-        style="margin-top: 1%; width: 400px; height: 300px;">
-      <a th:href="@{'/place/' + ${place.id}}">
-         <div class="card">
-            <div class="card-image">
-               <div th:each="item,iStat : ${place.placeImages}">
-                  <img th:if="${iStat.first}" th:src="${item.imagePath}"
-                       style="width: 400px; height: 250px;">
-               </div>
-            </div>
-            <div class="card-header">
-               <h4 class="is-size-4" th:text="${place.title}"></h4>
-            </div>
-            <div class="card-content">
-               <p th:text="${place.description}"></p>
-            </div>
-            <form th:action="@{'/places/' + ${place.id} + '/update'}" method="GET">
-               <button class="button is-small is-success">UPDATE</button>
-            </form>
-            <hr>
-            <form th:action="@{'/places/' + ${place.id} + '/delete'}" method="POST">
-               <button class="button is-small is-danger">DELETE</button>
-            </form>
+<div class="hero is-small"
+     style="background-image: url('img/adventure-bg.jpg'); background-position: center;">
+   <div class="hero-body">
+      <div
+        style="display: flex; flex-direction: column; width: 400px; border-radius: 15%;">
+         <div style="display: flex; align-items: center; margin-bottom: 1%;">
+            <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
+width: 300px; background-position: center;">
+            <strong th:text="${user.username}"
+                    class="has-text-light"
+                    style="font-size: 50px; margin-left: 5%;"></strong>
          </div>
-      </a>
+         <div>
+            <div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
+               <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
+                     th:method="POST"
+                     style="display: flex; justify-content: center; width: 70%;">
+                  <div id="image">
+                  </div>
+                  <button id="upload" class="button is-small"
+                          style="background-color: #D0F2C2;border-radius: 15%; margin-right: 1%;"
+                          type="button">Upload Image
+                  </button>
+                  <button id="submit"
+                          class="button is-success is-small"
+                          style="border-radius: 15%;">
+                     Submit
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
    </div>
 </div>
+
+<!--profile probably shouldn't show this info-->
+<!--<br/>-->
+<!--ID: <h1 th:text="${user.id}"></h1>-->
+<!--<br>-->
+<!--E-MAIL: <h3 th:text="${user.email}"></h3>-->
+<!--<br>-->
+<!--FIRST NAME: <h1 th:text="${user.first_name}"></h1>-->
+<!--<br>-->
+<!--LAST NAME: <h1 th:text="${user.last_name}"></h1>-->
+<!--<br>-->
+<!--PHONE NUM: <h1 th:text="${user.phone_num}"></h1>-->
+<!--<br>-->
+
+<div class="columns"
+     style="height: 100%; margin-top: 1%;">
+   <div class="container card column is-8"
+        style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <div class="column is-4 is-offset-1">
+         <h2 class="is-size-2" style="width: 100%;" th:text="${user.username} + '\'s Listings'"></h2>
+      </div>
+      <div class="column is-12"
+           style="display: flex; justify-content: center; flex-wrap: wrap;">
+         <div th:each="place : ${userPlaces}" style=" margin: 0 3% 3% 3%;">
+            <a th:href="@{'/place/' + ${place.id}}">
+               <div class="card"
+                    style="height: 160px; width: 200px;">
+                  <div class="card-image">
+                     <div th:each="item,iStat : ${place.placeImages}">
+                        <img th:if="${iStat.first}" th:src="${item.imagePath}"
+                             style="height: 100px; width: 200px; ">
+                     </div>
+                  </div>
+                  <div class="card-header"
+                       style="display: flex; justify-content: center;">
+                     <p th:text="${place.title}"></p>
+                  </div>
+                  <div style="display: flex; justify-content: space-between">
+                     <form th:action="@{'/places/' + ${place.id} + '/update'}"
+                           method="GET">
+                        <button class="button is-small is-success"><i
+                          class="fas fa-wrench"></i></button>
+                     </form>
+                     <hr>
+                     <form th:action="@{'/places/' + ${place.id} + '/delete'}"
+                           method="POST">
+                        <button class="button is-small is-danger"><i
+                          class="fas fa-trash"></i></button>
+                     </form>
+                  </div>
+               </div>
+            </a>
+         </div>
+      </div>
+   </div>
+<!--   <div class="column card is-3" th:if="${user.id == loggedInUser.id}" style="margin-right: 3%; border-radius: 3%;">-->
+<!--         <h1 class="is-size-2">Here is your info: </h1>-->
+<!--         <br/>-->
+<!--         <span th:text="'ID: ' + ${user.id}"></span>-->
+<!--         <br>-->
+<!--         <h3 th:text="'E-MAIL: ' + ${user.email}"></h3>-->
+<!--         <br>-->
+<!--         <span th:text="'FIRST NAME: ' + ${user.first_name}"></span>-->
+<!--         <br>-->
+<!--         <span th:text="'LAST NAME: ' + ${user.last_name}"></span>-->
+<!--         <br>-->
+<!--         <span th:text="'PHONE NUMBER: ' + ${user.phone_num}"></span>-->
+<!--         <br>-->
+<!--   </div>-->
+</div>
+<nav th:insert="partials/fragments :: footer"></nav>
 
 <!--begin scripts-->
 
@@ -90,7 +134,7 @@ PHONE NUM: <h1 th:text="${user.phone_num}"></h1>
                 //   alert("submitted");
                 // });
             }
-    };
+        };
         $("#upload").click(function () {
             client.picker(options).open();
         });
