@@ -42,19 +42,6 @@
    </div>
 </div>
 
-<!--profile probably shouldn't show this info-->
-<!--<br/>-->
-<!--ID: <h1 th:text="${user.id}"></h1>-->
-<!--<br>-->
-<!--E-MAIL: <h3 th:text="${user.email}"></h3>-->
-<!--<br>-->
-<!--FIRST NAME: <h1 th:text="${user.first_name}"></h1>-->
-<!--<br>-->
-<!--LAST NAME: <h1 th:text="${user.last_name}"></h1>-->
-<!--<br>-->
-<!--PHONE NUM: <h1 th:text="${user.phone_num}"></h1>-->
-<!--<br>-->
-
 <div class="columns"
      style="height: 100%; margin-top: 1%;">
    <div class="container card column is-8"
@@ -97,22 +84,9 @@
          </div>
       </div>
    </div>
-<!--   <div class="column card is-3" th:if="${user.id == loggedInUser.id}" style="margin-right: 3%; border-radius: 3%;">-->
-<!--         <h1 class="is-size-2">Here is your info: </h1>-->
-<!--         <br/>-->
-<!--         <span th:text="'ID: ' + ${user.id}"></span>-->
-<!--         <br>-->
-<!--         <h3 th:text="'E-MAIL: ' + ${user.email}"></h3>-->
-<!--         <br>-->
-<!--         <span th:text="'FIRST NAME: ' + ${user.first_name}"></span>-->
-<!--         <br>-->
-<!--         <span th:text="'LAST NAME: ' + ${user.last_name}"></span>-->
-<!--         <br>-->
-<!--         <span th:text="'PHONE NUMBER: ' + ${user.phone_num}"></span>-->
-<!--         <br>-->
-<!--   </div>-->
 </div>
-<nav th:insert="partials/fragments :: footer"></nav>
+
+<footer th:insert="partials/fragments :: footer"></footer>
 
 <!--begin scripts-->
 
