@@ -5,11 +5,14 @@ import com.google.gson.Gson;
 import com.rto.capstone.models.Booking;
 import com.rto.capstone.repositories.BookingRepository;
 import org.aspectj.weaver.ast.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,85 +32,59 @@ public class CalendarController {
         this.bookingDao = bookingDao;
     }
 
+
     //show calendar
     @GetMapping("/calendar")
     public String showCalendar(){
         return "views/calendar_test";
     }
 
-    //reads json for bookings
-    @GetMapping("/bookings")
-    @CrossOrigin
+    //view all bookings from db in json format
+    @GetMapping(value = "/bookings.json")
+    public
     @ResponseBody
-    public String showCalendarEventsFromJSON(){
-        String bookings = "";
-        Path jsonPath = Paths.get("bookings.json");
-        try {
-            List<String> jsonContent = Files.readAllLines(jsonPath);
-            for (String line : jsonContent)
-            {
-                bookings += line;
-            }
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        return bookings;
-    }
-
-
-    //posts to bookings to json
-    @PostMapping(value = "/create/bookings",
-    consumes = "application/json",
-    produces = "application/json")
-    public String postBookingForJSON(@RequestBody Booking booking) throws ParseException, IOException {
-        String bookings = "";
-        Path jsonPath = Paths.get("bookings.json");
-        try {
-            List<String> jsonContent = Files.readAllLines(jsonPath);
-            for (String line : jsonContent)
-            {
-                bookings += line;
-            }
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        return bookings;
+    Iterable<Booking> getAllBookingsInJSONFormat() {
+        return bookingDao.findAll();
     }
 
 
 
+    //post info from form to db for booking
+//    @PostMapping(path = "/booking/create")
 
-//    @RequestMapping(value = "/bookings.json",
-//            produces = MediaType.APPLICATION_JSON_VALUE,
-//            method = RequestMethod.POST)
-//    public
+
+//    @GetMapping("/getBookings.json")
+//    @CrossOrigin
 //    @ResponseBody
-//    String getJSONBooking(HttpServletResponse res) {
+//    public String getBookings(){
+//        String bookings = "";
+//        Path jsonPath = Paths.get("/bookings.json");
+//        try {
+//            List<String> jsonContent = Files.readAllLines(jsonPath);
+//            for(String line : jsonContent){
+//                bookings += line;
+//            }
 //
-//        Map<String, Object> map = new HashMap<String, Object>();
-//
-//        Booking booking = new Booking();
-//
-//        map.put("id", 1);
-//        map.put("dateStart", "2020-02-20");
-//        map.put("dateEnd", "2020-02-24");
-//        map.put("address", "9898 Colonnade Blvd");
-//
-//        // Convert to JSON string.
-//        String json = new Gson().toJson(map);
-//
-//        // write json string
-//        res.setContentType("application/json");
-//        res.setCharacterEncoding("UTF-8");
-//
-//        return json;
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        return bookings;
 //    }
 
-    //    @PostMapping("/calendar/json")
+
+
+    //post to db
+//    @GetMapping("/booking/create")
+//    public String createForm(Model m){
+//        m.addAttribute("booking", new Booking());
+//        return "test";
+//    }
+
+
+
+
+//    @PostMapping("/calendar/json")
+//    @ResponseBody
 //    public String PostCalendarController() throws ParseException {
 //
 //        Booking booking = new Booking();
@@ -127,19 +104,11 @@ public class CalendarController {
 //        bookingDao.save(booking);
 //
 //
-//        return "/calendar/json";
+//        return "test";
 //    }
 
 
-    //view all bookings from db in json format
-//    @GetMapping("/bookings.json")
-//    public
-//    @ResponseBody
-//    Iterable<Booking> getAllBookingsInJSONFormat()
-//    {
-//        return bookingDao.findAll();
-//
-//    }
+
 
 
 
@@ -175,27 +144,7 @@ public class CalendarController {
 
 
 
-//    @GetMapping("/calendar/test")
-//    @ResponseBody
-//    public String GetCalendarTest() throws ParseException {
-//
-//        Booking booking = new Booking();
-//
-//        String sDate = "2020-03-21";
-//        String eDate = "2020-03-23";
-//
-//        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(sDate);
-//
-//        Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(eDate);
-//
-//        booking.setDateStart(startDate);
-//        booking.setDateEnd(endDate);
-//        booking.setAddress("900 Navarro, San Antonio, TX 78243");
-//
-//
-//        bookingDao.save(booking);
-//        return "test";
-//    }
+
 
 
 

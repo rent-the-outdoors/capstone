@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>Create booking</title>
+</head>
+<body>
+<h1>Create a booking here</h1>
+<form th:action="@{/bookings/create}" th:method="POST" th:object="${booking}">
+    <label for="title">Title</label>
+    <input th:placeholder="Title" id="title" type="text" th:field="*{title}" required>
+
+    <label for="address">Address</label>
+    <input th:placeholder="Address" id="address" type="text" th:field="*{address}" required>
+
+    <label for="dateStart">Start Date: </label>
+    <input th:placeholder="YYYY-MM-DD" id="dateStart" type="text" th:field="*{dateStart}" required>
+
+    <label for="dateEnd">End Date: </label>
+    <input th:placeholder="YYYY-MM-DD" id="dateEnd" type="text" th:field="*{dateEnd}" required>
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>

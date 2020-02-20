@@ -22,6 +22,9 @@ public class Booking {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEnd;
 
+    @Column
+    private String title;
+
     @Column(nullable = false, name = "address", columnDefinition = "VARCHAR(500)")
     private String address;
 
@@ -34,6 +37,9 @@ public class Booking {
     @JoinColumn(name = "place_id")
     @JsonIgnore
     private Place place;
+
+    public Booking(){}
+
 
     public Booking(long id, Date dateStart, Date dateEnd, String address) {
         this.id = id;
@@ -96,5 +102,11 @@ public class Booking {
         this.place = place;
     }
 
-    public Booking(){}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
