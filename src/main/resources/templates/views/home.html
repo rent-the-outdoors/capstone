@@ -65,10 +65,9 @@
    <div class="between">
       <div th:each="place,pStat : ${places}" th:if="${pStat.count < 5}"
            class="columns" style="margin-top: 2%">
-         <div class="column is-8 is-full"
-              style="margin-left: 15%; margin-right: 0">
+         <div class="column is-8" style="padding: 0">
             <a th:href="@{'/place/' + ${place.id}}">
-               <div class="card" style="height: 100%; width: 100%">
+               <div class="card is-8">
                   <div th:each="image,iStat : ${place.placeImages}">
                      <img th:if="${iStat.first}" th:src="${image.imagePath}" style="width: 400px; height: 200px;">
                   </div>
