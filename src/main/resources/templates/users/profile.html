@@ -70,7 +70,7 @@ width: 300px; background-position: center;">
          <div th:each="place : ${userPlaces}" style=" margin: 0 3% 3% 3%;">
             <a th:href="@{'/place/' + ${place.id}}">
                <div class="card"
-                    style="height: 160px; width: 200px;">
+                    style="max-height: 150px; width: 200px;">
                   <div class="card-image">
                      <div th:each="item,iStat : ${place.placeImages}">
                         <img th:if="${iStat.first}" th:src="${item.imagePath}"
@@ -78,22 +78,23 @@ width: 300px; background-position: center;">
                      </div>
                   </div>
                   <div class="card-header"
-                       style="display: flex; justify-content: center;">
-                     <p th:text="${place.title}"></p>
+                       style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
+                     <span th:text="${place.title}"></span>
                   </div>
-                  <div style="display: flex; justify-content: space-between">
-                     <form th:action="@{'/places/' + ${place.id} + '/update'}"
-                           method="GET">
-                        <button class="button is-small is-success"><i
-                          class="fas fa-wrench"></i></button>
-                     </form>
-                     <hr>
-                     <form th:action="@{'/places/' + ${place.id} + '/delete'}"
-                           method="POST">
-                        <button class="button is-small is-danger"><i
-                          class="fas fa-trash"></i></button>
-                     </form>
-                  </div>
+                     <div style="display: flex; justify-content: space-between" th:if="${loggedInUser.id == user.id}">
+                        <form
+                          th:action="@{'/places/' + ${place.id} + '/update'}"
+                          method="GET">
+                           <button class="button is-small is-success"><i
+                             class="fas fa-wrench"></i></button>
+                        </form>
+                        <form
+                          th:action="@{'/places/' + ${place.id} + '/delete'}"
+                          method="POST">
+                           <button class="button is-small is-danger"><i
+                             class="fas fa-trash"></i></button>
+                        </form>
+                     </div>
                </div>
             </a>
          </div>
