@@ -6,28 +6,26 @@
 <body style="background-color: navajowhite">
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<article class="tile is-child box" style="background-color: antiquewhite">
+<article class="tile is-child box" style="background-color: navajowhite">
     <div class="columns">
         <div class="column is-narrow"
-             style="border: 2px solid black; padding: 0; height: 203px; margin-right: 1px; background-color: white">
+             style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px; background-color: white">
             <div th:each="image,iStat : ${place.placeImages}">
                 <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                     style="padding: 0; margin: 0; height: 200px; width: 300px;"
+                     style="padding: 0; margin: 0; height: 400px; width: 400px;"
                      class="is-mobile-1">
             </div>
         </div>
 
         <div class="column is-5 is-one-third-tablet"
-             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 308px; height: 203px; background-color: white ">
+             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px; background-color: white ">
             <div th:each="image,iStat : ${place.placeImages}"
-                 style="margin: 0 1px 1px 0; height: 99px;">
+                 style="margin: 0 1px 1px 0; height: 199px;">
                 <img th:if="${iStat.count > 1 && iStat.count < 6}"
                      th:src="${image.imagePath}"
-                     style="height: 99px; width: 150px;">
+                     style="height: 199px; width: 250px;">
             </div>
         </div>
-
-
         <!--map here-->
         <div id="map" class="column is-narrow"
              style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
@@ -38,13 +36,15 @@
     </div>
 </article>
 
-<article class="tile is-child box" style="background-color: antiquewhite">
+<article class="tile is-child box" style="background-color: navajowhite">
     <div class="columns">
         <div class="column is-4">
             <div class="card has-text-centered">
-                <h1 class="title" th:text="${place.title}" style="margin-bottom: 12px"></h1>
+                <h1 class="title" th:text="${place.title}"
+                    style="margin-bottom: 12px"></h1>
                 <div class="card-body">
-                    <span><strong th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
+               <span><strong
+                       th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
                     <p class="content" th:text="${place.description}"></p>
                 </div>
                 <div class="card-footer">
@@ -52,7 +52,8 @@
                         <div th:if="${loggedInUser.id != place.user.id}">
                             <form th:method="GET"
                                   th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-                                <input type="hidden" th:value="${place.id}" name="placeId">
+                                <input type="hidden" th:value="${place.id}"
+                                       name="placeId">
                                 <button type="submit" class="button is-primary"><strong>Book
                                     Now</strong></button>
                             </form>
@@ -60,8 +61,10 @@
                         <div th:if="${loggedInUser.id == place.user.id}">
                             <form th:method="GET"
                                   th:action="@{'/places/' + ${place.id} + '/update'}">
-                                <input type="hidden" th:value="${place.id}" name="placeId">
-                                <button type="submit" class="button is-primary"><strong>Edit</strong></button>
+                                <input type="hidden" th:value="${place.id}"
+                                       name="placeId">
+                                <button type="submit" class="button is-primary"><strong>Edit</strong>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -74,7 +77,8 @@
             <div style="margin-left: 5%"><p>Owner</p></div>
             <a th:href="@{'/profile/' + ${place.user.id}}">
                 <figure class="media-left is-64x64">
-                    <img th:src="${place.user.image_path}" class="image is-64x64" style="border-radius: 50%;">
+                    <img th:src="${place.user.image_path}" class="image is-64x64"
+                         style="border-radius: 50%;">
                 </figure>
             </a>
             <div class="media-content" style="margin-left: 5%">
@@ -85,7 +89,34 @@
             </div>
         </div>
         <!--calendar here-->
-        <div style="background-color: white; height: 400px; width: 400px" id="calendar"></div>
+        <div style="background-color: white;" id="calendar"></div>
+    </div>
+    <div class="modal" id="bookModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Book a Property</p>
+            </header>
+            <section class="modal-card-body">
+                <form th:action="@{'/bookings/' + ${place.id} + '/create'}" th:method="POST">
+                    <input th:placeholder="Title" id="title" type="hidden" th:field="*{place.title}" required>
+                    <h2 class="is-size-3" th:text="${place.title}"></h2>
+                    <input th:placeholder="Address" id="placeAddress" type="hidden" th:field="*{place.address}" required>
+                    <h2 class="is-size-3" th:text="${place.address}"></h2>
+                    <label for="dateStart">Start Date: </label>
+                    <input th:placeholder="YYYY-MM-DD" id="dateStart" type="text"
+                           th:field="*{booking.dateStart}" required>
+                    <label for="dateEnd">End Date: </label>
+                    <input th:placeholder="YYYY-MM-DD" id="dateEnd" type="text"
+                           th:field="*{booking.dateEnd}" required>
+                    <input type="hidden" th:field="*{place.id}" th:placeholder="placeId">
+                    <button class="button is-success" type="submit">Save changes</button>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button" id="closeModal" aria-label="close">Cancel</button>
+            </footer>
+        </div>
     </div>
 
 </article>
@@ -96,96 +127,95 @@
 
 <script>
 
-        mapboxgl.accessToken = mapBoxToken;
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 15,
-            center: [-98.4936, 29.4241]
+    $('#closeModal').click(function () {
+        $('#bookModal').toggleClass("is-active")
+    });
+    mapboxgl.accessToken = mapBoxToken;
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 15,
+        center: [-98.4936, 29.4241]
+    });
+    const markerDetails = {
+        color: 'orange',
+        draggable: false
+    };
+    const marker = new mapboxgl.Marker(markerDetails)
+        .setLngLat([-98.4936, 29.4241])
+        .addTo(map);
+
+    function geocode(search, token) {
+        const baseUrl = 'https://api.mapbox.com';
+        const endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function (res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function (data) {
+                return data.features[0].center;
+            });
+    }
+
+    var address = $('#address').val();
+    geocode(address, mapBoxToken)
+        .then(function (result) {
+            map.flyTo({center: result});
+            marker.setLngLat(result);
         });
-        const markerDetails = {
-            color: 'orange',
-            draggable: false
-        };
-        const marker = new mapboxgl.Marker(markerDetails)
-            .setLngLat([-98.4936, 29.4241])
-            .addTo(map);
 
-        function geocode(search, token) {
-            const baseUrl = 'https://api.mapbox.com';
-            const endPoint = '/geocoding/v5/mapbox.places/';
-            return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-                .then(function (res) {
-                    return res.json();
-                    // to get all the data from the request, comment out the following three lines...
-                }).then(function (data) {
-                    return data.features[0].center;
-                });
-        }
 
-        var address = $('#address').val();
-        geocode(address, mapBoxToken)
-            .then(function (result) {
-                map.flyTo({center: result});
-                marker.setLngLat(result);
+    $(document).ready(function () {
+        var calBookingsBucket = [];
+        var req = $.ajax({
+            url: '/bookings.json',
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            async: false,
+            processData: false,
+        });
+        req.done(function (bookings) {
+            bookings.forEach(function (booking) {
+                calBookingsBucket.push({
+                    title: booking.title,
+                    start: new Date(booking.dateStart),
+                    end: new Date(booking.dateEnd),
+
+                })
             });
+            console.log(calBookingsBucket);
 
 
+        }); //for each ends here
+        var calendarEl = document.getElementById('calendar');
 
-        $(document).ready(function () {
-            var calBookingsBucket = [];
-            var req = $.ajax({
-                url: '/bookings.json',
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                cache: false,
-                async: false,
-                processData: false,
-            });
-            req.done(function (bookings) {
-                bookings.forEach(function (booking) {
-                    calBookingsBucket.push({
-                        title: booking.title,
-                        start: new Date(booking.dateStart),
-                        end: new Date(booking.dateEnd),
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['dayGrid'],
+            header: {
+                left: 'prev,next,today',
+                center: 'title',
+                right: 'myCustomButton'
 
-                    })
-                });
-                console.log(calBookingsBucket);
+            },
 
-            }); //for each ends here
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid'],
-                header: {
-                    left: 'prev,next,today',
-                    center: 'title',
-                    right: 'myCustomButton'
-
-                },
-
-
-                customButtons: {
-                    myCustomButton: {
-                        text: "Book!",
-                        click: function(){
-                            $('#bookModal').toggleClass("is-active");
-                        }
+            customButtons: {
+                myCustomButton: {
+                    text: "Book!",
+                    click: function () {
+                        $('#bookModal').toggleClass("is-active");
                     }
-                },
+                }
+            },
 
-                events: calBookingsBucket,
+            events: calBookingsBucket,
 
-            });
+        });
 
-
-            calendar.render();
-        }); //end of doc.ready
+        calendar.render();
+    }); //end of doc.ready
 
 </script>
-
-
 
 
 
