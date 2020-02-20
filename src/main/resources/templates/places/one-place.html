@@ -46,14 +46,18 @@
                <span><strong
                        th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
                     <p class="content" th:text="${place.description}"></p>
+
+                    <p th:if="${dateStart != null}" class="content" th:text="'From: ' + ${dateStart}"></p>
+                    <p th:if="${dateEnd != null}" class="content" th:text="'To: ' + ${dateEnd}"></p>
                 </div>
                 <div class="card-footer">
                     <div class="column">
-                        <div th:if="${loggedInUser.id != place.user.id}">
+                        <div th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
                             <form th:method="GET"
                                   th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-                                <input type="hidden" th:value="${place.id}"
-                                       name="placeId">
+                                <input type="hidden" th:field="*{place.id}"
+                                       placeholder="placeId">
+                                <input type="hidden" th:field="*{loggedInUser.id}" th:placeholder="loggedInUserId">
                                 <button type="submit" class="button is-primary"><strong>Book
                                     Now</strong></button>
                             </form>
@@ -88,9 +92,13 @@
                 </div>
             </div>
         </div>
+
         <!--calendar here-->
         <div style="background-color: white;" id="calendar"></div>
     </div>
+
+<!--    modal-->
+
     <div class="modal" id="bookModal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -109,7 +117,8 @@
                     <label for="dateEnd">End Date: </label>
                     <input th:placeholder="YYYY-MM-DD" id="dateEnd" type="text"
                            th:field="*{booking.dateEnd}" required>
-                    <input type="hidden" th:field="*{place.id}" th:placeholder="placeId">
+                    <input type="hidden" th:value="${place.id}" th:placeholder="placeId" name="placeId">
+                    <input type="hidden" th:value="${loggedInUser.id}" th:placeholder="loggedInUserId" name="loggedInUserId">
                     <button class="button is-success" type="submit">Save changes</button>
                 </form>
             </section>
@@ -126,6 +135,7 @@
 <footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
 
 <script>
+
 
     $('#closeModal').click(function () {
         $('#bookModal').toggleClass("is-active")
@@ -156,7 +166,6 @@
                 return data.features[0].center;
             });
     }
-//here is a comment for pushing
     var address = $('#address').val();
     geocode(address, mapBoxToken)
         .then(function (result) {
