@@ -11,7 +11,7 @@
             background-repeat: no-repeat;
             background-position: bottom;
             background-size: cover;
-            height: 25vh;">
+            height: 30vh;">
    <div class="container is-widescreen centered">
       <form method="GET" action="/search" class="column is-mobile">
          <div class="column is-two-thirds field has-addons">
@@ -62,7 +62,7 @@
       </form>
    </div>
 </div>
-<main style="margin-top: 3%">
+<main style="margin-top: 2%; margin-bottom: 2%">
    <div>
       <div th:if="${searchQuery.size() > 0}"
            th:each="place,plStat : ${searchQuery}"
@@ -73,7 +73,7 @@
                   <div th:each="image,iStat : ${place.placeImages}"
                        style="height: 200px">
                      <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                          style="width: 400px; height: 200px;">
+                          style="width: 325px; height: 200px;">
                   </div>
                   <div class="card-content" style="margin-left: 2%;">
                      <p>
