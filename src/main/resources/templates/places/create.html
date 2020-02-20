@@ -96,7 +96,7 @@
     $(document).ready(function () {
         //filestack js
         let i = 0;
-        const client = filestack.init("A7uSqc5QwQayJC0xf0Wx6z");
+        const client = filestack.init("ArvmOJdHSwmo1NtHoPmi5z");
         const options = {
             onUploadDone: (res) => $('#image').append(`<input type="hidden" name="image_path` + i + `" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}"> <br> <img src="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}" alt="image of place" style="width: 100px; height: 100px;">`),
             maxSize: 10 * 1024 * 1024,
