@@ -9,6 +9,17 @@ body {
 
 }
 
+
+
+#rto {
+    font-size: 30px;
+
+}
+.navbar-item{
+    font-size: 20px;
+}
+
+
 .splash-form {
     display: flex;
     justify-content: center;
@@ -106,8 +117,9 @@ h2 {
     text-decoration: none;
     box-shadow: 0 5px 0 white;
 
-
 }
+
+
 
 a:hover {
     background-color: white;
