@@ -1,9 +1,11 @@
 package com.rto.capstone.controllers;
 
 
+import com.rto.capstone.models.Booking;
 import com.rto.capstone.models.Place;
 import com.rto.capstone.models.PlaceImage;
 import com.rto.capstone.models.User;
+import com.rto.capstone.repositories.BookingRepository;
 import com.rto.capstone.repositories.ImageRepository;
 import com.rto.capstone.repositories.PlaceRepository;
 import com.rto.capstone.repositories.UserRepository;
@@ -28,14 +30,17 @@ public class  PlaceController {
     private PlaceRepository placesDao;
     private UserRepository usersDao;
     private ImageRepository imagesDao;
+    private BookingRepository bookingsDao;
 
     public PlaceController(PlaceRepository placesDao,
                            UserRepository usersDao,
-                           ImageRepository imagesDao)
+                           ImageRepository imagesDao,
+                           BookingRepository bookingsDao)
     {
         this.placesDao = placesDao;
         this.usersDao = usersDao;
         this.imagesDao = imagesDao;
+        this.bookingsDao = bookingsDao;
     }
 //    @ExceptionHandler({ClassCastException.class, NullPointerException.class, InternalException.class, NestedServletException.class, TemplateInputException.class, ParseException.class})
 //    public String multiError() {
@@ -134,6 +139,8 @@ public class  PlaceController {
     {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         loggedInUser = usersDao.getOne(loggedInUser.getId());
+        Booking booking = new Booking();
+        m.addAttribute("booking",booking);
         m.addAttribute("loggedInUser", loggedInUser);
         m.addAttribute("place", placesDao.getOne(id));
         return "places/one-place";
