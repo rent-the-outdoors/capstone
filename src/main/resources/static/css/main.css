@@ -1,6 +1,11 @@
+nav, .btn {
+    font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+
+}
 body {
     min-height: 100vh;
     width: 100vw;
+
 }
 
 .splash-form {
@@ -9,6 +14,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 75vw;
+
 }
 .centered {
     display: flex;
@@ -28,9 +34,11 @@ body {
     align-items: center;
     width: 100%;
 }
+
 .splash-form .button {
     width: 25%;
 }
+
 .small-card {
     width: 10%;
     margin-top: 1%;
@@ -75,4 +83,42 @@ input[type=checkbox]:checked + .check-label img{
     bottom: 0;
     width: 100%;
 }
+
+/*footer img div*/
+.cutoff {
+    height: 250px;
+    background: url('/img/adventure-bg.jpg') bottom;
+}
+
+h2 {
+    padding-bottom: 1em;
+}
+
+.github_tag {
+    background-color: #FAEBD7;
+    color: black;
+    font-size: 20px;
+    padding: 1em 1.5em;
+    text-transform: uppercase;
+    margin: 1em;
+    position: relative;
+    text-decoration: none;
+    box-shadow: 0 5px 0 white;
+
+
+}
+
+a:hover {
+    background-color: white;
+}
+
+a:active {
+    background-color: white;
+    box-shadow: none;
+    top: 5px;
+
+}
+
+
+
 
