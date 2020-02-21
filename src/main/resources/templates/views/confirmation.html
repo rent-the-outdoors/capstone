@@ -13,17 +13,19 @@
             </h1>
             <h2 class="subtitle has-text-grey-darker">
                <p
-                 th:text="'$' + ${place.cost_per_day} + ' per day # DAYS'"></p>
+                 th:text="'Total: $' + ${totalCost}"></p>
                <p><span class="has-text-weight-bold"> From: </span><span
-                 th:text="${booking.dateStart}"></span></p>
-               <p><span class="has-text-weight-bold"> To: </span><span th:text="${booking.dateEnd}"></span></p>
+                 th:text="${firstDate}"></span></p>
+               <p><span class="has-text-weight-bold"> To: </span><span th:text="${secondDate}"></span></p>
+               <p><span class="has-text-weight-bold"> Number of Days: </span><span th:text="${numberOfDays}"></span></p>
                <p><span class="has-text-weight-bold">Address: </span> <span
                  th:text="${place.address}"></span></p>
+
             </h2>
             <form th:action="@{|/charge/{id}|}" th:method='POST'
                   id='checkout-form'
                   xmlns:th="http://www.thymeleaf.org">
-               <input type='hidden' th:value='${amount}' name='amount' />
+               <input type='hidden' th:value='${totalCost}' name='amount' />
                <input type='hidden' th:value="${userId}" name="userId"/>
                <input type='hidden' th:value="${place.id}" name="placeId"/>
 <!--               <input type='hidden' th:value="${booking.dateStart}" name="dayStart" />-->
@@ -34,7 +36,7 @@
                  class='stripe-button'
                  th:attr='data-key=${stripePublicKey},
 
-         data-amount=${(amount * 100)}'
+                 data-amount=${(totalCost * 100)}'
 
                  data-name='Rent The Outdoors'
                  data-description='Booking Confirmation'
@@ -47,7 +49,7 @@
       </div>
    </section>
 </main>
-
 <footer th:insert="partials/fragments :: footer"></footer>
+
 </body>
 </html>

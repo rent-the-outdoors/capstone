@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class CheckoutController {
@@ -60,18 +62,28 @@ public class CheckoutController {
     public String checkout(Model model, @PathVariable long id, @RequestParam long loggedInUserId, @RequestParam Long userId, @RequestParam String dateStart, @RequestParam String dateEnd) throws ParseException {
         Place place = placeDao.getOne(id);
         Booking booking = new Booking();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        Date firstDate = sdf.parse(dateStart);
+        Date secondDate = sdf.parse(dateEnd);
+        booking.setDateEnd(secondDate);
+        booking.setDateStart(firstDate);
         booking.setAddress(place.getAddress());
-        booking.setDateEnd(new SimpleDateFormat("yyyy/MM/dd").parse(dateEnd));
-        booking.setDateStart(new SimpleDateFormat("yyyy/MM/dd").parse(dateStart));
         booking.setTitle(place.getTitle());
         booking.setUser(userDao.getOne(loggedInUserId));
         booking.setPlace(placeDao.getOne(place.getId()));
+        Double costPerDay = Double.parseDouble(place.getCost_per_day());
+        long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         bookingDao.save(booking);
+        model.addAttribute("costPerDay", Double.parseDouble(place.getCost_per_day()));
+        model.addAttribute("totalCost", (costPerDay * diff));
+        model.addAttribute("firstDate", firstDate);
+        model.addAttribute("secondDate", secondDate);
         model.addAttribute("booking",booking);
         model.addAttribute("place", place);
         model.addAttribute("userId", userId);
         model.addAttribute("stripePublicKey", stripePublicKey);
-
+        model.addAttribute("numberOfDays", diff);
         return "views/confirmation";
     }
 
