@@ -35,11 +35,11 @@
    <!--nav start-->
    <nav class="navbar is-dark is-fixed-top sticky" role="navigation"
         aria-label="main navigation">
+
       <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
 
-      <div class="navbar-menu" style="width: 80px">
          <div class="navbar-start">
-            <a class="navbar-item" href="/search?search=">
+            <a class="navbar-item" aria-label="main navigation" href="/search?search=">
                <strong>Book Now</strong>
             </a>
 
@@ -48,7 +48,10 @@
             </a>
          </div>
 
-         <div class="navbar-end">
+      <div class="navbar-menu" style="width: 100px"></div>
+
+
+      <div class="navbar-end">
             <a id="registerBtn" sec:authorize="not isAuthenticated()"
                href="/users/create" class="navbar-item">
                <strong>Register</strong>
@@ -79,8 +82,8 @@
             </form>
          </div>
 
-      </div>
    </nav>
+
 </nav>
 
 
@@ -123,5 +126,32 @@
       </div>
    </div>
 </footer>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+         // Add a click event on each of them
+         $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+               // Get the target from the "data-target" attribute
+               const target = el.dataset.target;
+               const $target = document.getElementById(target);
+
+               // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+               el.classList.toggle('is-active');
+               $target.classList.toggle('is-active');
+
+            });
+         });
+      }
+
+   });
+</script>
 </body>
 </html>
