@@ -98,6 +98,7 @@ input[type=checkbox]:checked + .check-label img{
 
 /*footer img div*/
 .cutoff {
+    margin-top: 2%;
     height: 250px;
     background: url('/img/adventure-bg.jpg') bottom;
 }
