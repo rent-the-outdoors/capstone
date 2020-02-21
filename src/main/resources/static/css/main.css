@@ -87,9 +87,7 @@ input[type=checkbox]:checked + .check-label img{
     box-shadow: 0 0 5px 3px lightgreen;
 }
 
-.hero {
-     z-index: 1;
-}
+
 .sticky-bottom {
     position: fixed;
     bottom: 0;
@@ -99,7 +97,7 @@ input[type=checkbox]:checked + .check-label img{
 /*footer img div*/
 .cutoff {
     height: 250px;
-    background: url('/img/adventure-bg.jpg') bottom;
+    background-image: url('/img/adventure-bg.jpg');
 }
 
 h2 {
@@ -131,7 +129,9 @@ a:active {
     top: 5px;
 
 }
-
+#header-banner {
+    background-image: url("img/adventure-bg.jpg");
+}
 
 
 
