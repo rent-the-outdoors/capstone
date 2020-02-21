@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('Single Place Page')">
+<head th:insert="partials/mapbox_fragments :: head('Single Place Page')">
 </head>
 <body style="background-color: #FAEBD7">
 <div id="header-banner" style="
@@ -69,23 +69,14 @@
                     style="display: flex; justify-content: center;">
                   <div style="display: flex; justify-content: center;"
                        th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
-                     <form th:method="GET"
-                           th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-                        <input type="hidden" th:field="*{place.id}"
-                               placeholder="placeId">
-                        <input type="hidden" th:field="*{loggedInUser.id}"
-                               th:placeholder="loggedInUserId">
-                        <button type="submit" class="button is-primary">
-                           <strong>Book
-                              Now</strong></button>
-                     </form>
+                     <button id="showModal" class="button is-dark">Book Now</button>
                   </div>
                   <div th:if="${loggedInUser.id == place.user.id}">
                      <form th:method="GET"
                            th:action="@{'/places/' + ${place.id} + '/update'}">
                         <input type="hidden" th:value="${place.id}"
                                name="placeId">
-                        <button type="submit" class="button is-primary">
+                        <button type="submit" class="button is-dark">
                            <strong>Edit</strong>
                         </button>
                      </form>
@@ -129,10 +120,10 @@
                <input type="hidden" th:value="${place.user.id}"
                       th:placeholder="userId" name="userId">
          <div class="modal-card-foot">
-            <button class="button" id="closeModal" aria-label="close">
+            <button class="button is-dark " id="closeModal" aria-label="close">
                Cancel
             </button>
-               <button class="button is-success" type="submit">Save changes
+               <button class="button is-dark" type="submit">Save changes
                </button>
          </div>
             </form>
@@ -155,7 +146,10 @@
 <script>
 
 
-    $('#closeModal').click(function () {
+    $('#showModal').click(function () {
+        $('#bookModal').toggleClass("is-active")
+    });
+    $('#closeModal').click(function() {
         $('#bookModal').toggleClass("is-active")
     });
     mapboxgl.accessToken = mapBoxToken;
@@ -227,17 +221,7 @@
             },
 
 
-            customButtons: {
-                myCustomButton: {
-                    text: "Book!",
-                    click: function () {
-                        $('#bookModal').toggleClass("is-active");
 
-                    }
-                }
-
-
-            },
 
             events: calBookingsBucket,
 

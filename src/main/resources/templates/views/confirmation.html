@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('Confirm Booking')">
+<head th:include="partials/fragments :: head('Login Page')">
+   <meta charset="UTF-8">
+   <title>Title</title>
 </head>
-<body>
-<nav th:include="partials/fragments :: nav"></nav>
-<main>
-   <section class="hero is-fullheight is-success is-bold">
-      <div class="hero-body">
-         <div class="box column is-6 is-offset-3 has-text-centered">
+<body style="background-color: antiquewhite; height: 100vh;"
+      class="has-navbar-fixed-bottom">
+<nav th:include="partials/fragments :: nav" class="is-blue"></nav>
+<div
+  style="display: flex; justify-content: center; align-items: center; padding: 6%; width: 100%; flex-direction: column;">
+         <div class="box column is-6 has-text-centered">
             <h1 class="title" style="color: #062E56">
                Confirm Your Booking:
             </h1>
@@ -16,8 +18,11 @@
                  th:text="'Total: $' + ${totalCost}"></p>
                <p><span class="has-text-weight-bold"> From: </span><span
                  th:text="${firstDate}"></span></p>
-               <p><span class="has-text-weight-bold"> To: </span><span th:text="${secondDate}"></span></p>
-               <p><span class="has-text-weight-bold"> Number of Days: </span><span th:text="${numberOfDays}"></span></p>
+               <p><span class="has-text-weight-bold"> To: </span><span
+                 th:text="${secondDate}"></span></p>
+               <p><span
+                 class="has-text-weight-bold"> Number of Days: </span><span
+                 th:text="${numberOfDays}"></span></p>
                <p><span class="has-text-weight-bold">Address: </span> <span
                  th:text="${place.address}"></span></p>
 
@@ -25,11 +30,9 @@
             <form th:action="@{|/charge/{id}|}" th:method='POST'
                   id='checkout-form'
                   xmlns:th="http://www.thymeleaf.org">
-               <input type='hidden' th:value='${totalCost}' name='amount' />
+               <input type='hidden' th:value='${totalCost}' name='amount'/>
                <input type='hidden' th:value="${userId}" name="userId"/>
                <input type='hidden' th:value="${place.id}" name="placeId"/>
-<!--               <input type='hidden' th:value="${booking.dateStart}" name="dayStart" />-->
-<!--               <input type='hidden' th:value="${booking.dateEnd}" name="dayEnd" />-->
                <script
                  src='https://checkout.stripe.com/checkout.js'
                  class='stripe-button'
@@ -45,8 +48,9 @@
             </form>
          </div>
       </div>
-   </section>
+   </div>
+</div>
+<script src="js/main.js"></script>
 <footer th:include="partials/fragments :: footer"></footer>
-</main>
 </body>
 </html>
