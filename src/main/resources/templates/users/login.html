@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:include="partials/fragments :: head('Login Page')">
    <meta charset="UTF-8">
-   <title>Title</title>
+   <title>Login Page</title>
 </head>
-<body style="background-color: antiquewhite;" class="has-navbar-fixed-bottom">
+<body style="background-color: antiquewhite; padding: 14% 17% 0;">
     <nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 <div>
-    <div th:if="${param.error}" style="margin: 3%">
+    <div th:if="${param.error}" style="margin: 5%">
         Invalid Username and Password!
     </div>
-    <div th:if="${param.logout}" style="margin: 3%">
+    <div th:if="${param.logout}" style="margin: 5%">
         You have been logged out!
     </div>
-    <div class="card" style="margin: 0">
+    <div class="card" style="margin-bottom: 12%">
         <header class="card-header">
             <p class="card-header-title">
                 Log In!
