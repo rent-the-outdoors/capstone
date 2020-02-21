@@ -11,7 +11,7 @@
    <div class="hero-body columns has-text-centered" style="display: flex; justify-content: center;">
       <div class="box" style="width: 65%;">
          <div class="column is-4 is-offset-4">
-            <h1 class="title has-text-dark">
+            <h1 class="is-size-1 has-text-dark">
                Rent your own property
             </h1>
          </div>
@@ -32,12 +32,12 @@
                   <input type="hidden" th:value="${user.id}" th:name="userId">
                <div class="field is-horizontal">
                   <div class="field-label is-normal">
-                     <label class="label" for="cost_per_day">Cost per day: </label>
+                     <label class="label" for="cost_per_day" >Cost: </label>
                   </div>
                   <div class="field-body">
                      <div class="field">
                         <p class="control">
-                           <input class="input is-small" id="cost_per_day" placeholder="$$$$$" name="cost"/>
+                           <input class="input is-small" id="cost_per_day" placeholder="Cost per day " name="cost"/>
                         </p>
                      </div>
                   </div>
@@ -86,6 +86,7 @@
       </div>
    </div>
 </main>
+<footer th:include="partials/fragments :: footer"></footer>
 <script type="text/javascript" src="/static/js/keys.js"></script>
 <script type="text/javascript"
         src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
