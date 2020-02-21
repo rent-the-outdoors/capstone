@@ -3,107 +3,123 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head(title)">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
-          rel='stylesheet'/>
-    <script src="https://kit.fontawesome.com/927b51fa66.js"
-            crossorigin="anonymous"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='/lib/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='/lib/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer
-            src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
-    <title th:text="${title}"></title>
+    <script src='/lib/fullcalendar/packages/core/main.js'></script>
+    <script src='/lib/fullcalendar/packages/daygrid/main.js'></script>
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css'
+         rel='stylesheet'/>
+   <script src="https://kit.fontawesome.com/927b51fa66.js"
+           crossorigin="anonymous"></script>
+
+   <link rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+   <script defer
+           src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+   <script src="js/main.js"></script>
+   <link rel="stylesheet" href="css/main.css">
+   <title th:text="${title}"></title>
 </head>
 <body>
 <nav th:fragment="nav">
 
-    <!--nav start-->
-    <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+   <!--nav start-->
+   <nav class="navbar is-dark is-fixed-top sticky" role="navigation"
+        aria-label="main navigation">
+      <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
 
-        <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
+      <div class="navbar-menu" style="width: 80px">
+         <div class="navbar-start">
+            <a class="navbar-item" href="/search?search=">
+               <strong>Book Now</strong>
+            </a>
 
-        <div id="navbarBasicExample" class="navbar-menu" style="width: 80px">
-            <div class="navbar-start">
-                <a class="navbar-item" href="/search?search=">
-                    <strong>Book Now</strong>
-                </a>
+            <a class="navbar-item" href="/places/create">
+               <strong>List Your Property</strong>
+            </a>
+         </div>
 
-                <a class="navbar-item" href="/places/create">
-                    <strong>Rent Your Outdoors</strong>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-end">
+         <div class="navbar-end">
+            <a id="registerBtn" sec:authorize="not isAuthenticated()"
+               href="/users/create" class="navbar-item">
+               <strong>Register</strong>
+            </a>
 
+            <a id="loginBtn" sec:authorize="not isAuthenticated()"
+               class="navbar-item is-dark"
+               href="/users/login">
+               <strong>Login</strong>
+            </a>
+         </div>
 
+         <div class="navbar-item" style="display: flex; align-items: center; margin-left: auto;">
+            <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
+                  th:method="get">
+               <a class="navbar-item" th:href="@{/profile}">
+                  <strong>Profile</strong>
+               </a>
+            </form>
 
-                    <a id="registerBtn" sec:authorize="not isAuthenticated()" href="/users/create" class="navbar-item is-light">
-                        <strong>Register</strong>
-                    </a>
+            <form id="my_form" sec:authorize="isAuthenticated()"
+                  th:action="@{/logout}" th:method="post">
+               <a href="javascript:{}"
+                  onclick="document.getElementById('my_form').submit();"
+                  class="navbar-item is-dark" type="submit">
+                  <strong>Logout</strong>
+               </a>
+            </form>
+         </div>
 
-                    <a id="loginBtn" sec:authorize="not isAuthenticated()" class="navbar-item is-light"
-                       href="/users/login">
-                        <strong>Login</strong>
-                    </a>
-
-
-                    <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get">
-                        <a class="navbar-item is-light" th:href="@{/profile}">
-                            <strong>Profile</strong>
-                        </a>
-                    </form>
-
-                    <form id="my_form" sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="navbar-item is-light" type="submit">
-                            <strong>Logout</strong>
-                        </a>
-                    </form>
-
-        </div>
-    </nav>
+      </div>
+   </nav>
 </nav>
 
 
 <footer th:fragment="footer" class="footer">
-    <!--   <div class="content has-text-centered">-->
-    <!--      <ul style="display: flex;">-->
-    <!--         <strong><h4>Contact Us:</h4></strong>-->
-    <!--         <li><a target="_blank" href="https://github.com/barrowjacob"><i-->
-    <!--           class="fab fa-github-square"></i>Jacob</a></li>-->
-    <!--         <li><a target="_blank" href="https://github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a>-->
-    <!--         </li>-->
-    <!--         <li><a target="_blank" href="https://github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a>-->
-    <!--         </li>-->
-    <!--      </ul>-->
-    <!--   </div>-->
-    <!--   <div style="margin-left: auto">-->
-    <!--      <a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing-->
-    <!--         Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>-->
-    <!--      and other icons by <a target="_blank" href="https://icons8.com">Icons8</a>-->
-    <!--   </div>-->
-    <div class="content has-text-centered">
-        <div class="cutoff">
-            <strong><h2 class="has-text-white">Contact Us </h2></strong>
+   <!--   <div class="content has-text-centered">-->
+   <!--      <ul style="display: flex;">-->
+   <!--         <strong><h4>Contact Us:</h4></strong>-->
+   <!--         <li><a target="_blank" href="https://github.com/barrowjacob"><i-->
+   <!--           class="fab fa-github-square"></i>Jacob</a></li>-->
+   <!--         <li><a target="_blank" href="https://github.com/navirgino"><i class="fab fa-github-square"></i>Nico</a>-->
+   <!--         </li>-->
+   <!--         <li><a target="_blank" href="https://github.com/MrOffer"><i class="fab fa-github-square"></i>Thomas</a>-->
+   <!--         </li>-->
+   <!--      </ul>-->
+   <!--   </div>-->
+   <div class="content has-text-centered" style="display: flex; align-items: center;">
+      <div class="cutoff" style="width: 100vw;">
+         <strong><h2 class="has-text-white" style="margin-top: 2%;">Contact Us </h2></strong>
 
-            <a class="github_tag" target="_blank" href="https://github.com/barrowjacob">
-                <i class="fab fa-github-square"></i>Jacob
-            </a>
+         <a class="github_tag" target="_blank"
+            href="https://github.com/barrowjacob">
+            <i class="fab fa-github-square"></i>Jacob
+         </a>
 
-            <a class="github_tag" target="_blank" href="https://github.com/navirgino">
-                <i class="fab fa-github-square"></i>Nico
-            </a>
+         <a class="github_tag" target="_blank"
+            href="https://github.com/navirgino">
+            <i class="fab fa-github-square"></i>Nico
+         </a>
 
-            <a class="github_tag" target="_blank" href="https://github.com/MrOffer">
-                <i class="fab fa-github-square"></i>Thomas
-            </a>
+         <a class="github_tag" target="_blank"
+            href="https://github.com/MrOffer">
+            <i class="fab fa-github-square"></i>Thomas
+         </a>
+         <div style="margin-top: 4%;">
+            <strong><a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing
+               Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>
+            <span class="has-text-light">and other icons by</span> <a target="_blank" href="https://icons8.com">Icons8</a></strong>
+         </div>
 
-        </div>
-    </div>
+      </div>
+   </div>
 </footer>
-
+</div>
 </body>
 </html>
