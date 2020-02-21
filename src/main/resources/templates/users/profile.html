@@ -13,7 +13,9 @@
       <div
         style="display: flex; flex-direction: column; width: 400px; border-radius: 15%;">
          <div style="display: flex; align-items: center; margin-bottom: 1%;">
-            <img th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
+            <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
+               width: 300px; background-position: center;">
+            <img th:if="${user.image_path != null}" th:src="${user.image_path}" style="border-radius: 50%; border: solid white 4px;
                width: 300px; background-position: center;">
             <strong th:text="${user.username}"
                     class="has-text-light"
@@ -47,11 +49,11 @@
    <div class="container card column is-8"
         style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <div class="column is-4 is-offset-1">
-         <h2 class="is-size-2" style="width: 100%;" th:text="${user.username} + '\'s Listings'"></h2>
+         <h2 th:if="${userPlaces.size() > 0}" class="is-size-2" style="width: 100%;" th:text="${user.username} + '\'s Listings'"></h2>
       </div>
       <div class="column is-12"
            style="display: flex; justify-content: center; flex-wrap: wrap;">
-         <div th:each="place : ${userPlaces}" style=" margin: 0 3% 3% 3%;">
+         <div th:if="${userPlaces.size() > 0}" th:each="place : ${userPlaces}" style=" margin: 0 3% 3% 3%;">
             <a th:href="@{'/place/' + ${place.id}}">
                <div class="card"
                     style="max-height: 150px; width: 200px;">
@@ -81,6 +83,10 @@
                      </div>
                </div>
             </a>
+         </div>
+      </div>
+      <div th:if="${userPlaces.size() < 1}" style="padding-bottom: 2%; display: flex; justify-content: center; width: 45%;">
+         <h1 class="is-size-3">You don't have any listings yet! To add one, click <a href="/places/create">here</a></h1>
          </div>
       </div>
    </div>
