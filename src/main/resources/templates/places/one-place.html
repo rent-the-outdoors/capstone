@@ -4,13 +4,12 @@
 <head th:insert="partials/mapbox_fragments :: head('Single Place Page')">
 </head>
 <body style="background-color: #FAEBD7">
-<!--<div id="header-banner" style="-->
-<!--            height: 15vh;">-->
-<!--</div>-->
+
 <nav th:insert="partials/fragments :: nav"></nav>
 
-<article class="tile is-child box" style="background-color: #FAEBD7">
-   <div class="columns">
+<article class="tile is-child box" style="background-color: #FAEBD7; ">
+
+   <div class="columns" style="margin-top: 5%;">
       <div
         style="width: 100%; display: flex; justify-content: center; align-items: center;">
          <div class="column is-narrow is-7"
@@ -136,7 +135,7 @@
    <!--    map-->
    <div style="display: flex; justify-content: center;">
       <div id="map"
-           style="padding: 0; height: 400px; width: 85%; box-shadow: 2px 2px 3px 1px darkslategray;background-color: lightgray;">
+           style="padding: 0; height: 400px; width: 98%; box-shadow: 2px 2px 3px 1px darkslategray;background-color: lightgray;">
          <h1 id="address-text" th:text="${place.address}"></h1>
       </div>
    </div>
