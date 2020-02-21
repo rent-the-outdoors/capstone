@@ -67,7 +67,7 @@
                        style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
                      <span th:text="${place.title}"></span>
                   </div>
-                     <div style="display: flex; justify-content: space-between" th:if="${loggedInUser.id == user.id}">
+                     <div style="display: flex; justify-content: space-evenly;" th:if="${loggedInUser.id == user.id}" >
                         <form
                           th:action="@{'/places/' + ${place.id} + '/update'}"
                           method="GET">
