@@ -3,133 +3,146 @@
 <head th:insert="partials/mapbox_fragments :: head('Single Place Page')">
 
 </head>
-<body style="background-color: navajowhite">
+<body style="background-color: #FAEBD7">
 <nav th:insert="partials/fragments :: nav"></nav>
-
-<article class="tile is-child box" style="background-color: navajowhite">
-    <div class="columns">
-        <div class="column is-narrow"
-             style="border: 2px solid black; padding: 0; height: 403px; margin-right: 1px; background-color: white">
+<article class="tile is-child box" style="background-color: #FAEBD7">
+   <div class="columns">
+      <div
+        style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 4%;">
+         <div class="column is-narrow is-7"
+              style="border: 2px solid black; padding: 0; height: 403px; width: 60%; margin-right: 1px; background-color: white">
             <div th:each="image,iStat : ${place.placeImages}">
-                <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                     style="padding: 0; margin: 0; height: 400px; width: 400px;"
-                     class="is-mobile-1">
+               <img th:if="${iStat.first}" th:src="${image.imagePath}"
+                    style="padding: 0; margin: 0; height: 400px; width: 100%;"
+                    class="is-mobile-1">
             </div>
-        </div>
-
-        <div class="column is-5 is-one-third-tablet"
-             style="display: flex; flex-wrap: wrap; padding: 0 0 0 1px; margin: 0; border: 2px solid black; width: 508px; height: 403px; background-color: white ">
+         </div>
+         <div class="column is-one-third-tablet"
+              style="display: flex; flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 508px; height: 403px; background-color: white ">
             <div th:each="image,iStat : ${place.placeImages}"
-                 style="margin: 0 1px 1px 0; height: 199px;">
-                <img th:if="${iStat.count > 1 && iStat.count < 6}"
-                     th:src="${image.imagePath}"
-                     style="height: 199px; width: 250px;">
+                 style="margin: 0 1px 1px 0; height: 199px; display: flex; flex-wrap: wrap;">
+               <img th:if="${iStat.count > 1 && iStat.count < 6}"
+                    th:src="${image.imagePath}"
+                    style="height: 199px; width: 249px;">
             </div>
-        </div>
-        <!--map here-->
-        <div id="map" class="column is-narrow"
-             style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
-            <h1 id="address-text" th:text="${place.address}"></h1>
+         </div>
+      </div>
+   </div>
+   <!--map here-->
+   <div id="map" class="column is-narrow"
+        style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
+      <h1 id="address-text" th:text="${place.address}"></h1>
 
-        </div>
+   </div>
 
-    </div>
+   </div>
 </article>
 
-<article class="tile is-child box" style="background-color: navajowhite">
-    <div class="columns">
-        <div class="column is-4">
-            <div class="card has-text-centered">
-                <h1 class="title" th:text="${place.title}"
-                    style="margin-bottom: 12px"></h1>
-                <div class="card-body">
+<article class="tile is-child box" style="background-color: #FAEBD7">
+   <div class="columns">
+      <div class="column is-4">
+         <div class="card has-text-centered">
+            <h1 class="title" th:text="${place.title}"
+                style="margin-bottom: 12px"></h1>
+            <div class="card-body">
                <span><strong
-                       th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
-                    <p class="content" th:text="${place.description}"></p>
+                 th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
+               <p class="content" th:text="${place.description}"></p>
 
 
-                </div>
-                <div class="card-footer">
-                    <div class="column">
-                        <div th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
-                            <form th:method="GET"
-                                  th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
-                                <input type="hidden" th:field="*{place.id}"
-                                       placeholder="placeId">
-                                <input type="hidden" th:field="*{loggedInUser.id}" th:placeholder="loggedInUserId">
-                                <button type="submit" class="button is-primary"><strong>Book
-                                    Now</strong></button>
-                            </form>
-                        </div>
-                        <div th:if="${loggedInUser.id == place.user.id}">
-                            <form th:method="GET"
-                                  th:action="@{'/places/' + ${place.id} + '/update'}">
-                                <input type="hidden" th:value="${place.id}"
-                                       name="placeId">
-                                <button type="submit" class="button is-primary"><strong>Edit</strong>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <input type="hidden" id="address" th:value="${place.address}">
-                </div>
             </div>
-        </div>
-
-        <div class="media column is-2">
-            <div style="margin-left: 5%"><p>Owner</p></div>
-            <a th:href="@{'/profile/' + ${place.user.id}}">
-                <figure class="media-left is-64x64">
-
-                    <img th:src="${place.user.image_path}" class="image is-64x64"
-                         style="border-radius: 50%;">
-                </figure>
-            </a>
-            <div class="media-content" style="margin-left: 5%">
-                <div class="content">
-                    <p th:text="${place.user.username}">
-                    </p>
-                </div>
+            <div class="card-footer">
+               <div class="column">
+                  <div
+                    th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
+                     <form th:method="GET"
+                           th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
+                        <input type="hidden" th:field="*{place.id}"
+                               placeholder="placeId">
+                        <input type="hidden" th:field="*{loggedInUser.id}"
+                               th:placeholder="loggedInUserId">
+                        <button type="submit" class="button is-primary">
+                           <strong>Book
+                              Now</strong></button>
+                     </form>
+                  </div>
+                  <div th:if="${loggedInUser.id == place.user.id}">
+                     <form th:method="GET"
+                           th:action="@{'/places/' + ${place.id} + '/update'}">
+                        <input type="hidden" th:value="${place.id}"
+                               name="placeId">
+                        <button type="submit" class="button is-primary">
+                           <strong>Edit</strong>
+                        </button>
+                     </form>
+                  </div>
+               </div>
+               <input type="hidden" id="address" th:value="${place.address}">
             </div>
-        </div>
+         </div>
+      </div>
 
-        <!--calendar here-->
-        <div style="background-color: white;" id="calendar"></div>
-    </div>
+      <div class="media column is-2">
+         <div style="margin-left: 5%"><p>Owner</p></div>
+         <a th:href="@{'/profile/' + ${place.user.id}}">
+            <figure class="media-left is-64x64">
 
-<!--    modal-->
+               <img th:src="${place.user.image_path}" class="image is-64x64"
+                    style="border-radius: 50%;">
+            </figure>
+         </a>
+         <div class="media-content" style="margin-left: 5%">
+            <div class="content">
+               <p th:text="${place.user.username}">
+               </p>
+            </div>
+         </div>
+      </div>
 
-    <div class="modal" id="bookModal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Book a Property</p>
-            </header>
-            <section class="modal-card-body">
-                <form th:action="@{'/confirmation/' + ${place.id} + '/checkout'}" th:method="POST">
-                    <input th:placeholder="title" id="title" type="hidden" th:value="${place.address}" name="address">
-                    <h2 class="is-size-3" th:text="${place.title}"></h2>
-                    <h2 class="is-size-3" th:text="${place.address}"></h2>
-                    <label for="dateStart">Start Date: </label>
-                    <input placeholder="YYYY/MM/DD" id="dateStart" type="text"
-                            name="dateStart">
-                    <label for="dateEnd">End Date: </label>
-                    <input placeholder="YYYY/MM/DD" id="dateEnd" type="text"
-                           name="dateEnd">
-                    <input type="hidden" th:value="${place.id}" th:placeholder="placeId" name="placeId">
-                    <input type="hidden" th:value="${loggedInUser.id}" th:placeholder="loggedInUserId" name="loggedInUserId">
-                    <input type="hidden" th:value="${place.user.id}" th:placeholder="userId" name="userId">
-                    <button class="button is-success" type="submit">Save changes</button>
-                </form>
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button" id="closeModal" aria-label="close">Cancel</button>
-            </footer>
-        </div>
-    </div>
+      <!--calendar here-->
+      <div style="background-color: white;" id="calendar"></div>
+   </div>
+
+   <!--    modal-->
+
+   <div class="modal" id="bookModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+         <header class="modal-card-head">
+            <p class="modal-card-title">Book a Property</p>
+         </header>
+         <section class="modal-card-body">
+            <form th:action="@{'/confirmation/' + ${place.id} + '/checkout'}"
+                  th:method="POST">
+               <input th:placeholder="title" id="title" type="hidden"
+                      th:value="${place.address}" name="address">
+               <h2 class="is-size-3" th:text="${place.title}"></h2>
+               <h2 class="is-size-3" th:text="${place.address}"></h2>
+               <label for="dateStart">Start Date: </label>
+               <input placeholder="YYYY/MM/DD" id="dateStart" type="text"
+                      name="dateStart">
+               <label for="dateEnd">End Date: </label>
+               <input placeholder="YYYY/MM/DD" id="dateEnd" type="text"
+                      name="dateEnd">
+               <input type="hidden" th:value="${place.id}"
+                      th:placeholder="placeId" name="placeId">
+               <input type="hidden" th:value="${loggedInUser.id}"
+                      th:placeholder="loggedInUserId" name="loggedInUserId">
+               <input type="hidden" th:value="${place.user.id}"
+                      th:placeholder="userId" name="userId">
+               <button class="button is-success" type="submit">Save changes
+               </button>
+            </form>
+         </section>
+         <footer class="modal-card-foot">
+            <button class="button" id="closeModal" aria-label="close">
+               Cancel
+            </button>
+         </footer>
+      </div>
+   </div>
 
 </article>
-
 
 <footer th:insert="partials/fragments :: footer"></footer>
 <footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
@@ -210,21 +223,21 @@
 
 
             customButtons: {
-               myCustomButton: {
-                  text: "Book!",
-                  click: function () {
-                     $('#bookModal').toggleClass("is-active");
+                myCustomButton: {
+                    text: "Book!",
+                    click: function () {
+                        $('#bookModal').toggleClass("is-active");
 
-                     }
-                  }
-
-
-               },
-
-               events: calBookingsBucket,
+                    }
+                }
 
 
-            });
+            },
+
+            events: calBookingsBucket,
+
+
+        });
 
 
         calendar.render();
