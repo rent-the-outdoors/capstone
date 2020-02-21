@@ -23,34 +23,39 @@
                   <strong>Search</strong></button>
             </div>
             <div class="columns is-hidden-touch">
-               <div id="checkboxes" class="column is-8 is-relative" style="display: flex;">
+               <div id="checkboxes" class="column is-8 is-relative"
+                    style="display: flex;">
                   <strong class="has-text-light is-size-2" id="cats"
                           style="margin-right: 2%;">Categories:</strong>
                   <div style="display: flex;" class="has-text-centered">
                      <input type="checkbox" name="huntCheck" value="hunting"
                             id="hunt-check" class="check">
-                     <label class="check-label has-text-light is-size-4" for="hunt-check"><img
+                     <label class="check-label has-text-light is-size-4"
+                            for="hunt-check"><img
                        src="img/hunt_icon.png" alt="hunt"
                        style="height: 50px; width: 50px;">Hunting</label>
                   </div>
                   <div style="display: flex;" class="has-text-centered">
                      <input type="checkbox" name="campCheck" value="camping"
                             id="camp-check" class="check">
-                     <label class="check-label has-text-light is-size-4" for="camp-check"><img
+                     <label class="check-label has-text-light is-size-4"
+                            for="camp-check"><img
                        src="img/tent_icon.png" alt="tent"
                        style="height: 50px; width: 50px;">Camping</label>
                   </div>
                   <div style="display:flex;" class="has-text-centered">
                      <input type="checkbox" name="fishCheck" value="fishing"
                             id="fish-check" class="check">
-                     <label class="check-label has-text-light is-size-4" for="fish-check"><img
+                     <label class="check-label has-text-light is-size-4"
+                            for="fish-check"><img
                        src="img/fish_icon.png" alt="fish"
                        style="height: 50px; width: 50px;">Fishing</label>
                   </div>
                   <div class="has-text-centered">
                      <input type="checkbox" name="boatCheck" value="boating"
                             id="boat-check" class="check">
-                     <label class="has-text-light check-label is-size-4" for="boat-check"><img
+                     <label class="has-text-light check-label is-size-4"
+                            for="boat-check"><img
                        src="img/boat_icon.png" alt="boat"
                        style="height: 50px; width: 50px;">Boating</label>
                   </div>
@@ -66,14 +71,17 @@
         style="height: 100%; margin-top: 1%;">
       <div class="container card column is-10"
            style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
-         <div class="column is-12" style="display: flex; justify-content: center; flex-wrap: wrap;">
-            <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}" style=" margin: 0 3% 3% 3%;">
+         <div class="column is-12"
+              style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
+                 style=" margin: 0 3% 3% 3%;">
                <a th:href="@{'/place/' + ${place.id}}">
                   <div class="card"
                        style="max-height: 300px; width: 300px;">
                      <div class="card-image">
                         <div th:each="item,iStat : ${place.placeImages}">
-                           <img th:if="${iStat.first}" th:src="${item.imagePath}"
+                           <img th:if="${iStat.first}"
+                                th:src="${item.imagePath}"
                                 style="height: 150px; width: 300px; ">
                         </div>
                      </div>
@@ -81,15 +89,17 @@
                           style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
                         <span th:text="${place.title}"></span>
                      </div>
-                     <div class="card-body" style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
-                        <span th:text="'$'+ ${place.cost_per_day} + ' per day'"> </span>
-                     </div>
+                     <div class="card-body"
+                          style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
+                        <span
+                          th:text="'$'+ ${place.cost_per_day} + ' per day'"> </span>
                      </div>
                   </div>
                </a>
             </div>
          </div>
       </div>
+   </div>
    <footer th:include="partials/fragments :: footer"></footer>
    <script src="js/main.js"></script>
 </main>
