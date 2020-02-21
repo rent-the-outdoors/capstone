@@ -3,19 +3,14 @@
 <head th:insert="partials/fragments :: head('Single Place Page')">
 </head>
 <body style="background-color: #FAEBD7">
-<nav th:insert="partials/fragments :: nav"></nav>
-<div style="
-            background-image: url('img/boat_icon.png');
-            background-repeat: no-repeat;
-            background-position: bottom;
-            background-size: cover;
-            z-index: 1;
-            height: 45vh;">
+<div id="header-banner" style="
+            height: 15vh;">
 </div>
+<nav th:insert="partials/fragments :: nav"></nav>
 <article class="tile is-child box" style="background-color: #FAEBD7">
    <div class="columns">
       <div
-        style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 4%;">
+        style="width: 100%; display: flex; justify-content: center; align-items: center;">
          <div class="column is-narrow is-7"
               style="border: 2px solid black; padding: 0; height: 403px; width: 60%; margin-right: 1px; background-color: white">
             <div th:each="image,iStat : ${place.placeImages}">
@@ -42,7 +37,7 @@
       <div class="column is-7 is-narrow" style="margin-left: 2%;">
 
          <div class="card"
-              style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; border: solid 2px black;">
+              style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; box-shadow: 2px 2px 3px 1px darkslategray;">
             <div
               style="display: flex; margin-top: 3%; width: 100%; justify-content: center;">
                <h1 class="is-size-2"
@@ -102,7 +97,7 @@
       </div>
 
       <!--calendar here-->
-      <div style="background-color: white; margin-right: 2%; border: solid 2px black;"
+      <div style="background-color: white; margin-right: 2%; box-shadow: 2px 2px 3px 1px darkslategray;"
            id="calendar"></div>
    </div>
 
@@ -133,31 +128,30 @@
                       th:placeholder="loggedInUserId" name="loggedInUserId">
                <input type="hidden" th:value="${place.user.id}"
                       th:placeholder="userId" name="userId">
-            </form>
-         </section>
-         <footer class="modal-card-foot">
+         <div class="modal-card-foot">
             <button class="button" id="closeModal" aria-label="close">
                Cancel
             </button>
                <button class="button is-success" type="submit">Save changes
                </button>
-         </footer>
+         </div>
+            </form>
+         </section>
       </div>
    </div>
 
    <!--    map-->
    <div style="display: flex; justify-content: center;">
       <div id="map"
-           style="padding: 0; height: 400px; width: 85%;  border: solid 2px black; background-color: lightgray;">
+           style="padding: 0; height: 400px; width: 85%; box-shadow: 2px 2px 3px 1px darkslategray;background-color: lightgray;">
          <h1 id="address-text" th:text="${place.address}"></h1>
       </div>
    </div>
 
 </article>
 
-<footer th:insert="partials/fragments :: footer"></footer>
-<footer th:insert="partials/mapbox_fragments :: mapbox_scripts"></footer>
-
+<footer th:include="partials/fragments :: footer"></footer>
+<footer th:include="partials/mapbox_fragments :: mapbox_scripts"></footer>
 <script>
 
 
