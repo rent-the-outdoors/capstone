@@ -6,8 +6,8 @@
 </head>
 <body style="background-color: antiquewhite; height: 100%;">
 <nav th:include="partials/fragments :: nav" class="is-blue"></nav>
-<main>
-    <div class="card" style="margin-top: 8%">
+<main style="display: flex; justify-content: center;">
+    <div class="card" style="width: 65%; margin-top: 6%; margin-bottom: 2%;">
         <header class="card-header">
             <p class="card-header-title" style="text-align: center">
                 Register!
@@ -79,7 +79,7 @@
 
 
 </script>
-<footer th:fragment="footer" class="footer">
+<footer th:include="partials/fragments :: footer" class="footer">
     <!--   <div class="content has-text-centered">-->
     <!--      <ul style="display: flex;">-->
     <!--         <strong><h4>Contact Us:</h4></strong>-->
@@ -91,31 +91,5 @@
     <!--         </li>-->
     <!--      </ul>-->
     <!--   </div>-->
-    <div class="content has-text-centered" style="display: flex; align-items: center;">
-        <div class="cutoff" style="width: 100vw;">
-            <strong><h2 class="has-text-white" style="margin-top: 2%;">Contact Us </h2></strong>
-
-            <a class="github_tag" target="_blank"
-               href="https://github.com/barrowjacob">
-                <i class="fab fa-github-square"></i>Jacob
-            </a>
-
-            <a class="github_tag" target="_blank"
-               href="https://github.com/navirgino">
-                <i class="fab fa-github-square"></i>Nico
-            </a>
-
-            <a class="github_tag" target="_blank"
-               href="https://github.com/MrOffer">
-                <i class="fab fa-github-square"></i>Thomas
-            </a>
-            <div style="margin-top: 4%;">
-                <strong><a target="_blank" href="https://icons8.com/icons/set/fishing-hook">Fishing
-                    Hook</a>, <a target="_blank" href="https://icons8.com/icons/set/oar">Oar</a>
-                    <span class="has-text-light">and other icons by</span> <a target="_blank" href="https://icons8.com">Icons8</a></strong>
-            </div>
-
-        </div>
-    </div>
-</footer></body>
+</body>
 </html>
