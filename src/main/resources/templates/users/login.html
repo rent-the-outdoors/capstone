@@ -9,14 +9,14 @@
 <body style="background-color: antiquewhite; height: 100vh;" class="has-navbar-fixed-bottom">
     <nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 <div style="display: flex; justify-content: center; align-items: center; padding: 6%; width: 100%; flex-direction: column;">
-    <div th:if="${param.error}" style="margin: 3%">
-        Invalid Username and Password!
+    <div th:if="${param.error}" style="margin: 5%; font-size: 18px; background-color: #1e2b37; padding: 1%">
+        <strong style="color: white">Invalid Username and Password!</strong>
     </div>
-    <div th:if="${param.logout}" style="margin: 5%">
-        You have been logged out!
+    <div th:if="${param.logout}" style="margin: 5%; font-size: 18px; background-color: #1e2b37; padding: 1%">
+        <strong style="color: white">You have been logged out!</strong>
     </div>
 
-    <div class="card" style="margin: 4%;">
+    <div class="card" style="margin: 3%;">
         <header class="card-header">
             <p class="card-header-title">
                 Log In!
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <input class="button is-medium is-primary" type="submit" value="Log In" style="margin-top: 1%; margin-left: 50%"/>
+                    <input class="button is-medium is-dark" type="submit" value="Log In" style="margin-top: 1%; margin-left: 30%"/>
                 </footer>
              </form>
         </div>
