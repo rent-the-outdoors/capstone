@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('Register Page')">
+<head th:include="partials/fragments :: head('Register Page')">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body style="background-color: antiquewhite; height: 100%;">
-<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+<nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 <main>
     <div class="card" style="margin-top: 8%">
         <header class="card-header">

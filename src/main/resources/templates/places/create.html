@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('Create Place Listing')">
+<head th:include="partials/fragments :: head('Create Place Listing')">
 
 </head>
 <body style="background-color: antiquewhite">
 
-<nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
+<nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 
-<main class="hero is-fullheight-with-navbar is-bold">
+<main class="hero is-fullheight-with-navbar is-bold" style="margin-top: 4%;">
    <div class="hero-body columns has-text-centered">
       <div class="container box is-narrow">
          <div class="column is-4 is-offset-4">
