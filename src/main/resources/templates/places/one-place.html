@@ -18,7 +18,7 @@
             </div>
          </div>
          <div class="column is-one-third-tablet"
-              style="display: flex; flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 508px; height: 403px; background-color: white ">
+              style="display: flex; flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 505px; height: 403px; background-color: white ">
             <div th:each="image,iStat : ${place.placeImages}"
                  style="margin: 0 1px 1px 0; height: 199px; display: flex; flex-wrap: wrap;">
                <img th:if="${iStat.count > 1 && iStat.count < 6}"
@@ -29,32 +29,45 @@
       </div>
    </div>
    <!--map here-->
-   <div id="map" class="column is-narrow"
-        style="padding: 0; margin: 0 0 0 5%; height: 400px; width: 400px;">
-      <h1 id="address-text" th:text="${place.address}"></h1>
-
-   </div>
-
-   </div>
 </article>
 
 <article class="tile is-child box" style="background-color: #FAEBD7">
    <div class="columns">
-      <div class="column is-4">
-         <div class="card has-text-centered">
-            <h1 class="title" th:text="${place.title}"
-                style="margin-bottom: 12px"></h1>
-            <div class="card-body">
+      <div class="column is-7 is-narrow" style="margin-left: 2%;">
+
+         <div class="card"
+              style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%;">
+            <div
+              style="display: flex; margin-top: 3%; width: 100%; justify-content: center;">
+               <h1 class="is-size-2"
+                   style="margin-right: 15%; margin-left: 25%;"
+                   th:text="${place.title}"></h1>
+               <div
+                 style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 1%;">
+
+                  <a th:href="@{'/profile/' + ${place.user.id}}">
+                     <img th:src="${place.user.image_path}"
+                          class="image is-64x64"
+                          style="border-radius: 50%;">
+                  </a>
+                  <p th:text="${place.user.username}">
+                  </p>
+               </div>
+            </div>
+
+
+            <div class="card-body"
+                 style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                <span><strong
                  th:text="'$' + ${place.cost_per_day}"></strong><span> per day</span></span>
-               <p class="content" th:text="${place.description}"></p>
-
-
+               <p th:text="${place.description}"></p>
             </div>
-            <div class="card-footer">
-               <div class="column">
-                  <div
-                    th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
+            <div class="card-footer"
+                 style="display: flex; justify-content: center; width: 100%;">
+               <div class="column"
+                    style="display: flex; justify-content: center;">
+                  <div style="display: flex; justify-content: center;"
+                       th:if="${loggedInUser.id != null && loggedInUser.id != place.user.id}">
                      <form th:method="GET"
                            th:action="@{'/confirmation/' + ${place.id} + '/checkout'}">
                         <input type="hidden" th:field="*{place.id}"
@@ -82,25 +95,9 @@
          </div>
       </div>
 
-      <div class="media column is-2">
-         <div style="margin-left: 5%"><p>Owner</p></div>
-         <a th:href="@{'/profile/' + ${place.user.id}}">
-            <figure class="media-left is-64x64">
-
-               <img th:src="${place.user.image_path}" class="image is-64x64"
-                    style="border-radius: 50%;">
-            </figure>
-         </a>
-         <div class="media-content" style="margin-left: 5%">
-            <div class="content">
-               <p th:text="${place.user.username}">
-               </p>
-            </div>
-         </div>
-      </div>
-
       <!--calendar here-->
-      <div style="background-color: white;" id="calendar"></div>
+      <div style="background-color: white; margin-right: 2%;"
+           id="calendar"></div>
    </div>
 
    <!--    modal-->
@@ -139,6 +136,14 @@
                Cancel
             </button>
          </footer>
+      </div>
+   </div>
+
+   <!--    map-->
+   <div style="display: flex; justify-content: center;">
+      <div id="map"
+           style="padding: 0; height: 400px; width: 85%;">
+         <h1 id="address-text" th:text="${place.address}"></h1>
       </div>
    </div>
 
