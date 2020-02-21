@@ -3,11 +3,11 @@
 <head th:insert="partials/fragments :: head('Update Page')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite; height:100vh">
+<body style="background-color: antiquewhite;">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 
-<main>
-    <div class="card" style="margin: 3%">
+<main style="display: flex; justify-content: center; margin: 4%;">
+    <div class="card" style="margin-top: 3%; width: 60%;">
         <header class="card-header">
             <p class="card-header-title" style="text-align: center">
                 Update Your Place!
@@ -39,9 +39,9 @@
                     <input id="cost_per_day" class="input validate" th:field="*{cost_per_day}" type="text" th:placeholder="${place.cost_per_day}" />
                 </p>
             </div>
-            <footer class="card-footer">
-                <input class="button is-medium is-primary" type="submit" value="Update" style="margin-top: 1%; margin-left: 50%"/>
-            </footer>
+            <div class="card-footer" style="width: 100%; display: flex; justify-content: center;">
+                <input class="button is-medium" type="submit" value="Update" style="margin-top: 1%; background-color: #D0F2C2"/>
+            </div>
         </form>
     </div>
 </main>
