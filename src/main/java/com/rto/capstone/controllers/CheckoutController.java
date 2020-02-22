@@ -140,9 +140,5 @@ public class CheckoutController {
 
     }
 
-    @GetMapping("/result")
-    public String yes() throws IOException {
-        return "views/result";
-    }
 
 }
