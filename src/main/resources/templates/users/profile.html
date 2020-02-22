@@ -10,7 +10,8 @@
 <div class="hero is-small"
      style="background-image: url('img/adventure-bg.jpg'); background-position: center; margin-top: 4%;">
    <div class="hero-body">
-      <div>
+<!-- confirmation works. jsut need to set up modal now-->
+      <div th:if="${confirmation != null}">
          <h1 th:text="${confirmation}"></h1>
       </div>
       <div
