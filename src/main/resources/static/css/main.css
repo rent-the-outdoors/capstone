@@ -27,6 +27,12 @@ body {
     width: 75vw;
 
 }
+.navbar-item:hover {
+    background-color: #363636 !important;
+    color: #D0F2C2 !important;
+}
+
+
 .centered {
     display: flex;
     justify-content: center;
@@ -128,7 +134,6 @@ a:active {
     color: white;
     box-shadow: none;
     top: 5px;
-
 }
 #header-banner {
     background-image: url("img/adventure-bg.jpg");
