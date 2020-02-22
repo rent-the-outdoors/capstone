@@ -96,7 +96,7 @@ input[type=checkbox]:checked + .check-label img{
 
 /*footer img div*/
 .cutoff {
-    height: 250px;
+    height: 150px;
     background-image: url('/img/adventure-bg.jpg');
     background-repeat: no-repeat;
     background-position: bottom;
@@ -104,19 +104,6 @@ input[type=checkbox]:checked + .check-label img{
 
 h2 {
     padding-bottom: 1em;
-}
-
-.github_tag {
-    background-color: #FAEBD7;
-    color: black;
-    font-size: 20px;
-    padding: 1em 1.5em;
-    text-transform: uppercase;
-    margin: 1em;
-    position: relative;
-    text-decoration: none;
-    box-shadow: 0 5px 0 white;
-
 }
 
 
