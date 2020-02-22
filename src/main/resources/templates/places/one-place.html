@@ -109,10 +109,10 @@
                     <h2 class="is-size-3" th:text="${place.title}"></h2>
                     <h2 class="is-size-3" th:text="${place.address}"></h2>
                     <label for="dateStart">Start Date: </label>
-                    <input placeholder="YYYY/MM/DD" id="dateStart" type="text"
+                    <input placeholder="MM/DD/YYYY" id="dateStart" type="date"
                            name="dateStart">
                     <label for="dateEnd">End Date: </label>
-                    <input placeholder="YYYY/MM/DD" id="dateEnd" type="text"
+                    <input placeholder="MM/DD/YYYY" id="dateEnd" type="date"
                            name="dateEnd">
                     <input type="hidden" th:value="${place.id}"
                            th:placeholder="placeId" name="placeId">

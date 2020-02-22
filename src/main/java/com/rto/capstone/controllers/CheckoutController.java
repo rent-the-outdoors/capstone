@@ -62,7 +62,8 @@ public class CheckoutController {
     public String checkout(Model model, @PathVariable long id, @RequestParam long loggedInUserId, @RequestParam Long userId, @RequestParam String dateStart, @RequestParam String dateEnd) throws ParseException {
         Place place = placeDao.getOne(id);
         Booking booking = new Booking();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat sdfNew = new SimpleDateFormat("");
         Date firstDate = sdf.parse(dateStart);
         Date secondDate = sdf.parse(dateEnd);
         booking.setDateEnd(secondDate);
@@ -84,6 +85,8 @@ public class CheckoutController {
         model.addAttribute("userId", userId);
         model.addAttribute("stripePublicKey", stripePublicKey);
         model.addAttribute("numberOfDays", diff);
+        model.addAttribute("stringFirstDate", dateStart);
+        model.addAttribute("stringSecondDate", dateEnd);
         return "views/confirmation";
     }
 
