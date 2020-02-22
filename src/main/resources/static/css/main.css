@@ -19,7 +19,6 @@ body {
     color: white;
 }
 
-
 .splash-form {
     display: flex;
     justify-content: center;
@@ -122,11 +121,11 @@ h2 {
 
 
 a:hover {
-    background-color: white;
+    color: white;
 }
 
 a:active {
-    background-color: white;
+    color: white;
     box-shadow: none;
     top: 5px;
 
