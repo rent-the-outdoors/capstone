@@ -19,7 +19,6 @@ body {
     color: white;
 }
 
-
 .splash-form {
     display: flex;
     justify-content: center;
@@ -28,6 +27,12 @@ body {
     width: 75vw;
 
 }
+.navbar-item:hover {
+    background-color: #363636 !important;
+    color: #D0F2C2 !important;
+}
+
+
 .centered {
     display: flex;
     justify-content: center;
@@ -122,14 +127,13 @@ h2 {
 
 
 a:hover {
-    background-color: white;
+    color: white;
 }
 
 a:active {
-    background-color: white;
+    color: white;
     box-shadow: none;
     top: 5px;
-
 }
 #header-banner {
     background-image: url("img/adventure-bg.jpg");
