@@ -30,7 +30,7 @@
             <form th:action="@{|/charge/{id}|}" th:method='POST'
                   id='checkout-form'
                   xmlns:th="http://www.thymeleaf.org">
-               <input type='hidden' th:value="${#numbers.formatDecimal(totalCost, 0, 'COMMA', 2, 'POINT')}" name='amount'/>
+               <input type='hidden' th:value="${totalCost}" name='amount'/>
                <input type='hidden' th:value="${userId}" name="userId"/>
                <input type='hidden' th:value="${place.id}" name="placeId"/>
                <script
@@ -44,8 +44,9 @@
                  data-locale='auto'
                  data-zip-code='false'>
                </script>
-
             </form>
+
+
          </div>
       </div>
    </div>

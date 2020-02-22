@@ -56,7 +56,7 @@ public class UserController {
 
     //Update user GET
     @GetMapping(path = "/profile")
-    public String getImgInfoForUser(Model m, HttpSession session) throws InternalError {
+    public String getImgInfoForUser(Model m) throws InternalError {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("loggedInUser", loggedInUser);
         User user = usersDao.getOne(loggedInUser.getId());

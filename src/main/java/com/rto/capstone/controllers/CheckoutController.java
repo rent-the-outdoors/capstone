@@ -63,7 +63,6 @@ public class CheckoutController {
         Place place = placeDao.getOne(id);
         Booking booking = new Booking();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        SimpleDateFormat sdfNew = new SimpleDateFormat("");
         Date firstDate = sdf.parse(dateStart);
         Date secondDate = sdf.parse(dateEnd);
         booking.setDateEnd(secondDate);
@@ -137,7 +136,8 @@ public class CheckoutController {
         } catch (IOException ex) {
             throw ex;
         }
-        return "views/result";
+
+        return "redirect:/profile";
     }
 
     @GetMapping("/result")
