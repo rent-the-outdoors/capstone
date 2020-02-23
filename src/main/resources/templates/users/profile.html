@@ -10,9 +10,24 @@
 <div class="hero is-small"
      style="background-image: url('img/adventure-bg.jpg'); background-position: center; margin-top: 4%;">
    <div class="hero-body">
-<!-- confirmation works. jsut need to set up modal now-->
       <div th:if="${confirmation != null}">
-         <h1 th:text="${confirmation}"></h1>
+         <p id="confirmCheck"  th:value="${confirmation}"></p>
+      </div>
+<!-- confirmation works. jsut need to set up modal now-->
+            <div class="modal" id="confirmModal">
+               <div class="modal-background"></div>
+               <div class="modal-card">
+                  <section class="modal-card-body" style="padding: 15px 15px 0 15px;">
+                        <h2 class="is-size-4">Your booking has been confirmed!</h2>
+                     <h2 class="is-size-4">A confirmation email will be sent shortly.</h2>
+                        <div class="modal-card-foot">
+                           <button class="button is-dark " id="closeModal" aria-label="close">
+                              Okay!
+                           </button>
+                        </div>
+                  </section>
+               </div>
+            </div>
       </div>
       <div
         style="display: flex; flex-direction: column; width: 400px; border-radius: 15%;">
@@ -124,6 +139,12 @@
         $("#upload").click(function () {
             client.picker(options).open();
         });
+        if ($('#confirmCheck').val() != null) {
+            $('#confirmModal').toggleClass("is-active");
+        }
+        $('#closeModal').click(function () {
+            $('#confirmModal').toggleClass("is-active");
+        })
     });
 </script>
 </body>
