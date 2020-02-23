@@ -46,10 +46,10 @@
    <!--nav start-->
    <nav class="navbar is-dark is-fixed-top sticky" role="navigation"
         aria-label="main navigation">
-
-
+      <div class="navbar-brand">
+         <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
+      </div>
          <div class="navbar-start">
-            <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
             <a class="navbar-item" aria-label="main navigation" href="/search?search=">
                <strong>Search</strong>
             </a>
@@ -61,8 +61,8 @@
 
       <div class="navbar-menu" style="width: 100px"></div>
 
-
-      <div class="navbar-end">
+      <div class="navbar-hamburger">
+         <div class="navbar-end">
             <a id="registerBtn" sec:authorize="not isAuthenticated()"
                href="/users/create" class="navbar-item">
                <strong>Register</strong>
@@ -92,7 +92,7 @@
                </a>
             </form>
          </div>
-
+      </div>
    </nav>
 
 </nav>
@@ -103,7 +103,7 @@
    <div class="content has-text-centered" style="display: flex; align-items: center; ">
       <div class="cutoff" style="width: 100vw;">
          <a class="button is-light is-normal" href="/aboutUs" style="margin-top: 3%">
-            <span>About US</span>
+            <span>About RTO</span>
          </a>
 
       </div>
