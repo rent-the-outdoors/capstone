@@ -42,55 +42,59 @@
 
 <body>
 <nav th:fragment="nav">
-
    <!--nav start-->
-   <nav class="navbar is-dark is-fixed-top sticky" role="navigation"
+   <nav class="navbar is-dark is-fixed-top" role="navigation"
         aria-label="main navigation">
       <div class="navbar-brand">
          <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
+         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarStuff">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+         </a>
       </div>
+
+
+      <div id="navbarStuff" class="navbar-menu">
+
          <div class="navbar-start">
-            <a class="navbar-item" aria-label="main navigation" href="/search?search=">
+
+            <a class="navbar-item" href="/search?search=">
                <strong>Search</strong>
             </a>
 
             <a class="navbar-item" href="/places/create">
                <strong>List Your Property</strong>
             </a>
+
          </div>
 
-      <div class="navbar-menu" style="width: 100px"></div>
-
-      <div class="navbar-hamburger">
          <div class="navbar-end">
-            <a id="registerBtn" sec:authorize="not isAuthenticated()"
-               href="/users/create" class="navbar-item">
+
+            <a id="registerBtn" sec:authorize="not isAuthenticated()" href="/users/create" class="navbar-item">
                <strong>Register</strong>
             </a>
 
-            <a id="loginBtn" sec:authorize="not isAuthenticated()"
-               class="navbar-item"
-               href="/users/login">
+            <a id="loginBtn" sec:authorize="not isAuthenticated()" class="navbar-item" href="/users/login">
                <strong>Login</strong>
             </a>
-         </div>
 
-         <div class="navbar-item" style="margin-left: auto;">
-            <form sec:authorize="isAuthenticated()" th:action="@{/profile}"
-                  th:method="get">
-               <a class="navbar-item" th:href="@{/profile}">
-                  <strong style="height: 100%;">Profile</strong>
-               </a>
-            </form>
+            <div class="navbar-item" style="margin-left: auto;">
+               <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get">
 
-            <form id="my_form" sec:authorize="isAuthenticated()"
-                  th:action="@{/logout}" th:method="post">
-               <a href="javascript:{}"
-                  onclick="document.getElementById('my_form').submit();"
-                  class="navbar-item" type="submit">
-                  <strong>Logout</strong>
-               </a>
-            </form>
+                  <a class="navbar-item" th:href="@{/profile}">
+                     <strong style="height: 100%;">Profile</strong>
+                  </a>
+
+               </form>
+               <form id="my_form" sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+
+                  <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="navbar-item" type="submit">
+                     <strong>Logout</strong>
+                  </a>
+
+               </form>
+            </div>
          </div>
       </div>
    </nav>
