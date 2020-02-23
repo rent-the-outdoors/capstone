@@ -42,7 +42,8 @@
 
 <body>
    <!--nav start-->
-   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation" th:fragment="nav">
+   <nav th:fragment="nav">
+   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
          <a id="rto" class="navbar-item" href="/"><strong>RTO</strong></a>
          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
@@ -94,7 +95,7 @@
       </div>
    </nav>
 
-
+   </nav>
 <footer th:fragment="footer" class="footer" style="padding: 0; ">
 
    <div class="content has-text-centered" style="display: flex; align-items: center; ">
