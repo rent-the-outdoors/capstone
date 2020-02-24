@@ -32,6 +32,7 @@
       <div
         style="display: flex; flex-direction: column; width: 400px; border-radius: 15%;">
          <div style="display: flex; align-items: center; margin-bottom: 1%; padding-left: 15%; ">
+
             <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
                width: 300px; background-position: center;">
             <img th:if="${user.image_path != null}" th:src="${user.image_path}"
@@ -43,11 +44,13 @@
          </div>
          <div>
             <div th:if="${loggedInUser != null && loggedInUser.id == user.id}" style="padding-top: 5%; padding-left: 20%; padding-bottom: 15%">
+
                <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
                      th:method="POST"
                      style="display: flex; justify-content: center; width: 70%;">
                   <button id="upload" class="button is-small"
                           style="background-color: #D0F2C2;">Upload Image
+
                   </button>
                   <div id="empty" style="padding: 5%;"></div>
                   <button id="submit"
@@ -130,7 +133,7 @@
         crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-        const client = filestack.init("ArvmOJdHSwmo1NtHoPmi5z");
+        const client = filestack.init("AKvDThsMuSfy6i2SqnnmUz");
         const options = {
             onUploadDone: (res) => {
                 $('#image').append(`<input type="hidden" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`);
