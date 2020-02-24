@@ -17,6 +17,10 @@ body {
 .navbar-item{
     font-size: 20px;
     color: white;
+    background-color: #363636;
+}
+.navbar-menu {
+    background-color: #363636;
 }
 
 .splash-form {
@@ -31,7 +35,6 @@ body {
     background-color: #363636 !important;
     color: #D0F2C2 !important;
 }
-
 
 .centered {
     display: flex;
