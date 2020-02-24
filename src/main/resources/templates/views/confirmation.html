@@ -17,9 +17,9 @@
                <p
                  th:text="'Total: $' + ${#numbers.formatDecimal(totalCost, 0, 'COMMA', 2, 'POINT')}"></p>
                <p><span class="has-text-weight-bold"> From: </span><span
-                 th:text="${stringFirstDate}"></span></p>
+                 th:text="${stringFirstDate}" th:value="${stringFirstDate}" th:name="firstDate"></span></p>
                <p><span class="has-text-weight-bold"> To: </span><span
-                 th:text="${stringSecondDate}"></span></p>
+                 th:text="${stringSecondDate}" th:value="${stringSecondDate}" th:name="secondDate"></span></p>
                <p><span
                  class="has-text-weight-bold"> Number of Days: </span><span
                  th:text="${numberOfDays}"></span></p>
@@ -30,7 +30,11 @@
             <form th:action="@{|/charge/{id}|}" th:method='POST'
                   id='checkout-form'
                   xmlns:th="http://www.thymeleaf.org">
+               <input type="hidden" th:value="${stringFirstDate}" name="firstDate">
+               <input type="hidden" th:value="${stringSecondDate}" name="secondDate">
+
                <input type='hidden' th:value="${totalCost}" name='amount'/>
+               <input type="hidden" th:value="${loggedInUserId}" name="loggedInUserId"/>
                <input type='hidden' th:value="${userId}" name="userId"/>
                <input type='hidden' th:value="${place.id}" name="placeId"/>
                <script

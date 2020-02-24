@@ -86,6 +86,7 @@ public class CheckoutController {
         model.addAttribute("numberOfDays", diff);
         model.addAttribute("stringFirstDate", dateStart);
         model.addAttribute("stringSecondDate", dateEnd);
+        model.addAttribute("loggedInUserId", loggedInUserId);
         return "views/confirmation";
     }
 
@@ -98,6 +99,7 @@ public class CheckoutController {
         model.addAttribute("place", placeDao.getOne(id));
         model.addAttribute("amount", Double.parseDouble(placeDao.getOne(id).getCost_per_day()));
         model.addAttribute("stripePublicKey", stripePublicKey);
+
         return "views/confirmation";
     }
 
@@ -105,10 +107,11 @@ public class CheckoutController {
     private StripeService stripeService;
 
     @RequestMapping(value = "/charge/{id}", method = RequestMethod.POST)
-    public String chargeCard(Model model, HttpServletRequest request, @RequestParam Long userId, @RequestParam Long placeId) throws Exception {
+    public String chargeCard(Model model, HttpServletRequest request, @RequestParam Long userId, @RequestParam Long placeId, @RequestParam String firstDate, @RequestParam String secondDate, @RequestParam Long loggedInUserId) throws Exception {
+        User loggedInUser = userDao.getOne(loggedInUserId);
         User user = userDao.getOne(userId);
-        String name = user.getFirst_name() + " " + user.getLast_name();
-        String email = user.getEmail();
+        String name = loggedInUser.getFirst_name() + " " + loggedInUser.getLast_name();
+        String email = loggedInUser.getEmail();
         Place place = placeDao.getOne(placeId);
         String address = place.getAddress();
         System.out.println(email);
@@ -121,7 +124,7 @@ public class CheckoutController {
         String subject = "Your Booking Confirmation";
         Email to = new Email(email);
         Content content = new Content("text/plain",
-                "Hi, " + name + "! Your booking is confirmed on INSERT_DATE_HERE at " + address + " for a grand total of: $" + amount);
+                "Hi, " + name + "! Your booking is confirmed from" + firstDate + " to " + secondDate + " at " + address + " for a grand total of: $" + amount);
         Mail mail = new Mail(from, subject, to, content);
         SendGrid sg = new SendGrid(sendGridKey);
         Request mailRequest = new Request();
