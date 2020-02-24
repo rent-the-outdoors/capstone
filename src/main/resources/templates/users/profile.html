@@ -31,7 +31,7 @@
       </div>
       <div
         style="display: flex; flex-direction: column; width: 400px; border-radius: 15%;">
-         <div style="display: flex; align-items: center; margin-bottom: 1%;">
+         <div style="display: flex; align-items: center; margin-bottom: 3%;">
             <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
                width: 300px; background-position: center;">
             <img th:if="${user.image_path != null}" th:src="${user.image_path}"
@@ -42,12 +42,12 @@
                     style="font-size: 50px; margin-left: 5%;"></strong>
          </div>
          <div>
-            <div th:if="${loggedInUser != null && loggedInUser.id == user.id}">
+            <div th:if="${loggedInUser != null && loggedInUser.id == user.id}" >
                <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
                      th:method="POST"
                      style="display: flex; justify-content: center; width: 70%;">
                   <button id="upload" class="button is-small"
-                          style="background-color: #D0F2C2;border-radius: 15%; margin-right: 1%;"
+                          style="background-color: #D0F2C2;border-radius: 15%; margin-right: 3%;"
                           type="button">Upload Image
                   </button>
                   <button id="submit"
@@ -109,7 +109,7 @@
             </a>
          </div>
       </div>
-      <div th:if="${userPlaces != null && userPlaces.size() < 1}"
+      <div th:if="${userPlaces == null}"
            style="padding-bottom: 2%; display: flex; justify-content: center; width: 45%;">
          <h1 class="is-size-3">You don't have any listings yet! To add one,
             click <a href="/places/create">here</a></h1>
@@ -131,7 +131,7 @@
         crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-        const client = filestack.init("ArvmOJdHSwmo1NtHoPmi5z");
+        const client = filestack.init("AKvDThsMuSfy6i2SqnnmUz");
         const options = {
             onUploadDone: (res) => {
                 $('#image').append(`<input type="hidden" name="image_path" value="https://cdn.filestackcontent.com/${res.filesUploaded[0].handle}">`);
