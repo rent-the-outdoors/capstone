@@ -56,7 +56,7 @@ public class UserController {
 
     //Update user GET
     @GetMapping(path = "/profile")
-    public String getImgInfoForUser(Model m) throws InternalError {
+    public String getImgInfoForUser(Model m, HttpSession session) throws InternalError {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         m.addAttribute("loggedInUser", loggedInUser);
         User user = usersDao.getOne(loggedInUser.getId());
@@ -71,9 +71,11 @@ public class UserController {
             });
         m.addAttribute("userPlaces", userPlaces);
         }
-        m.addAttribute("confirmation", true);
-
-        return "users/profile";
+        if (session.getAttribute("yes") != null) {
+            m.addAttribute("confirmation", true);
+            session.removeAttribute("yes");
+        }
+            return "users/profile";
     }
 
 //    @GetMapping(path = "/profile/confirm")
