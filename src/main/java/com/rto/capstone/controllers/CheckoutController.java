@@ -1,6 +1,7 @@
 
 package com.rto.capstone.controllers;
 
+import com.mysql.cj.Session;
 import com.rto.capstone.models.Booking;
 import com.rto.capstone.models.Place;
 import com.rto.capstone.models.User;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -136,6 +138,9 @@ public class CheckoutController {
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+            HttpSession session = request.getSession();
+            session.setAttribute("yes", true);
+
             return "redirect:/profile";
         } catch (IOException ex) {
             throw ex;
