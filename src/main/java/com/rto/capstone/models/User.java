@@ -49,7 +49,7 @@ public class User {
     @Column(nullable = false, name = "password", columnDefinition = "VARCHAR(100)")
     private String password;
 
-    @Column(nullable = false, name = "phone_num", columnDefinition = "VARCHAR(12)")
+    @Column(name = "phone_num", columnDefinition = "VARCHAR(255)")
     private String phone_num;
 
     @Column(name = "image_path", columnDefinition = "VARCHAR(2050)")

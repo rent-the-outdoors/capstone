@@ -136,7 +136,7 @@ public class CheckoutController {
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
-            return "redirect:/profile/confirm";
+            return "redirect:/profile";
         } catch (IOException ex) {
             throw ex;
         }

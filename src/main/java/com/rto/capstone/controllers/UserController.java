@@ -71,28 +71,30 @@ public class UserController {
             });
         m.addAttribute("userPlaces", userPlaces);
         }
+        m.addAttribute("confirmation", true);
+
         return "users/profile";
     }
 
-    @GetMapping(path = "/profile/confirm")
-    public String confirmPaymentProfile(Model m) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        m.addAttribute("loggedInUser", loggedInUser);
-        User user = usersDao.getOne(loggedInUser.getId());
-        m.addAttribute("user", user);
-        List<Place> allPlaces = placesDao.findAll();
-        List<Place> userPlaces = new ArrayList<>();
-        if (allPlaces.size() > 0) {
-            allPlaces.forEach(place -> {
-                if (place.getUser().getId() == user.getId()) {
-                    userPlaces.add(place);
-                }
-            });
-            m.addAttribute("userPlaces", userPlaces);
-        }
-        m.addAttribute("confirmation", true);
-        return "users/profile";
-    }
+//    @GetMapping(path = "/profile/confirm")
+//    public String confirmPaymentProfile(Model m) {
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        m.addAttribute("loggedInUser", loggedInUser);
+//        User user = usersDao.getOne(loggedInUser.getId());
+//        m.addAttribute("user", user);
+//        List<Place> allPlaces = placesDao.findAll();
+//        List<Place> userPlaces = new ArrayList<>();
+//        if (allPlaces.size() > 0) {
+//            allPlaces.forEach(place -> {
+//                if (place.getUser().getId() == user.getId()) {
+//                    userPlaces.add(place);
+//                }
+//            });
+//            m.addAttribute("userPlaces", userPlaces);
+//        }
+//        m.addAttribute("confirmation", true);
+//        return "users/profile";
+//    }
 
     //    //Update user POST
     @PostMapping(path = "/profile/{id}")
