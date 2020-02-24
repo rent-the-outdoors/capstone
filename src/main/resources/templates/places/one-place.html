@@ -16,11 +16,10 @@
                  style="border: 2px solid black; padding: 0; height: 403px; width: 60%; margin-right: 1px; background-color: white">
                 <div th:each="image,iStat : ${place.placeImages}">
                     <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                         style="padding: 0; margin: 0; height: 400px; width: 100%;"
-                         class="is-mobile-1">
+                         style="padding: 0; margin: 0; height: 400px; width: 100%;">
                 </div>
             </div>
-            <div class="column is-one-third-tablet"
+            <div class="column is-one-third-tablet is-hidden-mobile"
                  style="display: flex; flex-wrap: wrap; padding: 0; margin: 0; border: 2px solid black; width: 505px; height: 403px; background-color: white ">
                 <div th:each="image,iStat : ${place.placeImages}"
                      style="margin: 0 1px 1px 0; height: 199px; display: flex; flex-wrap: wrap;">

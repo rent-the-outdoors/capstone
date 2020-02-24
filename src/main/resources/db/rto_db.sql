@@ -1,8 +1,8 @@
 -- USE rto_db;
 -- INSERT INTO activities(activity) VALUES ('hunting'), ('fishing'), ('boating'), ('camping');
 CREATE DATABASE rto_db;
-/*DROP DATABASE rto_db;
-*/
+DROP DATABASE rto_db;
+
 USE rto_db;
 DROP TABLE reviews;
 DROP TABLE places;

@@ -3,7 +3,7 @@
 <head th:insert="partials/fragments :: head('Search Results')">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite; padding: 0"
+<body style="background-color: antiquewhite; padding: 0;"
       class="has-navbar-fixed-bottom">
 <nav th:include="partials/fragments :: nav"></nav>
 <div class="hero" id="search" style="
@@ -63,7 +63,7 @@
       </form>
    </div>
 </div>
-<main style="margin-top: 2%; margin-bottom: 2%">
+<main style="margin-top: 2%; margin-bottom: 10%">
    <div>
       <div th:if="${searchQuery.size() > 0}"
            th:each="place,plStat : ${searchQuery}"
