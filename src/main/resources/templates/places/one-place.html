@@ -36,7 +36,7 @@
     <div class="columns">
         <div class="column is-7 is-narrow" style="margin-left: 2%;">
             <div class="card"
-                 style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; box-shadow: 2px 2px 3px 1px darkslategray;">
+                 style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; box-shadow: 2px 2px 3px 1px darkslategray; overflow: wrap; ">
                 <div
                         style="display: flex; margin-top: 3%; width: 100%; justify-content: center;">
                     <h1 class="is-size-2"
@@ -57,7 +57,7 @@
 
 
                 <div class="card-body"
-                     style="display: flex; justify-content: center; flex-direction: column; align-items: start; width: 100%; margin-left: 20%;">
+                     style="display: flex; justify-content: center; flex-direction: column; align-items: start; flex-wrap: wrap; width: 90%; margin-left: 2%;">
                    <strong th:text="'Price: '"></strong>
                    <span
                        th:text="'$' + ${#numbers.formatDecimal(place.cost_per_day, 0, 'COMMA', 2, 'POINT')} + ' per day'"></span></span>
