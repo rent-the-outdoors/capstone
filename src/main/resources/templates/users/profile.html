@@ -36,7 +36,7 @@
                width: 300px; background-position: center;">
             <img th:if="${user.image_path != null}" th:src="${user.image_path}"
                  style="border-radius: 50%; border: solid white 4px;
-               width: 300px; background-position: center;">
+               width: 300px; height: 300px; background-position: center;">
             <strong th:text="${user.username}"
                     class="has-text-light"
                     style="font-size: 50px; margin-left: 5%;"></strong>
@@ -109,7 +109,7 @@
             </a>
          </div>
       </div>
-      <div th:if="${userPlaces == null}"
+      <div th:if="${userPlaces != null && userPlaces.size() < 1}"
            style="padding-bottom: 2%; display: flex; justify-content: center; width: 45%;">
          <h1 class="is-size-3">You don't have any listings yet! To add one,
             click <a href="/places/create">here</a></h1>
