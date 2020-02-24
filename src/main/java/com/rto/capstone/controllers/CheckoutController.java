@@ -124,7 +124,7 @@ public class CheckoutController {
         String subject = "Your Booking Confirmation";
         Email to = new Email(email);
         Content content = new Content("text/plain",
-                "Hi, " + name + "! Your booking is confirmed from" + firstDate + " to " + secondDate + " at " + address + " for a grand total of: $" + amount);
+                "Hi, " + name + "! Your booking is confirmed from " + firstDate + " to " + secondDate + " at " + address + " for a grand total of: $" + amount);
         Mail mail = new Mail(from, subject, to, content);
         SendGrid sg = new SendGrid(sendGridKey);
         Request mailRequest = new Request();

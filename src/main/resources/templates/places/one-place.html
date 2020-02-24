@@ -58,10 +58,19 @@
 
 
                 <div class="card-body"
-                     style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-               <span><strong
-                       th:text="'$' + ${#numbers.formatDecimal(place.cost_per_day, 0, 'COMMA', 2, 'POINT')}"></strong><span> per day</span></span>
-                    <p th:text="${place.description}"></p>
+                     style="display: flex; justify-content: center; flex-direction: column; align-items: start; width: 100%; margin-left: 20%;">
+                   <strong th:text="'Price: '"></strong>
+                   <span
+                       th:text="'$' + ${#numbers.formatDecimal(place.cost_per_day, 0, 'COMMA', 2, 'POINT')} + ' per day'"></span></span>
+                    <strong th:text="'Description: '"></strong>
+                    <span th:text="'Description: ' + ${place.description}"> </span>
+
+                    <strong th:text="'Activities:'"></strong>
+                    <span th:if="${place.activities != null}" th:text=" ${place.activities}"></span>
+                    <span th:if="${place.activities == null}" th:text="' none'"></span>
+                    <strong th:text="'Amenities:'"></strong>
+                    <span  th:if="${place.amenities != null}" th:text="${place.amenities}"></span>
+                    <span th:if="${place.amenities == null}" th:text="' none'"></span>
                 </div>
                 <div class="card-footer"
                      style="display: flex; justify-content: center; width: 100%;">

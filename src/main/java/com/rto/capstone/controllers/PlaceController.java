@@ -59,7 +59,7 @@ public class  PlaceController {
 
     //Create place POST
     @PostMapping(path = "/places/{id}/create")
-    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam(required=false) String image_path1, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam(required=false) String address, @RequestParam(required=false) String image_path2, @RequestParam(required=false) String image_path3, @RequestParam(required=false) String image_path4, @RequestParam(required=false) String image_path5  )
+    public String createAndPostFormForPlaceWithInfoFromGet(@RequestParam(required=false) String image_path1, @RequestParam User userId, @PathVariable Long id, @RequestParam String description, @RequestParam String title, @RequestParam String cost, @RequestParam(required=false) String address, @RequestParam(required=false) String image_path2, @RequestParam(required=false) String image_path3, @RequestParam(required=false) String image_path4, @RequestParam(required=false) String image_path5, @RequestParam String activities, @RequestParam String amenities)
 
 //
     {
@@ -71,6 +71,8 @@ public class  PlaceController {
         place.setCost_per_day(cost);
         place.setAddress(address);
         place.setUser(userId);
+        place.setActivities(activities);
+        place.setAmenities(amenities);
         PlaceImage placeImage = new PlaceImage();
         PlaceImage placeImage2 = new PlaceImage();
         PlaceImage placeImage3 = new PlaceImage();
