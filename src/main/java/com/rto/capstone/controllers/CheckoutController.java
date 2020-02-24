@@ -67,8 +67,8 @@ public class CheckoutController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         Date firstDate = sdf.parse(dateStart);
         Date secondDate = sdf.parse(dateEnd);
-        booking.setDateEnd(secondDate);
-        booking.setDateStart(firstDate);
+        booking.setDateEnd(dateEnd);
+        booking.setDateStart(dateStart);
         booking.setAddress(place.getAddress());
         booking.setTitle(place.getTitle());
         booking.setUser(userDao.getOne(loggedInUserId));
