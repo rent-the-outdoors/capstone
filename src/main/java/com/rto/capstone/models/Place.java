@@ -11,6 +11,12 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private String activities;
+
+    @Column
+    private String amenities;
+
     @Column(nullable = false)
     private String title;
 
@@ -35,6 +41,22 @@ public class Place {
         this.placeImages = placeImages;
     }
 
+    public String getActivities() {
+        return activities;
+    }
+
+    public void setActivities(String activities) {
+        this.activities = activities;
+    }
+
+    public String getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
+
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
     private List<PlaceImage> placeImages;
 
@@ -51,12 +73,16 @@ public class Place {
                  String title,
                  String address,
                  String cost_per_day,
-                 String description){
+                 String description,
+                 String amenities,
+                 String activities){
         this.id = id;
         this.title = title;
         this.address = address;
         this.cost_per_day = cost_per_day;
         this.description = description;
+        this.amenities = amenities;
+        this.activities = activities;
 
     }
 
