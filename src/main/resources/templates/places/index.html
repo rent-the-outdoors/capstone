@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('All Places')">
+<head th:include="partials/fragments :: head">
+    <title>RTO: All Places</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 <body>
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
