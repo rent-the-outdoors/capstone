@@ -48,18 +48,19 @@
                <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
                      th:method="POST"
                      style="display: flex; justify-content: center; width: 70%;">
-                  <button id="upload" class="button is-small"
+                  <button id="upload" class="button is-small" type="button"
                           style="background-color: #D0F2C2;">Upload Image
 
                   </button>
-                  <div id="empty" style="padding: 5%;"></div>
-                  <button id="submit"
+<!--                  <div id="empty" style="padding: 5%;"></div>-->
+                  <button id="submit" type="submit"
                           class="button is-dark is-small">
                      Submit
                   </button>
-                  <div id="image">
-                  </div>
+
+                  <div id="image"></div>
                </form>
+
             </div>
          </div>
       </div>
@@ -125,7 +126,7 @@
 <!--begin scripts-->
 <script th:include="partials/fragments :: navbarScript"></script>
 
-<script type="text/javascript" src="/static/js/keys.js"></script>
+<!--<script type="text/javascript" src="/static/js/keys.js"></script>-->
 <script type="text/javascript"
         src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
