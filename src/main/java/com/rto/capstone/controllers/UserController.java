@@ -100,7 +100,7 @@ public class UserController {
 
     //    //Update user POST
     @PostMapping(path = "/profile/{id}")
-    public String uploadImgForUser(@PathVariable long id, @RequestParam String image_path) {
+    public String uploadImgForUser(@PathVariable long id, @RequestParam(required = false) String image_path) {
         User user = usersDao.getOne(id);
         user.setImage_path(image_path);
         usersDao.save(user);
