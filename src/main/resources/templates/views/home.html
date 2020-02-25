@@ -65,7 +65,7 @@
          </form>
       </div>
    </div>
-   <div class="centered title" style="margin-top: 5%;">
+   <div class="centered title" style="height: 10vh;">
       <h1>Find Your Adventure Today!</h1>
    </div>
    <div class="columns"
@@ -73,17 +73,17 @@
       <div class="container card column is-10"
            style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
          <div class="column is-12"
-              style="display: flex; justify-content: center; flex-wrap: wrap;">
+              style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 4%;">
             <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
-                 style=" margin: 0 3% 3% 3%;">
+                 style=" margin: 0 3% 0 3%;">
                <a th:href="@{'/place/' + ${place.id}}">
                   <div class="card"
-                       style="max-height: 300px; width: 300px;">
+                       style="max-height: 30vh; width: 25vw;">
                      <div class="card-image">
                         <div th:each="item,iStat : ${place.placeImages}">
                            <img th:if="${iStat.first}"
                                 th:src="${item.imagePath}"
-                                style="height: 150px; width: 300px; ">
+                                style="height: 15vh; width: 25vw; ">
                         </div>
                      </div>
                      <div class="card-header"
