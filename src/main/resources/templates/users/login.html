@@ -6,7 +6,9 @@
    <title>Login Page</title>
 </head>
 
-<body style="background-color: antiquewhite; height: 100%;  margin-top: 4%;">
+<body style="background-color: antiquewhite; height: 100%;  margin-top: 4%; background-image: url(/img/header:footer.jpg); background-repeat: no-repeat;
+            background-position: top;
+            background-size: cover;">
     <nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 <div style="display: flex; justify-content: center; align-items: center; padding: 6%; width: 100%; flex-direction: column; margin-top: 4%; height: 90vh;">
     <div th:if="${param.error}" style="margin: 5%; font-size: 18px; background-color: #1e2b37; padding: 1%">
