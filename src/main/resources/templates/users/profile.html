@@ -12,64 +12,68 @@
      style="background-image: url('img/adventure-bg.jpg'); background-position: center; height: 65vh;">
    <div class="hero-body">
       <div th:if="${confirmation != null}">
-         <p id="confirmCheck"  th:value="${confirmation}"></p>
+         <p id="confirmCheck" th:value="${confirmation}"></p>
       </div>
-            <div class="modal" id="confirmModal">
-               <div class="modal-background"></div>
-               <div class="modal-card">
-                  <section class="modal-card-body" style="padding: 15px 15px 0 15px;">
-                        <h2 class="is-size-4">Your booking has been confirmed!</h2>
-                     <h2 class="is-size-4">A confirmation email will be sent shortly.</h2>
-                        <div class="modal-card-foot">
-                           <button class="button is-dark " id="closeModal" aria-label="close">
-                              Okay!
-                           </button>
-                        </div>
-                  </section>
+      <div class="modal" id="confirmModal">
+         <div class="modal-background"></div>
+         <div class="modal-card">
+            <section class="modal-card-body" style="padding: 15px 15px 0 15px;">
+               <h2 class="is-size-4">Your booking has been confirmed!</h2>
+               <h2 class="is-size-4">A confirmation email will be sent
+                  shortly.</h2>
+               <div class="modal-card-foot">
+                  <button class="button is-dark " id="closeModal"
+                          aria-label="close">
+                     Okay!
+                  </button>
                </div>
-            </div>
-      </div>
-      <div
-        style="display: flex; flex-direction: column; align-items: center; width: 25vw; border-radius: 15%; padding: 2%;">
-         <div style="display: flex; align-items: center; margin-bottom: 1%; margin-left: 8%;">
-            <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
-               width: 15vw; background-position: center;">
-            <img th:if="${user.image_path != null}" th:src="${user.image_path}"
-                 style="border-radius: 50%; border: solid white 4px;
-               width: 15vw; height: 15vh; background-position: center;">
-            <strong th:text="${user.username}"
-                    class="has-text-light"
-                    style="font-size: 50px; margin-left: 5%;"></strong>
-         </div>
-         <div>
-            <div th:if="${loggedInUser != null && loggedInUser.id == user.id}" style="padding-top: 5%;">
-
-               <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
-                     th:method="POST"
-                     style="display: flex; justify-content: center; width: 70%;">
-                  <button id="upload" class="button is-small" type="button"
-                          style="background-color: #D0F2C2;">Upload Image
-
-                  </button>
-<!--                  <div id="empty" style="padding: 5%;"></div>-->
-                  <button id="submit" type="submit"
-                          class="button is-dark is-small">
-                     Submit
-                  </button>
-
-                  <div id="image"></div>
-               </form>
-
-            </div>
+            </section>
          </div>
       </div>
    </div>
+   <div
+     style="display: flex; flex-direction: column; align-items: center; width: 25vw; border-radius: 15%; padding: 2%;">
+      <div
+        style="display: flex; align-items: center; margin-bottom: 1%; margin-left: 8%;">
+         <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
+               width: 15vw; background-position: center;">
+         <img th:if="${user.image_path != null}" th:src="${user.image_path}"
+              style="border-radius: 50%; border: solid white 4px;
+               width: 15vw; height: 15vh; background-position: center;">
+         <strong th:text="${user.username}"
+                 class="has-text-light"
+                 style="font-size: 50px; margin-left: 5%;"></strong>
+      </div>
+      <div>
+         <div th:if="${loggedInUser != null && loggedInUser.id == user.id}"
+              style="padding-top: 5%;">
+
+            <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
+                  th:method="POST"
+                  style="display: flex; justify-content: center; width: 70%;">
+               <button id="upload" class="button is-small" type="button"
+                       style="background-color: #D0F2C2;">Upload Image
+
+               </button>
+               <!--                  <div id="empty" style="padding: 5%;"></div>-->
+               <button id="submit" type="submit"
+                       class="button is-dark is-small">
+                  Submit
+               </button>
+
+               <div id="image"></div>
+            </form>
+
+         </div>
+      </div>
+   </div>
+</div>
 
 <div class="columns"
-     style="height: 55%; margin-top: 1%; background-color: antiquewhite; padding: 2%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-         <h2 th:if="${userPlaces != null && userPlaces.size() > 0}" class="is-size-2"
-             style="padding: 1%;"
-             th:text="${user.username} + '\'s Listings:'"></h2>
+     style="height: 100%;background-color: antiquewhite; padding: 2%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+   <h2 th:if="${userPlaces != null && userPlaces.size() > 0}" class="is-size-2"
+       style="padding: 1%;"
+       th:text="${user.username} + '\'s Listings:'"></h2>
    <div class="container card column is-8"
         style="border-radius: 6%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <div class="column is-12"
@@ -95,13 +99,14 @@
                        th:action="@{'/places/' + ${place.id} + '/update'}"
                        method="GET">
                         <button class="button is-small is-white"><i
-                          class="fas fa-wrench" ></i></button>
+                          class="fas fa-wrench"></i></button>
                      </form>
                      <form
                        th:action="@{'/places/' + ${place.id} + '/delete'}"
                        method="POST">
-                        <button class="button is-small is-white" style="padding-left: 0;"><i
-                          class="fas fa-trash" ></i></button>
+                        <button class="button is-small is-white"
+                                style="padding-left: 0;"><i
+                          class="fas fa-trash"></i></button>
                      </form>
                   </div>
                </div>
@@ -116,7 +121,8 @@
    </div>
 </div>
 
-<footer th:insert="partials/fragments :: footer"></footer>
+<footer class="is-hidden-mobile"
+        th:insert="partials/fragments :: footer"></footer>
 
 <!--begin scripts-->
 <script th:include="partials/fragments :: navbarScript"></script>
