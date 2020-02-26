@@ -32,29 +32,29 @@
    </div>
    <div
      style="display: flex; flex-direction: column; width: 400px; border-radius: 15%; padding-top: 6%;">
-      <div style="display: flex; align-items: center; margin-bottom: 1%; padding-left: 15%; ">
+      <div style="display: flex; align-items: center; margin-bottom: 1%; padding-left: 15%; " class="is-hidden-mobile">
 
          <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
-               width: 15vw;  height: 15vh; background-position: center;">
+               width: 15vw;  height: 15vh; background-position: center; ">
          <img th:if="${user.image_path != null}" th:src="${user.image_path}"
               style="border-radius: 50%; border: solid white 4px;
-               width: 15vw; height: 15vh; background-position: center;">
+               width: 12vw; height: 20vh; background-position: center;">
          <strong th:text="${user.username}"
                  class="has-text-light"
                  style="font-size: 50px; margin-left: 5%;"></strong>
       </div>
       <div>
-         <div th:if="${loggedInUser != null && loggedInUser.id == user.id}" style="padding-top: 5%; padding-left: 20%; padding-bottom: 15%">
+         <div th:if="${loggedInUser != null && loggedInUser.id == user.id}" style="padding-left: 15%;">
 
             <form id="profImage" th:action="@{'/profile/' + ${user.id}}"
                   th:method="POST"
-                  style="display: flex; justify-content: center; width: 70%;">
-               <button id="upload" class="button is-small" type="button"
+                  style="display: flex; justify-content: center; width: 70%; padding-bottom: 10%;" class="is-hidden-mobile">
+               <button id="upload" class="button is-medium" type="button"
                        style="background-color: #D0F2C2;">Upload Image
 
                </button>
                <button id="submit" type="submit"
-                       class="button is-dark is-small">
+                       class="button is-dark is-medium">
                   Submit
                </button>
 
