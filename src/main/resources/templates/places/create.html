@@ -10,12 +10,12 @@ height: 125%;">
 <nav th:include="partials/fragments :: nav" class="is-blue"></nav>
 
 
-<main class="hero is-hidden-mobile"
+<main
       style=" display: flex; justify-content: center; width: 100%; height: 100%;">
    <div class="hero-body columns has-text-centered"
         style="display: flex; justify-content: center; align-items: center; margin-top: 4%; margin-bottom: 7%;">
       <div class="box" style="width: 70%;">
-         <div class="column is-6 is-offset-3">
+         <div class="column is-6 is-offset-3" style="padding-top: 4%;">
             <h1 class="is-size-1 has-text-dark">
                List your property:
             </h1>
@@ -136,74 +136,54 @@ height: 125%;">
       </div>
    </div>
 </main>
-
-<!--&lt;!&ndash;begins mobile dev&ndash;&gt;-->
-<!--<div style="display: flex; justify-content: center; align-items: center; margin-top: 15%; margin-bottom: 15%; padding: 2%;">-->
-<!--<div class="tile card is-ancestory is-hidden-tablet" style="padding: 2%;">-->
-<!--   <h1>List Your Property:</h1>-->
+<!--mobile form-->
+<!--<div class="is-hidden-tablet" style="display: flex; justify-content: center; align-items: center;">-->
+<!--   <div class="card column is-three-quarters-mobile" style="margin-top: 25%;">-->
 <!--   <form th:action="@{'/places/' + ${user.id} + '/create'}" method="POST">-->
-<!--      <div class="tile">-->
-<!--         <label class="label" for="mobileTitle">Title: </label>-->
-<!--         <input class="input is-small" placeholder="Name of your property"-->
-<!--                id="mobileTitle" name="mobileTitle" type="text"/>-->
-<!--      </div>-->
-<!--      <div class="tile">-->
-<!--         <input type="hidden" th:value="${user.id}" th:name="userId">-->
-<!--         <label class="label" for="mobileCost_per_day">Cost: </label>-->
-<!--         <input class="input is-small" id="mobileCost_per_day"-->
-<!--                placeholder="Cost per day " name="mobileCost"/>-->
-<!--      </div>-->
-<!--<div class="tile">-->
-<!--   <label class="label" for="mobileAddress">Address: </label>-->
-<!--   <input class="input is-small" id="mobileAddress" name="mobileAddress"-->
-<!--          placeholder="Street, city, state, zip" required/>-->
-<!--</div>-->
-<!--      <div class="tile">-->
-<!--         <label class="label" for="mobileDescription">Description:</label>-->
-<!--         <textarea class="textarea is-normal"-->
-<!--                   placeholder="Describe your place." id="mobileDescription"-->
-<!--                   name="mobileDescription"></textarea>-->
-
-<!--      </div>-->
-
-<!--      <div class="tile">-->
-<!--         <label class="label" for="mobileAmenities">Amenities: </label>-->
-<!--         <input class="input is-small"-->
-<!--                placeholder="What does your property offer?"-->
-<!--                id="mobileAmenities"-->
-<!--                name="mobileAmenities" type="text"/>-->
-<!--      </div>-->
-<!--   <div class="tile">-->
+<!--      <label class="label" for="mobileTitle">Title: </label>&ndash;&gt;-->
+<!--      <input class="input is-small" placeholder="Name of your property"-->
+<!--             id="mobileTitle" name="mobileTitle" type="text"/>-->
+<!--      <input type="hidden" th:value="${user.id}" th:name="mobileUserId">-->
+<!--      <label class="label" for="mobileCost_per_day">Cost: </label>-->
+<!--      <input class="input is-small" id="mobileCost_per_day"-->
+<!--             placeholder="Cost per day " name="mobileCost"/>-->
+<!--      <label class="label" for="mobileAddress">Address: </label>-->
+<!--      <input class="input is-small" id="mobileAddress" name="mobileAddress"-->
+<!--             placeholder="Street, city, state, zip" required/>-->
+<!--      <label class="label" for="mobileDescription">Description:</label>-->
+<!--      <textarea class="textarea is-normal"-->
+<!--                placeholder="Describe your place." id="mobileDescription"-->
+<!--                name="mobileDescription"></textarea>-->
+<!--      <label class="label" for="mobileAmenities">Amenities: </label>-->
+<!--      <input class="input is-small"-->
+<!--             placeholder="What does your property offer?"-->
+<!--             id="mobileAmenities"-->
+<!--             name="mobileAmenities" type="text"/>-->
 <!--      <label class="label" for="mobileActivities">Activities: </label>-->
 <!--      <input class="input is-small"-->
 <!--             placeholder="What does your property offer?"-->
 <!--             id="mobileActivities"-->
 <!--             name="mobileActivities" type="text"/>-->
-<!--   </div>-->
-<!--      <div class="tile">-->
-<!--         <h1 class="is-size-3">Choose up to 5 images:</h1>-->
-<!--         <div-->
-<!--           style="display: flex; width: 100%; justify-content: space-evenly; align-items: center; margin-right: 1%;">-->
-<!--            <button id="mobileShowModal"-->
-<!--                    class="button is-medium is-dark showModal"-->
-<!--                    type="button">Add Image-->
-<!--            </button>-->
-<!--            <button type="submit" class="button is-medium"-->
-<!--                    style=" width: 139px; background-color: #D0F2C2">Submit-->
-<!--            </button>-->
-<!--         </div>-->
-<!--         <div>-->
-<!--            <div id="mobileImage"-->
-<!--                 style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; height: 125px; width: 700px;"></div>-->
-<!--            <div id="mobileError"></div>-->
-<!--         </div>-->
-<!--      </div>-->
+<!--      <h1 class="is-size-4">Choose up to 5 images:</h1>-->
+<!--      <button id="mobileShowModal"-->
+<!--              class="button is-medium is-dark showModal"-->
+<!--              type="button">Add Image-->
+<!--      </button>-->
+<!--      <button type="submit" class="button is-medium"-->
+<!--              style=" width: 139px; background-color: #D0F2C2">Submit-->
+<!--      </button>-->
+<!--      <div id="mobileImage"-->
+<!--           style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; height: 125px; width: 700px;"></div>-->
+<!--      <div id="mobileError"></div>-->
 <!--   </form>-->
 <!--</div>-->
 <!--</div>-->
 
 
-<footer class="is-hidden-mobile" th:include="partials/fragments :: footer"></footer>
+
+
+<footer class="is-hidden-mobile"
+        th:include="partials/fragments :: footer"></footer>
 <script type="text/javascript" src="/static/js/keys.js"></script>
 <script th:include="partials/fragments :: navbarScript"></script>
 
@@ -226,15 +206,18 @@ height: 125%;">
                 i++;
                 client.picker(options).open();
             });
-            $("#mobileShowModal").click(function() {
-                i++;
-                client.picker(options).open();
-            })
         } else {
             $('#error').append(`<p>Sorry! No more than 5 pictures, please!</p>`)
         }
         //calculating date distances
-
+      if (i <= 10) {
+          $("#mobileShowModal").click(function () {
+              i++;
+              client.picker(options).open();
+          })
+      } else {
+          $('#error').append(`<p>Sorry! No more than 5 pictures, please!</p>`)
+      }
 
     });
 
