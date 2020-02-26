@@ -102,11 +102,11 @@
       </div>
 <!--                  mobile places-->
    <div class="columns is-hidden-tablet"
-        style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
+        style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite; height: 100%;">
 <!--      <div class="column is-12 is-three-quarters-mobile"-->
 <!--           style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 4%;">-->
          <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
-              style=" margin: 0 3% 0 3%;" >
+              style=" margin: 0 3% 3% 3%;" >
             <a th:href="@{'/place/' + ${place.id}}">
                <div class="card" style="width: 75vw;"
                     >
