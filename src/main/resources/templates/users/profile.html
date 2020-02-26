@@ -32,19 +32,20 @@
       </div>
    </div>
    <div
-     style="display: flex; flex-direction: column; align-items: center; width: 25vw; border-radius: 15%; padding: 2%;">
+     style="display: flex; flex-direction: column; align-items: center; width: 50vw; border-radius: 15%; padding: 2%;">
       <div
         style="display: flex; align-items: center; margin-bottom: 1%; margin-left: 8%;">
          <img th:if="${user.image_path == null}" src="img/user.jpg" style="border-radius: 50%; border: solid white 4px;
-               width: 15vw; background-position: center;">
+               width: 15vw; height: 25vh; background-position: center;">
          <img th:if="${user.image_path != null}" th:src="${user.image_path}"
               style="border-radius: 50%; border: solid white 4px;
-               width: 15vw; height: 15vh; background-position: center;">
+               width: 15vw; height: 25vh; background-position: center;">
          <strong th:text="${user.username}"
                  class="has-text-light"
-                 style="font-size: 50px; margin-left: 5%;"></strong>
+                 style="font-size: 2.5em; margin-left: 10%;"></strong>
+
       </div>
-      <div>
+      <div class="container is-pulled-right">
          <div th:if="${loggedInUser != null && loggedInUser.id == user.id}"
               style="padding-top: 5%;">
 
