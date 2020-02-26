@@ -78,7 +78,11 @@
                <strong>Login</strong>
             </a>
 
-            <div class="navbar-item" style="margin-left: auto;">
+            <a id="aboutBtn" class="navbar-item is-hidden-tablet" href="/aboutUs">
+               <strong>About RTO</strong>
+            </a>
+
+            <div class="navbar-item" style="margin-left: auto; padding: 0">
                <form sec:authorize="isAuthenticated()" th:action="@{/profile}" th:method="get">
                   <a class="navbar-item" th:href="@{/profile}">
                      <strong style="height: 100%;">Profile</strong>
@@ -103,7 +107,6 @@
          <a class="button is-dark is-medium" href="/aboutUs" style="margin-top: 2%">
             <span>About RTO</span>
          </a>
-
       </div>
    </div>
 </footer>
