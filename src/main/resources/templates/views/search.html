@@ -72,9 +72,9 @@
             <a th:href="@{'place/' + ${place.id}}">
                <div class="card" style="display: flex">
                   <div th:each="image,iStat : ${place.placeImages}"
-                       style="height: 200px; width: 325px">
+                       style="height: 200px; max-width: 325px">
                      <img th:if="${iStat.first}" th:src="${image.imagePath}"
-                          style="width: 325px; height: 200px;">
+                          style="min-width: 325px; height: 200px;">
                   </div>
                   <div class="card-content" style="margin-left: 2%;">
                      <p>
