@@ -15,8 +15,7 @@
             background-size: cover;
             height: 45vh;">
       <div class="container is-widescreen centered">
-         <form method="GET" action="/search" class="column is-mobile"
-               style="">
+         <form method="GET" action="/search" class="column is-mobile">
             <div class="column is-two-thirds field has-addons">
                <input class="input is-dark control" type="text"
                       placeholder="Find Your Outdoors" name="search">
@@ -65,35 +64,34 @@
          </form>
       </div>
    </div>
-   <div class="centered title" style="height: 10vh;">
-      <h1>Find Your Adventure Today!</h1>
+   <div class="centered title" style="height: 8vh;">
+      <h1 class="is-size-2" style="font-family: Libre Baskerville;"><strong>Rent The Outdoors</strong></h1>
    </div>
    <div class="columns"
-        style="height: 100%; margin-top: 1%; margin-bottom: 3%;">
+        style="height: 100%;  margin-bottom: 3%;">
       <div class="container card column is-10 is-hidden-mobile"
            style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
          <div class="column is-12 is-three-quarters-mobile"
-              style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 4%;">
+              style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 2%;">
             <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
                  style=" margin: 0 3% 0 3%;">
                <a th:href="@{'/place/' + ${place.id}}">
                   <div class="card is-hidden-mobile"
-                       style="max-height: 30vh; width: 20vw;">
+                       style="height: 30vh; width: 20vw;">
                      <div class="card-image">
                         <div th:each="item,iStat : ${place.placeImages}">
                            <img th:if="${iStat.first}"
                                 th:src="${item.imagePath}"
-                                style="height: 15vh; width: 20vw; ">
+                                style="height: 20vh; width: 25vw; ">
                         </div>
                      </div>
-                     <div class="card-header"
+                     <div class="card-header is-size-5"
                           style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
-                        <span th:text="${place.title}"></span>
+                        <strong th:text="${place.title}"></strong>
                      </div>
-                     <div class="card-body"
+                     <div class="card-body is-size-5"
                           style="display: flex; justify-content: center; white-space: nowrap; overflow: hidden;">
-                        <span
-                          th:text="'$'+ ${place.cost_per_day} + ' per day'"> </span>
+                        <strong th:text="'$'+ ${place.cost_per_day} + ' per day'"> </strong>
                      </div>
                   </div>
                </a>
