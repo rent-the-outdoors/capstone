@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partials/fragments :: head('ERROR!')">
+<head th:insert="partials/fragments :: head">
+    <title>RTO: Error</title>
 </head>
 <body style="background-color: blanchedalmond">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
@@ -10,7 +11,7 @@
         <h1 class="title">Sorry there was an error, We've failed you for the last time!</h1>
     </div>
     <div class="card-body centered">
-        <img style="width: 15%; margin-top: 1%; margin-bottom: 1%" src="img/man-sitting-on-concrete-bench-3635945.jpg" alt="Man sitting on concrete bench">
+        <img style="width: 15%; margin-top: 1%; margin-bottom: 1%" src="/img/man-sitting-on-concrete-bench-3635945.jpg" alt="Man sitting on concrete bench">
     </div>
     <div class="card-footer">
         <h3 class="subtitle centered">So sorry about that. Please go to the home page and try again.</h3>
