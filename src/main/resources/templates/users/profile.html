@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="partials/fragments :: head">
+<head th:include="partials/fragments :: head">
+   <title> RTO: Profile</title>
 </head>
-<body style="background-color: #FEEBCD; min-height: 100%; ">
+<body style="background-color: #FEEBCD; min-height: 102%; ">
 
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
-
+<!---->
 <div class="hero is-small"
      style="background-image: url('img/adventure-bg.jpg'); background-position: center; height: 45vh;">
    <div class="hero-body">
@@ -64,9 +65,9 @@
       </div>
    </div>
 </div>
-
+<div style="height: 60%; background-color: antiquewhite">
 <div class="columns"
-     style="margin-top: 1%; margin-bottom: 6%;">
+     style="margin-top: 1%; margin-bottom: 2%; background-color: antiquewhite;">
    <div class="container card column is-9"
         style="border-radius: 3%; display: flex; align-items: center; flex-direction: column; height: 50%;">
       <div class="column is-4 is-offset-1">
@@ -118,6 +119,7 @@
    </div>
 </div>
 </div>
+
 
 <footer th:insert="partials/fragments :: footer"></footer>
 
