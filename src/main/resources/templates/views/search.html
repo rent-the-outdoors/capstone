@@ -72,7 +72,7 @@
             <a th:href="@{'place/' + ${place.id}}">
                <div class="card" style="display: flex">
                   <div th:each="image,iStat : ${place.placeImages}"
-                       style="height: 200px">
+                       style="height: 200px; max-width: 325px">
                      <img th:if="${iStat.first}" th:src="${image.imagePath}"
                           style="width: 325px; height: 200px;">
                   </div>
@@ -80,8 +80,7 @@
                      <p>
                         <strong th:text="'Title: ' + ${place.title}"></strong>
                         <br>
-                        <small
-                          th:text="'Cost: $' + ${place.cost_per_day} + '/day'"></small>
+                        <strong th:text="'Cost: $' + ${place.cost_per_day} + '/day'"></strong>
                         <br>
                         <strong th:text="'Address: ' + ${place.address}"></strong>
                         <br>
