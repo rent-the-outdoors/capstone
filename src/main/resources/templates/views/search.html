@@ -4,14 +4,14 @@
    <title>RTO: Search</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite; padding: 0;">
+<body style="background-color: antiquewhite; padding: 0; height: 100%;">
 <nav th:include="partials/fragments :: nav"></nav>
 <div class="hero" id="search" style="
             background-image: url('img/header:footer.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            height: 30vh;
+            height: 45vh;
             margin-top: 1%;">
    <div class="container is-widescreen centered">
       <form method="GET" action="/search" class="column is-mobile">
@@ -63,12 +63,12 @@
       </form>
    </div>
 </div>
-<main style="margin-top: 2%; margin-bottom: 10%">
-   <div>
+<main style="margin-top: 3%; background-color: antiquewhite;">
+   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; ">
       <div th:if="${searchQuery.size() > 0}"
            th:each="place,plStat : ${searchQuery}"
            class="columns centered is-relative">
-         <div th:if="${plStat.count < 11}" class="column is-8">
+         <div th:if="${plStat.count < 11}" class="column is-8" style="margin-bottom: 2%;">
             <a th:href="@{'place/' + ${place.id}}">
                <div class="card" style="display: flex">
                   <div th:each="image,iStat : ${place.placeImages}"
@@ -78,13 +78,14 @@
                   </div>
                   <div class="card-content" style="margin-left: 2%;">
                      <p>
-                        <strong th:text="${place.title}"></strong>
-                        <br>
-                        <strong th:text="${place.address}"></strong>
+                        <strong th:text="'Title: ' + ${place.title}"></strong>
                         <br>
                         <small
-                          th:text="'$' + ${place.cost_per_day} + '/day'"></small>
-                        <small th:text="${place.description}"></small>
+                          th:text="'Cost: $' + ${place.cost_per_day} + '/day'"></small>
+                        <br>
+                        <strong th:text="'Address: ' + ${place.address}"></strong>
+                        <br>
+                        <strong th:text="'Description: ' + ${place.description}"></strong>
                      </p>
                   </div>
                </div>
