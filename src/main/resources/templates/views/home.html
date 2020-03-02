@@ -4,7 +4,7 @@
    <title>RTO: Home</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style="background-color: antiquewhite">
+<body style="background: navajowhite">
 <nav th:insert="partials/fragments :: nav" class="is-blue"></nav>
 <main>
    <!--   this is a comment so that i can test production capability-->
@@ -70,7 +70,7 @@
    <div class="columns"
         style="height: 100%;  margin-bottom: 3%;">
       <div class="container card column is-10 is-hidden-mobile"
-           style="border-radius: 3%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
+           style="border-radius: 20%; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: antiquewhite">
          <div class="column is-12 is-three-quarters-mobile"
               style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 2%;">
             <div th:each="place, pStat : ${places}" th:if="${pStat.count < 4}"
